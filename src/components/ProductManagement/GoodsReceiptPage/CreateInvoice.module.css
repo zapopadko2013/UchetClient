@@ -1,0 +1,295 @@
+.createInvoiceContainer {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.createInvoiceTitle {
+  margin-bottom: 24px;
+}
+
+.createInvoiceButtonWrapper {
+  text-align: center;
+  margin-top: 24px;
+}
+
+
+
+.section {
+  margin-bottom: 16px;
+}
+
+.flexEnd {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.statusTag {
+  border: none;
+}
+
+.statusOrange {
+  color: orange !important;
+  background-color: #fff1f0 !important;
+}
+
+.statusBlue {
+  color: #1677ff !important;
+  background-color: #e6f7ff !important;
+}
+
+.statusGreen {
+  color: green !important;
+  background-color: #f6ffed !important;
+}
+
+.arrowIcon {
+  font-size: 18px;
+}
+
+
+
+
+
+.label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.dateField {
+  margin-bottom: 24px;
+}
+
+.footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.selectFull {
+  width: 100%;
+}
+
+
+
+.sectionSmall {
+  margin-bottom: 12px;
+}
+
+.labelSmall {
+  display: block;
+  margin-bottom: 4px;
+  font-weight: 500;
+}
+
+
+.loadingContainer {
+  text-align: center;
+  padding: 50px 0;
+}
+
+.tagList {
+  margin-top: 8px;
+}
+
+.tagItem {
+  margin-bottom: 4px;
+}
+
+
+
+
+.paddedBox {
+  padding: 8px;
+  width: 300px;
+}
+
+.boxStyled {
+  margin-bottom: 8px;
+  width: 90%;
+  padding: 4px;
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+}
+
+.scrollContainer {
+  max-height: 200px;
+  overflow-y: auto;
+  border: 1px solid #f0f0f0;
+  border-radius: 4px;
+  margin-bottom: 8px;
+}
+
+.padded {
+  padding: 4px 8px;
+}
+
+.flexCenterGap {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.flexSpaceBetween {
+  display: flex;
+  justify-content: space-between;
+}
+
+.width90 {
+  width: 90px;
+}
+
+.alertBox {
+  padding: 12px;
+  border: 1px solid #ff4d4f;
+  background-color: #fff0f6;
+  border-radius: 4px;
+}
+
+.boldRedText {
+  font-weight: bold;
+  color: #cf1322;
+}
+
+.warningBox {
+  padding: 12px;
+  border: 1px solid #faad14;
+  background-color: #fffbe6;
+  border-radius: 4px;
+}
+
+.warningText {
+  font-weight: bold;
+  color: #ad8b00;
+}
+
+.marginTopMedium {
+  margin-top: 16px;
+  font-weight: 500;
+}
+
+.smallText {
+  font-size: 12px;
+  color: #555;
+}
+
+.graySmallText {
+  font-size: 12px;
+  color: #888;
+}
+
+.rightAligned {
+  text-align: right;
+  line-height: 1.2em;
+}
+
+.rightPadded {
+  text-align: right;
+  padding: 0 4px;
+}
+
+.textCenterPadding {
+  text-align: center;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+.textCenter {
+  text-align: center;
+}
+
+.flexCenterGap {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+.paddingOverflowX {
+  padding: 24px;
+  overflow-x: auto;
+}
+
+.formItem {
+  margin-bottom: 8px;
+}
+
+.fieldGroup {
+  margin-bottom: 16px;
+  display: flex;
+  gap: 12px;
+}
+
+.userSettingsRow {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.boldText {
+  font-weight: bold;
+}
+
+.actionButtonsRow {
+  display: flex;
+  justify-content: flex-end;
+  gap: 40px;
+  margin-bottom: 4px;
+}
+
+.fixedWidth100 {
+  width: 100px;
+}
+
+.rightAlignedBox {
+  width: 120px;
+  text-align: right;
+}
+
+.flexEndRow {
+  display: flex;
+  justify-content: flex-end;
+  gap: 40px;
+}
+
+.autoMarginRight {
+  margin-right: auto;
+}
+
+.flexBetweenRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.flexCenterGap {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.marginRight8 {
+  margin-right: 8px;
+}
+
+.flexGap8 {
+  display: flex;
+  gap: 8px;
+}
+
+.pointerCursor {
+  cursor: pointer;
+}
+
+.paddingVertical40 {
+  padding: 40px 0;
+}
+
+.largePrimaryText {
+  font-size: 32px;
+  color: #1890ff;
+}

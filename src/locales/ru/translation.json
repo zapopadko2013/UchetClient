@@ -1,0 +1,1915 @@
+{
+  "login": {
+    "title": "Вход",
+    "button": "Войти",
+    "usernamePlaceholder": "Логин",
+    "passwordPlaceholder": "Пароль",
+    "usernameRequired": "Пожалуйста, введите логин!",
+    "passwordRequired": "Пожалуйста, введите пароль!",
+    "errorInvalid": "Неверный логин или пароль. Ошибка -",
+    "errorNetwork": "Ошибка сети или сервера. Попробуйте еще раз."
+  },
+  "menu": {
+    "home": "Главная",
+    "dashboard": "Панель управления",
+    "settings": "Настройки",
+    "news": "Новости",
+    "businessManagement": "Пользователи",
+    "portalUsers": "Пользователи программы",
+    "cashUsers": "Пользователи касс",
+    "salesPlan": "План продаж",
+
+    "sellersBuyers": "Поставщики и покупатели",
+    "suppliers": "Поставщики",
+    "legalBuyers": "Покупатели юр. лица",
+    "individualBuyers": "Покупатели физ. лица",
+
+    "tradeObjects": "Объекты торговли",
+    "warehouse": "Склад",
+    "storePoints": "Торговая точка",
+    "cashDesks": "Кассы",
+    "scales": "Весы",
+
+    "pricing": "Ценообразование",
+    "priceChange": "Изменение цен",
+    "pricingMaster": "Мастер ценообразования",
+    "limitPrices": "Предельные цены",
+
+    "marketing": "Маркетинг",
+    "coupons": "Купоны",
+    "giftCertificates": "Подарочные сертификаты",
+    "bonuses": "Бонусы",
+    "discounts": "Скидки",
+    "promotions": "Акции",
+
+    "productManagement": "Управление товарами",
+    "goodsReceipt": "Прием товара",
+    "goodsTransfer": "Перемещение товара",
+    "goodsWriteoff": "Списание товара",
+    "barcodePrint": "Печать штрих кода",
+    "weightGoods": "Весовые товары",
+    "nomenclature": "Товар",
+    "jobOrder": "Наряд-заказ",
+    "inventory": "Ревизия",
+    
+    "changePassword": "Сменить пароль"
+    
+  },
+  "userMenu": {
+    "profile": "Компания",
+    "changePassword": "Сменить пароль",
+    "logout": "Выйти"
+  },
+  "auth": {
+    "unauthorized": "Нет авторизации"
+  },
+  "content": {
+    "currentPage": "Текущий вид: {{pageName}}",
+    "dynamicContent": "Это динамически изменяемый контент в зависимости от выбора меню.",
+    "unknownPage": "Неизвестная страница"
+  },
+  "misc": {
+    "appName": "UchetPro",
+    "usernameGuest": "Гость"
+  },
+  "notifications": {
+    "title": "Новости",
+    "apiError": "Ошибка",
+    "noNews": "Нет новостей",
+    "loading": "Загрузка новости..."   
+  },
+  "newsDetail": {
+    "loading": "Загрузка новости...",
+    "notFound": "Новость не найдена.",
+    "errorTitle": "Ошибка при загрузке новости.",
+    "noContentAvailable": "Не найдена новость."
+    
+  },
+  "companyPage": {
+    "title": "Информация о компании",
+    "readOnlyInfo": "Это страница информации о компании. Нажмите на кнопку ниже, чтобы перейти в режим редактирования.",
+    "editButton": "Редактировать",
+    "modalTitle": "Редактировать данные компании",
+    "name": "Название",
+    "bin": "БИН",
+    "address": "Адрес",
+    "head": "Руководитель",
+    "headIin": "ИИН руководителя",
+    "accountant": "Главный бухгалтер",
+    "accountantIin": "ИИН бухгалтера",
+    "certificatenum": "Номер",
+    "certificateseries": "Серия",
+    "certificatedate": "Дата",
+    "holding": "Холдинг",
+    "wholesale": "Оптовые продажи",
+    "loading": "Загрузка данных...",
+    "errorLoading": "Не удалось загрузить данные компании.",
+    "error": "Не удалось загрузить данные компании.",
+    "saveButton": "Сохранить",
+    "cancelButton": "Отмена",
+    "successUpdate": "Данные успешно обновлены!",
+    "errorUpdate": "Не удалось обновить данные."
+  },
+  "changePasswordPage": {
+      "title": "Смена пароля",
+      "description": "Пожалуйста, введите старый и новый пароль для его изменения.",
+      "oldPassword": "Старый пароль",
+      "newPassword": "Новый пароль",
+      "confirmPassword": "Подтвердите новый пароль",
+      "oldPasswordRequired": "Пожалуйста, введите старый пароль!",
+      "newPasswordRequired": "Пожалуйста, введите новый пароль!",
+      "confirmPasswordRequired": "Пожалуйста, подтвердите новый пароль!",
+      "passwordsMismatch": "Введенные пароли не совпадают!",
+      "passwordMinLength": "Пароль должен содержать не менее 6 символов.",
+      "saveButton": "Сохранить",
+      "successMessage": "Пароль успешно изменен!",
+      "errorChange": "Ошибка при смене пароля"
+      
+    },
+
+  "cashBoxUser": {
+    "tabs": {
+      "active": "Активные пользователи",
+      "inactive": "Неактивные пользователи"
+    },
+    "buttons": {
+      "add": "Добавить пользователя",
+      "edit": "Редактировать",
+      "delete": "Удалить",
+      "activate": "Активировать пользователя"
+    },
+    "columns": {
+      "name": "Наименование",
+      "iin": "ИИН",
+      "role": "Роль пользователя",
+      "point": "Торговая точка",
+      "status": "Статус"
+    },
+    "status": {
+      "active": "Активен",
+      "deleted": "Удалён"
+    },
+    "notifications": {
+      "apiError": "Ошибка загрузки данных",
+      "userDeleted": "Пользователь удалён",
+      "userActivated": "Пользователь активирован",
+      "deleteError": "Ошибка удаления",
+      "activateError": "Ошибка активации"
+    }
+  }  ,
+  "cashBoxUserAddForm": {
+  "title": {
+    "add": "Добавить пользователя кассы",
+    "edit": "Редактировать пользователя"
+  },
+  "buttons": {
+    "add": "Добавить",
+    "save": "Сохранить",
+    "cancel": "Отмена"
+  },
+  "fields": {
+    "name": "Наименование",
+    "iin": "ИИН",
+    "point": "Торговая точка",
+    "role": "Роль",
+    "allowDiscount": "Разрешить ручную скидку?",
+    "discount": "Максимальная ручная скидка (до 100%)"
+  },
+  "placeholders": {
+    "selectPoint": "Выберите торговую точку",
+    "selectRole": "Выберите роль",
+    "selectDiscountOption": "Выберите вариант"
+  },
+  "options": {
+    "yes": "Да",
+    "no": "Нет"
+  },
+  "validations": {
+    "name": "Введите имя пользователя",
+    "iin": "Введите ИИН",
+    "point": "Выберите точку",
+    "role": "Выберите роль",
+    "allowDiscount": "Укажите, разрешена ли ручная скидка",
+    "discountRequired": "Введите максимальную скидку",
+    "discountRange": "Скидка должна быть от 0 до 100%",
+    "discountMaxLength": "Максимум 2 цифры"
+  },
+  "messages": {
+    "created": "Пользователь добавлен",
+    "updated": "Пользователь обновлён",
+    "error": "Ошибка при сохранении пользователя"
+  },
+  "errors": {
+    "dataLoad": "Ошибка загрузки данных",
+    "rolesLoad": "Ошибка загрузки ролей",
+    "pointsLoad": "Ошибка загрузки точек"
+  }
+},
+
+"salesPlan": {
+    "individualPlans": "Индивидуальные планы",
+    "teamPlans": "Командные планы",
+    "add": "Добавить",
+    "edit": "Редактировать",
+    "delete": "Удалить",
+    "cashierName": "Имя кассира",
+    "pointName": "Торговая точка",
+    "pointTitle": "Название торговой точки",
+    "daily": "Ежедневный",
+    "monthly": "Месячный",
+    "quarterly": "Квартальный",
+    "planDeleted": "План удалён",
+    "deleteError": "Ошибка при удалении",
+    "loadError": "Ошибка при загрузке планов",
+
+    "form": {
+    "addTitle": "Добавить план",
+    "editTitle": "Редактировать план",
+    "cashier": "Кассир",
+    "point": "Торговая точка",
+    "selectCashier": "Выберите кассира",
+    "selectPoint": "Выберите торговую точку",
+    "dailyPlan": "Ежедневный план",
+    "dailyRate": "Процент (ежедневный)",
+    "monthlyPlan": "Месячный план",
+    "monthlyRate": "Процент (месячный)",
+    "quarterlyPlan": "Квартальный план",
+    "quarterlyRate": "Процент (квартальный)",
+    "saveError": "Ошибка при сохранении плана",
+    "loadCashiersError": "Не удалось загрузить кассиров",
+    "loadPointsError": "Не удалось загрузить торговые точки"
+  }
+  },
+  "userProgram": {
+    "activeUsers": "Активные пользователи",
+    "inactiveUsers": "Неактивные пользователи",
+    "fullName": "ФИО",
+    "iin": "ИНН",
+    "login": "Логин",
+    "accesses": "Доступы пользователя",
+    "add": "Добавить",
+    "edit": "Редактировать",
+    "editAccesses": "Редактировать доступы",
+    "delete": "Удалить",
+    "activate": "Активировать пользователя",
+    "editUser": "Редактировать пользователя",
+    "addUser": "Добавить пользователя",
+    "submitError": "Ошибка при сохранении",
+    "editSuccess": "Пользователь обновлён",
+    "addSuccess": "Пользователь добавлен",
+    "userActivated": "Пользователь активирован",
+    "accessLoadError": "Ошибка при загрузке доступов",
+    "loadError": "Ошибка при загрузке пользователей",
+    "fullNameRequired": "Введите ФИО",
+    "iinRequired": "Введите ИИН",
+    "loginRequired": "Введите логин",
+    "accessesRequired": "Выберите хотя бы один доступ",
+    "selectAccesses": "Выберите доступы",
+    "viewAllAccesses": "Посмотреть все",
+    "fullAccesses": "Все доступы",
+    "status": "Статус",
+    "deleted": "Удалён",
+    "activateError": "Ошибка при активации пользователя",
+    "noAccesses": "Нет доступов",
+    "confirmDelete": "Подтвердите удаление",
+    "confirmDeleteText": "Вы уверены, что хотите удалить этого пользователя?",
+    "confirm": "Удалить",
+    "cancel": "Отмена",
+    "deleteSuccess": "Пользователь успешно удалён",
+    "deleteError": "Ошибка при удалении пользователя",
+    
+  "accessesUpdated": "Доступы успешно обновлены",
+  "accessesUpdateError": "Ошибка при обновлении",
+  "loadAccessError": "Ошибка при загрузке доступов",
+  "save": "Сохранить",
+  "category": "Категории",
+  "functions": "Функции",
+  "fillAccessesToComplete": "Выберите доступы для пользователя"
+   ,"userCreateError": "Ошибка при добавлении пользователя"
+
+  }
+  ,
+  "suppliers": {
+    "tabs": {
+      "active": "Активные поставщики",
+      "inactive": "Неактивные поставщики"
+    },
+    "buttons": {
+      "add": "Добавить",
+      "edit": "Редактировать",
+      "delete": "Удалить",
+      "activate": "Активировать",
+      "save": "Сохранить",
+      "cancel": "Отмена"
+    },
+    "search": {
+      "placeholder": "Поиск по наименованию или БИН"
+    },
+    "table": {
+      "name": "Наименование",
+      "bin": "БИН",
+      "email": "Электронная почта",
+      "status": "Статус"
+    },
+    "messages": {
+      "addSuccess": "Поставщик добавлен",
+      "editSuccess": "Поставщик обновлён",
+      "deleteSuccess": "Поставщик удалён",
+      "activateSuccess": "Поставщик активирован",
+      "loadError": "Ошибка загрузки данных",
+      "saveError": "Ошибка при сохранении данных",
+      "confirmDeleteText": "Хотите удалить поставщика?",      
+      "validation": {
+        "requiredName": "Введите наименование",
+        "requiredBin": "Введите БИН",
+        "binLength": "БИН должен содержать 12 цифр"
+      }
+    },
+    "modalTitles": {
+      "add": "Добавить поставщика",
+      "edit": "Редактировать поставщика"
+    },
+    
+    "modals": {
+      "addTitle": "Добавить поставщика",
+      "editTitle": "Редактировать поставщика"
+    },
+    
+    "form": {
+      "name": "Наименование",
+      "nameRequired": "Введите наименование",
+      "bin": "БИН",
+      "binRequired": "Введите БИН",
+      "binLength": "БИН должен содержать 12 цифр",
+      "email": "Электронная почта"
+    },
+    "status": {
+    "deleted": "Удалён"
+  }
+  },
+  
+  "legalBuyers": {
+    "activeBuyers": "Активные покупатели",
+    "inactiveBuyers": "Неактивные покупатели",
+    "add": "Добавить",
+    "edit": "Редактировать",
+    "delete": "Удалить",
+    "activate": "Активировать",
+    "confirmDeleteTitle": "Удалить покупателя?",
+    "confirmDeleteContent": "Вы уверены, что хотите удалить покупателя?",
+    "buyerDeleted": "Покупатель удален",
+    "deleteError": "Ошибка при удалении",
+    "activateSuccess": "Покупатель активирован",
+    "activateError": "Ошибка при активации",
+    "loadingError": "Ошибка загрузки покупателей",
+    "searchPlaceholder": "Поиск по наименованию или БИН",
+    "name": "Наименование",
+    "bin": "БИН",
+    "address": "Адрес",
+    "status": "Статус",
+    "deleted": "Удалён"
+
+    , "addBuyer": "Добавить покупателя",
+    "editBuyer": "Редактировать покупателя",
+    "buyerAdded": "Покупатель добавлен",
+    "buyerUpdated": "Покупатель обновлён",
+    "saveError": "Ошибка при сохранении",
+    "cancel": "Отмена",
+    "save": "Сохранить",
+
+    
+
+    "validation": {
+      "nameRequired": "Введите наименование",
+      "binRequired": "Введите БИН",
+      "binLength": "БИН должен содержать 12 цифр",
+      "binDigitsOnly": "БИН должен содержать только цифры",
+      "addressRequired": "Введите адрес"
+    }
+  },
+
+  "individualBuyers": {
+    "activeBuyers": "Активные покупатели",
+    "inactiveBuyers": "Неактивные покупатели",
+    "add": "Добавить",
+    "edit": "Редактировать",
+    "delete": "Удалить",
+    "activate": "Активировать",
+    "confirmDeleteTitle": "Удалить покупателя?",
+    "confirmDeleteContent": "Вы уверены, что хотите удалить покупателя?",
+    "buyerDeleted": "Покупатель удален",
+    "deleteError": "Ошибка при удалении",
+    "activateSuccess": "Покупатель активирован",
+    "activateError": "Ошибка при активации",
+    "loadingError": "Ошибка загрузки покупателей",
+    "searchPlaceholder": "Поиск по наименованию или телефону",
+    "lastname": "Фамилия",
+    "firstname": "Имя",
+    "telephone": "Телефон",
+    "status": "Статус",
+    "deleted": "Удалён"
+    
+    , "addBuyer": "Добавить покупателя",
+    "editBuyer": "Редактировать покупателя",
+    "buyerAdded": "Покупатель добавлен",
+    "buyerUpdated": "Покупатель обновлён",
+    "saveError": "Ошибка при сохранении",
+    "cancel": "Отмена",
+    "save": "Сохранить",
+
+    
+
+    "validation": {
+      "firstnameRequired": "Введите наименование",
+      "lastnameRequired": "Введите фамилию",
+      "telephoneDigitsOnly": "Телефон должен содержать только цифры",
+      "telephoneRequired": "Введите телефон"
+    }
+  }
+
+  ,"warehouse": {
+    "activeWarehouse": "Активные склады",
+    "inactiveWarehouse": "Неактивные склады",
+    "loadingError": "Ошибка загрузки складов",
+    "name": "Наименование",
+    "address": "Адрес",
+    "status": "Статус",
+    "deleted": "Удалён"
+    
+    
+  }
+,
+
+"tradePoint": {
+    "tabs": {
+      "active": "Активные торговые точки",
+      "inactive": "Неактивные торговые точки"
+    },
+    "fields": {
+      "name": "Наименование",
+      "address": "Адрес",
+      "minusAccounting": "Отрицательный учёт",
+       "status": "Статус"
+    },
+    "modal": {
+      "addTitle": "Добавление торговой точки",
+      "editTitle": "Редактирование торговой точки"
+    },
+    "buttons": {
+      "add": "Добавить",
+      "edit": "Редактировать",
+      "save": "Сохранить",
+      "cancel": "Отмена",
+      "activate": "Активировать"
+    },
+    "messages": {
+      "added": "Торговая точка успешно добавлена",
+      "updated": "Торговая точка успешно обновлена",
+      "activated": "Торговая точка активирована",
+      "loadingError": "Ошибка загрузки торговых точек",
+      "saveError": "Ошибка при сохранении торговой точки",
+      "activationError": "Ошибка активации торговой точки"
+    },
+    "misc": {
+      "yes": "Да",
+      "no": "Нет",
+      "required": "Обязательное поле",
+    "deleted": "Удалён"
+    }
+  }
+
+  ,
+
+  "scalesPage": {
+    "tabs": {
+      "active": "Активные весы",
+      "inactive": "Неактивные весы"
+    },
+    "fields": {
+      "name": "Наименование",
+      "warehouse": "Склад",
+      "status": "Статус"
+    },
+    "buttons": {
+      "add": "Добавить",
+      "edit": "Редактировать",
+      "delete": "Удалить",
+      "activate": "Активировать",
+      "save": "Сохранить",
+      "cancel": "Отмена"
+    },
+    "modal": {
+      "addTitle": "Добавить весы",
+      "editTitle": "Редактировать весы"
+    },
+    "messages": {
+      "loadWarehousesError": "Ошибка загрузки складов",
+      "loadScalesError": "Ошибка загрузки весов",
+      "added": "Весы успешно добавлены",
+      "updated": "Весы успешно обновлены",
+      "deleted": "Весы удалены",
+       "activated": "Вес активирован",
+
+       
+      "activationError": "Ошибка активации весов",
+      "saveError": "Ошибка при сохранении весов",
+      "confirmDeleteTitle": "Подтвердите удаление",
+      "confirmDeleteContent": "Вы уверены, что хотите удалить весы \"{{name}}\"?"
+    },
+    "misc": {
+      "deleted": "Удалён",
+      "required": "Обязательное поле",
+      "requiredWarehouse": "Выберите склад"
+    },
+    "placeholders": {
+      "selectWarehouse": "Выберите склад"
+    }
+  }
+  ,
+
+  "cashDesksPage": {
+    "tabs": {
+      "active": "Активные кассы",
+      "inactive": "Неактивные кассы"
+    },
+    "buttons": {
+      "add": "Добавить",
+      "edit": "Редактировать",
+      "delete": "Удалить",
+      "activate": "Активировать",
+      "save": "Сохранить",
+      "cancel": "Отмена",
+       "editCheck": "Изменить чек"
+    },
+    "fields": {
+      "name": "Касса",
+      "point": "Торговая точка",
+      "status": "Статус"
+    },
+    "modal": {
+      "addTitle": "Добавление кассы",
+      "editTitle": "Редактирование кассы"
+    },
+    "placeholders": {
+      "selectPoint": "Выберите торговую точку"
+    },
+    "messages": {
+      "loadError": "Ошибка загрузки касс",
+      "pointLoadError": "Ошибка загрузки торговых точек",
+      "nameRequired": "Пожалуйста, введите название кассы",
+      "pointRequired": "Пожалуйста, выберите торговую точку",
+      "added": "Касса добавлена",
+      "updated": "Касса обновлена",
+      "saveError": "Ошибка сохранения кассы",
+      "deleted": "Касса удалена",
+      "deleteError": "Ошибка при удалении кассы",
+      "activated": "Касса активирована",
+      "activateError": "Ошибка при активации кассы",
+
+      "confirmDeleteTitle": "Удалить кассу?",
+      "confirmDeleteContent": "Вы уверены, что хотите удалить кассу «{{name}}»?"
+    },
+    "misc": {
+      "deleted": "Удалён"
+    }
+  },
+
+  "checkEditor": {
+    "modalTitle": "Изменить чек",
+    "labels": {
+      "uploadLogo": "Загрузить логотип компании:",
+      "tradePoint": "Торговая точка",
+      "address": "Адрес",
+      "company": "Компания",
+      "thanks": "Спасибо за покупку.",
+      "extraText": "Дополнительный текст 2",
+      "selectTradePoint": "Выберите торговую точку",
+      "dropOrSelectFile": "Перетащите или выберите файл",
+      "logo": "Логотип компании",
+      "sale": "Продажа:",
+      "totalProducts": "Итого товаров",
+      "totalAmount": "Итого сумма",
+      "discountOnCheck": "Скидка на чек",
+      "finalTotal": "Итог",
+      "totalDiscounts": "Итого скидки",
+      "vatIncluded": "В том числе НДС",
+      "mixedPayment": "Смешанная оплата",
+      "cashPayment": "Оплата наличными",
+      "receivedFromClient": "Получено от клиента",
+      "change": "Сдача",
+      "cardPayment": "Безналичный расчёт (карта)",
+      "cashier": "Кассир",
+      "terminal": "Терминал",
+      "goodsReceipt": "Товарный чек"
+      
+    },
+    "buttons": {
+      "save": "Сохранить",
+      "cancel": "Отменить"
+    },
+    "placeholders": {
+      "tradePoint": "Торговая точка",
+      "address": "Адрес",
+      "company": "Компания",
+      "thanks": "Спасибо за покупку",
+      "advertisement": "Дополнительный текст 2"
+    },
+    "checkboxes": {
+      "BIN": "БИН",
+      "NDS": "НДС",
+      "ZNM": "ЗНМ",
+      "RNM": "РНМ"
+    },
+    "messages": {
+      "loadPointsError": "Ошибка загрузки торговых точек",
+      "loadTemplateError": "Ошибка загрузки шаблона чека",
+      "logoSaved": "Логотип сохранён",
+      "templateSaved": "Шаблон сохранён",
+      "saveError": "Ошибка сохранения шаблона",
+      "unknownError": "Произошла неизвестная ошибка"
+    },
+    
+    "products": {
+      "apricotPuree": "Пюре Абрикос творог 331KZT",
+      "cabbagePuree": "Пюре натуральное из капусты",
+      "certificate5000": "Сертификат на 5000KZT"
+    },
+    "payments": {
+      "cash": "Оплата наличными",
+      "receivedFromClient": "Получено от клиента",
+      "change": "Сдача",
+      "cardPayment": "Безналичный расчёт (карта)"
+    }
+  },
+
+  "limitPrices": {
+    "title": "Предельные цены",
+  "form": {
+    "limitPrice": "Предельная цена",
+    "product": "Наименование товара",
+    "barcode": "Штрих код",
+    "selectProduct": "Выберите товар",
+    "enterBarcode": "Введите штрихкод",
+    "price": "Текущая цена продажи"
+    
+  },
+  "actions": {
+    "add": "Добавить",
+    "edit": "Редактировать",
+    "delete": "Удалить",
+    "save": "Сохранить",
+    "cancel": "Отмена",
+    "find": "Найти"
+  },
+  "messages": {
+    "editSuccess": "Предельная цена обновлена",
+    "editError": "Ошибка при обновлении предельной цены",
+    "deleteSuccess": "Предельная цена удалена",
+    "deleteError": "Ошибка при удалена предельной цены",
+    "addSuccess": "Предельная цена добавлена",
+    "addError": "Ошибка при добавлении цены",
+    "loadError": "Не удалось загрузить список товаров",
+    "notFound": "Товар не найден",
+    "barcodeError": "Ошибка при поиске по штрихкоду"
+  },
+  "validation": {
+    "enterLimitPrice": "Введите предельную цену",
+    "selectProduct": "Выберите товар"
+  }
+},
+
+
+  "pricingMaster": {
+    "title": "Мастер ценообразования",
+    "settingsForm": {
+    "notifyIfIncrease": "Показывать уведомление если цена продажи увеличилась более чем на",
+    "notifyIfDecrease": "Показывать уведомление если цена продажи уменьшилась более чем на",
+    "checkAvgPurchase": "Проверять среднюю себестоимость закупа партий товара при снижении цены"
+  },
+  
+  "tabs": {
+    "markup": "Наценка",
+    "settings": "Настройки"
+  },
+  "buttons": {
+    "products": "Товары",
+    "brands": "Бренды",
+    "categories": "Категории",
+    "add": "Добавить",
+    "delete": "Удалить",
+    "save": "Сохранить",
+    "cancel": "Отмена"
+  },
+  "tableHeaders": {
+    "name": "Наименование",
+    "marginRate": "Процент маржи",
+    "marginSum": "Сумма маржи"
+  },
+  "modalFields": {
+    "selectType": "Выберите тип",
+    "productName": "Наименование товара",
+    "barcode": "Штрих код",
+    "marginRate": "Процент маржи",
+    "marginSum": "Сумма маржи",
+    "submit": "Сохранить",
+    "cancel": "Отмена",
+    "selectProduct": "Выберите товар",
+    "selectBrand": "Выберите бренд",
+    "selectCategory": "Выберите категорию",
+    "enterBarcode": "Введите штрих код",
+    "brand": "Бренд",
+    "category": "Категория"
+    
+  },
+  "validation": {
+    "select": "Пожалуйста, выберите значение",
+    "enterRate": "Пожалуйста, введите процент маржи",
+    "enterSum": "Пожалуйста, введите сумму маржи",
+    "titleSum": "Или сумма или процент маржи должен быть 0"
+  },
+  "messages": {
+    "loadError": "Ошибка загрузки данных",
+    "deleteSuccess": "Запись успешно удалена",
+    "deleteError": "Ошибка удаления записи",
+    "addSuccess": "Запись успешно добавлена",
+    "addError": "Ошибка при добавлении записи",
+    "settingsLoadError": "Ошибка загрузки настроек",
+    "settingsSaveSuccess": "Настройки успешно сохранены",
+    "settingsSaveError": "Ошибка при сохранении настроек",
+    "productFound": "Товар найден",
+    "productNotFound": "Товар не найден",
+    "barcodeError": "Ошибка при поиске по штрих коду"
+  },
+  "actions": {
+    "add": "Добавить",
+    "save": "Сохранить",
+    "cancel": "Отмена"
+  },
+  "form": {
+    "barcode": "Штрих код",
+    "product": "Товар",
+    "brand": "Бренд",
+    "category": "Категория",
+    "marginRate": "Процент маржи",
+    "marginSum": "Сумма маржи",
+    "enterBarcode": "Введите штрих код",
+    "selectProduct": "Выберите товар",
+    "selectBrand": "Выберите бренд",
+    "selectCategory": "Выберите категорию"
+  }
+},
+
+"changePrices": {
+    "title": "Изменение цен",
+    "selectProductPlaceholder": "Выберите товар",
+    "barcodeInputPlaceholder": "Штрих-код",
+    "selectButton": "Выбрать",
+    "retailPriceLabel": "Новая розничная цена",
+    "wholesalePriceLabel": "Новая оптовая цена",
+    "addButton": "Добавить",
+    "finalTableTitle": "Итоговая таблица",
+    "submitButton": "Отправить новые цены",
+    "table": {
+      "productName": "Наименование товара",
+      "retailPrice": "Розничная цена",
+      "wholesalePrice": "Оптовая цена",
+      "product": "Продукт",
+      "barcode": "Штрих-код",
+      "currentRetailPrice": "Текущая розничная цена",
+      "newRetailPrice": "Новая розничная цена",
+      "currentWholesalePrice": "Текущая оптовая цена",
+      "newWholesalePrice": "Новая оптовая цена",
+      "point": "Торговая точка",
+      "delete": "Удалить",
+      "select": "Выбрать"
+    },
+    "messages": {
+      "loadError": "Не удалось загрузить список товаров",
+      "emptyBarcode": "Введите или выберите штрих-код",
+      "productFetchError": "Ошибка при получении информации о товаре",
+      "noRetailPrice": "Новая розничная цена обязательна",
+      "noSelection": "Выберите хотя бы один товар из таблицы",
+      "noFinalItems": "Добавьте хотя бы одну запись",
+      "success": "Цены успешно обновлены",
+      "submitError": "Ошибка при отправке новых цен"
+    }
+  }
+  ,
+
+  
+"coupons": {
+    "loadError": "Ошибка загрузки купонов",
+    "deleted": "Купон удален",
+    "deleteError": "Ошибка удаления купона",
+    "bindingPrefix": "На",
+
+    "tabs": {
+      "active": "Активные купоны",
+      "inactive": "Неактивные купоны"
+    },
+    "actions": {
+      "add": "Добавить",
+      "delete": "Удалить"
+    },
+    "columns": {
+      "number": "Номер",
+      "binding": "Привязка",
+      "type": "Тип",
+      "expire": "Срок действия",
+      "discount": "Скидка",
+      "status": "Статус"
+    },
+    "status": {
+      "active": "Активен",
+      "inactive": "Использован"
+    },
+    "bindings": {
+      "all": "На все",
+      "category": "На категорию",
+      "brand": "На бренд",
+      "product": "На товар",
+      "receipt": "На чек"
+    },
+    "types": {
+      "multi": "Многоразовый",
+      "single": "Одноразовый"
+    }
+  }
+
+  ,
+
+  
+  "couponAddModal": {
+    "title": "Добавить купон",
+    "couponType": "Тип купона",
+    "couponTypeRequired": "Выберите тип купона",
+    "multiUse": "Многоразовый",
+    "singleUse": "Одноразовый",
+    "usage": "Применение",
+    "usageRequired": "Выберите применение",
+    "onProduct": "На товар(ы)",
+    "onReceipt": "На чек",
+    "binding": "Привязка купона",
+    "bindingRequired": "Выберите привязку",
+    "bindingOptions": {
+      "all": "Ко всем товарам",
+      "category": "К категории",
+      "brand": "К бренду",
+      "product": "К товару"
+    },
+    "category": "Категория",
+    "brand": "Бренд",
+    "product": "Товар",
+    "barcode": "Штрихкод",
+    "barcodePlaceholder": "Введите штрихкод и нажмите Enter",
+    "discount": "Скидка (%)",
+    "discountRequired": "Введите скидку",
+    "discountRange": "От 1 до 100",
+    "expireDate": "Дата окончания",
+    "expireDateRequired": "Выберите дату",
+    "couponNumber": "Номер купона",
+    "couponNumberRequired": "Введите номер",
+    "numberFrom": "Диапазон номеров с",
+    "numberFromRequired": "Введите номер с",
+    "numberTo": "Диапазон номеров по",
+    "numberToRequired": "Введите номер по",
+    "reset": "Сбросить",
+    "cancel": "Отменить",
+    "save": "Сохранить",
+    "successAdd": "Купон успешно добавлен",
+    "errorAdd": "Ошибка при добавлении купона"
+  }
+ ,
+
+ "bonuses": {
+    "products": "Товары",
+    "categories": "Категории",
+    "loadCategoriesError": "Ошибка загрузки категорий",
+    "loadBonusError": "Ошибка при получении бонусной ставки товара",
+    "saveBonusSuccess": "Бонусная ставка товара сохранена",
+    "saveBonusError": "Ошибка сохранения бонусной ставки",
+    "bonusRatePlaceholder": "Процент начисления бонуса",
+    "save": "Сохранить",
+    "keepOld": "Оставить товары со старым бонусом",
+    "changeAll": "Изменить бонусы у всех товаров",
+    "productName": "Наименование товара",
+    "bonusRate": "Бонусная ставка",
+    "noCategoryData": "Данные по категории не найдены",
+    "loadCategoryBonusError": "Ошибка загрузки бонусных данных категории",
+    "saveCategoryBonusSuccess": "Бонусная ставка категории сохранена",
+    "saveCategoryBonusError": "Ошибка сохранения бонусной ставки категории"
+  }
+,
+
+"gift": {
+    "downloadTemplate": "Скачать шаблон",
+    "dragFileHere": "Кликните или перетащите файл сюда для загрузки",
+    "fileHint": "Поддерживаются файлы .xls и .xlsx",
+    "processUpload": "Выгрузить",
+    "selectStock": "Выберите склад",
+    "save": "Сохранить",
+    "code": "Номер сертификата",
+    "balance": "Номинал",
+    "period": "Период действия",
+    "selldate": "Дата продажи",
+    "templateDownloaded": "Шаблон загружен",
+    "templateDownloadError": "Ошибка загрузки шаблона",
+    "emptyFile": "Файл пустой",
+    "loadSuccess": "Файл загружен. Нажмите «Выгрузить» для обработки.",
+    "parseError": "Ошибка при чтении файла",
+    "noFile": "Файл не получен",
+    "uploadFirst": "Сначала загрузите файл",
+    "processSuccess": "Данные успешно обработаны сервером",
+    "uploadError": "Ошибка при отправке файла на сервер",
+    "saveSuccess": "Сертификаты успешно сохранены",
+    "saveError": "Ошибка при сохранении сертификатов"
+  },
+
+  "discounts": {
+
+    "addDiscount": "Добавить скидку",
+    "cancel": "Отмена",
+    "reset": "Сбросить",
+    "save": "Сохранить",
+    "allPoints": "Для всех торговых точек",
+    "byPoint": "По торговой точке",
+    "byCategory": "По категории",
+    "byProduct": "По товару",
+    "selectPoint": "Выберите торговую точку",
+    "choosePoint": "Выберите точку",
+    "selectCategory": "Выберите категорию",
+    "selectProduct": "Выберите товар",
+    "selectStockRows": "Выберите позиции из остатков",
+    "discountParams": "Параметры скидки",
+    "percentDiscount": "Процент скидки",
+    "discountInTenge": "Скидка в тенге",
+    "ifProductHasExpiryDiscount": "Если у товара есть срок годности, суммировать скидки?",
+    "doNotSum": "Не суммировать",
+    "sumDiscounts": "Суммировать скидки",
+    "considerTime": "Учитывать время",
+    "from1": "С",
+    "to1": "По",
+    "added": "Скидка успешно добавлена",
+    "addError": "Ошибка при добавлении скидки",
+    "sendError": "Ошибка отправки запроса",
+    "unknownError": "Неизвестная ошибка",
+    "specifyDiscount": "Укажите скидку (процент или сумму)",
+    
+    "errorLoadingPoints": "Ошибка загрузки торговых точек",
+    "errorLoadingCategories": "Ошибка загрузки категорий",
+    "errorLoadingStock": "Ошибка загрузки остатков",
+
+    "selectType": "Выберите тип",
+    "from": "От",
+    "to": "До",
+    "validationError": "Заполните все поля",
+    "saved": "Исключение успешно добавлено",
+    "saveError": "Ошибка при сохранении исключения",
+    "loadError": "Ошибка при загрузке скидок",
+    "deleteError": "Ошибка при удалении скидки",
+    "deleted": "Скидка отменена",
+    "point": "Торговая точка",
+    "category": "Категория",
+    "product": "Товар",
+    "discount": "Скидка",
+    "summarize": "Суммировать",
+    "tooltip": "Суммируется со скидками по срокам годности",
+    "period": "Период действия",
+    "status": "Статус",
+    "expired": "Истёк",
+    "active": "Не истёк",    
+    "object": "Объект",
+    "productName": "Наименование товара без скидки",
+    "name": "Товар/Категория/Бренд",
+    "barcode": "Штрихкод",
+    "range": "Срок годности товара в диапазоне:",
+    "type": "Тип",
+    "day": "День",
+    "month": "Месяц",
+    "commonInfo": "В случае наличия у товара различных общих скидок (по категории/по товару) все такие скидки будут суммироваться при продаже товара.",
+    "expdateInfo": "В случае наличия у товара общих скидок (по категории/по товару), скидка по сроку годности будет применена в любом случае. Вы можете настроить применение общих скидок в соответствующем разделе.",
+    "tabs": {
+      "common": "Общие скидки",
+      "expdate": "Скидки по срокам годности",
+      "exceptions": "Исключения",
+      "inactive": "Неактивные скидки"
+    },
+    "common": {
+      "add": "Добавить",
+      "yes": "Да",
+      "no": "Нет",
+      "cancelDiscount": "Отменить скидку",
+      "removeException": "Убрать исключение",
+      "discountBy": "Действующие скидки по",
+      "byPoints": "Торговым точкам",
+      "byCategories": "Категориям",
+      "byProducts": "Товарам"
+      ,
+    "save": "Сохранить",
+    "cancel": "Отменить",
+    "clear": "Сбросить"
+   
+      
+    }
+  },
+
+  "discount": {
+    "addDiscount": "Добавить скидку",
+    "cancel": "Отмена",
+    "reset": "Сбросить",
+    "save": "Сохранить",
+    "allPoints": "Для всех торговых точек",
+    "byPoint": "По торговой точке",
+    "byCategory": "По категории",
+    "byProduct": "По товару",
+    "selectPoint": "Выберите торговую точку",
+    "choosePoint": "Выберите точку",
+    "selectCategory": "Выберите категорию",
+    "selectProduct": "Выберите товар",
+    "selectStockRows": "Выберите позиции из остатков",
+    "discountParams": "Параметры скидки",
+    "percentDiscount": "Процент скидки",
+    "discountInTenge": "Скидка в тенге",
+    "ifProductHasExpiryDiscount": "Если у товара есть срок годности, суммировать скидки?",
+    "doNotSum": "Не суммировать",
+    "sumDiscounts": "Суммировать скидки",
+    "considerTime": "Учитывать время",
+    "from": "С",
+    "to": "По",
+    "added": "Скидка успешно добавлена",
+    "addError": "Ошибка при добавлении скидки",
+    "sendError": "Ошибка отправки запроса",
+    "unknownError": "Неизвестная ошибка",
+    "specifyDiscount": "Укажите скидку (процент или сумму)",
+    
+    "errorLoadingPoints": "Ошибка загрузки торговых точек",
+    "errorLoadingCategories": "Ошибка загрузки категорий",
+    "errorLoadingStock": "Ошибка загрузки остатков",
+    "stockPoint": "Торговая точка",
+    "address": "Адрес",
+    "amount": "Количество",
+    "price": "Цена"
+  }
+  ,
+  "promotions": {
+    "active": "Действующие акции",
+    "old": "Старые акции",
+    "add": "Добавить",
+    "delete": "Удалить",
+    "close": "Закрыть",
+    "promotion": "Акция",
+    "condition": "Условие",
+    "promoProducts": "Акционные товары",
+    "name": "Наименование",
+    "point": "Торговая точка",
+    "priority": "Приоритет",
+    "details": "Детали",
+    "validityPeriod": "Срок действия",
+    "productName": "Наименование товара",
+    "quantity": "Количество",
+    "discount": "Скидка",
+    "requiredSum": "Требуемая сумма: {{sum}}",
+    "discountSum": "Скидка на общую сумму чека: {{discount}}",
+    "noName": "(Без названия)",
+    "errorLoadingActive": "Ошибка загрузки действующих акций",
+    "errorLoadingOld": "Ошибка загрузки старых акций",
+    "errorLoadingPoints": "Ошибка загрузки точек",
+    "errorLoadingDetails": "Ошибка загрузки деталей акции",
+    "errorDeleting": "Ошибка удаления акции",
+    "successDeleted": "Акция успешно удалена",
+    "addTitle": "Добавление акции",
+  "promoNamePlaceholder": "Наименование акции",
+  "selectPointPlaceholder": "Торговая точка",
+  "continue": "Продолжить",
+  "enterPromoName": "Введите наименование акции",
+  "selectPoint": "Выберите торговую точку",
+  "selectDateRange": "Выберите интервал дат",
+  "conflictWarning": "По выбранной точке для выбранного интервала уже есть акция"
+  
+  }
+,
+
+"promotionsStep2": {
+    "title": "Настройка акции",
+    "period": "Период",
+    "point": "Торговая точка",
+    "promotion": "Акция",
+    "selectCondition": "Выберите условие",
+    "selectType": "Выберите тип",
+    "selectProduct": "Выберите товар",
+    "enterQuantity": "Введите количество",
+    "enterDiscount": "Введите скидку",
+    "enterAmount": "Введите сумму",
+    "addProduct": "Добавить товар",
+    "addDiscount": "Добавить скидку",
+    "addGift": "Добавить подарок",
+    "quantity": "Количество",
+    "discount": "Скидка",
+    "addAtLeastOneProduct": "Добавьте хотя бы один товар для акции",
+    "addAtLeastOneTypeProduct": "Добавьте хотя бы один товар для типа",
+    "enterDiscountForType": "Введите скидку для типа",
+    "noDateRange": "Не указан период акции",
+    "savedSuccessfully": "Акция успешно сохранена",
+    "saveError": "Ошибка при сохранении акции",
+    "networkError": "Ошибка сети или сервера",
+    "errorLoading": "Ошибка загрузки данных",
+    "back": "Назад",
+    "cancel": "Отменить",
+    "save": "Сохранить"
+  },
+
+  "weightGoods": {
+    "loadStocksError": "Ошибка загрузки складов",
+    "loadScalesError": "Ошибка загрузки весов",
+    "loadProductsError": "Ошибка загрузки товаров",
+
+    "hotkeyUpdated": "Горячая клавиша успешно обновлена",
+    "hotkeyUpdateError": "Ошибка при обновлении горячей клавиши",
+
+    "selectStock": "Выберите склад",
+    "selectScale": "Выберите весы",
+    "selectStockAndScale": "Выберите склад и весы",
+
+    "creatingInvoice": "Создается новая накладная...",
+    "createInvoiceError": "Ошибка при создании накладной",
+    "invoiceDeleted": "Накладная удалена",
+    "invoiceDeleteError": "Ошибка при удалении накладной",
+
+    "noProductsToExport": "Нет товаров для выгрузки",
+    "exportExcelSuccess": "Файл Excel успешно выгружен",
+    "exportExcelError": "Ошибка при выгрузке Excel",
+    "exportPLUSuccess": "Файл PLU успешно выгружен",
+    "exportPLUError": "Ошибка при выгрузке PLU",
+
+    "deleteProductTitle": "Удаление товара",
+    "deleteProductConfirm": "Вы действительно хотите удалить товар «{{name}}»?",
+    "deleteError": "Ошибка при удалении товара",
+    "deleteSuccess": "Товар успешно удален",
+    "deletePartial": "Товар удален, но не удалось очистить временные данные",
+
+    "total": "Итого:",
+
+    "vatIncluded": "С НДС",
+    "vatExcluded": "Без НДС",
+
+    "columns": {
+      "hotkey": "Номер на весах",
+      "name": "Наименование товара",
+      "lastpurchaseprice": "Цена закупа (1 кг.)",
+      "price": "Цена за 1 кг.",
+      "amount": "Количество (кг.)",
+      "total_purchaseprice": "Итого закупка",
+      "total_price": "Итого продажа",
+      "taxid": "НДС"
+    },
+
+    "buttons": {
+      "refresh": "Обновить",
+      "addProduct": "Добавить товар",
+      "exportPLU": "Выгрузить PLU",
+      "exportExcel": "Выгрузить Excel"
+    },
+
+
+  "common": {
+    "delete": "Удалить",
+    "cancel": "Отмена"
+  },
+
+    "modal": {
+      "editHotkeyTitle": "Редактирование горячей клавиши",
+      "continueInvoiceTitle": "Незавершённая накладная",
+      "continueInvoiceText": "У вас есть незавершённая накладная. Хотите продолжить?",
+      "deleteInvoice": "Удалить накладную",
+      "continueInvoice": "Продолжить",
+      "uploadPLUTitle": "Выгрузка PLU",
+      "upload": "Выгрузить",
+      "cancel": "Отмена"
+    },
+
+    "selectPLUModel": "Выберите модель весов:",
+
+    "models": {
+      "shtrihPrint": "Штрих-принт"
+    }
+  },
+
+  "weightGoodsInvoice": {
+    "addProduct": "Добавить товар",
+    "editProduct": "Редактировать товар",
+    "fillRequiredFields": "Заполните все обязательные поля",
+    "noFreeBarcodes": "Нет свободных штрихкодов",
+    "productUpdated": "Товар обновлён",
+    "productAdded": "Товар добавлен",
+    "errorAddingProduct": "Ошибка добавления товара",
+    "errorSavingProduct": "Ошибка сохранения товара",
+    "messages": {
+      "productDeleted": "Товар удалён",
+      "invoiceDeleted": "Накладная удалена",
+      "invoiceSent": "Накладная отправлена"
+    },
+    "errors": {
+      "loadBarcodes": "Ошибка загрузки штрихкодов",
+      "loadInvoiceProducts": "Ошибка загрузки товаров накладной",
+      "loadProducts": "Ошибка загрузки товаров",
+      "deleteProduct": "Ошибка удаления товара",
+      "deleteInvoice": "Ошибка удаления накладной",
+      "sendInvoice": "Ошибка отправки накладной",
+      "errorLoadingProductPrices": "Ошибка загрузки цен товара"
+    },
+    "deleteInvoice": {
+      "title": "Удалить накладную?",
+      "text": "Вы уверены, что хотите удалить эту накладную?"
+    },
+    "common": {
+      "delete": "Удалить",
+      "cancel": "Отмена",
+      "yes": "Да",
+      "no": "Нет",
+      "back": "Назад",
+      "total": "Итого"
+    },
+    "buttons": {
+      "addProduct": "Добавить товар",
+      "deleteInvoice": "Удалить накладную",
+      "sendInvoice": "Отправить накладную"
+    },
+    "columns": {
+      "name": "Наименование",
+      "barcode": "Штрихкод",
+      "purchasePrice": "Цена закупки",
+      "amount": "Количество (кг)",
+      "price": "Цена продажи",
+      "total": "Сумма",
+      "actions": "Действия"
+    },
+    "confirm": {
+      "deleteProduct": "Удалить этот товар?"
+    },
+    "chooseFromList": "Выбрать из списка",
+    "newProduct": "Новый товар",
+    "productName": "Название товара",
+    "chooseProduct": "Выберите товар",
+    "enterName": "Введите название",
+    "updatePriceAllPoints": "Обновлять цену во всех точках",
+    "purchasePricePerKg": "Цена закупки за кг",
+    "enterPurchasePrice": "Введите цену закупки",
+    "sellingPricePerKg": "Цена продажи за кг",
+    "enterSellingPrice": "Введите цену продажи",
+    "quantityKg": "Количество (кг)",
+    "enterQuantity": "Введите количество",
+    "vat": "НДС",
+    "withoutVat": "Без НДС",
+    "withVat": "С НДС",
+    "cancel": "Отмена",
+    "clear": "Очистить",
+    "save": "Сохранить"
+  }
+  ,
+
+  
+  "products": {
+    "loading": "Загрузка...",
+    "loadError": "Ошибка загрузки данных",
+    "tabs": {
+      "main": "Товары",
+      "weighted": "Весовые товары",
+      "categories": "Категории",
+      "attributes": "Атрибуты"
+    },
+    "common": {
+    "yes": "Да",
+    "no": "Нет",
+    "apply": "Применить",
+    "cancel": "Отмена",
+    "reset": "Сбросить",
+    "filters": "Фильтры",
+    "select": "Выберите",
+    "selectBrand": "Выберите бренд",
+    "selectCategory": "Выберите категорию",
+    "of": "из"
+  },
+    "buttons": {
+      "add": "Добавить",
+      "edit": "Редактировать",
+      "delete": "Удалить",
+      "filter": "Фильтры"
+    },
+    "columns": {
+      "name": "Наименование",
+      "barcode": "Штрих-код",
+      "brand": "Бренд",
+      "category": "Категория",
+      "attributes": "Атрибуты"
+    },
+    "messages": {
+      "deleted": "Товары удалены"
+    },
+    "error": {
+      "load": "Ошибка загрузки товаров",
+      "delete": "Ошибка при удалении",
+      "loadBrands": "Ошибка загрузки брендов",
+      "loadCategories": "Ошибка загрузки категорий"
+    },
+    "confirm": {
+      "delete": "Удалить выбранные товары?"
+    }
+  },
+
+  "weights": {
+  "columns": {
+    "name": "Наименование",
+    "tax": "Налоговая категория"
+  },
+  "buttons": {
+    "add": "Добавить",
+    "edit": "Редактировать",
+    "delete": "Удалить",
+    "save": "Сохранить",
+    "reset": "Очистить"
+  },
+  "fields": {
+    "name": "Наименование",
+    "tax": "Налог",
+    "unit": "Единица измерения"
+  },
+  "common": {
+    "kg": "Килограмм",
+    "searchPlaceholder": "Поиск по наименованию",
+    "of": "из"
+  },
+  "modal": {
+    "addTitle": "Добавить весовой товар",
+    "editTitle": "Редактировать весовой товар"
+  },
+  "confirm": {
+    "title": "Внимание!",
+    "text": "Данный весовой товар удалится со всех касс!"
+  },
+  "messages": {
+    "created": "Весовой товар добавлен",
+    "updated": "Весовой товар обновлён",
+    "deleted": "Удалено"
+  },
+  "error": {
+    "loadWeights": "Ошибка загрузки весовых товаров",
+    "loadBarcodes": "Ошибка загрузки свободных штрих-кодов",
+    "loadDetails": "Ошибка загрузки данных для редактирования",
+    "save": "Ошибка сохранения",
+    "delete": "Ошибка удаления"
+  }
+},
+
+"categories": {
+    "add": "Добавить категорию",
+    "save": "Сохранить",
+    "delete": "Удалить",
+    "cancel": "Отмена",
+    "yes": "Да",
+    "no": "Нет",
+    "back": "Назад",
+    "id": "Номер",
+    "name": "Наименование",
+    "actions": "Действия",
+    "search": "Поиск",
+    "added": "Категория добавлена",
+    "addError": "Ошибка добавления категории",
+    "subAdded": "Подкатегория добавлена",
+    "subAddError": "Ошибка добавления подкатегории",
+    "updated": "Категория обновлена",
+    "updateError": "Ошибка редактирования",
+    "deleted": "Категория удалена",
+    "deleteError": "Ошибка удаления",
+    "restored": "Категория восстановлена",
+    "restoreError": "Ошибка восстановления",
+    "deletedList": "Удалённые категории",
+    "loadError": "Ошибка загрузки категорий",
+    "deletedLoadError": "Ошибка загрузки удалённых категорий",
+    "loadSubError": "Ошибка загрузки подкатегорий",
+    "deleteConfirm": "Удалить категорию?",
+    "newSub": "Новая подкатегория",
+    "namePlaceholder": "Наименование категории",
+    "restore": "Восстановить",
+    "common": {
+  "of": "из"
+}
+  }
+  ,
+
+  "attributes": {
+    "loadError": "Ошибка загрузки атрибутов",
+    "loadValuesError": "Ошибка загрузки значений атрибута",
+    "saveSuccess": "Изменения сохранены",
+    "saveError": "Ошибка при сохранении",
+    "addSuccess": "Значение добавлено",
+    "addError": "Ошибка при добавлении",
+    "deleteSuccess": "Значение удалено",
+    "deleteError": "Ошибка при удалении",
+    "loadDeletedError": "Ошибка загрузки удалённых значений",
+    "restoreSuccess": "Значение восстановлено",
+    "restoreError": "Ошибка при восстановлении",
+    "deletedName": "Наименование",
+    "save": "Сохранить",
+    "delete": "Удалить",
+    "newValuePlaceholder": "Новое значение",
+    "add": "Добавить",
+    "deletedAttributes": "Удалённые атрибуты",
+    "close": "Закрыть",
+    "restore": "Восстановить",
+    "selectAttribute": "Выберите атрибут:",
+    "selectAttributePlaceholder": "Выберите атрибут"
+  },
+
+  "productForm": {
+    "addTitle": "Добавление товара",
+    "editTitle": "Редактирование товара",
+    "name": "Наименование",
+    "enterName": "Введите наименование",
+    "enterNameMessage": "Введите наименование товара",
+    "barcode": "Штрих-код",
+    "enterBarcode": "Введите штрих-код",
+    "enterBarcodeMessage": "Введите штрих-код",
+    "generate": "Сгенерировать",
+    "taxCategory": "Налоговая категория",
+    "selectTaxCategory": "Выберите категорию налога",
+    "selectCategory": "Выберите категорию",
+    "unit": "Единица измерения",
+    "selectUnit": "Выберите единицу измерения",
+    "selectUnitMessage": "Укажите единицу измерения",
+    "pieceSale": "Продажа поштучно",
+    "pieceTooltip": "Если включено, товар продаётся поштучно",
+    "qtyInPack": "Количество в упаковке",
+    "min2InPackMessage": "Минимум 2 шт. в упаковке",
+
+    "additionalBarcodes": "Дополнительные штрих-коды",
+    "enterNewBarcode": "Введите новый штрих-код",
+    "addBarcode": "Добавить",
+    "noAdditionalBarcodes": "Дополнительных штрих-кодов нет",
+
+    "category": "Категория",
+    "noCategory": "Без категории",
+    "brand": "Бренд",
+    "noBrand": "Без бренда",
+    "tnved": "Код ТН ВЭД",
+    "enterTnved": "Введите код ТН ВЭД",
+    "numbersOnly": "Допустимы только цифры",
+
+    "additionalParams": "Дополнительные параметры",
+
+    "cancel": "Отмена",
+    "reset": "Сброс",
+    "add": "Добавить",
+    "save": "Сохранить",
+
+    "loadDictionariesError": "Ошибка загрузки справочников",
+    "barcodeGenerationError": "Ошибка генерации штрих-кода",
+    "nameExistsWarning": "Товар с таким наименованием уже существует",
+    "nameAvailableInfo": "Наименование свободно",
+    "nameCheckError": "Ошибка проверки наименования",
+    "unitNotFoundWarning": "Не найдена единица измерения для упаковки",
+    "sameBarcode": "Штрих-код совпадает с основным",
+    "duplicateBarcode": "Такой штрих-код уже добавлен",
+    "barcodeAdded": "Штрих-код добавлен",
+    "barcodeAddError": "Ошибка добавления штрих-кода",
+    "barcodeDeleted": "Штрих-код удалён",
+    "barcodeDeleteError": "Ошибка удаления штрих-кода",
+    "updated": "Товар успешно обновлён",
+    
+    "saveError": "Ошибка сохранения товара",
+
+    "deleted": "Удалено",
+    "deleteError": "Ошибка удаления",
+
+    "addError": "Ошибка добавления",
+    "enterValue": "Введите значение",
+    "selectValue": "Выберите значение",
+
+    "attrs": "Добавить характеристики",
+    "constantAttrs": "Постоянные характеристики",
+    "batchAttrs": "Партийные атрибуты",
+    "attribute": "Атрибут",
+    "attributeAdded": "Характеристика добавлена",
+    "attributeAddError": "Ошибка добавления характеристики",
+    "attributeAlreadyAdded": "Такая характеристика уже добавлена",
+    "duplicateAttributeWarning": "Такая характеристика уже есть",
+    "addAttribute": "Добавить характеристику",
+    "noAttrs": "Нет характеристик",
+    "added1": "Добавлено",
+    "added": "Добавлен новый товар",
+    "addAttrError": "Ошибка при добавлении атрибута",
+    "deleteAttrError": "Ошибка при удалении атрибута",
+    "addDetail": "Добавить постоянную характеристику",
+    "addBatchAttr": "Добавить партийный атрибут"
+  }
+
+  ,
+
+  "goodsReceipt": {
+    "invoiceDetails": {
+       "common": {
+   
+    "ok": "ОК",
+    "reset": "Сбросить",
+    "apply": "Применить",
+    "cancel": "Отмена",
+    "add": "Добавить",
+    "back": "Назад",
+    "status": "Статус",
+    "total": "ИТОГО",
+    "import": "Импортировать",
+    "create": "Создать",
+    "yes": "Да",
+    "no": "Нет",
+    "action": "Действие",
+    "searchPlaceholder": "Поиск...",
+    "deletedSuccess": "Удалено",
+    "deleteError": "Ошибка удаления",
+    "unknownError": "Неизвестная ошибка",
+    "undoActionWarning": "Это действие нельзя будет отменить",
+    "yesDelete": "Да, удалить",
+    "fileNotFound": "Файл не найден",
+    "fileReadError": "Ошибка чтения файла",
+    "fileProcessingError": "Ошибка при обработке файла",
+    "invalidValue": "Некорректное значение",
+    "understood": "Понятно",
+    "andMore": "и ещё {{count}}..."
+
+  },
+      "statusForming": "Формирование",
+      "barcodeGeneratedInfo": "Сгенерирован штрих-код: {{barcode}}",
+      "batchProductAddedSuccess": "Товар с партией успешно добавлен",
+      "batchProductAddError": "Ошибка при добавлении партийного товара",
+      "productAddedSuccess": "Товар успешно добавлен в накладную",
+      "productAddError": "Ошибка добавления товара",
+      "productAddFailure": "Не удалось добавить товар в накладную",
+      "selectStockAndCounterpartyWarning": "Выберите склад и поставщика",
+      "newInvoiceCreatedSuccess": "Новая накладная успешно создана",
+      "invoiceCreationError": "Ошибка при создании накладной",
+      "deleteProductConfirmTitle": "Вы уверены, что хотите удалить товар \"{{productName}}\"?",
+      "deleteInvoiceTitle": "Удалить накладную!",
+      "deleteInvoiceConfirmContent": "Вы уверены, что хотите удалить накладную?",
+      "invoiceDeletedSuccess": "Накладная №{{invoicenumber}} успешно удалена",
+      "invoiceDeleteError": "Ошибка удаления накладной: {{error}}",
+      "invoiceDeleteErrorGeneric": "Ошибка при удалении накладной",
+      "productLoadError": "Ошибка загрузки товаров накладной",
+      "barcodeProductNotFound": "Товар по штрихкоду не найден",
+      "barcodeProductLoadError": "Ошибка при загрузке товара по штрихкоду",
+      "productDataFetchError": "Не удалось получить данные товара.",
+      "productDetailsNotFound": "Детали товара не найдены.",
+      "editDataLoadError": "Не удалось загрузить данные для редактирования.",
+      "templateDownloadError": "Ошибка загрузки шаблона",
+      "templateDownloadFailure": "Не удалось скачать шаблон",
+      "selectXLSXFileWarning": "Пожалуйста, сначала выберите .xlsx файл",
+      "invoiceNumberUndefinedError": "Номер накладной не определен",
+      "xlsxImportSuccess": "Товары из .xlsx успешно импортированы",
+      "fileImportError": "Ошибка импорта файла",
+      "onlyXLSXWarning": "Можно загружать только .xlsx файлы",
+      "priceUpdateFlagSuccess": "Флаг обновления цены для \"{{productName}}\" изменен на {{status}}",
+      "priceUpdateFlagError": "Ошибка обновления флага: {{error}}",
+      "priceUpdateFlagErrorGeneric": "Ошибка при обновлении флага цены",
+      "productValueUpdateSuccess": "Значение \"{{key}}\" для \"{{productName}}\" обновлено",
+      "productUpdateError": "Ошибка обновления: {{error}}",
+      "productUpdateErrorGeneric": "Ошибка при обновлении товара",
+      "cannotCompleteTitle": "Невозможно завершить приём",
+      "zeroAmountProductsWarning": "В накладной есть товары с нулевым количеством:",
+      "fixAmountInstruction": "Удалите или исправьте количество перед завершением.",
+      "zeroPriceProductsTitle": "Товары с нулевой ценой",
+      "zeroPriceProductsList": "У Вас имеется(ются) товар(ы) с нулевой ценой:",
+      "zeroPriceConsequenceWarning": "Внимание: При нулевой цене, если не указана оптовая цена, будет проставлено 0. Цена продажи на торговой точке не изменится.",
+      "zeroPriceActionQuestion": "Вы хотите изменить цены на них или завершить приём как есть?",
+      "completeAsIs": "Завершить как есть",
+      "changePrices": "Изменить цены",
+      "editPricesInfo": "Вы можете отредактировать цены в таблице",
+      "completeInvoiceConfirmTitle": "Прием товаров на кассу / склад",
+      "completeInvoiceWarning1": "После завершения приема товаров Вы не сможете внести изменения в данную накладную.",
+      "completeInvoiceWarning2": "Вы уверены, что хотите завершить прием товаров?",
+      "completeInvoiceButton": "Завершить приём",
+      "invoiceCompletedSuccess": "Накладная №{{invoicenumber}} успешно завершена",
+      "invoiceCompletionError": "Ошибка завершения: {{error}}",
+      "invoiceCompletionErrorGeneric": "Ошибка при завершении накладной",
+      "productDeletedSuccess": "Товар \"{{productName}}\" удалён",
+      "productDeleteError": "Ошибка удаления товара: {{error}}",
+      "productDeleteErrorGeneric": "Ошибка при удалении товара",
+      "selectProductWarning": "Сначала выберите товар и убедитесь, что номер накладной доступен.",
+      "productAddedSuccessToInvoice": "Товар \"{{productName}}\" успешно добавлен в накладную",
+      "productAddErrorToInvoice": "Ошибка добавления товара в накладную",
+      "productAddFailureToInvoice": "Не удалось добавить товар в накладную",
+      "deletingInvoiceInfo": "Удаление накладной...",
+      "importXLSXInfo": "Импорт .xlsx...",
+      "importCEDMInfo": "Импорт маркировок ЦЭДМ...",
+      "invoiceCompletedInfo": "Накладная завершена",
+      "invoiceLabel": "Накладная №{{invoicenumber}} от",
+      "receiptStockLabel": "Прием товара",
+      "counterpartyLabel": "Поставщик",
+      "deleteInvoiceButton": "Удалить накладную",
+      "importXLSXButton": "Импортировать .xlsx",
+      "useInvoiceButton": "Использовать накладную",
+      "addNewProductButton": "Добавить новый товар в накладную",
+      "addProductToInvoiceButton": "Добавить в накладную",
+      "columnName": "Наименование",
+      "columnBarcode": "Штрих код",
+      "columnPurchasePrice": "Цена закупки",
+      "columnSellingPrice": "Цена продажи",
+      "columnWholesalePrice": "Оптовая цена",
+      "columnPriceSubtext": "(за ед.)",
+      "columnAmount": "Количество",
+      "columnSumPurchase": "Сумма закупки",
+      "columnSumSale": "Сумма продажи",
+      "columnUpdatePriceAllPoints": "Обновление цены на всех точках",
+      "purchasePrice": "закупка",
+      "sellingPrice": "продажа",
+      "createNewInvoiceTitle": "Создание новой накладной на основе",
+      "resetAmountSwitch": "Обнулить количество товаров",
+      "useLastPricesSwitch": "Выбрать последние цены",
+      "importXLSXModalTitle": "Импортировать .xlsx файл",
+      "downloadTemplateLink": "Скачайте шаблон",
+      "forFillingText": " для заполнения.",
+      "uploadDragText": "Нажмите или перетащите файл сюда",
+      "uploadHint": "Поддерживается только загрузка одного файла формата .xlsx.",
+      "addXLSXFileButton": "Добавить .xlsx файл"
+    },
+  "productEdit": {
+      "modalTitle": "Редактировать товар | {{productName}}",
+      "loadingProductTitle": "Загрузка товара...",
+      "loadingData": "Загрузка данных товара...",
+      "barcode": "Штрих-код",
+      "category": "Категория (ТН ВЭД)",
+      "brand": "Бренд",
+      "unit": "Единица измерения",
+      "purchasePrice": "Цена закупки",
+      "markup": "Надбавка",
+      "sellingPrice": "Цена продажи",
+      "amount": "Количество",
+      "wholesalePrice": "Оптовая цена продажи",
+      "updateAllPrices": "Обновление цены на всех торговых точках",
+      "attributeSectionTitle": "Атрибут",
+      "batchAttributes": "Партийные атрибуты",
+      "attributePlaceholder": "Атрибут",
+      "enterValuePlaceholder": "Введите значение",
+      "selectValuePlaceholder": "Выберите значение",
+      "attributeExistsWarning": "Такая характеристика уже есть",
+      "attributeAddedSuccess": "Характеристика добавлена",
+      "attributeAddError": "Ошибка добавления характеристики",
+      "missingDetailsError": "Ошибка: данные товара или номер накладной отсутствуют.",
+      "missingInvoiceListIdError": "Ошибка: ID строки накладной (invoicelist_id) отсутствует.",
+      "deleteOldRecordError": "Ошибка при удалении старой записи товара.",
+      "productUpdateSuccess": "Товар \"{{productName}}\" успешно обновлен!",
+      "addNewProductError": "Ошибка при добавлении обновленного товара.",
+      "updateOperationFailure": "Не удалось выполнить операцию обновления товара.",
+      "common": {
+   
+    "ok": "ОК",
+    "reset": "Сбросить",
+    "apply": "Применить",
+    "cancel": "Отмена",
+    "add": "Добавить",
+    "back": "Назад",
+    "status": "Статус",
+    "total": "ИТОГО",
+    "import": "Импортировать",
+    "create": "Создать",
+    "yes": "Да",
+    "no": "Нет",
+    "action": "Действие",
+    "searchPlaceholder": "Поиск...",
+    "deletedSuccess": "Удалено",
+    "deleteError": "Ошибка удаления",
+    "unknownError": "Неизвестная ошибка",
+    "undoActionWarning": "Это действие нельзя будет отменить",
+    "yesDelete": "Да, удалить",
+    "fileNotFound": "Файл не найден",
+    "fileReadError": "Ошибка чтения файла",
+    "fileProcessingError": "Ошибка при обработке файла",
+    "invalidValue": "Некорректное значение",
+    "understood": "Понятно",
+    "andMore": "и ещё {{count}}..."
+
+  }
+    }
+  ,
+    "tabs": {
+      "history": "История накладных",
+      "create": "Создать накладную"
+    },
+    "create": {
+      "title": "Создание новой накладной",
+      "continue": "Продолжить",
+      "success": "Накладная №{{number}} успешно создана",
+      "error": "Ошибка создания: {{text}}",
+      "requestError": "Ошибка при создании накладной"
+    },
+    "status": {
+      "drafting": "Формирование"
+    },
+    "form": {
+      "stock": "Склад",
+      "supplier": "Поставщик",
+      "invoiceNumber": "Номер накладной",
+      "invoiceDate": "Дата накладной",
+      "selectStock": "Выберите склад",
+      "selectSupplier": "Выберите поставщика",
+      "enterInvoiceNumber": "Введите номер накладной",
+      "loadError": "Ошибка загрузки данных"
+    },
+
+    "history": {
+      
+       "editInvoice": "Редактировать накладную",
+      
+      "selectSupplier": "Выберите поставщика",
+      "invoiceNumber": "Номер накладной",
+      "invoiceDate": "Дата накладной",
+      
+      "save": "Сохранить",
+      "invoiceSaved": "Накладная успешно сохранена",
+      "invoiceSaveError": "Ошибка при сохранении накладной",
+
+      "date": "Дата",
+      "reset": "Сбросить",
+      "cancel": "Отменить",
+      "apply": "Применить",
+
+      "filter": "Фильтр",
+      "supplier": "Поставщик",
+      "delete": "Удалить",
+      "edit": "Редактировать",
+      "deleted": "Накладная удалена",
+      "deleteError": "Ошибка при удалении",
+      "deleteConfirmTitle": "Удалить накладную!",
+      "deleteConfirmContent": "Вы уверены, что хотите удалить накладную?",
+      "yes": "Да",
+      "no": "Нет",
+      "loadError": "Ошибка загрузки данных",
+      "loadSuppliersError": "Ошибка загрузки поставщиков",
+      "allSuppliers": "Все",
+      "columns": {
+        "invoiceNumber": "Номер накладной",
+        "name": "ФИО",
+        "stock": "Склад",
+        "supplier": "Поставщик",
+        "status": "Статус"
+      }
+    }
+
+  },
+
+  
+ "goodsWriteoffPage": {
+    "title": "Списание товара",
+    "loadError": "Ошибка при загрузке данных",
+    "invoiceDeleted": "Накладная удалена",
+    "invoiceDeleteError": "Ошибка при удалении накладной",
+    "continueInvoice": "Продолжение накладной №{{number}}",
+    "sameStockWarning": "Склад 'Откуда' и 'Куда' не могут совпадать",
+    "created": "Накладная создана №{{number}}",
+    "createError": "Ошибка при создании накладной",
+    "unfinishedInvoice": "У вас имеется незавершённая накладная. Хотите продолжить?",
+    "stockFrom": "Склад",
+    "stockTo": "Склад куда",
+    "selectStock": "Выберите склад",
+    "selectPlaceholder": "Выберите склад",
+    "invoiceNumber": "Номер накладной (необязательно)",
+    "enterNumber": "Введите номер",
+    "invoiceDate": "Дата накладной",
+    "buttons": {
+      "deleteInvoice": "Нет, удалить накладную",
+      "continue": "Продолжить"
+    }
+  }
+,
+  
+ "stockTransfer": {
+    "title": "Перемещение товара",
+    "loadError": "Ошибка при загрузке данных",
+    "invoiceDeleted": "Накладная удалена",
+    "invoiceDeleteError": "Ошибка при удалении накладной",
+    "continueInvoice": "Продолжение накладной №{{number}}",
+    "sameStockWarning": "Склад 'Откуда' и 'Куда' не могут совпадать",
+    "created": "Накладная создана №{{number}}",
+    "createError": "Ошибка при создании накладной",
+    "unfinishedInvoice": "У вас имеется незавершённая накладная. Хотите продолжить?",
+    "stockFrom": "Склад откуда",
+    "stockTo": "Склад куда",
+    "selectStock": "Выберите склад",
+    "selectPlaceholder": "Выберите склад",
+    "invoiceNumber": "Номер накладной (необязательно)",
+    "enterNumber": "Введите номер",
+    "invoiceDate": "Дата накладной",
+    "buttons": {
+      "deleteInvoice": "Нет, удалить накладную",
+      "continue": "Продолжить"
+    }
+  }
+,
+"addProductFromStock": {
+    "title": "Добавить товар со склада",
+    "loadError": "Ошибка при загрузке товаров со склада",
+    "detailLoadError": "Ошибка при загрузке данных о товаре",
+    "addSuccess": "Товар успешно добавлен",
+    "addError": "Ошибка при добавлении товара",
+    "cancel": "Отменить",
+    "add": "Добавить",
+    "enterQuantity": "Введите количество для перемещения.",
+    "quantityGreaterThanZero": "Количество должно быть больше нуля.",
+    "selectPrice": "Выберите цену, которую нужно использовать (нажмите на цену склада).",
+    "noDetails": "Ошибка: не удалось загрузить детали выбранного товара.",
+    "selectProduct": "Выберите товар",
+    "warehouseFromPrice": "Цена {{from}}",
+    "warehouseToPrice": "Цена {{to}}",
+    "wholesalePrice": "Оптовая цена",
+    "move": "Переместить",
+    "inStock": "На складе"
+  }
+  ,
+  "addProductFromInvoice": {
+  "title": "Добавить товар из накладной",
+  "loadError": "Ошибка при загрузке накладных",
+  "productsLoadError": "Ошибка при загрузке товаров накладной",
+  "selectAtLeastOne": "Выберите хотя бы один товар и укажите количество",
+  "name": "Наименование",
+  "barcode": "Штрих-код",
+  "attributes": "Атрибуты",
+  "inInvoice": "В накладной",
+  "inStock": "На складе",
+  "move": "Переместить",
+  "enterQuantity": "Введите количество",
+  "selectInvoice": "Выберите накладную",
+  "fromDate": "от {{date}}",
+  "cancel": "Отменить",
+  "add": "Добавить"
+},
+
+
+
+"writeOffProducts": {
+  "title": "Накладная №{{number}}",
+  "transferInfo": "Склад точки {{from}}",
+  "deleteInvoice": "Удалить накладную",
+  "deleteInvoiceTitle": "Удалить накладную?",
+  "deleteInvoiceConfirm": "Вы действительно хотите удалить текущую накладную?",
+  "invoiceDeleted": "Накладная удалена",
+  "invoiceDeleteError": "Ошибка при удалении накладной",
+  "productRemoved": "Товар удалён из накладной",
+  "deleteProductError": "Ошибка при удалении товара",
+  "loadError": "Ошибка при загрузке товаров",
+  "transferProducts": "Списать со склада",
+  "addFromStock": "Списать товар",
+  "addFromInvoice": "Добавить товар из накладной",
+  "emptyInvoiceWarning": "Нельзя завершить пустую накладную",
+  "submitSuccess": "Накладная успешно завершена",
+  "submitError": "Ошибка при завершении накладной",
+  "confirmFinishTitle": "Завершить накладную!",
+  "confirmFinishText": "Вы действительно хотите завершить накладную?",
+  "selectProduct": "Выберите товар",
+  "select": "Заполните ",
+  "addSuccess": "Товар успешно добавлен",
+  "addError": "Ошибка при добавлении товара",
+  "common": {
+    "name": "Наименование",
+    "code": "Штрих-код",
+    "retailPrice": "Цена реализации",
+    "wholesalePrice": "Оптовая цена",
+    "quantity": "Количество списания",
+    "reason": "Причина",
+    "delete": "Удалить",
+    "cancel": "Отмена",
+    "confirm": "Подтвердить"
+  }
+}
+,
+
+"stockTransferProducts": {
+  "title": "Накладная №{{number}}",
+  "transferInfo": "Склад точки {{from}} → Склад точки {{to}}",
+  "deleteInvoice": "Удалить накладную",
+  "deleteInvoiceTitle": "Удалить накладную?",
+  "deleteInvoiceConfirm": "Вы действительно хотите удалить текущую накладную?",
+  "invoiceDeleted": "Накладная удалена",
+  "invoiceDeleteError": "Ошибка при удалении накладной",
+  "productRemoved": "Товар удалён из накладной",
+  "deleteProductError": "Ошибка при удалении товара",
+  "loadError": "Ошибка при загрузке товаров",
+  "transferProducts": "Переместить товары",
+  "addFromStock": "Добавить товар со склада",
+  "addFromInvoice": "Добавить товар из накладной",
+  "emptyInvoiceWarning": "Нельзя завершить пустую накладную",
+  "submitSuccess": "Накладная успешно завершена",
+  "submitError": "Ошибка при завершении накладной",
+  "confirmFinishTitle": "Завершить накладную!",
+  "confirmFinishText": "Вы действительно хотите завершить накладную?",
+
+  "common": {
+    "name": "Наименование",
+    "code": "Штрих-код",
+    "retailPrice": "Розничная цена",
+    "wholesalePrice": "Оптовая цена",
+    "quantity": "Количество",
+    "total": "Сумма",
+    "delete": "Удалить",
+    "cancel": "Отмена",
+    "confirm": "Подтвердить"
+  }
+}
+
+
+}

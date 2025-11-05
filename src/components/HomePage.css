@@ -1,0 +1,58 @@
+/*
+  HomePage.css - Стили для страницы компании.
+*/
+.ant-layout-content {
+  padding-left: 24px !important;
+  padding-right: 24px !important;
+}
+
+/* Стили для карточки компании, без изменений */
+.company-info-card {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 24px;
+  max-width: 600px; /* Уменьшает ширину карточки */
+  margin: 0; /* Располагает карточку слева */
+}
+
+.edit-button {
+  margin-bottom: 24px;
+}
+
+/* Более четкий и темный шрифт */
+.ant-typography {
+  color: #262626;
+  font-weight: 500;
+}
+
+/* Стили для всех строк данных */
+.info-item, .info-item-wholesale {
+  display: grid;
+  grid-template-columns: 200px 1fr; /* Фиксированная ширина для первой колонки, оставшееся пространство для второй */
+  gap: 10px; /* Расстояние между колонками */
+  align-items: center;
+  margin-bottom: 8px; /* Расстояние между строками */
+  padding-bottom: 5px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.info-item:last-child {
+  border-bottom: none;
+}
+
+/* Стили для меток и значений */
+.ant-typography-strong {
+  font-size: 18px;
+  font-weight: 600; /* Более жирный шрифт для меток */
+  color: #595959;
+}
+
+.ant-typography-text {
+  font-size: 18px; 
+  font-weight: 400;
+  text-align: right; /* Выравнивание по правому краю */
+}
+
+/* Выравнивание переключателя по правому краю */
+.info-item-wholesale .ant-switch {
+  justify-self: start;
+}

@@ -1,0 +1,21 @@
+.container {
+  padding: 24px;
+}
+
+.selectWrapper {
+  margin-bottom: 16px;
+  margin-top: 16px;
+}
+
+.selectInput {
+  width: 300px;
+  /* padding: 4px 8px; */
+}
+
+.buttonBar {
+  margin-bottom: 16px;
+}
+
+.deletedTag {
+  color: red;
+}

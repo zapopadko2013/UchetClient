@@ -1,0 +1,60 @@
+/* PromotionsPage.module.css */
+
+.group-row {
+  background-color: #f5f5f5;
+  font-weight: bold;
+}
+
+/* Добавь сюда другие кастомные классы, если нужно */
+
+/* Если используешь inline-стили, например margin: 16px 0, можно сделать класс: */
+.margin-vertical-16 {
+  margin: 16px 0;
+}
+
+.someSpaceClass {
+  margin-bottom: 16px;
+}
+
+.container {
+  width: 100%;
+}
+
+.input {
+  width: 300px;
+}
+
+.periodInfo {
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+
+.flexSpace {
+  display: flex;
+  margin-bottom: 4px;
+}
+
+.inputName {
+  width: 250px;
+}
+
+.inputQty {
+  width: 100px;
+}
+
+.inputQtyOrDiscount {
+  width: 150px;
+}
+
+.marginBottom8 {
+  margin-bottom: 8px;
+}
+
+.buttonsRow {
+  margin-top: 20px;
+}
+
+.spaceFlex {
+  display: flex;
+  gap: 8px;
+}

@@ -1,0 +1,182 @@
+/* Стили для Sider (боковая панель) */
+.ant-layout-sider {
+  box-shadow: 2px 0 6px rgba(0, 21, 41, 0.08);
+}
+
+/* Стили для Header (шапка) */
+.header {
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+}
+
+/* Контейнер для элементов в правой части шапки */
+.rightHeaderItems {
+  display: flex;
+  align-items: center;
+  gap: 20px; /* Увеличивает расстояние между элементами */
+}
+
+/* Стили для основного контента */
+.main-content {
+  margin: 24px;
+  /* Дополнительные стили для контента, если нужны */
+}
+
+/* Стили для выпадающего меню пользователя */
+.userDropdown {
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.userDropdown:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Стили для имени пользователя */
+.username {
+  font-weight: 500;
+  color: #333;
+}
+
+/* Общие стили для макета */
+.app-layout {
+  min-height: 100vh;
+}
+
+/* Стили для Sider (боковая панель) */
+.app-sider {
+  background: #f0f2f5 !important;
+  box-shadow: 2px 0 6px rgba(0, 21, 41, 0.08);
+}
+
+.sider-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 16px;
+  height: 64px;
+}
+
+.app-name-text {
+  font-weight: bold;
+}
+
+.collapse-button {
+  font-size: 16px;
+  color: #000;
+}
+
+/* Стили для меню */
+.app-menu {
+  background-color: #f0f2f5 !important;
+  border-right: 0;
+}
+
+.menu-item-link {
+  font-weight: bold;
+}
+
+/* Стили для Header (шапка) */
+.app-header {
+  padding: 0 24px;
+  background-color: #fff;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+/* Контейнер для элементов в правой части шапки */
+.right-header-items {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Стили для селектора языка */
+.language-select {
+  width: 140px;
+}
+
+.language-text {
+  margin-left: 8px;
+}
+
+/* Стили для иконки уведомлений */
+.notification-badge {
+  margin-right: 20px;
+}
+
+.bell-icon {
+  font-size: 20px;
+}
+
+/* Стили для выпадающего меню пользователя */
+.user-dropdown {
+  cursor: pointer;
+}
+
+.user-avatar {
+  background-color: #1890ff;
+}
+
+
+/* Жирный текст для активного пункта меню */
+.app-menu .ant-menu-item.ant-menu-item-selected .ant-menu-title-content {
+  font-weight: bold !important;
+}
+
+/* Жирный текст для открытого (selected) подменю */
+.app-menu .ant-menu-submenu-selected > .ant-menu-submenu-title > .ant-menu-title-content {
+  font-weight: bold !important;
+}
+
+/* Жирный для пункта "Выйти" */
+.logout-menu-item .ant-menu-title-content {
+  font-weight: bold !important;
+}
+
+/* Только для конкретного пункта меню "Управление бизнесом" внутри .app-menu */
+.app-menu .ant-menu-item.always-bold > .ant-menu-title-content,
+.app-menu .ant-menu-submenu.always-bold > .ant-menu-submenu-title > .ant-menu-title-content {
+  font-weight: 700 !important;
+}
+
+.app-icon {
+  width: 96px;
+  height: 96px;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+/**/
+
+
+/* .app-menu .ant-menu-item.ant-menu-item-selected {
+  background-color: #1890ff !important; 
+  color: white !important;                
+}
+
+
+.app-menu .ant-menu-item.ant-menu-item-selected .ant-menu-title-content {
+  font-weight: bold !important;
+  color: white !important;
+}
+
+
+.app-menu .ant-menu-submenu-selected > .ant-menu-submenu-title {
+  background-color: #1890ff !important;
+  color: white !important;
+}
+
+.app-menu .ant-menu-submenu-selected > .ant-menu-submenu-title > .ant-menu-title-content {
+  font-weight: bold !important;
+  color: white !important;
+}
+ */

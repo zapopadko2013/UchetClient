@@ -1,0 +1,109 @@
+.container {
+  padding: 16px;
+}
+
+.marginBottom16 {
+  margin-bottom: 16px;
+}
+
+.alignCenter {
+  align-items: center;
+}
+
+.tagGreen {
+  border: 1px solid #b7eb8f;
+  color: #389e0d;
+}
+
+.tagRed {
+  border: 1px solid #ffccc7;
+}
+
+.selectWidth180 {
+  width: 180px;
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+.width120 {
+  width: 120px;
+}
+
+/* Размеры */
+.selectWidth300 {
+  width: 300px;
+}
+
+.selectWidth200 {
+  width: 200px;
+}
+
+.inputNumber150 {
+  width: 150px;
+}
+
+.inputTime100 {
+  width: 100px;
+}
+
+.marginBottom15 {
+  margin-bottom: 15px;
+}
+
+.marginTop10 {
+  margin-top: 10px;
+}
+
+.marginTop15 {
+  margin-top: 15px;
+}
+
+/* Flex layouts */
+.flexGap16 {
+  display: flex;
+  gap: 16px;
+}
+
+.flexGap10 {
+  display: flex;
+  gap: 10px;
+}
+
+.alignItemsCenter {
+  align-items: center;
+}
+
+.fontBold {
+  font-weight: bold;
+}
+
+.fontMedium {
+  font-weight: 500;
+}
+
+
+.flexGapAlign {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.marginTop10Bottom15 {
+  margin-top: 10px;
+  margin-bottom: 15px;
+}
+
+.marginBottom5Font500 {
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+.flexGap10AlignCenterMarginTop10 {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-top: 10px;
+}

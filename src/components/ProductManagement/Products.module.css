@@ -1,0 +1,143 @@
+.spaceMarginBottom {
+  margin-bottom: 8px;
+}
+
+.noAdditionalBarcodes {
+  color: #999;
+}
+
+.barcodesWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.collapseStyle {
+  margin-top: 12px;
+  max-width: 700px;
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+
+
+.modalLabel {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+
+.modalInputWrapper {
+  margin-bottom: 10px;
+}
+
+.searchInput {
+  width: 250px;
+}
+
+.buttonGroup {
+  margin-bottom: 16px;
+}
+
+
+.buttonGroup {
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: flex-start;
+  gap: 8px;
+}
+
+.selectFullWidth {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.flexRow {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* если есть несколько элементов — делает аккуратный отступ */
+  margin-bottom: 8px;
+}
+
+.fixedWidth200 {
+  width: 200px;
+}
+
+
+
+.formItemName {
+  width: 60%;
+}
+
+.barcodeInput {
+  margin-bottom: 0;
+}
+
+.rowMarginTop {
+  margin-top: 8px;
+}
+
+.unitSelect {
+  margin-bottom: 0;
+  width: 200px;
+}
+
+.checkboxWrapper {
+  padding-top: 26px;
+}
+
+.additionalBarcodesWrapper {
+  padding: 8px;
+}
+
+.additionalBarcodesContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.collapseWrapper {
+  margin-top: 12px;
+  max-width: 700px;
+}
+
+.additionalParamsWrapper {
+  padding-inline: 8px;
+  margin-bottom: 8px;
+}
+
+.attrsMarginTop {
+  margin-top: 12px;
+  max-width: 700px;
+}
+
+.constantAttrsWrapper {
+  margin-bottom: 20px;
+}
+
+.tagMargin {
+  margin-bottom: 6px !important;
+}
+
+.rowButtonsMarginTop {
+  margin-top: 20px;
+}
+
+.textGray {
+  color: #999;
+}
+
+.paddingInline8 {
+  padding-inline: 8px;
+}
+
+.marginTop10 {
+  margin-top: 10px;
+}
+
+.borderTopWithMargin {
+  border-top: 1px solid #f0f0f0;
+  margin-bottom: 20px;
+}

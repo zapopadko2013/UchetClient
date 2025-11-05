@@ -1,0 +1,32 @@
+.container {
+  padding: 24px;
+}
+
+.selectRow {
+  margin-bottom: 16px;
+}
+
+.priceFormWrapper {
+  margin-bottom: 16px;
+}
+
+.groupHeaderRow {
+  background: #f0f0f0;
+  font-weight: bold;
+}
+
+.finalTableTitle {
+  margin-top: 24px;
+}
+
+.submitButton {
+  margin-top: 16px;
+}
+
+.selectInputLarge {
+  width: 400px;
+}
+
+.barcodeInput {
+  width: 200px;
+}

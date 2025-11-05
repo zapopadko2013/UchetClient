@@ -1,0 +1,35 @@
+.container {
+  padding: 16px;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.searchRow {
+  margin-bottom: 16px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.tableWrapper {
+  overflow-x: auto;
+}
+
+.buttonBar {
+  margin-bottom: 16px; 
+}
+
+.searchBar {
+  margin-bottom: 16px; 
+}
+
+.statusDeleted {
+  color: red;
+  font-weight: bold;
+}

@@ -1,0 +1,20 @@
+.container {
+  width: 100%;
+}
+
+.spaceMarginTop {
+  margin-top: 20px;
+}
+
+.inputWidth200 {
+  width: 200px;
+}
+
+.selectWidth300 {
+  width: 300px;
+}
+
+.tableStyle {
+  margin-top: 20px;
+  max-width: 600px;
+}

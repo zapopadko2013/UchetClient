@@ -1,0 +1,1695 @@
+{
+  "login": {
+    "title": "Кіру",
+    "button": "Кіру",
+    "usernamePlaceholder": "Логин",
+    "passwordPlaceholder": "Құпия сөз",
+    "usernameRequired": "Логиніңізді енгізіңіз!",
+    "passwordRequired": "Құпия сөзіңізді енгізіңіз!",
+    "errorInvalid": "Қате логин немесе құпия сөз. Қате -",
+    "errorNetwork": "Желі немесе сервер қатесі. Қайталап көріңіз."
+  },
+  "menu": {
+    "home": "Басты бет",
+    "dashboard": "Басқару панелі",
+    "settings": "Баптаулар",
+    "news": "Жаңалықтар","businessManagement": "Пайдаланушылары",
+    "salesPlan": "Сату жоспары",
+    "portalUsers": "Бағдарламаның қолданушылары",
+    "cashUsers": "Касса пайдаланушылары",
+    "changePassword": "Құпия сөзді өзгерту"
+
+    ,
+    "sellersBuyers": "Жеткізушілер мен сатып алушылар",
+  "suppliers": "Жеткізушілер",
+  "legalBuyers": "Заңды тұлғалар сатып алушылары",
+  "individualBuyers": "Жеке тұлғалар сатып алушылары"
+
+  ,"tradeObjects": "Сауда нысандары",
+"warehouse": "Қойма",
+"storePoints": "Сауда нүктесі",
+"cashDesks": "Кассалар",
+"scales": "Таразылар"
+
+,"pricing": "Баға белгілеу",
+"priceChange": "Бағаны өзгерту",
+"pricingMaster": "Баға белгілеу шебері",
+"limitPrices": "Шекті бағалар"
+
+,
+"marketing": "Маркетинг",
+  "coupons": "Купондар",
+  "giftCertificates": "Сыйлық сертификаттары",
+  "bonuses": "Бонустар",
+  "discounts": "Жеңілдіктерді жасау",
+  "promotions": "Акциялар"
+
+  ,
+  "productManagement": "Тауарларды басқару",
+  "goodsReceipt": "Тауар қабылдау",
+  "goodsTransfer": "Тауарды ауыстыру",
+  "goodsWriteoff": "Тауарды шығару",
+  "barcodePrint": "Штрих кодты басып шығару",
+  "weightGoods": "Салмақтық тауарлар",
+  "nomenclature": "Тауар",
+  "jobOrder": "Жұмыс тапсырысы",
+  "inventory": "Ревизия"
+
+
+  },
+  "auth": {
+    "unauthorized": "Рұқсат етілмеген"
+  },
+  "userMenu": {
+    "profile": "Компания",
+    "logout": "Шығу"
+  },
+  "content": {
+    "currentPage": "Ағымдағы көрініс: {{pageName}}",
+    "dynamicContent": "Бұл мәзір таңдауына байланысты динамикалық түрде өзгеріп отыратын мазмұн.",
+    "unknownPage": "Белгісіз бет"
+  },
+  "misc": {
+    "appName": "UchetPro",
+    "usernameGuest": "Қонақ"
+  },
+  "notifications": {
+  "title": "Жаңалықтар",
+  "apiError": "Қате",
+  "noNews": "Жаңалықтар жоқ",
+  "loading": "Жаңалықтар жүктелуде..."
+},
+"newsDetail": {
+  "loading": "Жаңалық жүктелуде...",
+  "notFound": "Жаңалық табылмады.",
+  "errorTitle": "Жаңалықты жүктеу қатесі.",
+  "noContentAvailable": "Жаңалық табылмады."
+},
+"companyPage": {
+      "title": "Компания туралы ақпарат",
+      "readOnlyInfo": "Бұл компания туралы ақпарат беті. Төмендегі батырманы басып, өңдеу режиміне өтіңіз.",
+      "editButton": "Өңдеу",
+      "modalTitle": "Компания деректерін өңдеу",
+      "name": "Атауы",
+      "bin": "БСН",
+      "address": "Мекенжайы",
+      "head": "Басшы",
+      "headIin": "Басшы ЖСН",
+      "accountant": "Бас бухгалтер",
+      "accountantIin": "Бухгалтер ЖСН",
+      "certificatenum": "Нөмірі",
+      "certificateseries": "Сериясы",
+      "certificatedate": "Күні",
+      "holding": "Холдинг",
+      "wholesale": "Көтерме сауда",
+      "loading": "Деректер жүктелуде...",
+      "errorLoading": "Компания деректерін жүктеу мүмкін болмады.",
+      "error": "Компания деректерін жүктеу мүмкін болмады.",
+      "saveButton": "Сақтау",
+      "cancelButton": "Бас тарту",
+      "successUpdate": "Деректер сәтті жаңартылды!",
+      "errorUpdate": "Деректерді жаңарту мүмкін болмады."
+    },
+    "changePasswordPage": {
+      "title": "Құпия сөзді өзгерту",
+      "description": "Құпия сөзді өзгерту үшін ескі және жаңа құпия сөзді енгізіңіз.",
+      "oldPassword": "Ескі құпия сөз",
+      "newPassword": "Жаңа құпия сөз",
+      "confirmPassword": "Жаңа құпия сөзді растау",
+      "oldPasswordRequired": "Ескі құпия сөзіңізді енгізіңіз!",
+      "newPasswordRequired": "Жаңа құпия сөзіңізді енгізіңіз!",
+      "confirmPasswordRequired": "Жаңа құпия сөзіңізді растаңыз!",
+      "passwordsMismatch": "Сіз енгізген құпия сөздер сәйкес келмейді!",
+      "passwordMinLength": "Құпия сөз кем дегенде 6 таңбадан тұруы керек.",
+      "saveButton": "Сақтау",
+      "successMessage": "Құпия сөз сәтті өзгертілді!"
+    },
+
+    "cashBoxUser": {
+    "tabs": {
+      "active": "Белсенді пайдаланушылар",
+      "inactive": "Белсенді емес пайдаланушылар"
+    },
+    "buttons": {
+      "add": "Пайдаланушыны қосу",
+      "edit": "Өңдеу",
+      "delete": "Жою",
+      "activate": "Пайдаланушыны белсендіру"
+    },
+    "columns": {
+      "name": "Атауы",
+      "iin": "ЖСН",
+      "role": "Пайдаланушы рөлі",
+      "point": "Сату нүктесі",
+      "status": "Мәртебесі"
+    },
+    "status": {
+      "active": "Белсенді",
+      "deleted": "Жойылған"
+    },
+    "notifications": {
+      "apiError": "Деректерді жүктеу қатесі",
+      "userDeleted": "Пайдаланушы жойылды",
+      "userActivated": "Пайдаланушы белсендірілді",
+      "deleteError": "Пайдаланушыны жою қатесі",
+      "activateError": "Пайдаланушыны белсендіріп жатқанда қате орын алды"
+    }
+  },
+  "cashBoxUserAddForm": {
+  "title": {
+    "add": "Кассалық қолданушыны қосу",
+    "edit": "Қолданушыны өңдеу"
+  },
+  "buttons": {
+    "add": "Қосу",
+    "save": "Сақтау",
+    "cancel": "Бас тарту"
+  },
+  "fields": {
+    "name": "Аты",
+    "iin": "ЖСН",
+    "point": "Сату нүктесі",
+    "role": "Рөл",
+    "allowDiscount": "Қолмен жеңілдік жасауға рұқсат па?",
+    "discount": "Максималды қолмен жеңілдік (100%-ға дейін)"
+  },
+  "placeholders": {
+    "selectPoint": "Сату нүктесін таңдаңыз",
+    "selectRole": "Рөлді таңдаңыз",
+    "selectDiscountOption": "Таңдауды таңдаңыз"
+  },
+  "options": {
+    "yes": "Иә",
+    "no": "Жоқ"
+  },
+  "validations": {
+    "name": "Қолданушының атын енгізіңіз",
+    "iin": "ЖСН енгізіңіз",
+    "point": "Сату нүктесін таңдаңыз",
+    "role": "Рөлді таңдаңыз",
+    "allowDiscount": "Қолмен жеңілдік жасау рұқсат етілген бе екенін көрсетіңіз",
+    "discountRequired": "Максималды жеңілдікті енгізіңіз",
+    "discountRange": "Жеңілдік 0% - 100% аралығында болуы керек"
+  },
+  "messages": {
+    "created": "Қолданушы қосылды",
+    "updated": "Қолданушы жаңартылды",
+    "error": "Қолданушыны сақтау кезінде қате болды"
+  },
+  "errors": {
+    "dataLoad": "Деректерді жүктеу қатесі",
+    "rolesLoad": "Рөлдерді жүктеу қатесі",
+    "pointsLoad": "Нүктелерді жүктеу қатесі"
+  }
+},
+
+  "salesPlan": {
+    "individualPlans": "Жеке жоспарлар",
+    "teamPlans": "Топтық жоспарлар",
+    "add": "Қосу",
+    "edit": "Өңдеу",
+    "delete": "Жою",
+    "cashierName": "Кассирдің аты",
+    "pointName": "Сату нүктесі",
+    "pointTitle": "Сату нүктесінің атауы",
+    "daily": "Күнделікті",
+    "monthly": "Айлық",
+    "quarterly": "Тоқсандық",
+    "planDeleted": "Жоспар жойылды",
+    "deleteError": "Жоспарды жою кезінде қате кетті",
+    "loadError": "Жоспарларды жүктеу кезінде қате кетті",
+    "form": {
+    "addTitle": "Жоспар қосу",
+    "editTitle": "Жоспарды өзгерту",
+    "cashier": "Кассир",
+    "point": "Сату нүктесі",
+    "selectCashier": "Кассирді таңдаңыз",
+    "selectPoint": "Сату нүктесін таңдаңыз",
+    "dailyPlan": "Күнделікті жоспар",
+    "dailyRate": "Процент (күнделікті)",
+    "monthlyPlan": "Айлық жоспар",
+    "monthlyRate": "Процент (айлық)",
+    "quarterlyPlan": "Тоқсандық жоспар",
+    "quarterlyRate": "Процент (тоқсандық)",
+    "saveError": "Жоспарды сақтау қатесі",
+    "loadCashiersError": "Кассирлерді жүктеу сәтсіз аяқталды",
+    "loadPointsError": "Сату нүктелерін жүктеу сәтсіз аяқталды"
+  }
+  },
+
+"userProgram": {
+  "activeUsers": "Белсенді пайдаланушылар",
+  "inactiveUsers": "Белсенді емес пайдаланушылар",
+  "fullName": "Аты-жөні",
+  "iin": "ЖСН",
+  "login": "Логин",
+  "accesses": "Пайдаланушы рұқсаттары",
+  "add": "Қосу",
+  "edit": "Өңдеу",
+  "editAccesses": "Рұқсаттарды өңдеу",
+  "delete": "Жою",
+  "activate": "Пайдаланушыны белсендіру",
+  "editUser": "Пайдаланушыны өңдеу",
+  "addUser": "Пайдаланушыны қосу",
+  "submitError": "Сақтау кезінде қате пайда болды",
+  "editSuccess": "Пайдаланушы жаңартылды",
+  "addSuccess": "Пайдаланушы қосылды",
+  "userActivated": "Пайдаланушы белсендірілді",
+  "accessLoadError": "Рұқсаттарды жүктеу қатесі",
+  "loadError": "Пайдаланушыларды жүктеу қатесі",
+  "fullNameRequired": "Аты-жөнін енгізіңіз",
+  "iinRequired": "ЖСН енгізіңіз",
+  "loginRequired": "Логин енгізіңіз",
+  "accessesRequired": "Кемінде бір рұқсатты таңдаңыз",
+  "selectAccesses": "Рұқсаттарды таңдаңыз",
+  "viewAllAccesses": "Барлығын қарау",
+  "fullAccesses": "Барлық рұқсаттар",
+  "status": "Мәртебесі",
+  "deleted": "Жойылды",
+  "activateError": "Пайдаланушыны белсендіру қатесі",
+  "noAccesses": "Рұқсаттар жоқ",
+  "confirmDelete": "Жоюды растау",
+  "confirmDeleteText": "Осы пайдаланушыны жойғыңыз келетініне сенімдісіз бе?",
+  "confirm": "Жою",
+  "cancel": "Бас тарту",
+  "deleteSuccess": "Пайдаланушы сәтті жойылды",
+  "deleteError": "Пайдаланушыны жою қатесі",
+  "accessesUpdated": "Рұқсаттар сәтті жаңартылды",
+  "accessesUpdateError": "Рұқсаттарды жаңарту қатесі",
+  "loadAccessError": "Рұқсаттарды жүктеу қатесі",
+  "save": "Сақтау",
+  "category": "Санаттар",
+  "functions": "Функциялар",
+  "fillAccessesToComplete": "Пайдаланушы үшін рұқсаттарды таңдаңыз",
+  "userCreateError": "Пайдаланушыны қосу қатесі"
+}
+,
+"suppliers": {
+    "tabs": {
+      "active": "Активті жеткізушілер",
+      "inactive": "Белсенді емес жеткізушілер"
+    },
+    "buttons": {
+      "add": "Қосу",
+      "edit": "Өзгерту",
+      "delete": "Жою",
+      "activate": "Активтеу",
+      "save": "Сақтау",
+      "cancel": "Бас тарту"
+    },
+    "search": {
+      "placeholder": "Атау немесе БСН бойынша іздеу"
+    },
+    "table": {
+      "name": "Атау",
+      "bin": "БСН",
+      "email": "Электрондық пошта"
+    },
+    "messages": {
+      "addSuccess": "Жеткізуші қосылды",
+      "editSuccess": "Жеткізуші жаңартылды",
+      "deleteSuccess": "Жеткізуші жойылды",
+      "activateSuccess": "Жеткізуші белсенділендірілді",
+      "loadError": "Деректерді жүктеу қатесі",
+      "saveError": "Деректерді сақтау қатесі",
+      "confirmDeleteText": "Жеткізушіні жойғыңыз келе ме?",
+      "validation": {
+        "requiredName": "Атауды енгізіңіз",
+        "requiredBin": "БСН енгізіңіз",
+        "binLength": "БСН 12 саннан тұруы керек"
+      }
+    },
+    "modalTitles": {
+      "add": "Жеткізушіні қосу",
+      "edit": "Жеткізушіні өңдеу"
+    },
+    "modals": {
+      "addTitle": "Жеткізушіні қосу",
+      "editTitle": "Жеткізушіні өңдеу"
+    },
+    "form": {
+      "name": "Атау",
+      "nameRequired": "Атауды енгізіңіз",
+      "bin": "БСН",
+      "binRequired": "БСН енгізіңіз",
+      "binLength": "БСН 12 саннан тұруы керек",
+      "email": "Электрондық пошта"
+    }
+  },
+
+  "legalBuyers": {
+    "activeBuyers": "Активті сатып алушылар",
+    "inactiveBuyers": "Белсенді емес сатып алушылар",
+    "add": "Қосу",
+    "edit": "Өңдеу",
+    "delete": "Өшіру",
+    "activate": "Қосу",
+    "confirmDeleteTitle": "Сатып алушыны өшіру?",
+    "confirmDeleteContent": "Сатып алушыны өшіруді қалайтыныңызға сенімдісіз бе?",
+    "buyerDeleted": "Сатып алушы өшірілді",
+    "deleteError": "Өшіру кезінде қате орын алды",
+    "activateSuccess": "Сатып алушы қосылды",
+    "activateError": "Қосу кезінде қате орын алды",
+    "loadingError": "Сатып алушыларды жүктеу кезінде қате орын алды",
+    "searchPlaceholder": "Аты бойынша немесе БСН арқылы іздеу",
+    "name": "Аты",
+    "bin": "БСН",
+    "address": "Мекен-жайы",
+    "status": "Құрылымы",
+    "deleted": "Өшірілген",
+
+    "addBuyer": "Сатып алушыны қосу",
+    "editBuyer": "Сатып алушыны өңдеу",
+    "buyerAdded": "Сатып алушы қосылды",
+    "buyerUpdated": "Сатып алушы жаңартылды",
+    "saveError": "Сақтау кезінде қате орын алды",
+    "cancel": "Болдырмау",
+    "save": "Сақтау",
+
+    "validation": {
+      "nameRequired": "Аты-жөніңізді енгізіңіз",
+      "binRequired": "БСН енгізіңіз",
+      "binLength": "БСН 12 саннан тұруы тиіс",
+      "binDigitsOnly": "БСН тек сандардан тұруы тиіс",
+      "addressRequired": "Мекен-жайды енгізіңіз"
+    }
+  },
+
+  "individualBuyers": {
+    "activeBuyers": "Активті сатып алушылар",
+    "inactiveBuyers": "Белсенді емес сатып алушылар",
+    "add": "Қосу",
+    "edit": "Өңдеу",
+    "delete": "Өшіру",
+    "activate": "Белсендіру",
+    "confirmDeleteTitle": "Сатып алушыны өшіру керек пе?",
+    "confirmDeleteContent": "Сатып алушыны өшіруді қалайтыныңызға сенімдісіз бе?",
+    "buyerDeleted": "Сатып алушы өшірілді",
+    "deleteError": "Сатып алушыны өшіру кезінде қате орын алды",
+    "activateSuccess": "Сатып алушы белсендірілді",
+    "activateError": "Белсендіру кезінде қате орын алды",
+    "loadingError": "Сатып алушыларды жүктеу кезінде қате орын алды",
+    "searchPlaceholder": "Аты немесе телефон нөмірі бойынша іздеу",
+    "lastname": "Тегі",
+    "firstname": "Аты",
+    "telephone": "Телефон",
+    "status": "Мәртебесі",
+    "deleted": "Өшірілген",
+
+    "addBuyer": "Сатып алушыны қосу",
+    "editBuyer": "Сатып алушыны өңдеу",
+    "buyerAdded": "Сатып алушы қосылды",
+    "buyerUpdated": "Сатып алушы жаңартылды",
+    "saveError": "Сақтау кезінде қате орын алды",
+    "cancel": "Болдырмау",
+    "save": "Сақтау",
+
+    "validation": {
+      "firstnameRequired": "Атын енгізіңіз",
+      "lastnameRequired": "Тегін енгізіңіз",
+      "telephoneDigitsOnly": "Телефон нөмірі тек сандардан тұруы керек",
+      "telephoneRequired": "Телефон нөмірін енгізіңіз"
+    }
+  },
+
+  "warehouse": {
+  "activeWarehouse": "Белсенді қоймалар",
+  "inactiveWarehouse": "Белсенді емес қоймалар",
+  "loadingError": "Қоймаларды жүктеу қатесі",
+  "name": "Атауы",
+  "address": "Мекенжайы",
+  "status": "Күйі",
+  "deleted": "Жойылған"
+},
+"tradePoint": {
+  "tabs": {
+    "active": "Белсенді сауда нүктелері",
+    "inactive": "Белсенді емес сауда нүктелері"
+  },
+  "fields": {
+    "name": "Атауы",
+    "address": "Мекенжайы",
+    "minusAccounting": "Теріс есеп",
+    "status": "Күйі"
+  },
+  "modal": {
+    "addTitle": "Сауда нүктесін қосу",
+    "editTitle": "Сауда нүктесін өңдеу"
+  },
+  "buttons": {
+    "add": "Қосу",
+    "edit": "Өңдеу",
+    "save": "Сақтау",
+    "cancel": "Бас тарту",
+    "activate": "Белсендір"
+  },
+  "messages": {
+    "added": "Сауда нүктесі сәтті қосылды",
+    "updated": "Сауда нүктесі сәтті жаңартылды",
+    "activated": "Сауда нүктесі белсендірілді",
+    "loadingError": "Сауда нүктелерін жүктеу қатесі",
+    "saveError": "Сауда нүктесін сақтау қатесі",
+    "activationError": "Сауда нүктесін белсендіру қатесі"
+  },
+  "misc": {
+    "yes": "Иә",
+    "no": "Жоқ",
+    "required": "Міндетті өріс",
+    "deleted": "Жойылған"
+  }
+}
+,
+
+"scalesPage": {
+    "tabs": {
+      "active": "Белсенді таразы",
+      "inactive": "Белсенді емес таразы"
+    },
+    "fields": {
+      "name": "Атауы",
+      "warehouse": "Сақтау орны",
+      "status": "Қалпы"
+    },
+    "buttons": {
+      "add": "Қосу",
+      "edit": "Өңдеу",
+      "delete": "Жою",
+      "activate": "Белсенді ету",
+      "save": "Сақтау",
+      "cancel": "Болдырмау"
+    },
+    "modal": {
+      "addTitle": "Таразаны қосу",
+      "editTitle": "Таразаны өңдеу"
+    },
+    "messages": {
+      "loadWarehousesError": "Сақтау орындарын жүктеу қатесі",
+      "loadScalesError": "Таразаларды жүктеу қатесі",
+      "added": "Тараза сәтті қосылды",
+      "updated": "Тараза сәтті өзгертілді",
+      "deleted": "Тараза жойылды",
+      "activated": "Таразы белсендірілді",
+      "activationError": "Таразаны белсенді ету қатесі",
+      "saveError": "Таразаны сақтау қатесі",
+      "confirmDeleteTitle": "Жоюды растаңыз",
+      "confirmDeleteContent": "Сіз \"{{name}}\" таразаны жоюды растайсыз ба?"
+    },
+    "misc": {
+      "deleted": "Жойылған",
+      "required": "Міндетті өріс",
+      "requiredWarehouse": "Сақтау орнын таңдаңыз"
+    },
+    "placeholders": {
+      "selectWarehouse": "Сақтау орнын таңдаңыз"
+    }
+  }
+, 
+
+"cashDesksPage": {
+  "tabs": {
+    "active": "Белсенді кассалар",
+    "inactive": "Белсенді емес кассалар"
+  },
+  "buttons": {
+    "add": "Қосу",
+    "edit": "Өңдеу",
+    "delete": "Жою",
+    "activate": "Белсендіру",
+    "save": "Сақтау",
+    "cancel": "Болдырмау",
+      "editCheck": "Чекті өзгерту"
+  },
+  "fields": {
+    "name": "Касса атауы",
+    "point": "Сауда нүктесі",
+    "status": "Күйі"
+  },
+  "modal": {
+    "addTitle": "Кассаны қосу",
+    "editTitle": "Кассаны өңдеу"
+  },
+  "placeholders": {
+    "selectPoint": "Сауда нүктесін таңдаңыз"
+  },
+  "messages": {
+    "loadError": "Кассаларды жүктеу қатесі",
+    "pointLoadError": "Сауда нүктелерін жүктеу қатесі",
+    "nameRequired": "Касса атауын енгізіңіз",
+    "pointRequired": "Сауда нүктесін таңдаңыз",
+    "added": "Касса қосылды",
+    "updated": "Касса жаңартылды",
+    "saveError": "Кассаны сақтау қатесі",
+    "deleted": "Касса жойылды",
+    "deleteError": "Кассаны жою қатесі",
+    "activated": "Касса белсендірілді",
+    "activateError": "Кассаны белсендіру қатесі",
+    "confirmDeleteTitle": "Кассаны жою?",
+    "confirmDeleteContent": "«{{name}}» кассасын жойғыңыз келетініне сенімдісіз бе?"
+  },
+  "misc": {
+    "deleted": "Жойылған"
+  }
+}
+,
+
+"checkEditor": {
+  
+      "modalTitle": "Чекті өзгерту",
+      "labels": {
+        "uploadLogo": "Компания логотипін жүктеу:",
+        "tradePoint": "Сауда нүктесі",
+        "address": "Мекенжай",
+        "company": "Компания",
+        "thanks": "Сатып алуыңызға рахмет.",
+        "extraText": "Қосымша мәтін 2",
+        "selectTradePoint": "Сауда нүктесін таңдаңыз",
+        "dropOrSelectFile": "Файлды сүйреп апарыңыз немесе таңдаңыз",
+        "logo": "Компания логотипі",
+        "sale": "Сату:",
+        "totalProducts": "Жиынтық тауарлар",
+        "totalAmount": "Жиынтық сома",
+        "discountOnCheck": "Чекке жеңілдік",
+        "finalTotal": "Жиынтық",
+        "totalDiscounts": "Жиынтық жеңілдіктер",
+        "vatIncluded": "ҚҚС қосылған",
+        "mixedPayment": "Аралас төлем",
+        "cashPayment": "Нақтылы төлем",
+        "receivedFromClient": "Клиенттен қабылданды",
+        "change": "Қайтару",
+        "cardPayment": "Картамен есеп айырысу",
+        "cashier": "Кассир",
+        "terminal": "Терминал",
+        "goodsReceipt": "Тауарлық чек"
+      },
+      "buttons": {
+        "save": "Сақтау",
+        "cancel": "Болдырмау"
+      },
+      "placeholders": {
+        "tradePoint": "Сауда нүктесі",
+        "address": "Мекенжай",
+        "company": "Компания",
+        "thanks": "Сатып алуыңызға рахмет",
+        "advertisement": "Қосымша мәтін 2"
+      },
+      "checkboxes": {
+        "BIN": "БСН",
+        "NDS": "ҚҚС",
+        "ZNM": "ЗНМ",
+        "RNM": "РНМ"
+      },
+      "messages": {
+        "loadPointsError": "Сауда нүктелерін жүктеу қатесі",
+        "loadTemplateError": "Чек үлгісін жүктеу қатесі",
+        "logoSaved": "Логотип сақталды",
+        "templateSaved": "Үлгі сақталды",
+        "saveError": "Үлгіні сақтау қатесі",
+        "unknownError": "Белгісіз қате орын алды"
+      },
+      "products": {
+        "apricotPuree": "Қауын ірімшігі пюресі 331KZT",
+        "cabbagePuree": "Қырыққабаттан табиғи пюре",
+        "certificate5000": "5000KZT сертификаты"
+      },
+      "payments": {
+        "cash": "Нақтылы төлем",
+        "receivedFromClient": "Клиенттен қабылданды",
+        "change": "Қайтару",
+        "cardPayment": "Картамен есеп айырысу"
+      }
+    }
+,
+
+"limitPrices": {
+  "title": "Шекті бағалар",
+    "form": {
+      "limitPrice": "Шекті баға",
+      "product": "Тауар атауы",
+      "barcode": "Штрих код",
+      "selectProduct": "Тауарды таңдаңыз",
+      "enterBarcode": "Штрихкодты енгізіңіз",
+      "price": "Ағымдағы сату бағасы"
+    },
+    "actions": {
+      "add": "Қосу",
+      "edit": "Өңдеу",
+      "delete": "Жою",
+      "save": "Сақтау",
+      "cancel": "Болдырмау",
+      "find": "Іздеу"
+    },
+    "messages": {
+      "editSuccess": "Шекті баға жаңартылды",
+      "editError": "Шекті бағаны жаңарту кезінде қате",
+      "deleteSuccess": "Шекті баға жойылды",
+      "deleteError": "Шекті бағаны жою кезінде қате",
+      "addSuccess": "Шекті баға қосылды",
+      "addError": "Бағаны қосу кезінде қате",
+      "loadError": "Тауарлар тізімін жүктеу мүмкін болмады",
+      "notFound": "Тауар табылмады",
+      "barcodeError": "Штрихкод бойынша іздеу кезінде қате"
+    },
+    "validation": {
+      "enterLimitPrice": "Шекті бағаны енгізіңіз",
+      "selectProduct": "Тауарды таңдаңыз"
+    }
+  },
+
+  "pricingMaster": {
+    "title": "Баға белгілеу шебері",
+    "settingsForm": {
+      "notifyIfIncrease": "Сату бағасы осыдан жоғары көтерілсе хабарлау",
+      "notifyIfDecrease": "Сату бағасы осыдан төмендесе хабарлау",
+      "checkAvgPurchase": "Баға төмендегенде партияның орташа сатып алу құнын тексеру"
+    },
+    "tabs": {
+      "markup": "Қосымша баға",
+      "settings": "Параметрлер"
+    },
+    "buttons": {
+      "products": "Тауарлар",
+      "brands": "Брендтер",
+      "categories": "Санаттар",
+      "add": "Қосу",
+      "delete": "Өшіру",
+      "save": "Сақтау",
+      "cancel": "Болдырмау"
+    },
+    "tableHeaders": {
+      "name": "Атауы",
+      "marginRate": "Маржа пайызы",
+      "marginSum": "Маржа сомасы"
+    },
+    "modalFields": {
+      "selectType": "Түрін таңдаңыз",
+      "productName": "Тауар атауы",
+      "barcode": "Штрих-код",
+      "marginRate": "Маржа пайызы",
+      "marginSum": "Маржа сомасы",
+      "submit": "Сақтау",
+      "cancel": "Болдырмау",
+      "selectProduct": "Тауарды таңдаңыз",
+      "selectBrand": "Брендті таңдаңыз",
+      "selectCategory": "Санатты таңдаңыз",
+      "enterBarcode": "Штрих-кодты енгізіңіз",
+      "brand": "Бренд",
+      "category": "Санат"
+    },
+    "validation": {
+      "select": "Өтінемін, мәнді таңдаңыз",
+      "enterRate": "Өтінемін, маржа пайызын енгізіңіз",
+      "enterSum": "Өтінемін, маржа сомасын енгізіңіз",
+      "titleSum": "Маржа сомасы немесе пайызы 0 болуы керек"
+    },
+    "messages": {
+      "loadError": "Деректерді жүктеу қатесі",
+      "deleteSuccess": "Жазба сәтті өшірілді",
+      "deleteError": "Жазбаны өшіру қатесі",
+      "addSuccess": "Жазба сәтті қосылды",
+      "addError": "Жазба қосу қатесі",
+      "settingsLoadError": "Параметрлерді жүктеу қатесі",
+      "settingsSaveSuccess": "Параметрлер сәтті сақталды",
+      "settingsSaveError": "Параметрлерді сақтауда қате",
+      "productFound": "Тауар табылды",
+      "productNotFound": "Тауар табылмады",
+      "barcodeError": "Штрих-код бойынша іздеуде қате"
+    },
+    "actions": {
+      "add": "Қосу",
+      "save": "Сақтау",
+      "cancel": "Болдырмау"
+    },
+    "form": {
+      "barcode": "Штрих-код",
+      "product": "Тауар",
+      "brand": "Бренд",
+      "category": "Санат",
+      "marginRate": "Маржа пайызы",
+      "marginSum": "Маржа сомасы",
+      "enterBarcode": "Штрих-кодты енгізіңіз",
+      "selectProduct": "Тауарды таңдаңыз",
+      "selectBrand": "Брендті таңдаңыз",
+      "selectCategory": "Санатты таңдаңыз"
+    }
+  },
+
+  "changePrices": {
+  "title": "Бағаларды өзгерту",
+  "selectProductPlaceholder": "Өнімді таңдаңыз",
+  "barcodeInputPlaceholder": "Штрих-код",
+  "selectButton": "Таңдау",
+  "retailPriceLabel": "Жаңа бөлшек баға",
+  "wholesalePriceLabel": "Жаңа көтерме баға",
+  "addButton": "Қосу",
+  "finalTableTitle": "Қорытынды кесте",
+  "submitButton": "Жаңа бағаларды жіберу",
+  "table": {
+    "productName": "Өнім атауы",
+    "retailPrice": "Бөлшек баға",
+    "wholesalePrice": "Көтерме баға",
+    "product": "Өнім",
+    "barcode": "Штрих-код",
+    "currentRetailPrice": "Ағымдағы бөлшек баға",
+    "newRetailPrice": "Жаңа бөлшек баға",
+    "currentWholesalePrice": "Ағымдағы көтерме баға",
+    "newWholesalePrice": "Жаңа көтерме баға",
+    "point": "Сауда нүктесі",
+    "delete": "Жою",
+    "select": "Таңдау"
+  },
+  "messages": {
+    "loadError": "Өнімдер тізімін жүктеу мүмкін болмады",
+    "emptyBarcode": "Штрих-кодты енгізіңіз немесе таңдаңыз",
+    "productFetchError": "Өнім туралы ақпарат алу кезінде қате пайда болды",
+    "noRetailPrice": "Жаңа бөлшек баға міндетті",
+    "noSelection": "Кестеден кем дегенде бір өнімді таңдаңыз",
+    "noFinalItems": "Кем дегенде бір жазбаны қосыңыз",
+    "success": "Бағалар сәтті жаңартылды",
+    "submitError": "Жаңа бағаларды жіберу кезінде қате пайда болды"
+  }
+}
+
+  ,
+  "coupons": {
+    "loadError": "Купондарды жүктеу қатесі",
+    "deleted": "Купон жойылды",
+    "deleteError": "Купонды жою қатесі",
+    "bindingPrefix": "Жайлы",
+
+    "tabs": {
+      "active": "Белсенді купондар",
+      "inactive": "Белсенді емес купондар"
+    },
+    "actions": {
+      "add": "Қосу",
+      "delete": "Жою"
+    },
+    "columns": {
+      "number": "Нөмірі",
+      "binding": "Байланысы",
+      "type": "Түрі",
+      "expire": "Мерзімі",
+      "discount": "Жеңілдік",
+      "status": "Қалдығы"
+    },
+    "status": {
+      "active": "Белсенді",
+      "inactive": "Қолданылды"
+    },
+    "bindings": {
+      "all": "Барлығына",
+      "category": "Санатқа",
+      "brand": "Брендке",
+      "product": "Өнімге",
+      "receipt": "Чекке"
+    },
+    "types": {
+      "multi": "Көп мәртелік",
+      "single": "Бір мәртелік"
+    }
+  }
+
+,
+
+"couponAddModal": {
+  "title": "Купон қосу",
+  "couponType": "Купон түрі",
+  "couponTypeRequired": "Купон түрін таңдаңыз",
+  "multiUse": "Көп реттік",
+  "singleUse": "Бір реттік",
+  "usage": "Қолдану",
+  "usageRequired": "Қолдану түрін таңдаңыз",
+  "onProduct": "Өнімге",
+  "onReceipt": "Түбіртекке",
+  "binding": "Купонды байлау",
+  "bindingRequired": "Байлау түрін таңдаңыз",
+  "bindingOptions": {
+    "all": "Барлық өнімдерге",
+    "category": "Санатқа",
+    "brand": "Брендке",
+    "product": "Өнімге"
+  },
+  "category": "Санат",
+  "brand": "Бренд",
+  "product": "Өнім",
+  "barcode": "Штрихкод",
+  "barcodePlaceholder": "Штрихкодты енгізіп, Enter пернесін басыңыз",
+  "discount": "Жеңілдік (%)",
+  "discountRequired": "Жеңілдікті енгізіңіз",
+  "discountRange": "1-ден 100%-ға дейін",
+  "expireDate": "Аяқталу күні",
+  "expireDateRequired": "Күнді таңдаңыз",
+  "couponNumber": "Купон нөмірі",
+  "couponNumberRequired": "Нөмірді енгізіңіз",
+  "numberFrom": "Нөмірлер диапазоны (бастап)",
+  "numberFromRequired": "Бастапқы нөмірді енгізіңіз",
+  "numberTo": "Нөмірлер диапазоны (дейін)",
+  "numberToRequired": "Соңғы нөмірді енгізіңіз",
+  "reset": "Тастау",
+  "cancel": "Бас тарту",
+  "save": "Сақтау",
+  "successAdd": "Купон сәтті қосылды",
+  "errorAdd": "Купон қосу кезінде қате орын алды"
+}
+,
+"bonuses": {
+  "products": "Тауарлар",
+  "categories": "Санаттар",
+  "loadCategoriesError": "Санаттарды жүктеу қатесі",
+  "loadBonusError": "Тауардың бонус мөлшерін алу қатесі",
+  "saveBonusSuccess": "Тауардың бонус мөлшері сақталды",
+  "saveBonusError": "Бонус мөлшерін сақтауда қате",
+  "bonusRatePlaceholder": "Бонус есептеу пайызы",
+  "save": "Сақтау",
+  "keepOld": "Ескі бонусымен тауарларды қалдыру",
+  "changeAll": "Барлық тауарлардың бонустарын өзгерту",
+  "productName": "Тауар атауы",
+  "bonusRate": "Бонус мөлшері",
+  "noCategoryData": "Санат туралы деректер табылмады",
+  "loadCategoryBonusError": "Санаттың бонус деректерін жүктеу қатесі",
+  "saveCategoryBonusSuccess": "Санаттың бонус мөлшері сақталды",
+  "saveCategoryBonusError": "Санаттың бонус мөлшерін сақтауда қате"
+}
+,
+
+"gift": {
+  "downloadTemplate": "Үлгіні жүктеп алу",
+  "dragFileHere": "Жүктеу үшін файлды осында басыңыз немесе сүйреп әкеліңіз",
+  "fileHint": ".xls және .xlsx файлдары қолдау табады",
+  "processUpload": "Жүктеу",
+  "selectStock": "Қойманы таңдаңыз",
+  "save": "Сақтау",
+  "code": "Сертификат нөмірі",
+  "balance": "Номиналы",
+  "period": "Жарамдылық мерзімі",
+  "selldate": "Сатылған күні",
+  "templateDownloaded": "Үлгі сәтті жүктелді",
+  "templateDownloadError": "Үлгіні жүктеу қатесі",
+  "emptyFile": "Файл бос",
+  "loadSuccess": "Файл жүктелді. Өңдеу үшін «Жүктеу» түймесін басыңыз.",
+  "parseError": "Файлды оқу кезінде қате пайда болды",
+  "noFile": "Файл табылмады",
+  "uploadFirst": "Алдымен файлды жүктеңіз",
+  "processSuccess": "Деректер серверде сәтті өңделді",
+  "uploadError": "Файлды серверге жіберу кезінде қате болды",
+  "saveSuccess": "Сертификаттар сәтті сақталды",
+  "saveError": "Сертификаттарды сақтау қатесі"
+}
+,
+"discounts": {
+  "selectType": "Түрін таңдаңыз",
+  "from": "Бастап",
+  "to": "Дейін",
+  "validationError": "Барлық өрістерді толтырыңыз",
+  "saved": "Ерекше жағдай сәтті қосылды",
+  "saveError": "Ерекшелікті сақтауда қате",
+  "loadError": "Жеңілдіктерді жүктеуде қате",
+  "deleteError": "Жеңілдікті жоюда қате",
+  "deleted": "Жеңілдік жойылды",
+  "point": "Сауда нүктесі",
+  "category": "Категория",
+  "product": "Тауар",
+  "discount": "Жеңілдік",
+  "summarize": "Жинақтау",
+  "tooltip": "Жарамдылық мерзіміне байланысты жеңілдіктерге қосылады",
+  "period": "Қолдану мерзімі",
+  "status": "Күйі",
+  "expired": "Мерзімі өтті",
+  "active": "Мерзімі өтіп кеткен жоқ",
+  "object": "Объект",
+  "productName": "Жеңілдіксіз тауар атауы",
+  "name": "Тауар/Категория/Бренд",
+  "barcode": "Штрихкод",
+  "range": "Тауардың жарамдылық мерзімі диапазоны:",
+  "type": "Түрі",
+  "day": "Күн",
+  "month": "Ай",
+  "commonInfo": "Тауарда әртүрлі жалпы жеңілдіктер (категорияға/тауарға байланысты) болса, барлық жеңілдіктер тауар сатылған кезде қосылады.",
+  "expdateInfo": "Тауарда жалпы жеңілдіктер болса (категорияға/тауарға байланысты), жарамдылық мерзіміне байланысты жеңілдік әрқашан қолданылады. Жалпы жеңілдіктерді қолдануды тиісті бөлімде реттей аласыз.",
+  "tabs": {
+    "common": "Жалпы жеңілдіктер",
+    "expdate": "Жарамдылық мерзіміне байланысты жеңілдіктер",
+    "exceptions": "Ерекшеліктер",
+    "inactive": "Белгісіз жеңілдіктер"
+  },
+  "common": {
+    "add": "Қосу",
+    "yes": "Иә",
+    "no": "Жоқ",
+    "cancelDiscount": "Жеңілдік қолдануды тоқтату",
+    "removeException": "Ерекшелікті алып тастау",
+    "discountBy": "Қолданыстағы жеңілдіктер",
+    "byPoints": "Сауда нүктелері бойынша",
+    "byCategories": "Категориялар бойынша",
+    "byProducts": "Тауарлар бойынша",
+    "save": "Сақтау",
+    "cancel": "Болдырмау",
+    "clear": "Тазалау"
+  }
+},
+
+"discount": {
+  "addDiscount": "Жеңілдікті қосу",
+  "cancel": "Бас тарту",
+  "reset": "Қалпына келтіру",
+  "save": "Сақтау",
+  "allPoints": "Барлық сауда нүктелері үшін",
+  "byPoint": "Сауда нүктесі бойынша",
+  "byCategory": "Санат бойынша",
+  "byProduct": "Тауар бойынша",
+  "selectPoint": "Сауда нүктесін таңдаңыз",
+  "choosePoint": "Нүктені таңдаңыз",
+  "selectCategory": "Санатты таңдаңыз",
+  "selectProduct": "Тауарды таңдаңыз",
+  "selectStockRows": "Қордағы позицияларды таңдаңыз",
+  "discountParams": "Жеңілдік параметрлері",
+  "percentDiscount": "Жеңілдік пайызы",
+  "discountInTenge": "Теңгедегі жеңілдік",
+  "ifProductHasExpiryDiscount": "Тауардың жарамдылық мерзімі болса, жеңілдіктерді қосу керек пе?",
+  "doNotSum": "Қосылмау",
+  "sumDiscounts": "Жеңілдіктерді қосу",
+  "considerTime": "Уақытты ескеру",
+  "from": "Бастап",
+  "to": "Қосымша",
+  "added": "Жеңілдік сәтті қосылды",
+  "addError": "Жеңілдікті қосу қатесі",
+  "sendError": "Сұранысты жіберу қатесі",
+  "unknownError": "Белгісіз қате",
+  "specifyDiscount": "Жеңілдікті көрсетіңіз (пайыз немесе сома)",
+  
+  "errorLoadingPoints": "Сауда нүктелерін жүктеу қатесі",
+  "errorLoadingCategories": "Санаттарды жүктеу қатесі",
+  "errorLoadingStock": "Қорларды жүктеу қатесі",
+  "stockPoint": "Сауда нүктесі",
+  "address": "Мекенжай",
+  "amount": "Саны",
+  "price": "Бағасы"
+}
+,
+"promotions": {
+  "active": "Қолданыстағы акциялар",
+  "old": "Ескі акциялар",
+  "add": "Қосу",
+  "delete": "Жою",
+  "close": "Жабу",
+  "promotion": "Акция",
+  "condition": "Шарт",
+  "promoProducts": "Акциялық тауарлар",
+  "name": "Атауы",
+  "point": "Сауда нүктесі",
+  "priority": "Басымдық",
+  "details": "Толығырақ",
+  "validityPeriod": "Жарамдылық мерзімі",
+  "productName": "Тауардың атауы",
+  "quantity": "Саны",
+  "discount": "Жеңілдік",
+  "requiredSum": "Қажетті сома: {{sum}}",
+  "discountSum": "Чектің жалпы сомасына жеңілдік: {{discount}}",
+  "noName": "(Атаусыз)",
+  "errorLoadingActive": "Қолданыстағы акцияларды жүктеу қатесі",
+  "errorLoadingOld": "Ескі акцияларды жүктеу қатесі",
+  "errorLoadingPoints": "Сауда нүктелерін жүктеу қатесі",
+  "errorLoadingDetails": "Акция мәліметтерін жүктеу қатесі",
+  "errorDeleting": "Акцияны жою қатесі",
+  "successDeleted": "Акция сәтті жойылды",
+  "addTitle": "Акция қосу",
+  "promoNamePlaceholder": "Акция атауы",
+  "selectPointPlaceholder": "Сауда нүктесін таңдаңыз",
+  "continue": "Жалғастыру",
+  "enterPromoName": "Акция атауын енгізіңіз",
+  "selectPoint": "Сауда нүктесін таңдаңыз",
+  "selectDateRange": "Күндер аралығын таңдаңыз",
+  "conflictWarning": "Бұл сауда нүктесінде осы мерзімде акция бар"
+}
+,
+"promotionsStep2": {
+  "title": "Акцияны баптау",
+  "period": "Мерзімі",
+  "point": "Сату нүктесі",
+  "promotion": "Акция",
+  "selectCondition": "Шартты таңдаңыз",
+  "selectType": "Түрін таңдаңыз",
+  "selectProduct": "Тауарды таңдаңыз",
+  "enterQuantity": "Санын енгізіңіз",
+  "enterDiscount": "Жеңілдікті енгізіңіз",
+  "enterAmount": "Соманы енгізіңіз",
+  "addProduct": "Тауар қосу",
+  "addDiscount": "Жеңілдік қосу",
+  "addGift": "Сыйлық қосу",
+  "quantity": "Саны",
+  "discount": "Жеңілдік",
+  "addAtLeastOneProduct": "Акция үшін кемінде бір тауар қосыңыз",
+  "addAtLeastOneTypeProduct": "Түрі үшін кемінде бір тауар қосыңыз",
+  "enterDiscountForType": "Түрі үшін жеңілдікті енгізіңіз",
+  "noDateRange": "Акция мерзімі көрсетілмеген",
+  "savedSuccessfully": "Акция сәтті сақталды",
+  "saveError": "Акцияны сақтау кезінде қате пайда болды",
+  "networkError": "Желі немесе сервер қатесі",
+  "errorLoading": "Деректерді жүктеу қатесі",
+  "back": "Артқа",
+  "cancel": "Болдырмау",
+  "save": "Сақтау"
+},
+
+"weightGoods": {
+  "loadStocksError": "Қоймаларды жүктеу қатесі",
+  "loadScalesError": "Таразыларды жүктеу қатесі",
+  "loadProductsError": "Тауарларды жүктеу қатесі",
+
+  "hotkeyUpdated": "Жылдам перне сәтті жаңартылды",
+  "hotkeyUpdateError": "Жылдам пернені жаңарту кезінде қате пайда болды",
+
+  "selectStock": "Қойманы таңдаңыз",
+  "selectScale": "Таразыны таңдаңыз",
+  "selectStockAndScale": "Қойма мен таразыны таңдаңыз",
+
+  "creatingInvoice": "Жаңа шот-фактура жасалуда...",
+  "createInvoiceError": "Шот-фактура жасау кезінде қате пайда болды",
+  "invoiceDeleted": "Шот-фактура жойылды",
+  "invoiceDeleteError": "Шот-фактураны жою кезінде қате пайда болды",
+
+  "noProductsToExport": "Экспортқа тауарлар жоқ",
+  "exportExcelSuccess": "Excel файлы сәтті жүктелді",
+  "exportExcelError": "Excel жүктеу кезінде қате пайда болды",
+  "exportPLUSuccess": "PLU файлы сәтті жүктелді",
+  "exportPLUError": "PLU жүктеу кезінде қате пайда болды",
+
+  "deleteProductTitle": "Тауарды жою",
+  "deleteProductConfirm": "Сіз шынымен «{{name}}» тауарын жойғыңыз келе ме?",
+  "deleteError": "Тауарды жою кезінде қате пайда болды",
+  "deleteSuccess": "Тауар сәтті жойылды",
+  "deletePartial": "Тауар жойылды, бірақ уақытша деректерді тазалау мүмкін болмады",
+
+  "total": "Жиыны:",
+
+  "vatIncluded": "ҚҚС-пен",
+  "vatExcluded": "ҚҚС-сыз",
+
+  "columns": {
+    "hotkey": "Таразы нөмірі",
+    "name": "Тауар атауы",
+    "lastpurchaseprice": "Сатып алу бағасы (1 кг.)",
+    "price": "Бағасы (1 кг.)",
+    "amount": "Саны (кг.)",
+    "total_purchaseprice": "Барлығы сатып алу",
+    "total_price": "Барлығы сату",
+    "taxid": "ҚҚС"
+  },
+
+  "buttons": {
+    "refresh": "Жаңарту",
+    "addProduct": "Тауар қосу",
+    "exportPLU": "PLU экспорттау",
+    "exportExcel": "Excel экспорттау"
+  },
+
+  "common": {
+    "delete": "Жою",
+    "cancel": "Бас тарту"
+  },
+
+  "modal": {
+    "editHotkeyTitle": "Жылдам пернені өңдеу",
+    "continueInvoiceTitle": "Аяқталмаған шот-фактура",
+    "continueInvoiceText": "Сізде аяқталмаған шот-фактура бар. Жалғастырғыңыз келе ме?",
+    "deleteInvoice": "Шот-фактураны жою",
+    "continueInvoice": "Жалғастыру",
+    "uploadPLUTitle": "PLU жүктеу",
+    "upload": "Жүктеу",
+    "cancel": "Бас тарту"
+  },
+
+  "selectPLUModel": "Таразы моделін таңдаңыз:",
+
+  "models": {
+    "shtrihPrint": "Штрих-принт"
+  }
+},
+
+"weightGoodsInvoice": {
+  "addProduct": "Тауар қосу",
+  "editProduct": "Тауарды өңдеу",
+  "fillRequiredFields": "Барлық міндетті өрістерді толтырыңыз",
+  "noFreeBarcodes": "Бос штрихкодтар жоқ",
+  "productUpdated": "Тауар жаңартылды",
+  "productAdded": "Тауар қосылды",
+  "errorAddingProduct": "Тауарды қосу қатесі",
+  "errorSavingProduct": "Тауарды сақтау қатесі",
+  "messages": {
+    "productDeleted": "Тауар жойылды",
+    "invoiceDeleted": "Шот-фактура жойылды",
+    "invoiceSent": "Шот-фактура жіберілді"
+  },
+  "errors": {
+    "loadBarcodes": "Штрихкодтарды жүктеу қатесі",
+    "loadInvoiceProducts": "Шот-фактурадағы тауарларды жүктеу қатесі",
+    "loadProducts": "Тауарларды жүктеу қатесі",
+    "deleteProduct": "Тауарды жою қатесі",
+    "deleteInvoice": "Шот-фактураны жою қатесі",
+    "sendInvoice": "Шот-фактураны жіберу қатесі",
+    "errorLoadingProductPrices": "Тауар бағаларын жүктеу қатесі"
+  },
+  "deleteInvoice": {
+    "title": "Шот-фактураны жою керек пе?",
+    "text": "Бұл шот-фактураны жойғыңыз келетініне сенімдісіз бе?"
+  },
+  "common": {
+    "delete": "Жою",
+    "cancel": "Бас тарту",
+    "yes": "Иә",
+    "no": "Жоқ",
+    "back": "Артқа",
+    "total": "Барлығы"
+  },
+  "buttons": {
+    "addProduct": "Тауар қосу",
+    "deleteInvoice": "Шот-фактураны жою",
+    "sendInvoice": "Шот-фактураны жіберу"
+  },
+  "columns": {
+    "name": "Атауы",
+    "barcode": "Штрихкод",
+    "purchasePrice": "Сатып алу бағасы",
+    "amount": "Салмағы (кг)",
+    "price": "Сату бағасы",
+    "total": "Сома",
+    "actions": "Әрекеттер"
+  },
+  "confirm": {
+    "deleteProduct": "Бұл тауарды жою керек пе?"
+  },
+  "chooseFromList": "Тізімнен таңдау",
+  "newProduct": "Жаңа тауар",
+  "productName": "Тауардың атауы",
+  "chooseProduct": "Тауарды таңдаңыз",
+  "enterName": "Атауын енгізіңіз",
+  "updatePriceAllPoints": "Бағаны барлық сауда нүктелерінде жаңарту",
+  "purchasePricePerKg": "1 кг үшін сатып алу бағасы",
+  "enterPurchasePrice": "Сатып алу бағасын енгізіңіз",
+  "sellingPricePerKg": "1 кг үшін сату бағасы",
+  "enterSellingPrice": "Сату бағасын енгізіңіз",
+  "quantityKg": "Салмағы (кг)",
+  "enterQuantity": "Салмақты енгізіңіз",
+  "vat": "ҚҚС",
+  "withoutVat": "ҚҚС-сіз",
+  "withVat": "ҚҚС-пен",
+  "cancel": "Бас тарту",
+  "clear": "Тазалау",
+  "save": "Сақтау"
+}
+, 
+"products": {
+    "loading": "Жүктелуде...",
+    "loadError": "Деректерді жүктеу қатесі",
+    "tabs": {
+      "main": "Тауарлар",
+      "weighted": "Салмақпен сатылатын тауарлар",
+      "categories": "Санаттар",
+      "attributes": "Атрибуттар"
+    },
+    "common": {
+    "yes": "Иә",
+    "no": "Жоқ",
+    "apply": "Қолдану",
+    "cancel": "Болдырмау",
+    "reset": "Тазалау",
+    "filters": "Сүзгілер",
+    "select": "Таңдау",
+    "selectBrand": "Брендті таңдаңыз",
+    "selectCategory": "Санатты таңдаңыз",
+    "of": "ішінен"
+  },
+    "buttons": {
+      "add": "Қосу",
+      "edit": "Өңдеу",
+      "delete": "Жою",
+      "filter": "Сүзгілер"
+    },
+    "columns": {
+      "name": "Атау",
+      "barcode": "Штрих-код",
+      "brand": "Бренд",
+      "category": "Санат",
+      "attributes": "Атрибуттар"
+    },
+    "messages": {
+      "deleted": "Тауарлар жойылды"
+    },
+    "error": {
+      "load": "Тауарларды жүктеу қатесі",
+      "delete": "Жою кезінде қате",
+      "loadBrands": "Брендтерді жүктеу қатесі",
+      "loadCategories": "Санаттарды жүктеу қатесі"
+    },
+    "confirm": {
+      "delete": "Таңдалған тауарларды жоясыз ба?"
+    }
+  }
+,
+
+"weights": {
+  "columns": {
+    "name": "Атауы",
+    "tax": "Салық категориясы"
+  },
+  "buttons": {
+    "add": "Қосу",
+    "edit": "Өңдеу",
+    "delete": "Жою",
+    "save": "Сақтау",
+    "reset": "Тазалау"
+  },
+  "fields": {
+    "name": "Атауы",
+    "tax": "Салық",
+    "unit": "Өлшем бірлігі"
+  },
+  "common": {
+    "kg": "Килограмм",
+    "searchPlaceholder": "Атауы бойынша іздеу",
+     "of": "ішінен"
+  },
+  "modal": {
+    "addTitle": "Салмақты тауар қосу",
+    "editTitle": "Салмақты тауарды өңдеу"
+  },
+  "confirm": {
+    "title": "Назар аударыңыз!",
+    "text": "Бұл салмақты тауар барлық кассалардан жойылады!"
+  },
+  "messages": {
+    "created": "Салмақты тауар қосылды",
+    "updated": "Салмақты тауар жаңартылды",
+    "deleted": "Жойылды"
+  },
+  "error": {
+    "loadWeights": "Салмақты тауарларды жүктеу қатесі",
+    "loadBarcodes": "Бос штрих-кодтарды жүктеу қатесі",
+    "loadDetails": "Өңдеу үшін мәліметтерді жүктеу қатесі",
+    "save": "Сақтау қатесі",
+    "delete": "Жою қатесі"
+  }
+}
+, 
+"categories": {
+    "add": "Санат қосу",
+    "save": "Сақтау",
+    "delete": "Жою",
+    "cancel": "Бас тарту",
+    "yes": "Иә",
+    "no": "Жоқ",
+    "back": "Артқа",
+    "id": "Нөмір",
+    "name": "Атауы",
+    "actions": "Әрекеттер",
+    "search": "Атауы бойынша іздеу",
+    "added": "Санат қосылды",
+    "addError": "Санатты қосу қатесі",
+    "subAdded": "Ішкі санат қосылды",
+    "subAddError": "Ішкі санатты қосу қатесі",
+    "updated": "Санат жаңартылды",
+    "updateError": "Санатты жаңарту қатесі",
+    "deleted": "Санат жойылды",
+    "deleteError": "Санатты жою қатесі",
+    "restored": "Санат қалпына келтірілді",
+    "restoreError": "Санатты қалпына келтіру қатесі",
+    "deletedList": "Жойылған санаттар",
+    "loadError": "Санаттарды жүктеу қатесі",
+    "deletedLoadError": "Жойылған санаттарды жүктеу қатесі",
+    "loadSubError": "Ішкі санаттарды жүктеу қатесі",
+    "deleteConfirm": "Санатты жою керек пе?",
+    "newSub": "Жаңа ішкі санат",
+    "namePlaceholder": "Санат атауы",
+    "restore": "Қалпына келтіру",
+    "common": {
+  "of": "ішінен"
+}
+  }
+  ,
+
+  "attributes": {
+  "loadError": "Атрибуттерді жүктеу қатесі",
+  "loadValuesError": "Атрибут мәндерін жүктеу қатесі",
+  "saveSuccess": "Өзгерістер сақталды",
+  "saveError": "Сақтау кезінде қате орын алды",
+  "addSuccess": "Мән қосылды",
+  "addError": "Қосу кезінде қате орын алды",
+  "deleteSuccess": "Мән жойылды",
+  "deleteError": "Жою кезінде қате орын алды",
+  "loadDeletedError": "Жойылған мәндерді жүктеу қатесі",
+  "restoreSuccess": "Мән қалпына келтірілді",
+  "restoreError": "Қалпына келтіру кезінде қате орын алды",
+  "deletedName": "Атауы",
+  "save": "Сақтау",
+  "delete": "Жою",
+  "newValuePlaceholder": "Жаңа мән",
+  "add": "Қосу",
+  "deletedAttributes": "Жойылған атрибуттер",
+  "close": "Жабу",
+  "restore": "Қалпына келтіру",
+  "selectAttribute": "Атрибутті таңдаңыз:",
+  "selectAttributePlaceholder": "Атрибутті таңдаңыз"
+}
+
+,"productForm": {
+  "addTitle": "Тауарды қосу",
+  "editTitle": "Тауарды өңдеу",
+  "name": "Атауы",
+  "enterName": "Атауын енгізіңіз",
+  "enterNameMessage": "Тауар атауын енгізіңіз",
+  "barcode": "Штрих-код",
+  "enterBarcode": "Штрих-кодты енгізіңіз",
+  "enterBarcodeMessage": "Штрих-кодты енгізіңіз",
+  "generate": "Жасау",
+  "taxCategory": "Салық категориясы",
+  "selectTaxCategory": "Салық категориясын таңдаңыз",
+  "selectCategory": "Категорияны таңдаңыз",
+  "unit": "Өлшем бірлігі",
+  "selectUnit": "Өлшем бірлігін таңдаңыз",
+  "selectUnitMessage": "Өлшем бірлігін көрсетіңіз",
+  "pieceSale": "Дана бойынша сату",
+  "pieceTooltip": "Қосылған болса, тауар дана бойынша сатылады",
+  "qtyInPack": "Ораудағы саны",
+  "min2InPackMessage": "Орауда кемінде 2 дана болуы керек",
+
+  "additionalBarcodes": "Қосымша штрих-кодтар",
+  "enterNewBarcode": "Жаңа штрих-кодты енгізіңіз",
+  "addBarcode": "Қосу",
+  "noAdditionalBarcodes": "Қосымша штрих-кодтар жоқ",
+
+  "category": "Категория",
+  "noCategory": "Категориясыз",
+  "brand": "Бренд",
+  "noBrand": "Брендсіз",
+  "tnved": "ТН ВЭД коды",
+  "enterTnved": "ТН ВЭД кодын енгізіңіз",
+  "numbersOnly": "Тек сандар ғана қабылданады",
+
+  "additionalParams": "Қосымша параметрлер",
+
+  "cancel": "Болдырмау",
+  "reset": "Қалпына келтіру",
+  "add": "Қосу",
+  "save": "Сақтау",
+
+  "loadDictionariesError": "Сөздіктерді жүктеу қатесі",
+  "barcodeGenerationError": "Штрих-кодты жасау қатесі",
+  "nameExistsWarning": "Мұндай атауы бар тауар бар",
+  "nameAvailableInfo": "Атау бос",
+  "nameCheckError": "Атау тексеру қатесі",
+  "unitNotFoundWarning": "Орау үшін өлшем бірлігі табылмады",
+  "sameBarcode": "Штрих-код негізгі кодпен сәйкес келеді",
+  "duplicateBarcode": "Бұл штрих-код қазірдің өзінде қосылған",
+  "barcodeAdded": "Штрих-код қосылды",
+  "barcodeAddError": "Штрих-код қосу қатесі",
+  "barcodeDeleted": "Штрих-код жойылды",
+  "barcodeDeleteError": "Штрих-кодты жою қатесі",
+  "updated": "Тауар сәтті жаңартылды",
+
+  "saveError": "Тауарды сақтау қатесі",
+
+  "deleted": "Жойылды",
+  "deleteError": "Жою қатесі",
+
+  "addError": "Қосу қатесі",
+  "enterValue": "Мәнді енгізіңіз",
+  "selectValue": "Мәнді таңдаңыз",
+
+  "attrs": "Сипаттамаларды қосу",
+  "constantAttrs": "Тұрақты сипаттамалар",
+  "batchAttrs": "Партиялық атрибуттар",
+  "attribute": "Сипаттама",
+  "attributeAdded": "Сипаттама қосылды",
+  "attributeAddError": "Сипаттаманы қосу қатесі",
+  "attributeAlreadyAdded": "Мұндай сипаттама қазірдің өзінде қосылған",
+  "duplicateAttributeWarning": "Мұндай сипаттама бар",
+  "addAttribute": "Сипаттаманы қосу",
+  "noAttrs": "Сипаттамалар жоқ",
+  "added1": "Қосылды",
+  "added": "Жаңа тауар қосылды",
+  "addAttrError": "Атрибутты қосу кезінде қате",
+  "deleteAttrError": "Атрибутты жою кезінде қате",
+  "addDetail": "Тұрақты сипаттаманы қосу",
+  "addBatchAttr": "Партиялық атрибутты қосу"
+}
+
+,
+"goodsReceipt": {
+  "productEdit": {
+      "modalTitle": "Тауарды өңдеу | {{productName}}",
+      "loadingProductTitle": "Тауар жүктелуде...",
+      "loadingData": "Тауар деректері жүктелуде...",
+      "barcode": "Штрих-код",
+      "category": "Санат (ТН ВЭД)",
+      "brand": "Бренд",
+      "unit": "Өлшем бірлігі",
+      "purchasePrice": "Сатып алу бағасы",
+      "markup": "Қосымша маржа",
+      "sellingPrice": "Сату бағасы",
+      "amount": "Саны",
+      "wholesalePrice": "Жаппай сату бағасы",
+      "updateAllPrices": "Барлық сауда нүктелерінде бағаларды жаңарту",
+      "attributeSectionTitle": "Атрибут",
+      "batchAttributes": "Партиялық атрибуттар",
+      "attributePlaceholder": "Атрибут",
+      "enterValuePlaceholder": "Мәнді енгізіңіз",
+      "selectValuePlaceholder": "Мәнді таңдаңыз",
+      "attributeExistsWarning": "Мұндай сипаттама бар",
+      "attributeAddedSuccess": "Сипаттама қосылды",
+      "attributeAddError": "Сипаттаманы қосу қатесі",
+      "missingDetailsError": "Қате: тауар деректері немесе накладная нөмірі жоқ.",
+      "missingInvoiceListIdError": "Қате: накладная жолының ID (invoicelist_id) жоқ.",
+      "deleteOldRecordError": "Ескі тауар жазбасын жою қатесі.",
+      "productUpdateSuccess": "Тауар \"{{productName}}\" сәтті жаңартылды!",
+      "addNewProductError": "Жаңартылған тауарды қосу қатесі.",
+      "updateOperationFailure": "Тауарды жаңарту операциясы орындалмады.",
+      "common": {
+        "reset": "Қалпына келтіру",
+        "cancel": "Бас тарту",
+        "apply": "Қолдану",
+        "add": "Қосу",
+        "deletedSuccess": "Жойылды",
+        "deleteError": "Жою қатесі"
+      }
+  },
+    "tabs": {
+      "history": "Жеткізу құжаттарының тарихы",
+      "create": "Жаңа жеткізу құжатын жасау"
+    },
+  
+  "create": {
+      "title": "Жаңа жеткізу құжатын жасау",
+      "continue": "Жалғастыру",
+      "success": "№{{number}} жеткізу құжаты сәтті жасалды",
+      "error": "Қате: {{text}}",
+      "requestError": "Жеткізу құжатын жасау кезінде қате пайда болды"
+    },
+    "status": {
+      "drafting": "Қалыптастыру"
+    },
+    "form": {
+      "stock": "Қойма",
+      "supplier": "Жеткізуші",
+      "invoiceNumber": "Жеткізу нөмірі",
+      "invoiceDate": "Жеткізу күні",
+      "selectStock": "Қойманы таңдаңыз",
+      "selectSupplier": "Жеткізушіні таңдаңыз",
+      "enterInvoiceNumber": "Жеткізу нөмірін енгізіңіз",
+      "loadError": "Деректерді жүктеу қатесі"
+    }
+   ,
+
+   "history": {
+
+    "editInvoice": "Жеткізу құжатын өңдеу",
+      
+      "selectSupplier": "Жеткізушіні таңдаңыз",
+      "invoiceNumber": "Құжат нөмірі",
+      "invoiceDate": "Құжат күні",
+      
+      "save": "Сақтау",
+      "invoiceSaved": "Құжат сәтті сақталды",
+      "invoiceSaveError": "Құжатты сақтау кезінде қате кетті",
+
+    "date": "Күні",
+      "reset": "Қалпына келтіру",
+      "cancel": "Болдырмау",
+      "apply": "Қолдану",
+      "filter": "Сүзгі",
+      "supplier": "Жеткізуші",
+      "delete": "Жою",
+      "edit": "Өңдеу",
+      "deleted": "Жеткізу жойылды",
+      "deleteError": "Жою кезінде қате кетті",
+      "deleteConfirmTitle": "Жеткізуді жою",
+      "deleteConfirmContent": "Сіз бұл жеткізуді жойғыңыз келетініне сенімдісіз бе?",
+      "yes": "Иә",
+      "no": "Жоқ",
+      "loadError": "Деректерді жүктеу қатесі",
+      "loadSuppliersError": "Жеткізушілерді жүктеу қатесі",
+      "allSuppliers": "Барлығы",
+      "columns": {
+        "invoiceNumber": "Жеткізу нөмірі",
+        "name": "Аты-жөні",
+        "stock": "Қойма",
+        "supplier": "Жеткізуші",
+        "status": "Мәртебе"
+      }
+    }
+},
+
+"stockTransfer": {
+    "title": "Тауарды ауыстыру",
+    "loadError": "Деректерді жүктеу қатесі",
+    "invoiceDeleted": "Жүкқұжат жойылды",
+    "invoiceDeleteError": "Жүкқұжатты жою кезінде қате",
+    "continueInvoice": "Жүкқұжатты жалғастыру №{{number}}",
+    "sameStockWarning": "'Қайдан' және 'Қайда' қоймалары бірдей болмауы керек",
+    "created": "Жүкқұжат құрылды №{{number}}",
+    "createError": "Жүкқұжатты құру кезінде қате",
+    "unfinishedInvoice": "Сізде аяқталмаған жүкқұжат бар. Жалғастырғыңыз келе ме?",
+    "stockFrom": "Қай қоймадан",
+    "stockTo": "Қай қоймаға",
+    "selectStock": "Қойманы таңдаңыз",
+    "selectPlaceholder": "Қойманы таңдаңыз",
+    "invoiceNumber": "Жүкқұжат нөмірі (міндетті емес)",
+    "enterNumber": "Нөмірді енгізіңіз",
+    "invoiceDate": "Жүкқұжат күні",
+    "buttons": {
+      "deleteInvoice": "Жоқ, жүкқұжатты жою",
+      "continue": "Жалғастыру"
+    }
+  },
+
+   "addProductFromStock": {
+    "title": "Қоймадан тауар қосу",
+    "loadError": "Қоймадағы тауарларды жүктеу қатесі",
+    "detailLoadError": "Тауар туралы мәліметті жүктеу қатесі",
+    "addSuccess": "Тауар сәтті қосылды",
+    "addError": "Тауарды қосу кезінде қате",
+    "cancel": "Бас тарту",
+    "add": "Қосу",
+    "enterQuantity": "Жылжыту үшін мөлшерді енгізіңіз.",
+    "quantityGreaterThanZero": "Мөлшер нөлден үлкен болуы керек.",
+    "selectPrice": "Бағаны таңдаңыз (қойма бағасын басыңыз).",
+    "noDetails": "Қате: таңдалған тауардың мәліметтері жүктелмеді.",
+    "selectProduct": "Тауарды таңдаңыз",
+    "warehouseFromPrice": "{{from}} қоймасының бағасы",
+    "warehouseToPrice": "{{to}} қоймасының бағасы",
+    "wholesalePrice": "Көтерме баға",
+    "move": "Жылжыту",
+    "inStock": "Қоймада"
+  },
+  "addProductFromInvoice": {
+  "title": "Жеткізу қағазынан тауар қосу",
+  "loadError": "Жеткізу қағаздарын жүктеу қатесі",
+  "productsLoadError": "Жеткізу қағазындағы тауарларды жүктеу қатесі",
+  "selectAtLeastOne": "Кемінде бір тауарды таңдап, санын енгізіңіз",
+  "name": "Атауы",
+  "barcode": "Штрих-код",
+  "attributes": "Атрибуттар",
+  "inInvoice": "Құжатта",
+  "inStock": "Қоймада",
+  "move": "Жылжыту",
+  "enterQuantity": "Санын енгізіңіз",
+  "selectInvoice": "Жеткізу қағазын таңдаңыз",
+  "fromDate": "{{date}} күнінен",
+  "cancel": "Бас тарту",
+  "add": "Қосу"
+}
+,
+"stockTransferProducts": {
+  "title": "Шот №{{number}}",
+  "transferInfo": "Нүкте қоймасы {{from}} → Нүкте қоймасы {{to}}",
+  "deleteInvoice": "Шотты жою",
+  "deleteInvoiceTitle": "Шотты жою керек пе?",
+  "deleteInvoiceConfirm": "Ағымдағы шотты шынымен жойғыңыз келе ме?",
+  "invoiceDeleted": "Шот жойылды",
+  "invoiceDeleteError": "Шотты жою кезінде қате",
+  "productRemoved": "Тауар шоттан жойылды",
+  "deleteProductError": "Тауарды жою кезінде қате",
+  "loadError": "Тауарларды жүктеу кезінде қате",
+  "transferProducts": "Тауарларды көшіру",
+  "addFromStock": "Қоймадан тауар қосу",
+  "addFromInvoice": "Шоттан тауар қосу",
+  "emptyInvoiceWarning": "Бос шотты аяқтау мүмкін емес",
+  "submitSuccess": "Шот сәтті аяқталды",
+  "submitError": "Шотты аяқтау кезінде қате",
+  "confirmFinishTitle": "Шотты аяқтау!",
+  "confirmFinishText": "Шотты шынымен аяқтағыңыз келе ме?",
+
+  "common": {
+    "name": "Атауы",
+    "code": "Штрих-код",
+    "retailPrice": "Бөлшек баға",
+    "wholesalePrice": "Көтерме баға",
+    "quantity": "Саны",
+    "total": "Жиынтық",
+    "delete": "Жою",
+    "cancel": "Бас тарту",
+    "confirm": "Растау"
+  }
+},
+
+"goodsWriteoffPage": {
+  "title": "Тауарды жазып шығару",
+  "loadError": "Деректерді жүктеу кезінде қате",
+  "invoiceDeleted": "Шот-фактура жойылды",
+  "invoiceDeleteError": "Шот-фактураны жою кезінде қате",
+  "continueInvoice": "Шот-фактураны жалғастыру №{{number}}",
+  "sameStockWarning": "'Қайдан' және 'Қайда' қоймалары сәйкес бола алмайды",
+  "created": "Шот-фактура жасалды №{{number}}",
+  "createError": "Шот-фактура жасау кезінде қате",
+  "unfinishedInvoice": "Сізде аяқталмаған шот-фактура бар. Жалғастырғыңыз келе ме?",
+  "stockFrom": "Қойма",
+  "stockTo": "Қоймаға",
+  "selectStock": "Қойманы таңдаңыз",
+  "selectPlaceholder": "Қойманы таңдаңыз",
+  "invoiceNumber": "Шот-фактура нөмірі (міндетті емес)",
+  "enterNumber": "Нөмірді енгізіңіз",
+  "invoiceDate": "Шот-фактура датасы",
+  "buttons": {
+    "deleteInvoice": "Жоқ, шот-фактураны жою",
+    "continue": "Жалғастыру"
+  }
+},
+
+"writeOffProducts": {
+  "title": "Шот-фактура №{{number}}",
+  "transferInfo": "{{from}} қоймасының нүктесі",
+  "deleteInvoice": "Шот-фактураны жою",
+  "deleteInvoiceTitle": "Шот-фактураны жою?",
+  "deleteInvoiceConfirm": "Ағымдағы шот-фактураны шын мәнінде жойғыңыз келе ме?",
+  "invoiceDeleted": "Шот-фактура жойылды",
+  "invoiceDeleteError": "Шот-фактураны жою кезінде қате",
+  "productRemoved": "Тауар шот-фактурадан алынды",
+  "deleteProductError": "Тауарды жою кезінде қате",
+  "loadError": "Тауарларды жүктеу кезінде қате",
+  "transferProducts": "Қоймадан жазып шығару",
+  "addFromStock": "Тауарды жазып шығару",
+  "addFromInvoice": "Шот-фактурадан тауар қосу",
+  "emptyInvoiceWarning": "Бос шот-фактураны аяқтау мүмкін емес",
+  "submitSuccess": "Шот-фактура сәтті аяқталды",
+  "submitError": "Шот-фактураны аяқтау кезінде қате",
+  "confirmFinishTitle": "Шот-фактураны аяқтау!",
+  "confirmFinishText": "Сіз шот-фактураны шын мәнінде аяқтағыңыз келе ме?",
+  "selectProduct": "Тауарды таңдаңыз",
+  "select": "Таңдаңыз ",
+  "addSuccess": "Тауар сәтті қосылды",
+  "addError": "Тауарды қосу қатесі",
+  "common": {
+    "name": "Атауы",
+    "code": "Штрих-код",
+    "retailPrice": "Сату бағасы",
+    "wholesalePrice": "Оптовая баға",
+    "quantity": "Списання саны",
+    "reason": "Себебі",
+    "delete": "Жою",
+    "cancel": "Болдырмау",
+    "confirm": "Растау"
+  }
+}
+
+
+
+}

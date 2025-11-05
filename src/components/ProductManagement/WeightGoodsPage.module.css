@@ -1,0 +1,98 @@
+
+/* Общий контейнер */
+.page {
+  padding: 16px;
+}
+
+/* Панель с фильтрами и кнопками */
+.controls {
+  margin-top: 24px;
+  margin-bottom: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* Таблица */
+.table {
+  margin-top: 8px;
+}
+
+/* Нижняя панель с кнопками экспорта */
+.footer {
+  margin-top: 16px;
+  display: flex;
+  gap: 8px;
+}
+
+/* Поле ввода в модалке */
+.modalInput {
+  width: 100%;
+}
+
+/* Select внутри модалки PLU */
+.pluSelect {
+  width: 100%;
+}
+
+.selectStock {
+  width: 220px;
+}
+
+.selectScale {
+  width: 200px;
+}
+
+
+.buttonsBar {
+  margin-top: 24px;
+  margin-bottom: 16px;
+}
+
+
+.modalToggleButton {
+  margin-bottom: 12px;
+  width: 100%;
+}
+
+.fieldGroup {
+  margin-bottom: 12px;
+}
+
+.label {
+  display: block;
+  margin-bottom: 4px;
+  font-weight: 500;
+}
+
+.checkbox {
+  margin-bottom: 16px;
+}
+
+.inputRow {
+  width: 100%;
+  margin-bottom: 16px;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.inputHalf {
+  flex: 1;
+}
+
+.bottomRow {
+  width: 100%;
+  margin-bottom: 20px;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  margin-top: 24px;
+}
+

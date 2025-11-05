@@ -1,0 +1,14 @@
+.container {
+  padding: 24px;
+}
+
+.buttonBar {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.searchInput {
+  margin-bottom: 16px;
+}

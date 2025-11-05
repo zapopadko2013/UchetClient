@@ -1,0 +1,69 @@
+.actions {
+  margin-bottom: 16px;
+}
+
+.objtypeDescription {
+  font-size: 12px;
+  color: #888;
+}
+
+
+.productBarcodeContainer {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.fullHeightInput {
+  height: 40px;
+  line-height: 40px;
+  width: 100%;
+}
+
+.inputSuffixIcon {
+  font-size: 16px;
+  line-height: 40px;
+}
+
+.formFooter {
+  float: right;
+}
+
+
+.resetButton {
+  display: block;
+  margin: 8px auto;
+}
+
+.productSelectFormItem {
+  margin-bottom: 0;
+  flex: 2 1 300px;
+}
+
+.labelPadding {
+  padding-top: 4px;
+}
+
+.wrapperPadding {
+  padding-top: 0;
+}
+
+.barcodeFormItem {
+  margin-bottom: 0;
+  flex: 1 1 200px;
+}
+
+.searchIcon {
+  cursor: pointer;
+  color: #1890ff;
+  font-size: 16px;
+}
+
+.input {
+  height: 40px;
+  line-height: 40px;
+}
+
+.fullWidth {
+  width: 100%;
+}

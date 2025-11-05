@@ -1,0 +1,17 @@
+.container {
+  padding: 24px;
+  background-color: #fff;
+  min-height: 100%;
+}
+
+.buttonBar {
+  margin: 16px 0;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.deletedTag {
+  color: #ff4d4f;
+  font-weight: bold;
+}

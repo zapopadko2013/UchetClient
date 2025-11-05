@@ -1,0 +1,55 @@
+.wrapper {
+  padding: 24px;
+}
+
+.modalButtons {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.formWrapper {
+  max-width: 400px;
+}
+
+.datePickerFullWidth {
+  width: 100%;
+}
+
+.wrappern {
+  margin-top: 24px;
+  padding: 16px;
+  background: #fff;
+  border-radius: 8px;
+}
+
+.tableSection {
+  margin-top: 16px;
+}
+
+
+.topButtons {
+  margin-bottom: 16px;
+}
+
+.actionButtons {
+  margin-bottom: 8px;
+}
+
+.modalTitle {
+  font-weight: 500;
+}
+
+.modalFooter {
+  width: 100%;
+  justify-content: flex-end;
+}
+
+.placeholder {
+  color: rgba(0, 0, 0, 0.45);
+  font-size: 12px;
+}
+
+.marginVertical16 {
+  margin-top: 16px;
+  margin-bottom: 16px;
+}

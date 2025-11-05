@@ -1,0 +1,23 @@
+.actionsWrapper {
+  margin: 24px 0 16px 0;
+}
+
+.searchWrapper {
+  margin-bottom: 16px;
+  max-width: 400px;
+}
+
+.productCode {
+  font-size: 12px;
+  color: #999;
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+.pageTitle {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}

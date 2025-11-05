@@ -1,0 +1,65 @@
+/* Основные стили для всей страницы */
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Контейнер для центрирования страницы входа */
+.login-wrapper {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f2f5;
+  padding: 24px;
+}
+
+/* Стили для карточки входа */
+.login-container {
+  width: 100%;
+  max-width: 400px; /* Ограничиваем максимальную ширину */
+  padding: 24px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Общие стили Ant Design Layout */
+.ant-layout {
+  min-height: 100vh;
+}
+
+.site-layout .site-layout-background {
+  background: #fff;
+}
+
+.header {
+  height: 64px;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.main-content {
+  margin: 16px;
+  padding: 24px;
+  min-height: 280px;
+  background: #fff;
+  border-radius: 8px;
+}
+
+.logoContainer {
+  height: 32px;
+  margin: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.read-the-docs {
+  color: #888;
+}

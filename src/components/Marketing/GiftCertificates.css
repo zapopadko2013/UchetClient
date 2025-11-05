@@ -1,0 +1,38 @@
+.row-ok {
+  color: green;
+}
+
+.row-error {
+  color: red;
+}
+
+.gift-wrapper {
+  width: 100%;
+}
+
+.gift-download-button {
+  margin-top: 32px;
+}
+
+.gift-dragger {
+  padding: 40px 0;
+  margin-bottom: 16px;
+  cursor: pointer;
+}
+
+.gift-upload-button {
+  margin-bottom: 24px;
+}
+
+.gift-stock-select {
+  width: 300px;
+  margin-bottom: 16px;
+}
+
+.gift-save-button {
+  margin-bottom: 16px;
+}
+
+.gift-table {
+  margin-top: 20px;
+}

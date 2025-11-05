@@ -1,0 +1,17 @@
+.buttonGroup {
+  margin-bottom: 4px;
+}
+
+.actionButtons {
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+.inputWithMargin {
+  margin-left: 8px;
+  width: 120px;
+}

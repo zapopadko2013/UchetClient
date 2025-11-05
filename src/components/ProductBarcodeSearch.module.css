@@ -1,0 +1,19 @@
+/* ProductBarcodeSearch.module.css */
+
+/* Контейнер для элементов (Select и Input) */
+.searchContainer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Ширина для Select */
+.selectInput {
+  width: 250px;
+}
+
+/* Ширина для Input */
+.barcodeInput {
+  width: 250px;
+  margin-top: 0;
+}

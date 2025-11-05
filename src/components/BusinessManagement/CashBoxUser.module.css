@@ -1,0 +1,8 @@
+.buttonsPanel {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
+.discountInput {
+  width: 100%;
+}
