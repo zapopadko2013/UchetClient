@@ -1,0 +1,172 @@
+/* Общие отступы */
+.mb16 {
+  margin-bottom: 16px;
+}
+
+/* Стили для Selects/Inputs в модальном окне */
+.fullWidthMb16 {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.fullWidthMt16 {
+  width: 100%;
+  margin-top: 16px;
+}
+
+
+
+
+/* Layout/Container styles */
+.fullWidth {
+  width: 100%;
+}
+
+.topActionsSpace {
+  width: 100%;
+  justify-content: flex-start;
+  margin-bottom: 16px;
+}
+
+.titleNoMargin {
+  margin: 0;
+}
+
+.searchActionsSpace {
+  margin-bottom: 16px;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.searchBarcodeInput {
+  width: 250px;
+}
+
+.searchNameInput {
+  width: 300px;
+}
+
+.noItemsCard {
+  text-align: center;
+  padding: 50px;
+}
+
+/* QuantityEditor */
+.quantityInput {
+  width: 80px;
+}
+
+/* Informational/Warning Cards */
+.blueInfoCardBase {
+  background-color: #e6f7ff;
+  border: 1px solid #91d5ff;
+}
+
+.blueInfoCardParagraph {
+  margin: 0;
+  color: #0050b3;
+}
+
+.editWarningCard {
+  background-color: #e6f7ff;
+  border: 1px solid #91d5ff;
+  margin-top: 10px;
+}
+
+/* Comparison Status Box */
+.comparisonStatusBox {
+  margin-bottom: 20px;
+}
+
+.comparisonStatusBoxSuccess {
+  border: 1px solid green;
+  background-color: #e9ffe9;
+}
+
+.comparisonStatusBoxFailure {
+  border: 1px solid red;
+  background-color: #ffe9e9;
+}
+
+.comparisonStatusTitle {
+  margin: 0;
+  /* Color set dynamically based on success/failure state in TSX */
+}
+
+/* Comparison Controls Layout */
+.compareControlsCard {
+  margin-bottom: 20px;
+}
+
+.compareControlsInnerSpace {
+  margin-top: 16px;
+}
+
+.compareButtonContainer {
+  line-height: 1;
+  text-align: center;
+}
+
+.compareButton {
+  height: 70px;
+  width: 140px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0;
+  /* Для кастомного цвета текста в невыбранном состоянии */
+  transition: all 0.3s;
+}
+
+.addCommentButton {
+  height: 70px;
+  width: 140px;
+}
+
+/* Text Colors for dynamic content */
+.diffRed {
+  color: red;
+}
+
+.diffGreen {
+  color: green;
+}
+
+.statusTextRed {
+  color: red;
+}
+
+.statusTextGreen {
+  color: green;
+}
+
+.commentTextArea {
+  margin-bottom: 16px;
+}
+
+/* Custom text styles for Compare Buttons */
+.compareButtonTextSmall {
+  font-size: 1.1em;
+}
+
+.compareButtonTextLarge {
+  font-size: 1.8em;
+}
+
+/* Base colors for non-selected buttons */
+.colorBlue { color: blue; }
+.colorRed { color: red; }
+.colorGreen { color: green; }
+
+/* White text for selected primary button */
+.colorWhite { color: white; }
+
+.fullWidthMb20 {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.mb10 {
+  margin-bottom: 10px;
+}

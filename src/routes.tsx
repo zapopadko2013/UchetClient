@@ -66,6 +66,7 @@ import GoodsReceipt from './components/ProductManagement/GoodsReceiptPage/GoodsR
 import InvoiceDetailsPage from './components/ProductManagement/GoodsReceiptPage/InvoiceDetailsPage';
 import StockTransfer from './components/ProductManagement/StockTransfer/StockTransfer';
 import GoodsWriteoffPage from './components/ProductManagement/GoodsWriteoffPage/GoodsWriteoffPage';
+import RevisionPage from './components/ProductManagement/RevisionPage/RevisionPage';
 
 
 
@@ -335,7 +336,7 @@ export const routes = [
       key: 'inventory',
       label: 'Ревизия',
       icon: <AuditOutlined />,
-      //element: <InventoryPage />,
+      element: <RevisionPage />,
       code: 'contr_revision',
     },
   ],

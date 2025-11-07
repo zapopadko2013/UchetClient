@@ -1909,7 +1909,183 @@
     "cancel": "Отмена",
     "confirm": "Подтвердить"
   }
-}
+},
 
+
+
+  "revisionPage": {
+    "title": "Ревизия",
+    "startRevisionButton": "Начать ревизию",
+    "deleteButton": "Удалить",
+    "unfinishedRevisionsTitle": "Незавершенные ревизии",
+    
+    "table": {
+      "number": "Номер",
+      "point": "Торговая точка",
+      "startDate": "Дата начала",
+      "administrator": "Администратор",
+      "action": "Действие"
+    },
+    
+    "loadRevisionsError": "Ошибка при загрузке ревизий",
+    "loadPointsError": "Ошибка при загрузке точек",
+    "checkActiveRevisionError": "Ошибка при проверке активной ревизии",
+    "loadRevisionTypeError": "Ошибка при загрузке данных для типа ревизии",
+    
+    "revisionDeletedSuccess": "Ревизия успешно удалена.",
+    "revisionDeleted": "Ревизия №{{number}} удалена",
+    "failedToDeleteRevision": "Не удалось удалить ревизию",
+    "deleteRevisionError": "Ошибка при удалении ревизии",
+    
+    "selectPointRequired": "Выберите торговую точку",
+    "revisionCreated": "Ревизия создана",
+    "createRevisionError": "Ошибка при создании ревизии",
+    
+    "createModal": {
+      "title": "Создать новую ревизию",
+      "selectPointPlaceholder": "Выберите торговую точку",
+      "showStock": "Показывать остатки",
+      "includeZeroStock": "Включить товары с нулевым остатком",
+      "selectBrandPlaceholder": "Выберите бренд",
+      "selectCategoryPlaceholder": "Выберите категорию",
+      "selectSupplierPlaceholder": "Выберите поставщика"
+    },
+    
+    "revisionTypes": {
+      "selective": "Выборочные товары",
+      "allProducts": "Все товары",
+      "byBrand": "По бренду",
+      "byCategory": "По категории",
+      "bySupplier": "По поставщикам"
+    },
+    
+    "activeModal": {
+      "title": "Внимание!",
+      "deleteButton": "Нет, удалить ревизию",
+      "continueButton": "Продолжить",
+      "warningText": "У Вас имеется незавершенная ревизия в этой точке. В одной точке нельзя делать одновременно более одной ревизии. Хотите продолжить ее?"
+    },
+    
+    "confirmDelete": {
+      "title": "Подтвердите удаление",
+      "text": "Вы уверены, что хотите удалить ревизию №{{number}}?"
+    }
+  }
+
+,
+
+"revisionPageDetail": {
+      "title": "Детали ревизии",
+      "point": "Торговая точка",
+      "type": "Тип",
+      "backToList": "Назад к списку",
+      "deleteRevisionButton": "Удалить ревизию",
+      "deleteItemButton": "Удалить товар ({{count}})",
+      "finishAddingItemsButton": "Завершить ввод данных",
+      "backToEditButton": "Вернуться к редактированию",
+      "exportExcelButton": "Выгрузить в Excel",
+      "finishRevisionButton": "Завершить ревизию",
+      "addItemButton": "Добавить товар вручную",
+      "searchBarcodePlaceholder": "Поиск по штрих-коду",
+      "searchNamePlaceholder": "Поиск по наименованию",
+      "addCommentButton": "Добавить комментарий",
+      
+      "itemAlreadyInList": "Товар \"{{name}}\" уже есть в списке.",
+      "itemAddedToList": "Товар \"{{name}}\" добавлен в список",
+      "itemNotFound": "Товар не найден.",
+      "errorLoadingOrSearchingItems": "Ошибка при загрузке или поиске товаров ревизии.",
+      "enterNameOrBarcodeForSearch": "Введите наименование или штрих-код для поиска.",
+      "errorSavingQuantity": "Ошибка при сохранении количества.",
+      "comparisonComplete": "Сравнение завершено. Проверьте расхождения.",
+      "comparisonEmptyError": "Сравнение вернуло пустой список. Проверьте логику.",
+      "errorComparingItems": "Ошибка при сравнении товаров.",
+      "editModeSwitched": "Режим переключен на редактирование.",
+      "finishSuccess": "Ревизия успешно завершена и остатки перезаписаны.",
+      "errorFinishingRevision": "Ошибка при завершении ревизии. Статус: {{status}}.",
+      "networkErrorFinishing": "Ошибка при завершении ревизии (проблема соединения).",
+      "noDataToExport": "Нет данных для выгрузки.",
+      "excelFileName": "Ревизия_{{number}}_{{date}}.xlsx",
+      "excelDownloadSuccess": "Файл Excel успешно скачан.",
+      "excelServerError": "Ошибка на сервере при формировании файла.",
+      "excelExportError": "Ошибка при выгрузке в Excel.",
+      "selectItemsForDeletion": "Выберите товары для удаления.",
+      "itemsDeleted": "Удалено {{count}} товаров.",
+      "errorDeletingItems": "Ошибка при удалении товаров.",
+      "enterCommentText": "Введите текст комментария.",
+      "selectItemForComment": "Выберите хотя бы один товар для комментирования.",
+      "commentAdded": "Комментарий добавлен.",
+      "errorAddingComment": "Ошибка при добавлении комментария.",
+      "errorLoadingAvailableItems": "Ошибка при загрузке доступных товаров.",
+      "errorGettingStock": "Не удалось получить остатки товара. Установите вручную.",
+      "selectItemAndQuantity": "Выберите товар и введите корректное количество.",
+      "itemAddedManualSuccess": "Товар \"{{name}}\" успешно добавлен.",
+      "errorAddingItemManual": "Ошибка при добавлении товара вручную.",
+      "typeUnknown": "Неизвестно",
+      "editWarning": "**Важно!** Ревизию необходимо закончить в течение 3-х дней с момента начала, в противном случае остатки могут оказаться неактуальными.",
+      "noItemsInRevision": "Нет добавленных товаров в ревизии.",
+      
+      "table": {
+        "item": "Товар",
+        "actualQuantity": "Фактическое количество",
+        "systemQuantity": "Количество в системе",
+        "changeDuringRevision": "Изменения за время ревизии (+/-)",
+        "status": "Статус"
+      },
+      
+      "status": {
+        "discrepancyFound": "Выявлено расхождение",
+        "noDiscrepancy": "Без расхождений"
+      },
+      
+      "compareControls": {
+        "important": "Важно!",
+        "warningText": "Для корректного учета продаж в ревизии:",
+        "step1": "Пожалуйста, остановите все продажи с этого момента;",
+        "step2": "Убедитесь, что после последней продажи прошло не менее 30 секунд, после чего нажмите кнопку 'Завершить ревизию'.",
+        "all": "Все",
+        "discrepancies": "Расхождения",
+        "noDiscrepancies": "Без расхождений"
+      },
+      
+      "manualAddModal": {
+        "title": "Добавить товар вручную",
+        "addButton": "Добавить",
+        "cancelButton": "Отмена",
+        "barcode": "Штрих код",
+        "selectBarcodePlaceholder": "Выберите штрих-код",
+        "itemName": "Наименование товара",
+        "selectNamePlaceholder": "Выберите наименование",
+        "quantity": "Количество"
+      },
+      
+      "confirmDelete": {
+        "title": "Подтвердите удаление",
+        "text": "Вы уверены, что хотите удалить ревизию №{{number}}?"
+      },
+
+      "confirmFinishModal": {
+        "title": "Внимание! Завершение ревизии",
+        "finishButton": "Завершить ревизию",
+        "cancelButton": "Отмена",
+        "warning1": "**Внимание!** Данное действие приведет к перезаписи остатков всех товаров!",
+        "warning2": "Товары, где введенное количество равно нулю, будут обнулены!"
+      },
+      
+      "finishSuccessModal": {
+        "title": "Ревизия успешно завершена",
+        "startNewButton": "Начать новую ревизию",
+        "viewReportButton": "Просмотреть отчёт",
+        "text": "Ревизия №{{number}} успешно завершена. Остатки обновлены."
+      },
+      
+      "commentModal": {
+        "title": "Добавить комментарий",
+        "cancelButton": "Отмена",
+        "allFailButton": "Все товары с расхождениями",
+        "selectedButton": "Выбранные товары ({{count}})",
+        "placeholder": "Комментарий",
+        "warning": "Вы можете сразу добавить комментарий ко всем товарам с расхождениями."
+      }
+    }
 
 }

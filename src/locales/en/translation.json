@@ -1673,9 +1673,182 @@
     "cancel": "Cancel",
     "confirm": "Confirm"
   }
-}
+},
 
+"revisionPage": {
+    "title": "Revision",
+    "startRevisionButton": "Start Revision",
+    "deleteButton": "Delete",
+    "unfinishedRevisionsTitle": "Unfinished Revisions",
+    
+    "table": {
+      "number": "Number",
+      "point": "Sales Point",
+      "startDate": "Start Date",
+      "administrator": "Administrator",
+      "action": "Action"
+    },
+    
+    "loadRevisionsError": "Error loading revisions",
+    "loadPointsError": "Error loading sales points",
+    "checkActiveRevisionError": "Error checking active revision",
+    "loadRevisionTypeError": "Error loading data for revision type",
+    
+    "revisionDeletedSuccess": "Revision successfully deleted.",
+    "revisionDeleted": "Revision #{{number}} deleted",
+    "failedToDeleteRevision": "Failed to delete revision",
+    "deleteRevisionError": "Error deleting revision",
+    
+    "selectPointRequired": "Select a sales point",
+    "revisionCreated": "Revision created",
+    "createRevisionError": "Error creating revision",
+    
+    "createModal": {
+      "title": "Create New Revision",
+      "selectPointPlaceholder": "Select sales point",
+      "showStock": "Show Stock Balance",
+      "includeZeroStock": "Include zero stock items",
+      "selectBrandPlaceholder": "Select brand",
+      "selectCategoryPlaceholder": "Select category",
+      "selectSupplierPlaceholder": "Select supplier"
+    },
+    
+    "revisionTypes": {
+      "selective": "Selective Items",
+      "allProducts": "All Products",
+      "byBrand": "By Brand",
+      "byCategory": "By Category",
+      "bySupplier": "By Supplier"
+    },
+    
+    "activeModal": {
+      "title": "Attention!",
+      "deleteButton": "No, delete revision",
+      "continueButton": "Continue",
+      "warningText": "You have an unfinished revision at this point. Only one revision can be done at a point simultaneously. Do you want to continue it?"
+    },
+    
+    "confirmDelete": {
+      "title": "Confirm Deletion",
+      "text": "Are you sure you want to delete revision #{{number}}?"
+    }
+  }
 
+  ,
+  
+  "revisionPageDetail": {
+      "title": "Revision Details",
+      "point": "Sales Point",
+      "type": "Type",
+      "backToList": "Back to List",
+      "deleteRevisionButton": "Delete Revision",
+      "deleteItemButton": "Delete Item ({{count}})",
+      "finishAddingItemsButton": "Complete Data Entry",
+      "backToEditButton": "Back to Editing",
+      "exportExcelButton": "Export to Excel",
+      "finishRevisionButton": "Finalize Revision",
+      "addItemButton": "Add Item Manually",
+      "searchBarcodePlaceholder": "Search by Barcode",
+      "searchNamePlaceholder": "Search by Name",
+      "addCommentButton": "Add Comment",
+      
+      "itemAlreadyInList": "Item \"{{name}}\" is already in the list.",
+      "itemAddedToList": "Item \"{{name}}\" has been added to the list",
+      "itemNotFound": "Item not found.",
+      "errorLoadingOrSearchingItems": "Error loading or searching revision items.",
+      "enterNameOrBarcodeForSearch": "Enter name or barcode to search.",
+      "errorSavingQuantity": "Error saving quantity.",
+      "comparisonComplete": "Comparison complete. Check for discrepancies.",
+      "comparisonEmptyError": "Comparison returned an empty list. Check logic.",
+      "errorComparingItems": "Error comparing items.",
+      "editModeSwitched": "Switched to editing mode.",
+      "finishSuccess": "Revision successfully completed and stock levels overwritten.",
+      "errorFinishingRevision": "Error finalizing revision. Status: {{status}}.",
+      "networkErrorFinishing": "Network error when finalizing revision (connection issue).",
+      "noDataToExport": "No data to export.",
+      "excelFileName": "Revision_{{number}}_{{date}}.xlsx",
+      "excelDownloadSuccess": "Excel file successfully downloaded.",
+      "excelServerError": "Server error while generating file.",
+      "excelExportError": "Error exporting to Excel.",
+      "selectItemsForDeletion": "Select items for deletion.",
+      "itemsDeleted": "{{count}} items deleted.",
+      "errorDeletingItems": "Error deleting items.",
+      "enterCommentText": "Enter comment text.",
+      "selectItemForComment": "Select at least one item to comment on.",
+      "commentAdded": "Comment added.",
+      "errorAddingComment": "Error adding comment.",
+      "errorLoadingAvailableItems": "Error loading available items.",
+      "errorGettingStock": "Could not retrieve item stock. Set manually.",
+      "selectItemAndQuantity": "Select item and enter a correct quantity.",
+      "itemAddedManualSuccess": "Item \"{{name}}\" successfully added.",
+      "errorAddingItemManual": "Error adding item manually.",
+      "typeUnknown": "Unknown",
+      "editWarning": "**Important!** The revision must be completed within 3 days from the start date, otherwise the stock levels may be outdated.",
+      "noItemsInRevision": "No items added to the revision.",
+      
+      "table": {
+        "item": "Item",
+        "actualQuantity": "Actual Quantity",
+        "systemQuantity": "System Quantity",
+        "changeDuringRevision": "Change During Revision (+/-)",
+        "status": "Status"
+      },
+      
+      "status": {
+        "discrepancyFound": "Discrepancy Found",
+        "noDiscrepancy": "No Discrepancy"
+      },
+      
+      "compareControls": {
+        "important": "Important!",
+        "warningText": "For correct sales accounting during the revision:",
+        "step1": "Please stop all sales from this moment;",
+        "step2": "Ensure that at least 30 seconds have passed since the last sale, then click the 'Finalize Revision' button.",
+        "all": "All",
+        "discrepancies": "Discrepancies",
+        "noDiscrepancies": "No Discrepancies"
+      },
+      
+      "manualAddModal": {
+        "title": "Add Item Manually",
+        "addButton": "Add",
+        "cancelButton": "Cancel",
+        "barcode": "Barcode",
+        "selectBarcodePlaceholder": "Select Barcode",
+        "itemName": "Item Name",
+        "selectNamePlaceholder": "Select Name",
+        "quantity": "Quantity"
+      },
+      
+      "confirmDelete": {
+        "title": "Confirm Deletion",
+        "text": "Are you sure you want to delete revision #{{number}}?"
+      },
+
+      "confirmFinishModal": {
+        "title": "Attention! Finalizing Revision",
+        "finishButton": "Finalize Revision",
+        "cancelButton": "Cancel",
+        "warning1": "**Attention!** This action will overwrite the stock levels of all items!",
+        "warning2": "Items where the entered quantity is zero will be zeroed out!"
+      },
+      
+      "finishSuccessModal": {
+        "title": "Revision Successfully Completed",
+        "startNewButton": "Start New Revision",
+        "viewReportButton": "View Report",
+        "text": "Revision #{{number}} successfully completed. Stock levels have been updated."
+      },
+      
+      "commentModal": {
+        "title": "Add Comment",
+        "cancelButton": "Cancel",
+        "allFailButton": "All Items with Discrepancies",
+        "selectedButton": "Selected Items ({{count}})",
+        "placeholder": "Comment",
+        "warning": "You can immediately add a comment to all items with discrepancies."
+      }
+    }
 
 
 

@@ -1688,8 +1688,180 @@
     "cancel": "Болдырмау",
     "confirm": "Растау"
   }
-}
+},
 
+"revisionPage": {
+    "title": "Түгендеу",
+    "startRevisionButton": "Түгендеуді бастау",
+    "deleteButton": "Жою",
+    "unfinishedRevisionsTitle": "Аяқталмаған түгендеулер",
+    
+    "table": {
+      "number": "Нөмірі",
+      "point": "Сауда нүктесі",
+      "startDate": "Басталған күні",
+      "administrator": "Әкімші",
+      "action": "Әрекет"
+    },
+    
+    "loadRevisionsError": "Түгендеулерді жүктеу қатесі",
+    "loadPointsError": "Нүктелерді жүктеу қатесі",
+    "checkActiveRevisionError": "Белсенді түгендеуді тексеру қатесі",
+    "loadRevisionTypeError": "Түгендеу түрінің деректерін жүктеу қатесі",
+    
+    "revisionDeletedSuccess": "Түгендеу сәтті жойылды.",
+    "revisionDeleted": "№{{number}} түгендеу жойылды",
+    "failedToDeleteRevision": "Түгендеуді жою мүмкін болмады",
+    "deleteRevisionError": "Түгендеуді жою қатесі",
+    
+    "selectPointRequired": "Сауда нүктесін таңдаңыз",
+    "revisionCreated": "Түгендеу жасалды",
+    "createRevisionError": "Түгендеуді жасау қатесі",
+    
+    "createModal": {
+      "title": "Жаңа түгендеу жасау",
+      "selectPointPlaceholder": "Сауда нүктесін таңдаңыз",
+      "showStock": "Қалдықтарды көрсету",
+      "includeZeroStock": "Нөлдік қалдығы бар тауарларды қосу",
+      "selectBrandPlaceholder": "Брендті таңдаңыз",
+      "selectCategoryPlaceholder": "Санатты таңдаңыз",
+      "selectSupplierPlaceholder": "Жеткізушіні таңдаңыз"
+    },
+    
+    "revisionTypes": {
+      "selective": "Таңдамалы тауарлар",
+      "allProducts": "Барлық тауарлар",
+      "byBrand": "Бренд бойынша",
+      "byCategory": "Санат бойынша",
+      "bySupplier": "Жеткізушілер бойынша"
+    },
+    
+    "activeModal": {
+      "title": "Назар аударыңыз!",
+      "deleteButton": "Жоқ, түгендеуді жою",
+      "continueButton": "Жалғастыру",
+      "warningText": "Бұл нүктеде аяқталмаған түгендеуіңіз бар. Бір нүктеде бірден бірнеше түгендеу жасауға болмайды. Оны жалғастырғыңыз келе ме?"
+    },
+    
+    "confirmDelete": {
+      "title": "Жоюды растаңыз",
+      "text": "№{{number}} түгендеуді жойғыңыз келетініне сенімдісіз бе?"
+    }
+  }
+  ,
+  "revisionPageDetail": {
+      "title": "Ревизия бөлшектері",
+      "point": "Сауда нүктесі",
+      "type": "Түрі",
+      "backToList": "Тізімге оралу",
+      "deleteRevisionButton": "Ревизияны жою",
+      "deleteItemButton": "Тауарды жою ({{count}})",
+      "finishAddingItemsButton": "Деректерді енгізуді аяқтау",
+      "backToEditButton": "Өңдеуге оралу",
+      "exportExcelButton": "Excel-ге жүктеу",
+      "finishRevisionButton": "Ревизияны аяқтау",
+      "addItemButton": "Тауарды қолмен қосу",
+      "searchBarcodePlaceholder": "Штрих-код бойынша іздеу",
+      "searchNamePlaceholder": "Атауы бойынша іздеу",
+      "addCommentButton": "Пікір қосу",
+      
+      "itemAlreadyInList": "\"{{name}}\" тауары тізімде бұрыннан бар.",
+      "itemAddedToList": "\"{{name}}\" тауары тізімге қосылды",
+      "itemNotFound": "Тауар табылмады.",
+      "errorLoadingOrSearchingItems": "Ревизия тауарларын жүктеу немесе іздеу кезіндегі қате.",
+      "enterNameOrBarcodeForSearch": "Іздеу үшін атауды немесе штрих-кодты енгізіңіз.",
+      "errorSavingQuantity": "Санды сақтау кезіндегі қате.",
+      "comparisonComplete": "Салыстыру аяқталды. Сәйкессіздіктерді тексеріңіз.",
+      "comparisonEmptyError": "Салыстыру бос тізімді қайтарды. Логиканы тексеріңіз.",
+      "errorComparingItems": "Тауарларды салыстыру кезіндегі қате.",
+      "editModeSwitched": "Режим өңдеуге ауыстырылды.",
+      "finishSuccess": "Ревизия сәтті аяқталды және қалдықтар қайта жазылды.",
+      "errorFinishingRevision": "Ревизияны аяқтау кезіндегі қате. Мәртебе: {{status}}.",
+      "networkErrorFinishing": "Ревизияны аяқтау кезіндегі қате (байланыс мәселесі).",
+      "noDataToExport": "Жүктеу үшін деректер жоқ.",
+      "excelFileName": "Ревизия_{{number}}_{{date}}.xlsx",
+      "excelDownloadSuccess": "Excel файлы сәтті жүктелді.",
+      "excelServerError": "Файлды жасау кезінде сервердегі қате.",
+      "excelExportError": "Excel-ге жүктеу кезіндегі қате.",
+      "selectItemsForDeletion": "Жою үшін тауарларды таңдаңыз.",
+      "itemsDeleted": "{{count}} тауар жойылды.",
+      "errorDeletingItems": "Тауарларды жою кезіндегі қате.",
+      "enterCommentText": "Пікір мәтінін енгізіңіз.",
+      "selectItemForComment": "Пікір қалдыру үшін кемінде бір тауарды таңдаңыз.",
+      "commentAdded": "Пікір қосылды.",
+      "errorAddingComment": "Пікір қосу кезіндегі қате.",
+      "errorLoadingAvailableItems": "Қолжетімді тауарларды жүктеу кезіндегі қате.",
+      "errorGettingStock": "Тауар қалдықтарын алу мүмкін болмады. Қолмен орнатыңыз.",
+      "selectItemAndQuantity": "Тауарды таңдап, дұрыс санды енгізіңіз.",
+      "itemAddedManualSuccess": "\"{{name}}\" тауары сәтті қосылды.",
+      "errorAddingItemManual": "Тауарды қолмен қосу кезіндегі қате.",
+      "typeUnknown": "Белгісіз",
+      "editWarning": "**Маңызды!** Ревизияны бастаған сәттен бастап 3 күн ішінде аяқтау керек, әйтпесе қалдықтар өзекті болмауы мүмкін.",
+      "noItemsInRevision": "Ревизияда қосылған тауарлар жоқ.",
+      
+      "table": {
+        "item": "Тауар",
+        "actualQuantity": "Нақты саны",
+        "systemQuantity": "Жүйедегі саны",
+        "changeDuringRevision": "Ревизия кезіндегі өзгерістер (+/-)",
+        "status": "Мәртебесі"
+      },
+      
+      "status": {
+        "discrepancyFound": "Сәйкессіздік анықталды",
+        "noDiscrepancy": "Сәйкессіздіксіз"
+      },
+      
+      "compareControls": {
+        "important": "Маңызды!",
+        "warningText": "Ревизиядағы сатуды дұрыс есепке алу үшін:",
+        "step1": "Осы сәттен бастап барлық сатуды тоқтатыңыз;",
+        "step2": "Соңғы сатудан кейін 30 секундтан кем емес уақыт өткеніне көз жеткізіңіз, содан кейін 'Ревизияны аяқтау' түймесін басыңыз.",
+        "all": "Барлығы",
+        "discrepancies": "Сәйкессіздіктер",
+        "noDiscrepancies": "Сәйкессіздіксіз"
+      },
+      
+      "manualAddModal": {
+        "title": "Тауарды қолмен қосу",
+        "addButton": "Қосу",
+        "cancelButton": "Бас тарту",
+        "barcode": "Штрих код",
+        "selectBarcodePlaceholder": "Штрих-кодты таңдаңыз",
+        "itemName": "Тауар атауы",
+        "selectNamePlaceholder": "Атауын таңдаңыз",
+        "quantity": "Саны"
+      },
+      
+      "confirmDelete": {
+        "title": "Жоюды растаңыз",
+        "text": "Ревизия №{{number}} жойғыңыз келетініне сенімдісіз бе?"
+      },
+
+      "confirmFinishModal": {
+        "title": "Назар аударыңыз! Ревизияны аяқтау",
+        "finishButton": "Ревизияны аяқтау",
+        "cancelButton": "Бас тарту",
+        "warning1": "**Назар аударыңыз!** Бұл әрекет барлық тауарлардың қалдықтарын қайта жазуға әкеледі!",
+        "warning2": "Енгізілген саны нөлге тең тауарлар нөлденеді!"
+      },
+      
+      "finishSuccessModal": {
+        "title": "Ревизия сәтті аяқталды",
+        "startNewButton": "Жаңа ревизияны бастау",
+        "viewReportButton": "Есепті қарау",
+        "text": "Ревизия №{{number}} сәтті аяқталды. Қалдықтар жаңартылды."
+      },
+      
+      "commentModal": {
+        "title": "Пікір қосу",
+        "cancelButton": "Бас тарту",
+        "allFailButton": "Сәйкессіздіктері бар барлық тауарлар",
+        "selectedButton": "Таңдалған тауарлар ({{count}})",
+        "placeholder": "Пікір",
+        "warning": "Сәйкессіздіктері бар барлық тауарларға бірден пікір қосуыңызға болады."
+      }
+    }
 
 
 }
