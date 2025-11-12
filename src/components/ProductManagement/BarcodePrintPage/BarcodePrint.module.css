@@ -1,0 +1,110 @@
+/* BarcodePrint.module.css */
+
+.labelContainer {
+  width: 76mm;
+  min-height: 40mm;
+  margin-bottom: 2mm;
+  padding: 2mm;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 10pt;
+  line-height: 1.2;
+  text-align: center;
+  word-break: normal;
+}
+
+.labelContainer.rotated {
+  transform: rotate(90deg) translateY(-100%);
+  transform-origin: top left;
+  margin-bottom: calc(76mm + 2mm);
+  margin-right: 50px;
+}
+
+.labelContainer.svgPrice {
+  border: 1px solid #000;
+}
+
+.labelContainer.format30x20,
+.labelContainer.format30x20Price {
+  width: 30mm;
+  min-height: 20mm;
+  padding: 1mm;
+  font-size: 6pt;
+  margin-bottom: 2mm;
+}
+
+.labelContainer.format30x20.rotated,
+.labelContainer.format30x20Price.rotated {
+  margin-bottom: calc(30mm + 2mm);
+}
+
+.labelContainer.format60x30Price {
+  width: 60mm;
+  min-height: 30mm;
+  padding: 2mm;
+  font-size: 8pt;
+}
+
+.labelContainer.format60x30Price.rotated {
+  margin-bottom: calc(60mm + 2mm);
+}
+
+.productName {
+  margin-bottom: 4px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.2;
+  max-height: 2.4em;
+}
+
+.barcodeWrapper {
+  margin: 2px 0;
+}
+
+.priceSection {
+  margin-top: 2px;
+}
+
+.extraAttr30x20 {
+  font-size: 8pt;
+  font-weight: bold;
+}
+
+.divider {
+  margin: 4px 0;
+  border-top: 1px solid #000;
+}
+
+.printArea {
+  margin-top: 40px;
+  margin-left: 40px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-left: 16px;
+}
+
+.controls.priceFormat {
+  margin-left: 56px;
+  margin-top: 16px;
+}
+
+.formWrapper {
+  margin-top: 16px;
+  width: 300px;
+}
+
+.bigText {
+  font-size: 16px;
+}

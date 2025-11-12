@@ -67,6 +67,8 @@ import InvoiceDetailsPage from './components/ProductManagement/GoodsReceiptPage/
 import StockTransfer from './components/ProductManagement/StockTransfer/StockTransfer';
 import GoodsWriteoffPage from './components/ProductManagement/GoodsWriteoffPage/GoodsWriteoffPage';
 import RevisionPage from './components/ProductManagement/RevisionPage/RevisionPage';
+import BarcodePrintPage from './components/ProductManagement/BarcodePrintPage/BarcodePrintPage';
+
 
 
 
@@ -304,7 +306,7 @@ export const routes = [
       key: 'barcodePrint',
       label: 'Печать штрих кода',
       icon: <BarcodeOutlined />,
-      //element: <BarcodePrintPage />,
+      element: <BarcodePrintPage />,
       code: 'contr_barcode_print',
     },
     {

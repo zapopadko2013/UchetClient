@@ -1849,7 +1849,89 @@
         "warning": "You can immediately add a comment to all items with discrepancies."
       }
     }
+   ,
 
+   "barcodePrint": {
+    "printTitle": "Barcode Printing",
+    "error": {
+      "loadPoints": "Error loading sales points",
+      "loadProducts": "Error loading products",
+      "barcodeNotFound": "Product by barcode not found"
+    },
+    "title": {
+      "selectProduct": "Select product for barcode printing"
+    },
+    "label": {
+      "point": "Sales Point",
+      "productName": "Product Name",
+      "barcode": "Barcode",
+      "barcodeFormat": "Barcode Format",
+      "paperWidth": "Paper Width",
+      "brand": "Brand",
+      "textSize": "Text Size",
+      "extraAttribute": "Extra Attribute"
+    },
+    "placeholder": {
+      "selectPoint": "Select sales point",
+      "enterProductSearch": "Enter at least 3 characters...",
+      "enterBarcode": "Enter barcode",
+      "selectFormat": "Select format"
+    },
+    "option": {
+      "svgNormal": "Normal svg",
+      "imgNormal": "Normal img",
+      "svgPrice": "With price svg (76x40)",
+      "price30x20": "With price 30x20",
+      "price60x30": "With price 60x30",
+      "noPrice30x20": "30x20 (No price)",
+      "bigText": "Big text",
+      "smallText": "Small text"
+    },
+    "button": {
+      "rotate": "Rotate",
+      "print": "Print"
+    },
+    "checkbox": {
+      "hasDiscount": "Has discount",
+      "noDiscount": "No discount"
+    },
+    "tab": { 
+      "productSearch": "Product Search",
+      "invoicePrint": "Print by Invoice"
+    }
+  },
+
+  "invoicePrint": { 
+      "label": {
+        "invoice": "Invoice",
+        "from": "dated",
+        "stockTo": "To Stock",
+        "type": "Type",
+        "counterparty": "Counterparty",
+        "product": "Product",
+        "byInvoice": "by invoice"
+      },
+      "column": {
+        "invoiceNumber": "Invoice Number",
+        "invoiceType": "Invoice Type",
+        "stockTo": "To Stock",
+        "supplier": "Supplier",
+        "details": "Details"
+      },
+      "button": {
+        "filter": "Filter",
+        "cancel": "Cancel",
+        "reset": "Reset",
+        "apply": "Apply",
+        "rotateBarcode": "Rotate Barcode"
+      },
+      "modalTitle": {
+        "filterByDate": "Filter by Dates"
+      },
+      "checkbox": {
+        "showBrand": "Show Brand"
+      }
+    }
 
 
 }

@@ -2087,5 +2087,87 @@
         "warning": "Вы можете сразу добавить комментарий ко всем товарам с расхождениями."
       }
     }
+    ,
+
+    "barcodePrint": {
+    "printTitle": "Печать штрих-кодов",
+    "error": {
+      "loadPoints": "Ошибка при загрузке торговых точек",
+      "loadProducts": "Ошибка при загрузке товаров",
+      "barcodeNotFound": "Товар по штрих-коду не найден"
+    },
+    "title": {
+      "selectProduct": "Выберите товар для печати штрих-кода"
+    },
+    "label": {
+      "point": "Торговая точка",
+      "productName": "Наименование товара",
+      "barcode": "Штрих-код",
+      "barcodeFormat": "Формат штрих-кода",
+      "paperWidth": "Ширина бумаги",
+      "brand": "Бренд",
+      "textSize": "Размер текста",
+      "extraAttribute": "Доп. атрибут"
+    },
+    "placeholder": {
+      "selectPoint": "Выберите торговую точку",
+      "enterProductSearch": "Введите не менее 3 символов...",
+      "enterBarcode": "Введите штрих-код",
+      "selectFormat": "Выберите формат"
+    },
+    "option": {
+      "svgNormal": "Обычный svg",
+      "imgNormal": "Обычный img",
+      "svgPrice": "С ценой svg (76x40)",
+      "price30x20": "С ценой 30х20",
+      "price60x30": "С ценой 60х30",
+      "noPrice30x20": "30х20 (Без цены)",
+      "bigText": "Большой текст",
+      "smallText": "Маленький текст"
+    },
+    "button": {
+      "rotate": "Повернуть",
+      "print": "Распечатать"
+    },
+    "checkbox": {
+      "hasDiscount": "Есть скидка",
+      "noDiscount": "Нет скидки"
+    },
+    "tab": { 
+      "productSearch": "Поиск товара",
+      "invoicePrint": "Печать по накладной"
+    }
+  }
+  ,"invoicePrint": { 
+      "label": {
+        "invoice": "Накладная",
+        "from": "от",
+        "stockTo": "Куда",
+        "type": "Тип",
+        "counterparty": "Контрагент",
+        "product": "Товар",
+        "byInvoice": "по накладной"
+      },
+      "column": {
+        "invoiceNumber": "Номер накладной",
+        "invoiceType": "Тип накладной",
+        "stockTo": "На склад",
+        "supplier": "Поставщик",
+        "details": "Детали"
+      },
+      "button": {
+        "filter": "Фильтр",
+        "cancel": "Отменить",
+        "reset": "Сбросить",
+        "apply": "Применить",
+        "rotateBarcode": "Повернуть штрих-код"
+      },
+      "modalTitle": {
+        "filterByDate": "Фильтр по датам"
+      },
+      "checkbox": {
+        "showBrand": "Показывать бренд"
+      }
+    }
 
 }

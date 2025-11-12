@@ -1862,6 +1862,88 @@
         "warning": "Сәйкессіздіктері бар барлық тауарларға бірден пікір қосуыңызға болады."
       }
     }
+,
 
+"barcodePrint": {
+    "printTitle": "Штрих-кодты басып шығару",
+    "error": {
+      "loadPoints": "Сауда нүктелерін жүктеу кезіндегі қате",
+      "loadProducts": "Тауарларды жүктеу кезіндегі қате",
+      "barcodeNotFound": "Штрих-код бойынша тауар табылмады"
+    },
+    "title": {
+      "selectProduct": "Штрих-кодты басып шығару үшін тауарды таңдаңыз"
+    },
+    "label": {
+      "point": "Сауда нүктесі",
+      "productName": "Тауар атауы",
+      "barcode": "Штрих-код",
+      "barcodeFormat": "Штрих-код форматы",
+      "paperWidth": "Қағаз ені",
+      "brand": "Бренд",
+      "textSize": "Мәтін өлшемі",
+      "extraAttribute": "Қосымша атрибут"
+    },
+    "placeholder": {
+      "selectPoint": "Сауда нүктесін таңдаңыз",
+      "enterProductSearch": "Кемінде 3 таңба енгізіңіз...",
+      "enterBarcode": "Штрих-кодты енгізіңіз",
+      "selectFormat": "Форматты таңдаңыз"
+    },
+    "option": {
+      "svgNormal": "Қалыпты svg",
+      "imgNormal": "Қалыпты img",
+      "svgPrice": "Бағасы бар svg (76x40)",
+      "price30x20": "Бағасы бар 30х20",
+      "price60x30": "Бағасы бар 60х30",
+      "noPrice30x20": "30х20 (Бағасыз)",
+      "bigText": "Үлкен мәтін",
+      "smallText": "Кіші мәтін"
+    },
+    "button": {
+      "rotate": "Айналдыру",
+      "print": "Басып шығару"
+    },
+    "checkbox": {
+      "hasDiscount": "Жеңілдік бар",
+      "noDiscount": "Жеңілдік жоқ"
+    },
+    "tab": { 
+      "productSearch": "Тауарды іздеу",
+      "invoicePrint": "Құжат бойынша басып шығару"
+    }
+  },
+
+  "invoicePrint": { 
+      "label": {
+        "invoice": "Құжат",
+        "from": "бастап",
+        "stockTo": "Қайда",
+        "type": "Түрі",
+        "counterparty": "Контрагент",
+        "product": "Тауар",
+        "byInvoice": "құжат бойынша"
+      },
+      "column": {
+        "invoiceNumber": "Құжат нөмірі",
+        "invoiceType": "Құжат түрі",
+        "stockTo": "Қоймаға",
+        "supplier": "Жеткізуші",
+        "details": "Толық мәліметтер"
+      },
+      "button": {
+        "filter": "Сүзгі",
+        "cancel": "Бас тарту",
+        "reset": "Қалпына келтіру",
+        "apply": "Қолдану",
+        "rotateBarcode": "Штрих-кодты айналдыру"
+      },
+      "modalTitle": {
+        "filterByDate": "Күндер бойынша сүзгі"
+      },
+      "checkbox": {
+        "showBrand": "Брендті көрсету"
+      }
+    }
 
 }
