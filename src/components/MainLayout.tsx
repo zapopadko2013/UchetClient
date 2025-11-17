@@ -56,7 +56,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ username, accesses }) => {
     const accessCodes: string[] = (accesses ?? []).map(access => access.code);
 
     // Коды маршрутов, которые всегда видны независимо от доступа
-    const alwaysVisibleCodes = ['home', 'news', 'change-password'];
+    const alwaysVisibleCodes = ['home', 'news', 'change-password','adminnews'];
 
     // Фильтрация маршрутов по accessCodes + всегда видимые
     const filterRoutesByAccess = (routes: RouteItem[]): RouteItem[] => {
@@ -84,7 +84,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ username, accesses }) => {
     const createMenuItems = (items: RouteItem[]): MenuItem[] => {
         return items.map(item => {
            // const isBold = item.key === 'businessManagement';
-           const boldKeys = ['businessManagement', 'sellersBuyers','tradeObjects','pricing','marketing','productManagement'];
+           const boldKeys = ['businessManagement', 'sellersBuyers','tradeObjects','pricing','marketing','productManagement','administration'];
            const isBold = boldKeys.includes(item.key);
 
             if (item.children) {

@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { Typography, Spin, Alert, Empty, Space } from 'antd';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import useApiRequest from '../hooks/useApiRequest';
+import { marked } from 'marked';
 
 const { Title, Paragraph } = Typography;
 
@@ -20,19 +21,17 @@ interface NewsItem {
 }
 
 const NewsDetail: React.FC = () => {
-  const { id } = useParams<{ id: string }>(); // Получаем 'id' из URL
+  const { id } = useParams<{ id: string }>();
   const { t } = useTranslation();
   const { loading, error, sendRequest } = useApiRequest<NewsItem>();
   const [news, setNews] = useState<NewsItem | null>(null);
 
   const formatDate = (dateString: string): string => {
     if (!dateString) return '';
-    
     const date = new Date(dateString);
     const day = String(date.getDate()).padStart(2, '0');
-    const month = russianMonths[date.getMonth()]; 
+    const month = russianMonths[date.getMonth()];
     const year = date.getFullYear();
-    
     return `${day} ${month} ${year}`;
   };
 
@@ -49,25 +48,25 @@ const NewsDetail: React.FC = () => {
       }
     )
       .then(data => {
-          if (data) {
-            setNews(data[0]);
-          } else {
-            setNews(null);
-          }
+        if (data) setNews(data[0]);
+        else setNews(null);
       })
-      .catch(err => {
-        console.error('Error loading data:', err);
-      });
-      
+      .catch(err => console.error(err));
   }, [id, sendRequest]);
 
-  // Возвращаем условные рендеры
+  // --- Используем marked для преобразования Markdown в HTML ---
+  const contentHtml = useMemo(() => {
+    if (!news) return '';
+    return marked(news.content, { breaks: true }); // breaks: true — для перевода строк в <br>
+  }, [news]);
+
   if (loading) {
-    /* return <Spin tip={t('newsDetail.loading')} style={{ display: 'block', margin: 'auto' }} />; */
-    <Space direction="vertical" align="center">
-          <Spin size="large" />
-          <Typography.Text>{t('newsDetail.loading')}</Typography.Text>
-    </Space>
+    return (
+      <Space direction="vertical" align="center">
+        <Spin size="large" />
+        <Typography.Text>{t('newsDetail.loading')}</Typography.Text>
+      </Space>
+    );
   }
 
   if (error) {
@@ -82,7 +81,9 @@ const NewsDetail: React.FC = () => {
     <div>
       <Title level={2}>{news.header}</Title>
       <Paragraph type="secondary">{formatDate(news.date)}</Paragraph>
-      <Paragraph>{news.content}</Paragraph>
+
+      {/* Рендерим Markdown через dangerouslySetInnerHTML */}
+      <div dangerouslySetInnerHTML={{ __html: contentHtml }} />
     </div>
   );
 };

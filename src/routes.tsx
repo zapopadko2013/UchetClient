@@ -69,6 +69,8 @@ import GoodsWriteoffPage from './components/ProductManagement/GoodsWriteoffPage/
 import RevisionPage from './components/ProductManagement/RevisionPage/RevisionPage';
 import BarcodePrintPage from './components/ProductManagement/BarcodePrintPage/BarcodePrintPage';
 
+import AdminNews from './components/Administration/News/AdminNews';
+
 
 
 
@@ -325,14 +327,14 @@ export const routes = [
       element: <ProductsPage />,
       code: 'contr_nomenclature',
     },
-    {
+    /* {
       path: '/job-order',
       key: 'jobOrder',
       label: 'Наряд-заказ',
       icon: <FileTextOutlined />,
       //element: <JobOrderPage />,
       code: 'contr_reconciliation',
-    },
+    }, */
     {
       path: '/inventory',
       key: 'inventory',
@@ -344,6 +346,22 @@ export const routes = [
   ],
 },
 
+  {
+  key: 'administration',
+  label: 'Администрирование',
+  icon: <SettingOutlined />,
+  code: 'administration',
+  children: [
+    {
+      path: '/adminnews',
+      key: 'adminnews',
+      label: 'Новости',
+      icon: <FileTextOutlined />,
+      element: <AdminNews />,
+      code: 'adminnews',
+    },
+  ],
+},  
 
 
   {

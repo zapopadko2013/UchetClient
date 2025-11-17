@@ -51,6 +51,9 @@
     "nomenclature": "Товар",
     "jobOrder": "Наряд-заказ",
     "inventory": "Ревизия",
+
+    "administration": "Администрирование",
+    "adminnews": "Новости",
     
     "changePassword": "Сменить пароль"
     
@@ -2169,5 +2172,97 @@
         "showBrand": "Показывать бренд"
       }
     }
+
+    ,
+
+    "adminnews": {
+    "searching": "Идет поиск",
+    "administration": "Администрирование",
+      "news": "Новости",
+      "createNews": "Создание новости",
+      "changeNews": "Изменение новостей",
+      "category": "Категория",
+      "header": "Заголовок",
+      "content": "Новость",
+      "imageUpload": "Выгрузить",
+      "createButton": "Создать новость",
+      "warningFields": "Заполните заголовок и содержание новости.",
+      "successAdd": "Новость успешно добавлена.",
+      "errorAdd": "Возникла ошибка при обработке вашего запроса.",
+      "selectFile": "Выберите файл для загрузки."
+
+      ,
+     
+    "image": "Изображения",
+    "selectCategory": "Выберите категорию",
+    "headerPlaceholder": "Введите заголовок новости",
+    
+    "imagePath": "Путь к изображению",
+    
+    "successUpload": "Файл успешно выгружен!",
+    
+    
+    "bug": "Баг",
+    "notification": "Уведомление",
+    "feature": "Фича",
+    
+   
+    "successTitle": "Успех",
+    "errorTitle": "Ошибка",
+    "errorUploadTitle": "Ошибка выгрузки",
+    "errorUploadDescription": "Ошибка при выгрузке файла"
+    , 
+    "preview": "Превью",  
+
+    "manageNewsTitle": "Управление новостями",
+    "latestNewsTitle": "Последние новости",
+    "errorLoadList": "Не удалось загрузить список новостей.",
+    "emptyNewsList": "К сожалению, новостей пока нет :(",
+    "successDelete": "Новость успешно удалена!",
+    "errorDeleteDescription": "Возникла ошибка при обработке вашего запроса.",
+    "emptyList": "Нет доступных новостей",
+    "deleteButton": "Удалить",
+    
+    
+
+    "editor": {
+      "welcome": "Добро пожаловать в мой превьюер Markdown на React!",
+      "subtitle": "Это подзаголовок...",
+      "coolStuff": "А вот еще несколько крутых штук:",
+      "inlineCode": "Вот немного кода",
+      "multilineCode": "это многострочный код",
+      "boldText": "Вы также можете сделать текст",
+      "bold": "жирным",
+      "italicText": "Или",
+      "italic": "курсивом",
+      "combinedText": "Или... ждите...",
+      "combined": "обоими!",
+      "strikethroughText": "И не стесняйтесь",
+      "strikethrough": "перечеркивать текст",
+      "linksText": "Здесь также есть",
+      "linkExample": "ссылки",
+      "blockquote": "Блочные цитаты!",
+      "tableIntro": "А если хотите по-настоящему развлечься, то даже таблицы",
+      "tableHeader1": "Дикий Заголовок",
+      "tableHeader2": "Безумный Заголовок",
+      "tableHeader3": "Еще один Заголовок?",
+      "tableContent1": "Ваше содержимое может",
+      "tableContent2": "быть здесь, и оно",
+      "tableContent3": "может быть здесь....",
+      "tableContent4": "И здесь.",
+      "tableContent5": "Ладно.",
+      "tableContent6": "Думаю, мы поняли.",
+      "listStart": "И, конечно, есть списки",
+      "listItem1": "Некоторые из них маркированные",
+      "listItem2": "С разными уровнями отступов",
+      "listItem3": "Которые выглядят так",
+      "numberedListStart": "И есть также нумерованные списки",
+      "numberedListItem1": "Используйте только 1, если хотите",
+      "numberedListItem2": "Но список продолжается",
+      "mixedList": "Даже если вы используете дефисы или звездочки",
+      "imageIntro": "И, наконец, не забудем о встроенных изображениях",
+      "imageAlt": "Пример"
+    }
+  }
 
 }

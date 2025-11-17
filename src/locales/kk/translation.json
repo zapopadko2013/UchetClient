@@ -54,7 +54,9 @@
   "nomenclature": "Тауар",
   "jobOrder": "Жұмыс тапсырысы",
   "inventory": "Ревизия"
-
+  ,
+  "administration": "Әкімшілік",
+    "adminnews": "Жаңалықтар"
 
   },
   "auth": {
@@ -1945,5 +1947,82 @@
         "showBrand": "Брендті көрсету"
       }
     }
+,
+
+"adminnews": {
+    "searching": "Іздеу жүріп жатыр",
+    "administration": "Әкімшілік",
+    "news": "Жаңалықтар",
+    "createNews": "Жаңалық жасау",
+    "changeNews": "Жаңалықтарды өзгерту",
+    "category": "Санат",
+    "header": "Тақырып",
+    "content": "Жаңалық",
+    "imageUpload": "Жүктеу",
+    "createButton": "Жаңалық жасау",
+    "warningFields": "Тақырып пен жаңалық мазмұнын толтырыңыз.",
+    "successAdd": "Жаңалық сәтті қосылды.",
+    "errorAdd": "Сұрауыңызды өңдеу кезінде қате пайда болды.",
+    "selectFile": "Жүктеу үшін файлды таңдаңыз.",
+    "image": "Суреттер",
+    "selectCategory": "Санат таңдаңыз",
+    "headerPlaceholder": "Жаңалық тақырыбын енгізіңіз",
+    "imagePath": "Сурет жолы",
+    "successUpload": "Файл сәтті жүктелді!",
+    "bug": "Қате",
+    "notification": "Хабарлама",
+    "feature": "Функция",
+    "successTitle": "Сәтті",
+    "errorTitle": "Қате",
+    "errorUploadTitle": "Жүктеу қатесі",
+    "errorUploadDescription": "Файлды жүктеу кезінде қате",
+    "preview": "Алдын ала қарау",
+    "manageNewsTitle": "Жаңалықтарды басқару",
+    "latestNewsTitle": "Соңғы жаңалықтар",
+    "errorLoadList": "Жаңалықтар тізімін жүктеу мүмкін болмады.",
+    "emptyNewsList": "Өкінішке орай, әзірге жаңалықтар жоқ :(",
+    "successDelete": "Жаңалық сәтті жойылды!",
+    "errorDeleteDescription": "Сұрауыңызды өңдеу кезінде қате пайда болды.",
+    "emptyList": "Қолжетімді жаңалықтар жоқ",
+    "deleteButton": "Жою",
+    "editor": {
+      "welcome": "React-тағы менің Markdown алдын ала қарау құралыма қош келдіңіз!",
+      "subtitle": "Бұл кіші тақырып...",
+      "coolStuff": "Міне, тағы бірнеше керемет нәрсе:",
+      "inlineCode": "Мұнда біраз код бар",
+      "multilineCode": "бұл көп жолды код",
+      "boldText": "Сіз мәтінді де жасай аласыз",
+      "bold": "қалың",
+      "italicText": "Немесе",
+      "italic": "курсивпен",
+      "combinedText": "Немесе... күтіңіз...",
+      "combined": "екеуін де!",
+      "strikethroughText": "Және мәтінді сызудан тартынбаңыз",
+      "strikethrough": "сызу",
+      "linksText": "Мұнда да бар",
+      "linkExample": "сілтемелер",
+      "blockquote": "Блоктық дәйексөздер!",
+      "tableIntro": "Егер сіз шынымен көңіл көтергіңіз келсе, тіпті кестелер де бар",
+      "tableHeader1": "Жабайы тақырып",
+      "tableHeader2": "Ессіз тақырып",
+      "tableHeader3": "Тағы бір тақырып па?",
+      "tableContent1": "Сіздің мазмұныңыз",
+      "tableContent2": "осында болуы мүмкін, және ол",
+      "tableContent3": "осында болуы мүмкін....",
+      "tableContent4": "Және осында.",
+      "tableContent5": "Жарайды.",
+      "tableContent6": "Меніңше, біз түсіндік.",
+      "listStart": "Және, әрине, тізімдер бар",
+      "listItem1": "Кейбіреулері маркерленген",
+      "listItem2": "Әртүрлі деңгейдегі шегіністермен",
+      "listItem3": "Олар осылай көрінеді",
+      "numberedListStart": "Және нөмірленген тізімдер де бар",
+      "numberedListItem1": "Қаласаңыз, тек 1 қолданыңыз",
+      "numberedListItem2": "Бірақ тізім жалғасуда",
+      "mixedList": "Тіпті дефистерді немесе жұлдызшаларды қолдансаңыз да",
+      "imageIntro": "Соңында, кірістірілген кескіндерді ұмытпайық",
+      "imageAlt": "Мысал"
+    }
+  }
 
 }

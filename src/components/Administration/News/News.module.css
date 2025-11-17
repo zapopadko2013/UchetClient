@@ -1,0 +1,218 @@
+/* Переменная SASS $darkAccent: #224B4B */
+:root {
+  --dark-accent: #224b4b;
+}
+
+.markdownPreviewer {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+}
+
+.editor {
+  box-shadow: 0px 0px 13px 1px rgba(0, 0, 0, 0.75);
+  padding: 0px;
+}
+
+.editorExpanded {
+  flex: auto;
+  height: 60rem;
+}
+
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.logo {
+  height: 0.9rem;
+  margin-top: 0.4rem;
+  margin-left: 0.2rem;
+}
+
+.taFont {
+  font-family: monospace;
+}
+
+.textArea {
+  width: 100%;
+  min-height: 30rem;
+  height: unset;
+  vertical-align: top;
+  overflow: auto;
+  resize: none;
+  border: none;
+  outline: none;
+}
+
+.preview blockquote {
+  border-left: 3px solid var(--dark-accent); /* Используем переменную */
+  color: var(--dark-accent); /* Используем переменную */
+  padding-left: 5px;
+  margin-left: 25px;
+}
+
+.preview code {
+  background: white;
+  padding: 1px 4px 2px 4px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.preview pre {
+  background: white;
+  padding: 5px 0 5px 5px;
+}
+
+.preview h1 {
+  border-bottom: 2px solid var(--dark-accent); /* Используем переменную */
+}
+
+.preview h2 {
+  border-bottom: 1px solid var(--dark-accent); /* Используем переменную */
+}
+
+.preview table {
+  border-collapse: collapse;
+}
+
+.preview td,
+.preview th {
+  border: 2px solid var(--dark-accent); /* Используем переменную */
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.preview img {
+  display: block !important;
+  max-width: 100% !important;
+  height: auto !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.searchingContainer {
+    /* 1. Центрирование содержимого */
+    display: flex;
+    flex-direction: column; /* Разместить элементы вертикально (Spin и Text) */
+    align-items: center;    /* Центрировать по горизонтали */
+    justify-content: center; /* Центрировать по вертикали (если контейнер имеет высоту) */
+    
+    /* 2. Отступы и макет (пример) */
+    padding: 20px;
+    margin: 10px 0;
+    width: 100%; /* Занять всю доступную ширину */
+}
+
+
+
+
+
+
+
+
+.createNewsContainer {
+    /* Соответствует стилям .site-layout-content и инлайн стилю padding: '24px' */
+    padding: 24px;
+}
+
+.imagePathText {
+    /* Соответствует стилям для Typography.Text под полем загрузки:
+       style={{ marginTop: 8, display: 'block' }}
+    */
+    margin-top: 8px;
+    display: block;
+}
+
+.createButtonContainer {
+    /* Соответствует стилям для div кнопки "Создать новость"
+       style={{ textAlign: 'right' }}
+    */
+    text-align: right;
+}
+
+.fullWidthSpace {
+    /* Соответствует style={{ width: '100%' }} для <Space> */
+    width: 100%;
+}
+
+.categorySelect {
+    /* Соответствует style={{ width: 250 }} для <Select> */
+    width: 250px;
+}
+
+
+.adminNewsContainer {
+    padding: 20px;
+}
+
+.tabContent {
+    margin-top: 20px;
+}
+
+
+
+.markdownMargin {
+    /* Соответствует style={{ margin: "1rem" }} */
+    margin: 1rem;
+}
+
+
+
+.newsContainer {
+    /* Соответствует style={{ padding: '20px' }} */
+    padding: 20px;
+}
+
+.titleCenter {
+    /* Соответствует style={{ textAlign: "center" }} для Typography.Title */
+    text-align: center;
+}
+
+.emptyListMargin {
+    /* Соответствует style={{ marginTop: 50 }} для Empty */
+    margin-top: 50px;
+}
+
+.newsListContainer {
+    /* Соответствует style={{ maxWidth: 600, margin: '0 auto' }} для List */
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.categoryAvatar {
+    /* Соответствует стилям для аватара */
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    /* Note: backgroundColor и color должны остаться инлайн, так как они динамические */
+    color: white; /* Устанавливаем базовый белый цвет */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2em;
+}
+
+
+
+
+.searchingContainern {
+    /* Если нужны стили для корневого контейнера, например, центрирование */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px; /* Добавьте отступы, если нужно */
+}
+
+.searchingSpinnerIcon {
+    /* Стиль для SearchOutlined style={{ fontSize: 24 }} */
+    font-size: 24px;
+}
+
+.searchingText {
+    /* Соответствует style={{ marginTop: 16, display: 'block', fontSize: '1.1em' }} */
+    margin-top: 16px;
+    display: block;
+    font-size: 1.1em;
+}

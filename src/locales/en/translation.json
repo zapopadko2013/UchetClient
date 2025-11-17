@@ -50,6 +50,10 @@
   "nomenclature": "Nomenclature",
   "jobOrder": "Job Order",
   "inventory": "Inventory"
+  ,
+
+  "administration": "Administration",
+    "adminnews": "News"
 
   },
   "userMenu": {
@@ -1932,6 +1936,82 @@
         "showBrand": "Show Brand"
       }
     }
+,
+  "adminnews": {
+    "searching": "Searching...",
+    "administration": "Administration",
+    "news": "News",
+    "createNews": "Create News",
+    "changeNews": "Edit News",
+    "category": "Category",
+    "header": "Header",
+    "content": "News Content",
+    "imageUpload": "Upload",
+    "createButton": "Create News",
+    "warningFields": "Fill in the header and news content.",
+    "successAdd": "News successfully added.",
+    "errorAdd": "An error occurred while processing your request.",
+    "selectFile": "Select a file to upload.",
+    "image": "Images",
+    "selectCategory": "Select category",
+    "headerPlaceholder": "Enter news header",
+    "imagePath": "Image Path",
+    "successUpload": "File uploaded successfully!",
+    "bug": "Bug",
+    "notification": "Notification",
+    "feature": "Feature",
+    "successTitle": "Success",
+    "errorTitle": "Error",
+    "errorUploadTitle": "Upload Error",
+    "errorUploadDescription": "Error uploading file",
+    "preview": "Preview",
+    "manageNewsTitle": "News Management",
+    "latestNewsTitle": "Latest News",
+    "errorLoadList": "Failed to load news list.",
+    "emptyNewsList": "Unfortunately, there are no news yet :(",
+    "successDelete": "News successfully deleted!",
+    "errorDeleteDescription": "An error occurred while processing your request.",
+    "emptyList": "No news available",
+    "deleteButton": "Delete",
+    "editor": {
+      "welcome": "Welcome to my React Markdown Previewer!",
+      "subtitle": "This is a sub-heading...",
+      "coolStuff": "And here are some other cool things:",
+      "inlineCode": "Here is some code",
+      "multilineCode": "this is multi-line code",
+      "boldText": "You can also make text",
+      "bold": "bold",
+      "italicText": "Or",
+      "italic": "italic",
+      "combinedText": "Or... wait for it...",
+      "combined": "both!",
+      "strikethroughText": "And feel free to strike text out",
+      "strikethrough": "strikethrough",
+      "linksText": "There are also",
+      "linkExample": "links",
+      "blockquote": "Block Quotes!",
+      "tableIntro": "And if you want to get really crazy, even tables",
+      "tableHeader1": "Wild Header",
+      "tableHeader2": "Crazy Header",
+      "tableHeader3": "Another Header?",
+      "tableContent1": "Your content can",
+      "tableContent2": "be here, and it",
+      "tableContent3": "can be here....",
+      "tableContent4": "And here.",
+      "tableContent5": "Okay.",
+      "tableContent6": "I think we got it.",
+      "listStart": "And of course, there are lists",
+      "listItem1": "Some of them bulleted",
+      "listItem2": "With different levels of indentation",
+      "listItem3": "That look like this",
+      "numberedListStart": "And there are also numbered lists",
+      "numberedListItem1": "Use only 1 if you want",
+      "numberedListItem2": "But the list continues",
+      "mixedList": "Even if you use dashes or asterisks",
+      "imageIntro": "And finally, let's not forget embedded images",
+      "imageAlt": "Example"
+    }
+  }
 
 
 }

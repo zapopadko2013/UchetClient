@@ -63,6 +63,8 @@ const NewsPage: React.FC = () => {
           }),
         ]);
 
+        ///to={`${isAdmin ? "/adminpage/news/" : "/oldusercabinet/news/"}` + id}
+
         const newsArray = newsData && (Array.isArray(newsData) ? newsData : Object.values(newsData));
         const categoriesArray = categoriesData && (Array.isArray(categoriesData) ? categoriesData : Object.values(categoriesData));
 
