@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { List, Typography, message, Empty, Spin } from "antd";
 import { useTranslation } from 'react-i18next';
-import Searching from "./Searching"; 
+import Searching from "../../Searching"; 
 import NewsList from "./NewsList"; 
 import useApiRequest from "../../../hooks/useApiRequest"; 
 import styles from "./News.module.css"; // <-- Импорт стилей

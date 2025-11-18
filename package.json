@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "antd": "^5.27.2",
+    "bootstrap": "^5.3.8",
     "i18next": "^25.5.1",
     "lodash": "^4.17.21",
     "marked": "^17.0.0",
@@ -22,6 +23,7 @@
     "react-flagkit": "^2.0.4",
     "react-i18next": "^15.7.3",
     "react-router-dom": "^7.8.2",
+    "reactstrap": "^9.2.3",
     "xlsx": "^0.18.5"
   },
   "devDependencies": {

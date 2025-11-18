@@ -5,7 +5,7 @@ import Moment from 'moment';
 import { useTranslation } from 'react-i18next';
 import useApiRequest from '../../../hooks/useApiRequest';
 import MarkedDownEditor from './MarkedDownEditor';
-import Searching from './Searching';
+import Searching from '../../Searching';
 import styles from './News.module.css'; 
 
 // --- ТИПЫ ДАННЫХ ---

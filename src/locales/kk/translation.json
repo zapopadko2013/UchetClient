@@ -56,7 +56,8 @@
   "inventory": "Ревизия"
   ,
   "administration": "Әкімшілік",
-    "adminnews": "Жаңалықтар"
+    "adminnews": "Жаңалықтар",
+    "admincompanysettings": "Компанияны баптау"
 
   },
   "auth": {
@@ -2024,5 +2025,190 @@
       "imageAlt": "Мысал"
     }
   }
+  ,
+
+  "companysettings": {
+      "pointPlaceholder": "Тізімнен сауда нүктесін таңдаңыз",
+      "addPointTitle": "Жаңа сауда нүктесін қосу",
+      "editPointTitle": "Сауда нүктесінің ақпаратын өңдеу",
+      "backToList": "Сауда нүктелерінің тізімі",
+      "pointName": "Сауда нүктесінің атауы",
+      "pointNamePlaceholder": "Сауда нүктесінің атауын енгізіңіз",
+      "pointAddress": "Сауда нүктесінің мекенжайы",
+      "pointAddressPlaceholder": "Сауда нүктесінің орналасқан жерін енгізіңіз",
+      "negativeAccounting": "Тауарлардың теріс есебі",
+      "negativeAccountingPlaceholder": "Тауарлардың теріс есебіне рұқсат беру керек пе?",
+      "saveChanges": "Өзгерістерді сақтау",
+      "addButton": "Қосу",
+      "clearButton": "Тазарту",
+      "pointName1": "Сауда нүктесі",
+      "prefix": {
+        "label": "Префикс",
+        "placeholder": "Префиксті енгізіңіз (2 сан)",
+        "createButton": "Құру",
+        "currentLabel": "Сіздің префиксіңіз",
+        "changeButton": "Өзгерту",
+        "successCreate": "Префикс сәтті құрылды!",
+        "invalidValue": "Префикс 1 немесе 2 саннан тұратын сан болуы керек."
+      },
+      "inactive": {
+        "points": {
+          "showCaption": "Белсенді емес сауда нүктелерінің тізімін көрсету",
+          "hideCaption": "Белсенді емес сауда нүктелерінің тізімін жасыру"
+        },
+        "cashboxes": {
+          "showCaption": "Белсенді емес кассалардың тізімін көрсету",
+          "hideCaption": "Белсенді емес кассалардың тізімін жасыру"
+        }
+      },
+      "switch": {
+          "binLabel": "БСН/ЖСН",
+          "binTooltip": "БСН/ЖСН тексеруді қосу",
+          "ndsLabel": "ҚҚС",
+          "ndsTooltip": "ҚҚС өрісін қосу",
+          "znmLabel": "Зауыт нөм.",
+          "znmTooltip": "Зауыт нөмірін тексеруді қосу",
+          "rnmLabel": "Тіркеу нөм.",
+          "rnmTooltip": "Тіркеу нөмірі өрісін қосу"
+        },
+      "cashbox": {
+        "name1": "Касса",
+        "listTitle": "Белсенді кассалар тізімі",
+        "emptyList": "Белсенді кассалар тізімі бос",
+        "confirmDelete": "Кассаны жойғыңыз келетініне сенімдісіз бе?",
+        "successDelete": "Касса сәтті жойылды",
+        "manage": "Кассаны басқару",
+        "editChecks": "Чектерді өңдеу",
+        "addTitle": "Жаңа касса қосу",
+        "editTitle": "Касса ақпаратын өңдеу",
+        "backToList": "Кассалар тізімі",
+        "name": "Касса атауы",
+        "namePlaceholder": "Касса атауын енгізіңіз",
+        "successCreate": "Касса сәтті құрылды",
+        
+        "closed": {
+          "name": "Атауы",
+          "point": "Сауда нүктесі",
+          "status": "Мәртебесі",
+          "statusDeleted": "Жойылған",
+          "rollbackTitle": "Тізімге қайтару",
+          "rollbackButton": "Қайтару",
+          "emptyList": "Жойылған кассалар тізімі бос",
+          "confirmTitle": "Сенімдісіз бе?",
+          "confirmBtnText": "Иә, сенімдімін",
+          "cancelBtnText": "Жоқ, бас тарту"
+        }
+      },
+      "messages": {
+        "successEdit": "Өзгерістер сәтті сақталды",
+        "successCreatePoint": "Сауда нүктесі сәтті құрылды",
+        "errorTitle": "Қате",
+        "defaultApiError": "Сұранысыңызды өңдеу кезінде қате пайда болды. Біз қазірдің өзінде шешу жолында жұмыс істеп жатырмыз. Кейінірек қайталап көріңіз",
+        "successTitle": "Тамаша",
+        "raiseError": "Сұранысыңызды өңдеу кезінде қате пайда болды. Кейінірек қайталап көріңіз.",
+        "areyousure": "Сенімдісіз бе?",
+        "sure": "Иә, сенімдімін",
+        "cancel": "Жоқ, бас тарту",
+        "loadError": "Деректерді жүктеу мүмкін болмады."
+      },
+      "common": {
+        "number": "№",
+        "title": {
+          "edit": "Өңдеу",
+          "delete": "Жою"
+        },
+        "loading": "Жүктелуде...",
+        "actions": "Әрекеттер",
+        "edit": "Өңдеу",
+        "delete": "Жою",
+        "yes": "Иә",
+        "no": "Жоқ",
+        "rollback": "Қайтару"
+      },
+      "pageTitle": "Компания параметрлері",
+      "selectCompanyPlaceholder": "Компанияны таңдаңыз",
+      "noCompanyFound": "Компания табылмады",
+      "companies": {
+        "loadError": "Компаниялар тізімін жүктеу мүмкін болмады."
+      },
+      "pointpage": {
+        "listTitle": "Белсенді сауда нүктелерінің тізімі",
+        "addPoint": "Жаңа сауда нүктесін қосу",
+        "emptyList": "Сауда нүктелерінің тізімі бос",
+        "columnName": "Атауы",
+        "columnAddress": "Мекенжайы",
+        "columnIsMinus": "Теріс есеп",
+        "confirmDelete": "Сауда нүктесін жойғыңыз келетініне сенімдісіз бе?",
+        "successDelete": "Сауда нүктесі сәтті жойылды",
+        "loadError": "Сауда нүктелерінің тізімін жүктеу мүмкін болмады."
+      },
+      "cashboxpage": {
+        "listTitle": "Белсенді кассалар тізімі",
+        "addCashbox": "Жаңа касса қосу",
+        "emptyList": "Кассалар тізімі бос",
+        "columnName": "Атауы",
+        "columnPoint": "Сауда нүктесі",
+        "confirmDelete": "Кассаны жойғыңыз келетініне сенімдісіз бе?",
+        "successDelete": "Касса сәтті жойылды",
+        "loadError": "Кассалар тізімін жүктеу мүмкін болмады."
+      },
+      "closed": {
+        "inactiveTitle": "Белсенді емес {mode} тізімі",
+        "emptyList": "Жабылған элементтер тізімі бос.",
+        "confirmTitle": "Қайтаруды растау",
+        "confirmContent": "Бұл элементті қалпына келтіргіңіз келетініне сенімдісіз бе?",
+        "confirmBtnText": "Қалпына келтіру",
+        "cancelBtnText": "Бас тарту",
+        "successRollback": "Элемент сәтті қалпына келтірілді.",
+        "loadClosedError": "Жабылған элементтер тізімін жүктеу қатесі."
+      },
+      "ticket": {
+        "title": "Чек форматын баптау",
+        "defaultPoint": "Сауда нүктесі №1",
+        "defaultAddress": "Алматы | Достық даңғылы | 1",
+        "defaultCompany": "TOO Demo",
+        "receiptTitle": "Тауар чегі",
+        "defaultThanks": "Қосымша мәтін 1",
+        "defaultThanks1": "Сатып алғаныңыз үшін рахмет.",
+        "defaultAd": "Қосымша мәтін 2",
+        "uploadLogo": "Компания логотипін жүктеу:",
+        "selectFile": "PNG файлын таңдаңыз",
+        "pointName": "Сауда нүктесінің атауы",
+        "address": "Мекенжайы",
+        "company": "Компания",
+        "switchOptions": "Көрсету параметрлері:",
+        "thanksMessage": "Қосымша мәтін 1 (Алғыс)",
+        "advertisementMessage": "Қосымша мәтін 2 (Жарнама)",
+        "adPlaceholder": "Жарнама хабарламасын енгізіңіз",
+        "saveButton": "Чекті өңдеу",
+        "requiredFieldsWarning": "Сауда нүктесін, Мекенжайды және Компанияны көрсетіңіз.",
+        "adLimitWarning": "Жарнама ұзындығы 2000 таңбадан аспауы керек.",
+        "fileSizeWarning": "Файл өлшемі 100 КБ-тан аз болуы керек.",
+        "fileTypeWarning": "Файл кеңейтімі .png болуы керек.",
+        "fileSuccess": "Файл сәтті жүктелді.",
+        "fileError": "Файлды жүктеу қатесі.",
+        "successSave": "Чек сәтті өзгертілді",
+        "loadTicketError": "Чек форматын жүктеу қатесі.",
+        "selectPointWarning": "Алдымен сауда нүктесін таңдаңыз.",
+        "pointNameText": "Нүкте атауы",
+    "companyText": "Компания атауы",
+    "thanksMessageText": "Алғыс хабарламасы",
+    "advertisementMessageText": "Жарнамалық хабарлама",
+    "totalText": "Қорытынды"
+      }
+    },
+    "errorHandling": {
+      "title": "Қате",
+      "fileErrorPrefix": "Жүктелген файлдағы қате",
+      "internalServerError": "Сервер тарапында қате пайда болды. [internal_server_error]",
+      "dataTransferError": "Деректерді серверге тасымалдау кезінде қате пайда болды.",
+      "networkError": "Желі қатесі пайда болды. Қосылымды тексеріңіз.",
+      "blobReadFailure": "Файлдағы қате туралы хабарламаны оқу мүмкін болмады."
+    },
+    "currency": {
+      "KZT": "KZT",
+      "KGS": "KGS"
+    }
+  
 
 }

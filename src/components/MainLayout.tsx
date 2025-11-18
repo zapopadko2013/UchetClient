@@ -56,7 +56,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ username, accesses }) => {
     const accessCodes: string[] = (accesses ?? []).map(access => access.code);
 
     // Коды маршрутов, которые всегда видны независимо от доступа
-    const alwaysVisibleCodes = ['home', 'news', 'change-password','adminnews'];
+    const alwaysVisibleCodes = ['home', 'news', 'change-password','adminnews','admincompanysettings'];
 
     // Фильтрация маршрутов по accessCodes + всегда видимые
     const filterRoutesByAccess = (routes: RouteItem[]): RouteItem[] => {

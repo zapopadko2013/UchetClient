@@ -70,6 +70,7 @@ import RevisionPage from './components/ProductManagement/RevisionPage/RevisionPa
 import BarcodePrintPage from './components/ProductManagement/BarcodePrintPage/BarcodePrintPage';
 
 import AdminNews from './components/Administration/News/AdminNews';
+import CompanySettings from './components/Administration/CompanySettings/CompanySettings';
 
 
 
@@ -360,9 +361,17 @@ export const routes = [
       element: <AdminNews />,
       code: 'adminnews',
     },
+    {
+      path: '/admincompanysettings',
+      key: 'admincompanysettings',
+      label: 'Настройка компании',
+      icon: <FileTextOutlined />,
+      element: <CompanySettings />,
+      code: 'admincompanysettings',
+    },
   ],
 },  
-
+//Настройка компании settings
 
   {
     path: '/news',

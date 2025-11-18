@@ -53,7 +53,9 @@
   ,
 
   "administration": "Administration",
-    "adminnews": "News"
+    "adminnews": "News",
+
+   "admincompanysettings": "Company Settings" 
 
   },
   "userMenu": {
@@ -2011,7 +2013,190 @@
       "imageIntro": "And finally, let's not forget embedded images",
       "imageAlt": "Example"
     }
-  }
+  },
+
+  "companysettings": {
+      "pointPlaceholder": "Select a sales point from the list",
+      "addPointTitle": "Add a new sales point",
+      "editPointTitle": "Edit sales point information",
+      "backToList": "Sales Points List",
+      "pointName": "Sales Point Name",
+      "pointNamePlaceholder": "Enter the sales point name",
+      "pointAddress": "Sales Point Address",
+      "pointAddressPlaceholder": "Enter the sales point location",
+      "negativeAccounting": "Negative Inventory Accounting",
+      "negativeAccountingPlaceholder": "Allow negative inventory accounting?",
+      "saveChanges": "Save Changes",
+      "addButton": "Add",
+      "clearButton": "Clear",
+      "pointName1": "Sales Point",
+      "prefix": {
+        "label": "Prefix",
+        "placeholder": "Enter prefix (2 digits)",
+        "createButton": "Create",
+        "currentLabel": "Your Prefix",
+        "changeButton": "Change",
+        "successCreate": "Prefix created successfully!",
+        "invalidValue": "The prefix must be a 1 or 2 digit number."
+      },
+      "inactive": {
+        "points": {
+          "showCaption": "Show list of inactive sales points",
+          "hideCaption": "Hide list of inactive sales points"
+        },
+        "cashboxes": {
+          "showCaption": "Show list of inactive cash registers",
+          "hideCaption": "Hide list of inactive cash registers"
+        }
+      },
+      "switch": {
+          "binLabel": "BIN/IIN",
+          "binTooltip": "Enable BIN/IIN check",
+          "ndsLabel": "VAT",
+          "ndsTooltip": "Enable VAT field",
+          "znmLabel": "Factory No.",
+          "znmTooltip": "Enable factory number check",
+          "rnmLabel": "Reg. No.",
+          "rnmTooltip": "Enable registration number field"
+        },
+      "cashbox": {
+        "name1": "Cash Register",
+        "listTitle": "List of active cash registers",
+        "emptyList": "List of active cash registers is empty",
+        "confirmDelete": "Are you sure you want to delete this cash register?",
+        "successDelete": "Cash register successfully deleted",
+        "manage": "Manage Cash Register",
+        "editChecks": "Edit Receipts",
+        "addTitle": "Add new cash register",
+        "editTitle": "Edit cash register information",
+        "backToList": "Cash Registers List",
+        "name": "Cash Register Name",
+        "namePlaceholder": "Enter the cash register name",
+        "successCreate": "Cash register successfully created",
+        
+        "closed": {
+          "name": "Name",
+          "point": "Sales Point",
+          "status": "Status",
+          "statusDeleted": "Deleted",
+          "rollbackTitle": "Restore to list",
+          "rollbackButton": "Restore",
+          "emptyList": "List of deleted cash registers is empty",
+          "confirmTitle": "Are you sure?",
+          "confirmBtnText": "Yes, I'm sure",
+          "cancelBtnText": "No, cancel"
+        }
+      },
+      "messages": {
+        "successEdit": "Changes saved successfully",
+        "successCreatePoint": "Sales point successfully created",
+        "errorTitle": "Error",
+        "defaultApiError": "An error occurred while processing your request. We are already working on a solution. Please try again later",
+        "successTitle": "Excellent",
+        "raiseError": "An error occurred while processing your request. Please try again later.",
+        "areyousure": "Are you sure?",
+        "sure": "Yes, I'm sure",
+        "cancel": "No, cancel",
+        "loadError": "Failed to load data."
+      },
+      "common": {
+        "number": "№",
+        "title": {
+          "edit": "Edit",
+          "delete": "Delete"
+        },
+        "loading": "Loading...",
+        "actions": "Actions",
+        "edit": "Edit",
+        "delete": "Delete",
+        "yes": "Yes",
+        "no": "No",
+        "rollback": "Restore"
+      },
+      "pageTitle": "Company Settings",
+      "selectCompanyPlaceholder": "Select company",
+      "noCompanyFound": "Company not found",
+      "companies": {
+        "loadError": "Failed to load company list."
+      },
+      "pointpage": {
+        "listTitle": "List of active sales points",
+        "addPoint": "Add new sales point",
+        "emptyList": "Sales point list is empty",
+        "columnName": "Name",
+        "columnAddress": "Address",
+        "columnIsMinus": "Negative Accounting",
+        "confirmDelete": "Are you sure you want to delete this sales point?",
+        "successDelete": "Sales point successfully deleted",
+        "loadError": "Failed to load sales point list."
+      },
+      "cashboxpage": {
+        "listTitle": "List of active cash registers",
+        "addCashbox": "Add new cash register",
+        "emptyList": "Cash register list is empty",
+        "columnName": "Name",
+        "columnPoint": "Sales Point",
+        "confirmDelete": "Are you sure you want to delete this cash register?",
+        "successDelete": "Cash register successfully deleted",
+        "loadError": "Failed to load cash register list."
+      },
+      "closed": {
+        "inactiveTitle": "List of inactive {mode}",
+        "emptyList": "List of closed items is empty.",
+        "confirmTitle": "Rollback Confirmation",
+        "confirmContent": "Are you sure you want to restore this item?",
+        "confirmBtnText": "Restore",
+        "cancelBtnText": "Cancel",
+        "successRollback": "Item successfully restored.",
+        "loadClosedError": "Error loading list of closed items."
+      },
+      "ticket": {
+        "title": "Receipt Format Setting",
+        "defaultPoint": "Sales Point No. 1",
+        "defaultAddress": "Almaty | Dostyk Avenue | 1",
+        "defaultCompany": "TOO Demo",
+        "receiptTitle": "Commercial Receipt",
+        "defaultThanks": "Additional Text 1",
+        "defaultThanks1": "Thank you for your purchase.",
+        "defaultAd": "Additional Text 2",
+        "uploadLogo": "Upload Company Logo:",
+        "selectFile": "Select PNG file",
+        "pointName": "Sales Point Name",
+        "address": "Address",
+        "company": "Company",
+        "switchOptions": "Display Settings:",
+        "thanksMessage": "Additional Text 1 (Thank You)",
+        "advertisementMessage": "Additional Text 2 (Advertisement)",
+        "adPlaceholder": "Enter advertisement message",
+        "saveButton": "Edit Receipt",
+        "requiredFieldsWarning": "Specify Sales Point, Address, and Company.",
+        "adLimitWarning": "Advertisement length cannot exceed 2000 characters.",
+        "fileSizeWarning": "File size must be less than 100 KB.",
+        "fileTypeWarning": "File extension must be .png.",
+        "fileSuccess": "File successfully uploaded.",
+        "fileError": "Error uploading file.",
+        "successSave": "Receipt successfully changed",
+        "loadTicketError": "Error loading receipt format.",
+        "selectPointWarning": "Select a sales point first.",
+        "pointNameText": "Point Name",
+    "companyText": "Company Name",
+    "thanksMessageText": "Thank You Message",
+    "advertisementMessageText": "Advertisement Message",
+    "totalText": "Total"
+      }
+    },
+    "errorHandling": {
+      "title": "Error",
+      "fileErrorPrefix": "Error in the uploaded file",
+      "internalServerError": "A server-side error occurred. [internal_server_error]",
+      "dataTransferError": "An error occurred during data transfer to the server.",
+      "networkError": "A network error occurred. Check your connection.",
+      "blobReadFailure": "Failed to read error message in file."
+    },
+    "currency": {
+      "KZT": "KZT",
+      "KGS": "KGS"
+    }
 
 
 }

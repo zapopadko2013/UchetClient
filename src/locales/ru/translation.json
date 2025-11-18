@@ -54,6 +54,9 @@
 
     "administration": "Администрирование",
     "adminnews": "Новости",
+    "admincompanysettings": "Настройка компании",
+
+    
     
     "changePassword": "Сменить пароль"
     
@@ -2263,6 +2266,226 @@
       "imageIntro": "И, наконец, не забудем о встроенных изображениях",
       "imageAlt": "Пример"
     }
-  }
+  },
 
+  "companysettings": {
+
+    
+    "pointPlaceholder": "Выберите торговую точку из списка",
+
+    "addPointTitle": "Добавить новую торговую точку",
+    "editPointTitle": "Редактировать информацию по торговой точке",
+    "backToList": "Список торговых точек",
+    
+    "pointName": "Наименование торговой точки",
+    "pointName1": "Торговая точка",
+    "pointNamePlaceholder": "Введите наименование торговой точки",
+    "pointAddress": "Адрес торговой точки",
+    "pointAddressPlaceholder": "Введите местоположение торговой точки",
+    "negativeAccounting": "Отрицательный учет товаров",
+    "negativeAccountingPlaceholder": "Разрешить отрицательный учет товаров?",
+    "saveChanges": "Сохранить изменения",
+    "addButton": "Добавить",
+    "clearButton": "Очистить",
+    
+    "prefix": {
+      "label": "Префикс",
+      "placeholder": "Введите префикс (2 цифры)",
+      "createButton": "Создать",
+      "currentLabel": "Ваш префикс",
+      "changeButton": "Изменить",
+      "successCreate": "Префикс создан успешно!",
+      "invalidValue": "Префикс должен быть числом из 1 или 2 цифр."
+    },
+
+    "inactive": {
+      "points": {
+        "showCaption": "Показать список неактивных торговых точек",
+        "hideCaption": "Скрыть список неактивных торговых точек"
+      },
+      "cashboxes": {
+        "showCaption": "Показать список неактивных касс",
+        "hideCaption": "Скрыть список неактивных касс"
+      }
+    },
+
+    "switch": {
+      "binLabel": "БИН/ИИН",
+      "binTooltip": "Включить проверку БИН/ИИН",
+
+      "ndsLabel": "НДС",
+      "ndsTooltip": "Включить поле НДС",
+
+      "znmLabel": "Зав. номер",
+      "znmTooltip": "Включить проверку заводского номера",
+
+      "rnmLabel": "Рег. номер",
+      "rnmTooltip": "Включить поле регистрационного номера"
+    },
+
+    "cashbox": {
+      "listTitle": "Список активных касс",
+      
+      "emptyList": "Список активных касс пуст",
+      "confirmDelete": "Вы действительно хотите удалить кассу?",
+      "successDelete": "Касса успешно удалена",
+
+      "manage": "Управление кассой",
+      "editChecks": "Изменение чеков",
+
+      
+
+      "addTitle": "Добавить новую кассу",
+      "editTitle": "Редактировать информацию по кассе",
+      "backToList": "Список касс",
+      "name": "Наименование кассы",
+      "name1": "Касса",
+      "namePlaceholder": "Введите наименование кассы",
+      "successCreate": "Касса успешно создана",
+
+      
+    "closed": {
+      "name": "Наименование",
+      "point": "Торговая точка",
+      "status": "Статус",
+      "statusDeleted": "Удалён",
+      "rollbackTitle": "Вернуть в список",
+      "rollbackButton": "Вернуть",
+      "emptyList": "Список удалённых касс пуст",
+
+      "confirmTitle": "Вы уверены?",
+      "confirmBtnText": "Да, я уверен",
+      "cancelBtnText": "Нет, отменить"
+    }
+  },
+
+    "messages": {
+      "successEdit": "Изменения успешно сохранены",
+      "successCreatePoint": "Торговая точка успешно создана",
+      "errorTitle": "Ошибка",
+      "defaultApiError": "Возникла ошибка при обработке вашего запроса. Мы уже работаем над решением. Попробуйте позже",
+    
+      
+      "successTitle": "Отлично",
+      "raiseError": "Возникла ошибка при обработке вашего запроса. Попробуйте позже.",
+      "areyousure": "Вы уверены?",
+      "sure": "Да, я уверен",
+      "cancel": "Нет, отменить",
+      "loadError": "Не удалось загрузить данные."
+    },
+    "common": {
+      "number": "№",
+      "title": {
+      "edit": "Редактировать",
+      "delete": "Удалить"
+    },
+      "loading": "Загрузка...",
+      "actions": "Действия",
+      "edit": "Редактировать",
+      "delete": "Удалить",
+      "yes": "Да",
+      "no": "Нет"
+      ,
+    "rollback": "Вернуть"
+    },
+    "pageTitle": "Настройки компании",
+    "selectCompanyPlaceholder": "Выберите компанию",
+    "noCompanyFound": "Компания не найдена",
+    "companies": {
+      "loadError": "Не удалось загрузить список компаний."
+    },
+    "pointpage": {
+      "listTitle": "Список активных торговых точек",
+      "addPoint": "Добавить новую торговую точку",
+      "emptyList": "Cписок торговых точек пуст",
+      "columnName": "Наименование",
+      "columnAddress": "Адрес",
+      "columnIsMinus": "Отрицательный учет",
+      "confirmDelete": "Вы действительно хотите удалить торговую точку?",
+      "successDelete": "Торговая точка успешно удалена",
+      "loadError": "Не удалось загрузить список торговых точек."
+    },
+    "cashboxpage": {
+      "listTitle": "Список активных касс",
+      "addCashbox": "Добавить новую кассу",
+      "emptyList": "Cписок касс пуст",
+      "columnName": "Наименование",
+      "columnPoint": "Торговая точка",
+      "confirmDelete": "Вы действительно хотите удалить кассу?",
+      "successDelete": "Касса успешно удалена",
+      "loadError": "Не удалось загрузить список касс."
+    },
+    "closed": {
+
+      
+
+      "inactiveTitle": "Список неактивных {mode}",
+      "emptyList": "Список закрытых элементов пуст.",
+      "confirmTitle": "Подтверждение отката",
+      "confirmContent": "Вы уверены, что хотите восстановить этот элемент?",
+      "confirmBtnText": "Восстановить",
+      "cancelBtnText": "Отмена",
+      "successRollback": "Элемент успешно восстановлен.",
+      "loadClosedError": "Ошибка при загрузке списка закрытых элементов."
+    }
+
+    ,
+
+    "ticket": {
+      "title": "Настройка формата чека",
+      "defaultPoint": "Торговая Точка №1",
+      "defaultAddress": "Алматы | проспект Достык | 1",
+      "defaultCompany": "TOO Demo",
+      "receiptTitle": "Товарный чек",
+      "defaultThanks": "Дополнительный текст 1",
+      "defaultThanks1": "Спасибо за покупку.",
+      "defaultAd": "Дополнительный текст 2",
+      "uploadLogo": "Загрузить логотип компании:",
+      "selectFile": "Выбрать PNG файл",
+      "pointName": "Название торговой точки",
+      "address": "Адрес",
+      "company": "Компания",
+      "switchOptions": "Настройки отображения:",
+      "thanksMessage": "Дополнительный текст 1 (Благодарность)",
+      "advertisementMessage": "Дополнительный текст 2 (Реклама)",
+      "adPlaceholder": "Введите рекламное сообщение",
+      "saveButton": "Изменить чек",
+      "requiredFieldsWarning": "Укажите Торговую точку, Адрес и Компанию.",
+      "adLimitWarning": "Длина рекламы не может превышать 2000 символов.",
+      "fileSizeWarning": "Размер файла должен быть меньше 100 КБ.",
+      "fileTypeWarning": "Расширение файла должно быть .png.",
+      "fileSuccess": "Файл успешно выгружен.",
+      "fileError": "Ошибка при выгрузке файла.",
+      "successSave": "Чек успешно изменён",
+      "loadTicketError": "Ошибка при загрузке формата чека.",
+      "selectPointWarning": "Сначала выберите торговую точку."
+
+       ,
+      
+      "pointNameText": "Наименование точки",
+      
+      "companyText": "Название компании",
+     
+      "thanksMessageText": "Сообщение благодарности",
+      "advertisementMessageText": "Рекламное сообщение",
+      
+      "totalText": "Итог" 
+
+    }
+  
+  
+  },
+
+  "errorHandling": {
+    "title": "Ошибка",
+    "fileErrorPrefix": "Ошибка в загружаемом файле",
+    "internalServerError": "Возникла ошибка на стороне сервера. [internal_server_error]",
+    "dataTransferError": "Возникла ошибка на стороне передачи данных на сервер.",
+    "networkError": "Возникла сетевая ошибка. Проверьте соединение.",
+    "blobReadFailure": "Не удалось прочитать сообщение об ошибке в файле."
+  },
+"currency": {
+    "KZT": "KZT",
+    "KGS": "KGS"
+  }
 }
