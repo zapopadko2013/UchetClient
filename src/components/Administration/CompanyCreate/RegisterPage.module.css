@@ -1,0 +1,32 @@
+/* Стили для элемента "Плательщик НДС" */
+.ndsCheckboxContainer {
+  margin-left: 20px;
+  margin-top: 20px;
+}
+
+/* Стили для ReCAPTCHA */
+.recaptchaContainer {
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+/* Стили для кнопки (если нужны дополнительные стили) */
+.regButton {
+  height: auto;
+}
+
+/* Стили для текста соглашения */
+/* Примечание: 'mt-10' здесь заменен на явное свойство, если он не из utility-фреймворка */
+.aggrBox {
+  margin-top: 10px;
+  text-align: center; 
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+.hidden {
+  display: none !important; /* Используйте !important для гарантированного скрытия */
+}

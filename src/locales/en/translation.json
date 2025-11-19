@@ -57,6 +57,8 @@
 
    "admincompanysettings": "Company Settings" 
 
+   ,"admincompanycreate": "Company Creation"
+
   },
   "userMenu": {
     "profile": "Company",
@@ -2198,5 +2200,64 @@
       "KGS": "KGS"
     }
 
+    ,
+    "register": {
+    "validation": {
+      "required": "This field is required.",
+      "min4": "Minimum 4 characters.",
+      "invalidIinBin": "Must contain 12 digits.",
+      "invalidEmail": "Invalid email address.",
+      "passwordLength": "Password must be at least 6 characters.",
+      "passwordsMatch": "Passwords do not match!"
+    },
+    "label": {
+      "createNewProfile": "Create New Profile",
+      "alreadyRegistered": "Already registered?",
+      "selectCountry": "Select Country",
+      "selectCompanyType": "Select Company Type",
+      "selectCompanyTypeAdd": "Additional Company Types",
+      "userIdn": "User's IIN",
+      "userName": "User's Full Name",
+      "companyBin": "Organization's BIN",
+      "companyName": "Organization Name",
+      "companyAddress": "Legal Address",
+      "headIdn": "Head's IIN",
+      "headName": "Head's Full Name",
+      "ndsPayer": "VAT Payer",
+      "hasNds": "VAT Series",
+      "ndsRegisterNumber": "VAT Number",
+      "ndsDate": "VAT Date",
+      "email": "Email / Login",
+      "password": "Password",
+      "confirmPassword": "Confirm Password",
+      "createProfile": "Create Your Profile"
+    },
+    "placeholder": {
+      "userIdn": "Enter IIN",
+      "userName": "Enter Full Name",
+      "companyBin": "Enter BIN",
+      "companyName": "Enter name",
+      "companyAddress": "Enter address",
+      "headIdn": "Enter Head's IIN",
+      "headName": "Enter Head's Full Name",
+      "hasNds": "Series",
+      "ndsRegisterNumber": "Number",
+      "ndsDate": "Select date",
+      "email": "Enter Email",
+      "password": "Enter password",
+      "confirmPassword": "Repeat password"
+    },
+    "alert": {
+      "notVerified": "Confirm that you are not a robot",
+      "signUpfailed": "Oops, an error occurred during registration"
+    },
+    "agreementText": "By clicking this button, you accept the terms of the user agreement"
+  },
+  "countrySelect": {
+    "placeholder": "Select country",
+    "notFound": "Country not found",
+    "loadErrorTitle": "Loading error",
+    "loadErrorDesc": "Failed to load the list of countries."
+  }
 
 }

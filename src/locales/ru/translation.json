@@ -59,6 +59,8 @@
     
     
     "changePassword": "Сменить пароль"
+
+    ,"admincompanycreate": "Создание компании"
     
   },
   "userMenu": {
@@ -2488,4 +2490,67 @@
     "KZT": "KZT",
     "KGS": "KGS"
   }
+
+  ,
+
+  "register": {
+    "validation": {
+    "required": "Это обязательное поле.",
+    "min4": "Минимум 4 символа.",
+    "invalidIinBin": "Должен содержать 12 цифр.",
+    "invalidEmail": "Некорректный адрес электронной почты.",
+    "passwordLength": "Пароль должен быть не менее 6 символов.",
+    "passwordsMatch": "Пароли не совпадают!"
+  },
+    "label": {
+      "createNewProfile": "Создать новый профиль",
+      "alreadyRegistered": "Уже зарегистрированы?",
+      "selectCountry": "Выберите страну",
+      "selectCompanyType": "Выберите тип компании",
+      "selectCompanyTypeAdd": "Дополнительные типы компаний",
+      "userIdn": "ИИН Пользователя",
+      "userName": "ФИО Пользователя",
+      "companyBin": "БИН Организации",
+      "companyName": "Название Организации",
+      "companyAddress": "Юридический адрес",
+      "headIdn": "ИИН Руководителя",
+      "headName": "ФИО Руководителя",
+      "ndsPayer": "Плательщик НДС",
+      "hasNds": "Серия НДС",
+      "ndsRegisterNumber": "Номер НДС",
+      "ndsDate": "Дата НДС",
+      "email": "Email / Логин",
+      "password": "Пароль",
+      "confirmPassword": "Подтверждение Пароля",
+      "createProfile": "Создать Ваш профиль"
+    },
+    "placeholder": {
+      "userIdn": "Введите ИИН",
+      "userName": "Введите ФИО",
+      "companyBin": "Введите БИН",
+      "companyName": "Введите название",
+      "companyAddress": "Введите адрес",
+      "headIdn": "Введите ИИН руководителя",
+      "headName": "Введите ФИО руководителя",
+      "hasNds": "Серия",
+      "ndsRegisterNumber": "Номер",
+      "ndsDate": "Выберите дату",
+      "email": "Введите Email",
+      "password": "Введите пароль",
+      "confirmPassword": "Повторите пароль"
+    },
+    "alert": {
+      "notVerified": "Подтвердите, что вы не робот",
+      "signUpfailed": "Упс, возникла ошибка при регистрации"
+    },
+    "agreementText": "Нажимая эту кнопку, Вы принимаете условие пользовательского соглашения"
+  },
+
+  "countrySelect": {
+    "placeholder": "Выберите страну",
+    "notFound": "Страна не найдена",
+    "loadErrorTitle": "Ошибка загрузки",
+    "loadErrorDesc": "Не удалось загрузить список стран."
+  }
+
 }

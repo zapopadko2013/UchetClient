@@ -34,7 +34,7 @@ import {
   DeleteOutlined,
   DashboardOutlined,
   FileTextOutlined,
-  AuditOutlined,
+  AuditOutlined,ClusterOutlined,
 } from '@ant-design/icons';
 
 import HomePage from './components/HomePage';
@@ -71,6 +71,7 @@ import BarcodePrintPage from './components/ProductManagement/BarcodePrintPage/Ba
 
 import AdminNews from './components/Administration/News/AdminNews';
 import CompanySettings from './components/Administration/CompanySettings/CompanySettings';
+import RegisterPage from './components/Administration/CompanyCreate/RegisterPage';
 
 
 
@@ -86,6 +87,7 @@ export const routes = [
   {
     key: 'businessManagement',
     label: 'Управление бизнесом',
+    code: 'businessManagement',
     icon: <TeamOutlined />,
     children: [
       {
@@ -365,9 +367,17 @@ export const routes = [
       path: '/admincompanysettings',
       key: 'admincompanysettings',
       label: 'Настройка компании',
-      icon: <FileTextOutlined />,
+      icon: <ClusterOutlined />,
       element: <CompanySettings />,
       code: 'admincompanysettings',
+    },
+    {
+      path: '/admincompanycreate',
+      key: 'admincompanycreate',
+      label: 'Создание компании',
+      icon: <ShopOutlined />,
+      element: <RegisterPage />,
+      code: 'admincompanycreate',
     },
   ],
 },  

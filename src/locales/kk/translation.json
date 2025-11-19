@@ -59,6 +59,8 @@
     "adminnews": "Жаңалықтар",
     "admincompanysettings": "Компанияны баптау"
 
+    ,"admincompanycreate": "Компания құру"
+
   },
   "auth": {
     "unauthorized": "Рұқсат етілмеген"
@@ -2209,6 +2211,64 @@
       "KZT": "KZT",
       "KGS": "KGS"
     }
-  
+
+    ,"register": {
+    "validation": {
+      "required": "Бұл міндетті өріс.",
+      "min4": "Ең аз 4 таңба.",
+      "invalidIinBin": "12 саннан тұруы керек.",
+      "invalidEmail": "Дұрыс емес электрондық пошта мекенжайы.",
+      "passwordLength": "Құпия сөз кемінде 6 таңбадан тұруы керек.",
+      "passwordsMatch": "Құпия сөздер сәйкес келмейді!"
+    },
+    "label": {
+      "createNewProfile": "Жаңа профиль жасау",
+      "alreadyRegistered": "Тіркелгенсіз бе?",
+      "selectCountry": "Елді таңдаңыз",
+      "selectCompanyType": "Компания түрін таңдаңыз",
+      "selectCompanyTypeAdd": "Қосымша компания түрлері",
+      "userIdn": "Пайдаланушы ЖСН (ИИН)",
+      "userName": "Пайдаланушының Аты-жөні",
+      "companyBin": "Ұйымның БСН (БИН)",
+      "companyName": "Ұйым атауы",
+      "companyAddress": "Заңды мекенжайы",
+      "headIdn": "Басшының ЖСН (ИИН)",
+      "headName": "Басшының Аты-жөні",
+      "ndsPayer": "ҚҚС төлеуші",
+      "hasNds": "ҚҚС сериясы",
+      "ndsRegisterNumber": "ҚҚС нөмірі",
+      "ndsDate": "ҚҚС күні",
+      "email": "Email / Логин",
+      "password": "Құпия сөз",
+      "confirmPassword": "Құпия сөзді растау",
+      "createProfile": "Профиліңізді жасаңыз"
+    },
+    "placeholder": {
+      "userIdn": "ЖСН енгізіңіз",
+      "userName": "Аты-жөніңізді енгізіңіз",
+      "companyBin": "БСН енгізіңіз",
+      "companyName": "Атауын енгізіңіз",
+      "companyAddress": "Мекенжайын енгізіңіз",
+      "headIdn": "Басшының ЖСН енгізіңіз",
+      "headName": "Басшының Аты-жөнін енгізіңіз",
+      "hasNds": "Сериясы",
+      "ndsRegisterNumber": "Нөмірі",
+      "ndsDate": "Күнді таңдаңыз",
+      "email": "Email енгізіңіз",
+      "password": "Құпия сөзді енгізіңіз",
+      "confirmPassword": "Құпия сөзді қайталаңыз"
+    },
+    "alert": {
+      "notVerified": "Сіздің робот емес екеніңізді растаңыз",
+      "signUpfailed": "Тіркеу кезінде қате пайда болды"
+    },
+    "agreementText": "Бұл түймені басу арқылы Сіз пайдаланушы келісімінің шарттарын қабылдайсыз"
+  },
+  "countrySelect": {
+    "placeholder": "Елді таңдаңыз",
+    "notFound": "Ел табылмады",
+    "loadErrorTitle": "Жүктеу қатесі",
+    "loadErrorDesc": "Елдер тізімін жүктеу мүмкін болмады."
+  }
 
 }
