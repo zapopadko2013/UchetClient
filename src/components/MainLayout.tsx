@@ -56,7 +56,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ username, accesses }) => {
     const accessCodes: string[] = (accesses ?? []).map(access => access.code);
 
     // Коды маршрутов, которые всегда видны независимо от доступа
-    const alwaysVisibleCodes = ['home', 'news', 'change-password','adminnews','admincompanysettings','admincompanycreate','setting_portal_user','businessManagement'];
+    const alwaysVisibleCodes = ['home', 'news', 'change-password','adminnews','admincompanysettings','admincompanycreate','setting_portal_user','businessManagement','admincompanylist','admincompanyinfo'];
 
     // Фильтрация маршрутов по accessCodes + всегда видимые
     const filterRoutesByAccess = (routes: RouteItem[]): RouteItem[] => {
@@ -77,7 +77,14 @@ const MainLayout: React.FC<MainLayoutProps> = ({ username, accesses }) => {
     };
 
     const filteredRoutes = React.useMemo(() => {
-        return filterRoutesByAccess(routes.filter(r => r.code !== 'news-detail'));
+
+        const excludedCodes = ['news-detail',  'admincompanyinfo']; 
+
+        return filterRoutesByAccess(
+            routes.filter(r => !excludedCodes.includes(r.code ?? ''))
+        );
+
+        //return filterRoutesByAccess(routes.filter(r => r.code !== 'news-detail'));
     }, [accessCodes]);
 
     // Создание элементов меню рекурсивно

@@ -72,7 +72,8 @@ import BarcodePrintPage from './components/ProductManagement/BarcodePrintPage/Ba
 import AdminNews from './components/Administration/News/AdminNews';
 import CompanySettings from './components/Administration/CompanySettings/CompanySettings';
 import RegisterPage from './components/Administration/CompanyCreate/RegisterPage';
-
+import CompanyList from './components/Administration/CompanyCreate/CompanyList';
+import InfoCompanyPage from './components/Administration/CompanyCreate/InfoCompanyPage';
 
 
 
@@ -379,10 +380,26 @@ export const routes = [
       element: <RegisterPage />,
       code: 'admincompanycreate',
     },
+    {
+      path: '/admincompanylist',
+      key: 'admincompanylist',
+      label: 'Список компаний',
+      icon: <ShopOutlined />,
+      element: <CompanyList />,
+      code: 'admincompanylist',
+    },
+     
   ],
 },  
 //Настройка компании settings
-
+{
+      path: '/admincompanylist/admincompanyinfo',
+      key: 'admincompanyinfo',
+      label: 'Информация о компании',
+      icon: <ClusterOutlined />,
+      element: <InfoCompanyPage />,
+      code: 'admincompanyinfo',
+    },
   {
     path: '/news',
     element: <NewsPage />,

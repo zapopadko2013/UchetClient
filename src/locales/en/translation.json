@@ -58,6 +58,9 @@
    "admincompanysettings": "Company Settings" 
 
    ,"admincompanycreate": "Company Creation"
+   
+   ,"admincompanylist": "Company List"
+
 
   },
   "userMenu": {
@@ -2259,5 +2262,91 @@
     "loadErrorTitle": "Loading error",
     "loadErrorDesc": "Failed to load the list of countries."
   }
+
+,
+
+"companyInfo": {
+  "title": "General Company Information",
+  "companyBin": "BIN",
+  "companyName": "Company Name",
+  "companyAddress": "Legal Address",
+  "companyHead": "Director",
+  "companyHeadIDN": "Director's IDN",
+  "companyAccountant": "Chief Accountant",
+  "companyAccountantIDN": "Chief Accountant's IDN",
+  "certificateSeries": "VAT Series",
+  "certificateNum": "VAT Registration Number",
+  "certificateDate": "VAT Date",
+  "successEdit": "Company BIN successfully updated",
+  "successChangePass": "Password successfully changed",
+  "edit": "Edit",
+  "save": "Save changes",
+  "cancel": "Cancel",
+  "back": "Back",
+  "general": {
+    "loading": "Loading data...",
+    "validation": {
+      "required": "This field is required.",
+      "invalidIinBin": "Must contain 12 digits."
+    },
+    "raiseError": "An error occurred while processing your request. We are working on a solution. Please try again later."
+  }
+},
+
+"companyList": {
+  "general": {
+  "loading": "Loading data...",
+  "validation": {
+    "required": "This field is required.",
+    "invalidIinBin": "Must contain 12 digits."
+  },
+  "raiseError": "An error occurred while processing your request. We are already working on a solution. Please try again later."
+}
+,
+  "reset": {
+    "title": "Reset Password",
+    "close": "Close",
+    "cancel": "Cancel",
+    "button": "Reset Password",
+    "companyId": "Company ID",
+    "placeholder": "User login",
+    "noUsers": "No available users",
+    "error": {
+      "format": "Invalid user data format from API.",
+      "fetchUsers": "Error fetching users.",
+      "api": "Network error while resetting password.",
+      "generic": "An error occurred while resetting the password.",
+      "unknown": "Unexpected response from API."
+    },
+    "success": "Password successfully reset",
+    "message": {
+      "success": "Password successfully reset",
+      "error": "An error occurred while resetting the password",
+      "unknown": "An unknown error occurred while resetting the password"
+    }
+  },
+  "title": "List of Active Companies",
+  "tableHeader": {
+    "name": "Company Name",
+    "status": "Status",
+    "id": "Company ID",
+    "bin": "BIN",
+    "actions": "Actions"
+  },
+  "actions": {
+    "info": "Details",
+    "resetPass": "Reset Password",
+    "deactivate": "Deactivate",
+    "activate": "Activate"
+  },
+  "status": {
+    "active": "Active",
+    "close": "Closed"
+  },
+  "emptyList": "Company list is empty",
+  "successUpdate": "Changes saved",
+  "resetConfirm": "Are you sure you want to reset the password for the company with ID: {{id}}?"
+}
+
 
 }

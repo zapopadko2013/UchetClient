@@ -35,9 +35,9 @@ interface FormData {
   user_fullname: string;
   company_bin: string;
   company_fullname: string;
-  company_juraddress: string;
-  company_head_iin: string;
-  company_head: string;
+  company_juraddress?: string; // Сделано необязательным
+  company_head_iin?: string;     // Сделано необязательным
+  company_head?: string;         // Сделано необязательным
   grouping: boolean;
   company_has_nds?: string;
   company_register_number?: string;
@@ -66,6 +66,8 @@ const RegisterPage: React.FC = () => {
 
   const getCompaniesInfo = useCallback(async () => {
     try {
+      // Это было в оригинальном коде, но в случае регистрации, возможно, не нужно
+      // Если это нужно для получения partner_id, оставляем
       const userData = await sendRequest(`${API_URL}/api/erpuser/info`, {
         method: 'GET',
         headers: getHeaders()
@@ -76,6 +78,7 @@ const RegisterPage: React.FC = () => {
       setUserData(userData);
     } catch (err) {
       console.error("Error fetching user info:", err);
+      // Если не удается получить partner_id, userData будет null, что нормально для регистрации
     }
   }, [API_URL, sendRequest, getHeaders]);
 
@@ -88,6 +91,7 @@ const RegisterPage: React.FC = () => {
     setGrouping(isChecked);
 
     if (!isChecked) {
+      // Сбрасываем значения НДС, если чекбокс снят
       form.setFieldsValue({
         company_has_nds: undefined,
         company_register_number: undefined,
@@ -111,15 +115,26 @@ const RegisterPage: React.FC = () => {
       country: companyCountry.value,
     };
 
+    // Удаляем необязательные поля, если они пусты (для чистоты данных)
+    if (!dataToSend.company_juraddress) delete dataToSend.company_juraddress;
+    if (!dataToSend.company_head_iin) delete dataToSend.company_head_iin;
+    if (!dataToSend.company_head) delete dataToSend.company_head;
+
+    // Очищаем данные НДС, если группировка не выбрана
     if (!grouping) {
       dataToSend.company_register_number = null;
       dataToSend.company_has_nds = null;
       dataToSend.company_nds_date = null;
+    }else {
+      // Если компания ПЛАТЕЛЬЩИК НДС, но поля оставлены пустыми (имеют undefined/"" ), 
+      // явно устанавливаем null.
+      if (!dataToSend.company_has_nds) dataToSend.company_has_nds = null;
+      if (!dataToSend.company_register_number) dataToSend.company_register_number = null;
+      if (!dataToSend.company_nds_date) dataToSend.company_nds_date = null;
     }
-
+    
     delete dataToSend.newpasswordсonfirm;
     
-
     setIsLoading(true);
     try {
       const res = await sendRequest(`${API_URL}/auth/signup`, {
@@ -131,6 +146,7 @@ const RegisterPage: React.FC = () => {
       if (res.code === "error") {
         message.error(res.text || t('register.alert.signUpfailed'));
       } else {
+        // Успешная регистрация
         navigate("/", { state: { signUpSuccess: true } });
       }
     } catch (err: any) {
@@ -138,9 +154,10 @@ const RegisterPage: React.FC = () => {
     } finally {
       setIsLoading(false);
     }
-  }, [isVerified, userData, companyCountry, grouping, navigate, t, sendRequest, API_URL]);
+  }, [isVerified, userData, companyCountry, grouping, navigate, t, sendRequest, API_URL, getHeaders]);
 
   const validateIinBin = useCallback((value: string, length: number) => {
+    // Валидация только для Казахстана
     if (companyCountry.value === "KZ") {
       if (!/^\d+$/.test(value) || value.length !== length) {
         return Promise.reject(
@@ -157,10 +174,11 @@ const RegisterPage: React.FC = () => {
 
   const onCountryChange = useCallback((option: CountryOption) => {
     setCompanyCountry(option);
+    // При смене страны перевалидируем все ИИН/БИН поля
     form.validateFields(['user_iin', 'company_bin', 'company_head_iin']);
   }, [form]);
 
-  // ⭐⭐⭐ ДОРАБОТАННЫЙ renderFormField (теперь принимает extraProps)
+  // Хелпер для рендера полей формы
   const renderFormField = (
     name: keyof FormData,
     labelKey: string,
@@ -190,7 +208,7 @@ const RegisterPage: React.FC = () => {
               type={inputType}
               placeholder={t(`register.placeholder.${placeholderKey}`)}
               maxLength={maxLength}
-              {...extraProps}        // ⭐ ВАЖНО: теперь можно передавать autoComplete
+              {...extraProps}
             />
           )}
         </Form.Item>
@@ -218,10 +236,10 @@ const RegisterPage: React.FC = () => {
           onFinish={onFinish}
           initialValues={{ grouping: grouping }}
           layout="vertical"
-          autoComplete="off"     // ⭐ отключение автофилла формы
+          autoComplete="off"
         >
 
-          {/* ⭐⭐⭐ Ловушки для автозаполнения */}
+          {/* Ловушки для автозаполнения */}
           <input type="text" name="fake_username" autoComplete="username" className={styles.hidden} />
           <input type="password" name="fake_password" autoComplete="new-password" className={styles.hidden} />
 
@@ -237,7 +255,7 @@ const RegisterPage: React.FC = () => {
                 />
               </dd>
 
-              {/* ИИН Пользователя */}
+              {/* ИИН Пользователя - REQUIRED */}
               {renderFormField(
                 'user_iin',
                 'userIdn',
@@ -248,7 +266,7 @@ const RegisterPage: React.FC = () => {
                 (value) => validateIinBin(value, 12)
               )}
 
-              {/* ФИО */}
+              {/* ФИО - REQUIRED */}
               {renderFormField(
                 'user_fullname',
                 'userName',
@@ -261,7 +279,7 @@ const RegisterPage: React.FC = () => {
 
             <dl>
 
-              {/* БИН */}
+              {/* БИН - REQUIRED */}
               {renderFormField(
                 'company_bin',
                 'companyBin',
@@ -272,7 +290,7 @@ const RegisterPage: React.FC = () => {
                 (value) => validateIinBin(value, 12)
               )}
 
-              {/* Название компании */}
+              {/* Название компании - REQUIRED */}
               {renderFormField(
                 'company_fullname',
                 'companyName',
@@ -283,31 +301,32 @@ const RegisterPage: React.FC = () => {
                 ]
               )}
 
-              {/* Юр адрес */}
+              {/* Юр адрес - OPTIONAL (Изменено) */}
               {renderFormField(
                 'company_juraddress',
                 'companyAddress',
                 'companyAddress',
-                [{ required: true, message: t('register.validation.required') }]
+                [] // *** Убран required: true ***
               )}
 
-              {/* ИИН руководителя */}
+              {/* ИИН руководителя - OPTIONAL (Изменено) */}
               {renderFormField(
                 'company_head_iin',
                 'headIdn',
                 'headIdn',
-                [{ required: true, message: t('register.validation.required') }],
+                [], // *** Убран required: true ***
                 'text',
                 12,
-                (value) => validateIinBin(value, 12)
+                // Валидация только если поле заполнено
+                (value) => value ? validateIinBin(value, 12) : Promise.resolve() 
               )}
 
-              {/* ФИО руководителя */}
+              {/* ФИО руководителя - OPTIONAL (Изменено) */}
               {renderFormField(
                 'company_head',
                 'headName',
                 'headName',
-                [{ required: true, message: t('register.validation.required') }]
+                [] // *** Убран required: true ***
               )}
 
               {/* НДС checkbox */}
@@ -321,6 +340,7 @@ const RegisterPage: React.FC = () => {
 
               {grouping && (
                 <div>
+                  {/* Поля НДС - OPTIONAL (Остаются необязательными, даже если чекбокс выбран) */}
                   {renderFormField('company_has_nds', 'hasNds', 'hasNds', [], 'text', 5)}
                   {renderFormField('company_register_number', 'ndsRegisterNumber', 'ndsRegisterNumber', [], 'text', 7)}
                   {renderFormField('company_nds_date', 'ndsDate', 'ndsDate', [], 'date')}
@@ -329,7 +349,7 @@ const RegisterPage: React.FC = () => {
 
               <hr />
 
-              {/* ✦ Email/Login — автозаполнение выключено */}
+              {/* Email/Login - REQUIRED */}
               {renderFormField(
                 'user_login',
                 'email',
@@ -341,10 +361,10 @@ const RegisterPage: React.FC = () => {
                 'text',
                 undefined,
                 undefined,
-                { autoComplete: "new-password" }   // ← главное исправление
+                { autoComplete: "new-password" }
               )}
 
-              {/* ✦ Пароль */}
+              {/* Пароль - REQUIRED */}
               {renderFormField(
                 'user_password',
                 'password',
@@ -359,7 +379,7 @@ const RegisterPage: React.FC = () => {
                 { autoComplete: "new-password" }
               )}
 
-              {/* ✦ Подтверждение пароля */}
+              {/* Подтверждение пароля - REQUIRED */}
               {renderFormField(
                 'newpasswordсonfirm',
                 'confirmPassword',

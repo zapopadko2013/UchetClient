@@ -30,3 +30,144 @@
 .hidden {
   display: none !important; /* Используйте !important для гарантированного скрытия */
 }
+
+
+
+
+.card {
+  max-width: 900px;
+  margin: 20px auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+}
+
+.title {
+  margin-bottom: 0 !important;
+  color: #1890ff; /* Ant Design Primary Color */
+}
+
+.boldText {
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.85);
+}
+
+.actions {
+  margin-top: 30px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.cancelButton,
+.backButton {
+  margin-left: 10px;
+}
+
+.editButton {
+  margin-left: auto; /* Push edit button to the right when alone */
+}
+
+.binInput {
+  max-width: 200px;
+  font-weight: 600;
+}
+
+/* Спиннер для загрузки */
+.spinner {
+  text-align: center;
+  padding: 30px;
+  width: 100%;
+}
+
+
+.card1 {
+  max-width: 1200px;
+  margin: 20px auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+}
+
+
+
+
+.statusTag {
+    min-width: 80px; /* Для единообразия ширины тегов */
+}
+
+.table {
+    margin-top: 20px;
+}
+
+.emptyAlert {
+    margin-top: 20px;
+}
+
+
+.spinnerIcon {
+  font-size: 40px;
+}
+
+
+
+/* Контейнер для внутреннего содержимого модального окна */
+.contentContainer {
+  padding: 16px; /* p-4 */
+  display: flex;
+  flex-direction: column;
+  gap: 16px; /* space-y-4 */
+}
+
+/* Стили для заголовка модального окна (для центрирования иконки) */
+.modalTitle {
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+/* Секция ID компании */
+.companyIdSection {
+  padding: 10px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+/* Стили для кода ID компании */
+.companyIdCode {
+  color: #1890ff;
+  font-weight: bold;
+}
+
+/* Секция выбора пользователя */
+.userSelectSection {
+  padding: 10px;
+}
+
+/* Секция кнопки сброса */
+.resetButtonContainer {
+  display: flex;
+  justify-content: center;
+  padding-top: 10px;
+}
+
+/* Стиль для кнопки сброса (если нужно переопределить Ant Design) */
+.resetButton {
+  width: 150px;
+  background-color: #52c41a; /* Зеленый цвет */
+  border-color: #52c41a; /* Зеленый цвет */
+}
+
+/* Секция отображения результата */
+.resultContainer {
+  padding-top: 10px;
+  text-align: center;
+}
+
+
+/* Стиль для иконок, требующих отступа справа */
+.iconMargin {
+  margin-right: 8px;
+}
+
+.modalIcon {
+  margin-right: 8px; /* marginRight: 8 */
+  color: #1890ff;    /* color: '#1890ff' */
+}
