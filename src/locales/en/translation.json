@@ -61,6 +61,8 @@
    
    ,"admincompanylist": "Company List"
 
+   ,"admindownloadproduct": "Download Nomenclature"
+
 
   },
   "userMenu": {
@@ -2346,6 +2348,53 @@
   "emptyList": "Company list is empty",
   "successUpdate": "Changes saved",
   "resetConfirm": "Are you sure you want to reset the password for the company with ID: {{id}}?"
+}
+,
+
+"nomenclature": {
+    "title": "Import Nomenclature",
+    "uploadButton": "Upload",
+    "download": "Download",
+    "delete": "Delete",
+    "actions": "Actions",
+    "fileNumber": "No.",
+    "fileName": "File Name",
+    "logFiles": "Import Log Files",
+    "ok": "Ok",
+    
+    "company": "Company",
+    "selectCompanyPlaceholder": "Select a company",
+    "selectCompanyMsg": "Please select a company",
+    "stock": "Warehouse",
+    "selectStockPlaceholder": "Select a warehouse",
+    "selectStockMsg": "Please select a warehouse",
+    "allStocks": "All warehouses",
+    "isNDSPayer": "Is the company a VAT payer?",
+    "selectNDSPlaceholder": "Select Yes/No",
+    "selectNDSMsg": "Please select Yes/No",
+    "ndsYes": "Yes",
+    "ndsNo": "No",
+    "supplier": "Select a supplier",
+    "selectSupplierPlaceholder": "Select a supplier",
+    "selectSupplierMsg": "Please select a supplier",
+    "noCounterparty": "Not specified",
+    "fileUploadTitle": "File for import",
+    
+    "fillAllFields": "Please fill in all required fields.",
+    "selectFile": "Select a file to upload.",
+    "importSuccess": "Data imported successfully.",
+    "importError": "Error importing data.",
+    "fileDeleted": "File deleted successfully.",
+    "deleteError": "Error deleting file.",
+    "downloadError": "Error downloading file.",
+    "generalError": "An unexpected error occurred.",
+    "filesLoadError": "Error loading file list.",
+    "companiesLoadError": "Error loading company list.",
+    "stocksLoadError": "Error loading warehouse list.",
+    "counterpartiesLoadError": "Error loading supplier list.",
+    "cyrillicErrorTitle": "Import Error",
+    "cyrillicErrorMessage": "Cyrillic characters in the barcode are not allowed.",
+    "cyrillicErrorDetail": "Rows {{rows}} contain Cyrillic characters in the code."
 }
 
 

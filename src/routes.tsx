@@ -74,6 +74,7 @@ import CompanySettings from './components/Administration/CompanySettings/Company
 import RegisterPage from './components/Administration/CompanyCreate/RegisterPage';
 import CompanyList from './components/Administration/CompanyCreate/CompanyList';
 import InfoCompanyPage from './components/Administration/CompanyCreate/InfoCompanyPage';
+import ImpNomenclature from './components/Administration/DownloadProduct/ImpNomenclature';
 
 
 
@@ -387,6 +388,14 @@ export const routes = [
       icon: <ShopOutlined />,
       element: <CompanyList />,
       code: 'admincompanylist',
+    },
+    {
+      path: '/admindownloadproduct',
+      key: 'admindownloadproduct',
+      label: 'Загрузить номенклатуру',
+      icon: <ShopOutlined />,
+      element: <ImpNomenclature />,
+      code: 'admindownloadproduct',
     },
      
   ],

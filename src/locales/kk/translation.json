@@ -58,6 +58,8 @@
   "administration": "Әкімшілік",
     "adminnews": "Жаңалықтар",
     "admincompanysettings": "Компанияны баптау"
+    
+    ,"admindownloadproduct": "Номенклатураны жүктеу"
 
     ,"admincompanycreate": "Компания құру"
 
@@ -2355,6 +2357,53 @@
   "emptyList": "Компаниялар тізімі бос",
   "successUpdate": "Өзгерістер сақталды",
   "resetConfirm": "Сіз шынымен {{id}} ID-лы компанияның құпия сөзін қалпына келтіргіңіз келе ме?"
+}
+,
+
+"nomenclature": {
+    "title": "Номенклатураны импорттау",
+    "uploadButton": "Жүктеу",
+    "download": "Жүктеп алу",
+    "delete": "Жою",
+    "actions": "Әрекеттер",
+    "fileNumber": "№",
+    "fileName": "Файл атауы",
+    "logFiles": "Импорт журнал файлдары",
+    "ok": "Ок",
+    
+    "company": "Компания",
+    "selectCompanyPlaceholder": "Компанияны таңдаңыз",
+    "selectCompanyMsg": "Компанияны таңдаңыз",
+    "stock": "Қойма",
+    "selectStockPlaceholder": "Қойманы таңдаңыз",
+    "selectStockMsg": "Қойманы таңдаңыз",
+    "allStocks": "Барлық қоймалар",
+    "isNDSPayer": "Компания ҚҚС төлеушісі ме?",
+    "selectNDSPlaceholder": "Иә/Жоқ таңдаңыз",
+    "selectNDSMsg": "Иә/Жоқ таңдаңыз",
+    "ndsYes": "Иә",
+    "ndsNo": "Жоқ",
+    "supplier": "Жеткізушіні таңдаңыз",
+    "selectSupplierPlaceholder": "Жеткізушіні таңдаңыз",
+    "selectSupplierMsg": "Жеткізушіні таңдаңыз",
+    "noCounterparty": "Көрсетілмеген",
+    "fileUploadTitle": "Импорттау үшін файл",
+    
+    "fillAllFields": "Барлық міндетті өрістерді толтырыңыз.",
+    "selectFile": "Жүктеу үшін файл таңдаңыз.",
+    "importSuccess": "Деректер сәтті импортталды.",
+    "importError": "Деректерді импорттауда қате пайда болды.",
+    "fileDeleted": "Файл сәтті жойылды.",
+    "deleteError": "Файлды жоюда қате.",
+    "downloadError": "Файлды жүктеу кезінде қате.",
+    "generalError": "Күтпеген қате орын алды.",
+    "filesLoadError": "Файлдар тізімін жүктеу кезінде қате.",
+    "companiesLoadError": "Компаниялар тізімін жүктеу кезінде қате.",
+    "stocksLoadError": "Қоймалар тізімін жүктеу кезінде қате.",
+    "counterpartiesLoadError": "Жеткізушілер тізімін жүктеу кезінде қате.",
+    "cyrillicErrorTitle": "Импорт қатесі",
+    "cyrillicErrorMessage": "Штрих-кодта кириллица таңбалары рұқсат етілмейді.",
+    "cyrillicErrorDetail": "Қатарлар {{rows}} ішінде кодта кириллица таңбалары бар."
 }
 
 

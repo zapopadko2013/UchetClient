@@ -1,0 +1,39 @@
+.card {
+  max-width: 600px;
+  margin: 20px auto;
+}
+
+.title {
+  margin: 0;
+}
+
+.formItem {
+  margin-bottom: 16px;
+}
+
+.fileUploadSection {
+  margin-bottom: 24px;
+}
+
+.fileInput {
+  margin-top: 8px;
+}
+
+.uploadButton {
+  margin-top: 16px;
+  width: 100%;
+}
+
+.filesSection {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.filesTitle {
+    margin-bottom: 15px;
+}
+
+.redText {
+  color: red;
+}

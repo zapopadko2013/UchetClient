@@ -55,7 +55,8 @@
     "administration": "Администрирование",
     "adminnews": "Новости",
     "admincompanysettings": "Настройка компании",
-
+    "admindownloadproduct": "Загрузить номенклатуру",
+    
     
     
     "changePassword": "Сменить пароль"
@@ -2647,7 +2648,53 @@
     "resetConfirm": "Вы действительно хотите сбросить пароль для компании с ID: {{id}}?"
   }
   
+  ,
 
+  "nomenclature": {
+    "title": "Импорт номенклатуры",
+    "uploadButton": "Выгрузить",
+    "download": "Скачать",
+    "delete": "Удалить",
+    "actions": "Действия",
+    "fileNumber": "№",
+    "fileName": "Наименование файла",
+    "logFiles": "Лог-файлы импорта",
+    "ok": "Ок",
+    
+    "company": "Компания",
+    "selectCompanyPlaceholder": "Выберите компанию",
+    "selectCompanyMsg": "Выберите компанию",
+    "stock": "Склад",
+    "selectStockPlaceholder": "Выберите склад",
+    "selectStockMsg": "Выберите склад",
+    "allStocks": "Все склады",
+    "isNDSPayer": "Компания является плательщиком НДС?",
+    "selectNDSPlaceholder": "Выберите да/нет",
+    "selectNDSMsg": "Выберите да/нет",
+    "ndsYes": "Да",
+    "ndsNo": "Нет",
+    "supplier": "Выберите поставщика",
+    "selectSupplierPlaceholder": "Выберите поставщика",
+    "selectSupplierMsg": "Выберите поставщика",
+    "noCounterparty": "Не указан",
+    "fileUploadTitle": "Файл для импорта",
+    
+    "fillAllFields": "Пожалуйста, заполните все обязательные поля.",
+    "selectFile": "Выберите файл для загрузки.",
+    "importSuccess": "Данные успешно импортированы.",
+    "importError": "Ошибка при импорте данных.",
+    "fileDeleted": "Файл успешно удален.",
+    "deleteError": "Ошибка при удалении файла.",
+    "downloadError": "Ошибка при скачивании файла.",
+    "generalError": "Произошла непредвиденная ошибка.",
+    "filesLoadError": "Ошибка загрузки списка файлов.",
+    "companiesLoadError": "Ошибка загрузки списка компаний.",
+    "stocksLoadError": "Ошибка загрузки списка складов.",
+    "counterpartiesLoadError": "Ошибка загрузки списка поставщиков.",
+    "cyrillicErrorTitle": "Ошибка импорта",
+    "cyrillicErrorMessage": "Символы кириллицы в штрих-коде недопустимы.",
+    "cyrillicErrorDetail": "В строках {{rows}} имеются символы кириллицы в коде."
+  }
   
 
 }
