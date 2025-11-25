@@ -34,7 +34,8 @@ import {
   DeleteOutlined,
   DashboardOutlined,
   FileTextOutlined,
-  AuditOutlined,ClusterOutlined,
+  AuditOutlined,ClusterOutlined,InboxOutlined,
+  TrademarkCircleOutlined,
 } from '@ant-design/icons';
 
 import HomePage from './components/HomePage';
@@ -75,6 +76,8 @@ import RegisterPage from './components/Administration/CompanyCreate/RegisterPage
 import CompanyList from './components/Administration/CompanyCreate/CompanyList';
 import InfoCompanyPage from './components/Administration/CompanyCreate/InfoCompanyPage';
 import ImpNomenclature from './components/Administration/DownloadProduct/ImpNomenclature';
+import UpdateAttributePage from './components/Administration/AttributeBrand/UpdateAttributePage';
+import BrandList from './components/Administration/AttributeBrand/BrandList';
 
 
 
@@ -385,7 +388,7 @@ export const routes = [
       path: '/admincompanylist',
       key: 'admincompanylist',
       label: 'Список компаний',
-      icon: <ShopOutlined />,
+      icon: <ApartmentOutlined />,
       element: <CompanyList />,
       code: 'admincompanylist',
     },
@@ -393,13 +396,38 @@ export const routes = [
       path: '/admindownloadproduct',
       key: 'admindownloadproduct',
       label: 'Загрузить номенклатуру',
-      icon: <ShopOutlined />,
+      icon: <InboxOutlined />,
       element: <ImpNomenclature />,
       code: 'admindownloadproduct',
+    },
+    {
+      path: '/adminattribute',
+      key: 'adminattribute',
+      label: 'Атрибуты',
+      icon: <AppstoreOutlined />,
+      element: <UpdateAttributePage />,
+      code: 'adminattribute',
+    },
+    {
+      path: '/adminabrand',
+      key: 'adminabrand',
+      label: 'Бренды',
+      icon: <TrademarkCircleOutlined />,
+      element: <BrandList />,
+      code: 'adminabrand',
     },
      
   ],
 },  
+
+/* {
+      path: '/adminattribute/adminattributeadd',
+      key: 'adminattributeadd',
+      label: 'Добавить атрибут',
+      icon: <ClusterOutlined />,
+      element: <AddAttributeForm />,
+      code: 'adminattributeadd',
+    }, */
 //Настройка компании settings
 {
       path: '/admincompanylist/admincompanyinfo',

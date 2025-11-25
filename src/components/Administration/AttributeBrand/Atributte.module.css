@@ -1,0 +1,50 @@
+.headerSpace {
+    width: 100%;
+    justify-content: space-between;
+}
+
+/* Соответствует style={{ marginTop: 20 }} */
+.attributesTable {
+    margin-top: 20px;
+}
+
+.spinCenter {
+    margin: 40px auto;
+    display: block;
+}
+
+/* Соответствует style={{ marginTop: 40 }} */
+.emptyMargin {
+    margin-top: 40px;
+}
+
+.marginBottom20 {
+    margin-bottom: 20px;
+}
+
+.tableMarginTop {
+  margin-top: 16px;
+}
+
+
+
+.manageContainer {
+  max-width: 800px;
+}
+
+.draggerBox {
+  padding: 40px 20px;
+  border-radius: 8px;
+}
+
+.marginTop16 {
+  margin-top: 16px;
+}
+
+.formItemNoMargin {
+  margin: 0 !important;
+}
+
+.iconLarge {
+  font-size: 32px;
+}
