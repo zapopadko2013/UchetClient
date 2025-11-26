@@ -48,3 +48,102 @@
 .iconLarge {
   font-size: 32px;
 }
+
+
+
+.wrapper {
+  padding: 16px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.accessList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  max-width: 300px;
+  overflow: hidden;
+}
+
+
+.textLink {
+  font-size: 14px;
+  color: #162ece;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.textLink:hover {
+  color: #09135b;
+}
+
+
+
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.backButton {
+  margin-bottom: 20px;
+}
+
+.clearButton {
+  margin-left: 10px;
+}
+
+
+
+
+
+.accessFormContainer {
+  margin: 15px;
+}
+
+.alert {
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.roleRow {
+  margin-bottom: 10px;
+}
+
+.checkboxesWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.checkboxList {
+  min-width: 220px;
+  border: 1px solid #f0f0f0;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.checkboxCategory {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.checkboxCol {
+  display: flex;
+  flex-direction: column;
+  margin-left: 8px;
+}
+
+.saveButton {
+  margin-left: 10px;
+}
+
+.fullWidth {
+  width: 100%;
+}

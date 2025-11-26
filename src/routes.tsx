@@ -78,6 +78,7 @@ import InfoCompanyPage from './components/Administration/CompanyCreate/InfoCompa
 import ImpNomenclature from './components/Administration/DownloadProduct/ImpNomenclature';
 import UpdateAttributePage from './components/Administration/AttributeBrand/UpdateAttributePage';
 import BrandList from './components/Administration/AttributeBrand/BrandList';
+import ERPUserListPage from './components/Administration/AttributeBrand/ERPUserListPage';
 
 
 
@@ -417,6 +418,14 @@ export const routes = [
       code: 'adminabrand',
     },
      
+    {
+      path: '/adminusers',
+      key: 'adminusers',
+      label: 'Пользователи',
+      icon: <TrademarkCircleOutlined />,
+      element: <ERPUserListPage />,
+      code: 'adminusers',
+    },
   ],
 },  
 

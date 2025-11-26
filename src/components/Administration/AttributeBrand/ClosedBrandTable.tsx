@@ -65,7 +65,7 @@ const ClosedBrandTable: React.FC<Props> = ({
       rowKey="id"
       columns={columns}
       dataSource={result}
-      pagination={false}
+     pagination={{ pageSize: 10 }}
     />
   );
 };

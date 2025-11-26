@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'; // Импортируем useTra
 import useApiRequest from '../../../hooks/useApiRequest';
 
 import ClosedBrandTable from './ClosedBrandTable';
-//import ClosedERPuserTable from './ClosedTables/ClosedERPuserTable';
+import ClosedERPuserTable from './ClosedERPuserTable';
 import ClosedAttributeUpdateTable from './ClosedAttributeUpdateTable';
 import styles from './Atributte.module.css';
 
@@ -46,7 +46,7 @@ const ClosedList: React.FC<ClosedListProps> = ({ mode, isHidden, handleRollback 
         : mode === 'stock'
         ? '/api/stock/inactive'
         : mode === 'erpuser'
-        ? '/login/api/erpuser/inactive'
+        ? '/api/erpuser/inactive'
         : mode === 'cashbox'
         ? '/api/cashbox/inactive'
         : mode === 'counterparties'
@@ -136,7 +136,7 @@ const ClosedList: React.FC<ClosedListProps> = ({ mode, isHidden, handleRollback 
         : mode === 'cashboxuser'
         ? '/api/cashboxuser/manage'
         : mode === 'erpuser'
-        ? '/login/api/erpuser/toggle_erpusers'
+        ? '/api/erpuser/toggle_erpusers'
         : mode === 'cashbox'
         ? '/api/cashbox/manage'
         : mode === 'counterparties'
@@ -171,7 +171,7 @@ const ClosedList: React.FC<ClosedListProps> = ({ mode, isHidden, handleRollback 
   // ---------------------------------------------
   const renderTable = () => {
     if (mode === 'brand') return <ClosedBrandTable result={result} handleRollbackFunction={confirmRollback} />;
-    // if (mode === 'erpuser') return <ClosedERPuserTable result={result} handleRollbackFunction={confirmRollback} />;
+    if (mode === 'erpuser') return <ClosedERPuserTable result={result} handleRollbackFunction={confirmRollback} />;
     if (mode === 'attributeupdate') return <ClosedAttributeUpdateTable result={result} handleRollbackFunction={confirmRollback} />;
     return null;
   };

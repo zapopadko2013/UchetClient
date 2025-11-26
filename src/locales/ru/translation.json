@@ -59,13 +59,14 @@
     
     
     
+    
     "changePassword": "Сменить пароль"
 
     ,"admincompanycreate": "Создание компании"
     ,"admincompanylist": "Список компаний"
     ,"adminattribute": "Атрибуты"
     ,"adminabrand": "Бренды"
-    
+    ,"adminusers": "Пользователи"
     
     
   },
@@ -2767,7 +2768,7 @@
 
     "entities": {
       "attribute": "неактивных атрибутов", 
-      "erpUser": "неактивных ERP пользователей",
+      "erpUser": "неактивных пользователей программы",
       "brand": "неактивных брендов",
       "discount": "неактивных скидок"
     },
@@ -2830,5 +2831,142 @@
     "internalError": "Внутренняя ошибка сервера"
   }
 }
+,
+"erpusers": {
+
+    
+    "editUser": "Редактировать пользователя",
+   
+    
+    "template": "Шаблон",
+    "loadRolesError": "Не удалось загрузить роли",
+    "loadAccessesError": "Не удалось загрузить доступы",
+    "userCreatedSuccess": "Пользователь прогаммы успешно создан",
+    "userUpdatedSuccess": "Пользователь обновлен",
+    "saveError": "Ошибка при сохранении",
+    "updateError": "Ошибка при обновлении",
+    "selectAccessesForUser": "Выберите доступы для пользователя {{userName}}",
+    "accessHint": "Укажите галочками доступы или выберите из списка готовый шаблон",
+    "templatePlaceholder": "Выберите шаблон",
+    "backButton": "Назад",
+    "submittingText": "Пожалуйста подождите...",
+    "saveAccessesButton": "Сохранить доступы",
+
+     "loadUserAccessesError": "Не удалось загрузить доступы пользователя",
+    "editUserTitle": "Редактировать пользователя программ",
+    "addUserTitle": "Добавить нового пользователя программ",
+    "userListButton": "Список пользователей программ",
+    
+    "iinLabel": "ИИН пользователя",
+    "iinRequiredMessage": "Введите ИИН",
+    "digitsOnlyMessage": "Только цифры",
+    "iinPlaceholder": "Введите ИИН сотрудника",
+    
+    "nameLabel": "ФИО пользователя",
+    "nameRequiredMessage": "Введите ФИО",
+    "namePlaceholder": "Введите полное имя сотрудника",
+    
+    "loginLabel": "Email пользователя (логин)",
+    "loginRequiredMessage": "Введите email",
+    "invalidEmailMessage": "Неверный формат email",
+    "loginPlaceholder": "Введите адрес эл.почты пользователя",
+    
+    "nextButton": "Далее",
+    "clearButton": "Очистить",
+
+    "list": "Список пользователей программы",
+    "add": "Добавить пользователя",
+    "addUser": "Добавить пользователя",
+    "empty": "Список пользователей программы пуст",
+    "userName": "ФИО",
+    "login": "Логин",
+    "accessName": "Доступы пользователя",
+    "userIDN": "ИИН",
+    "noAccesses": "Нет доступов",
+    "title": {
+      "edit": "Редактировать",
+      "delete": "Удалить"
+    },
+    "status": "Статус",
+    "restore": "Восстановить",
+    "company": "ID компании",
+    
+    "confirmDelete": "Вы действительно хотите удалить пользователя программы?",
+    "deleted": "Удален",
+    "editSaved": "Изменения сохранены",
+    "loadError": "Ошибка загрузки пользователей программы",
+    "common": {
+      "yes": "Да",
+      "cancel": "Отмена",
+      "ok": "Хорошо",
+      "areYouSure": "Вы уверены?",
+      "error": "Ошибка",
+      "success": "Успешно",
+
+     
+      "loadError": "Ошибка загрузки"
+    },
+    "accesses": {
+      "order_create": "Создание заказов",
+      "order_treatment": "Обработка заказов",
+      "order_weight_prod": "Взвешивание продукции",
+      "order_receipt": "Прием заказов",
+      "price_wizard": "Мастер цен",
+      "price_change": "Изменение цен",
+      "price_marginal": "Маржинальные цены",
+      "elct_inv_broadcast": "Электронная инвентаризация – рассылка",
+      "elct_inv_report": "Электронная инвентаризация – отчет",
+      "elct_inv_reception": "Электронная инвентаризация – приемка",
+      "elct_inv_attach_eds": "Электронная инвентаризация – прикрепление ЭЦП",
+      "setting_sales_plan": "Настройка плана продаж",
+      "setting_user_chekout": "Настройка кассиров",
+      "setting_buyers": "Настройка покупателей",
+      "setting_supplies": "Настройка поставок",
+      "setting_portal_user": "Настройка пользователей портала",
+      "setting_gen_info": "Общая информация",
+      "setting_whs": "Складские настройки",
+      "setting_scales": "Настройка весов",
+      "setting_store": "Настройка магазинов",
+      "setting_cash_reg": "Настройка касс",
+      "contr_prod_new_whr": "Контроль новой продукции",
+      "contr_move_between": "Перемещения между складами",
+      "contr_revision": "Инвентаризация",
+      "contr_weigh_prod": "Взвешивание продукции",
+      "contr_nomenclature": "Контроль номенклатуры",
+      "contr_reconciliation": "Сверка",
+      "contr_newto_whr": "Добавление на склад",
+      "contr_removefrom_whr": "Списание со склада",
+      "contr_barcode_print": "Печать штрихкодов",
+      "rep_team_bonus": "Отчёт бонусы команды",
+      "rep_prod_solds": "Отчёт продаж",
+      "rep_checkout": "Отчёт по кассе",
+      "rep_gross_profit": "Отчёт валовая прибыль",
+      "rep_consultants": "Отчёт консультанты",
+      "rep_certificates": "Отчёт сертификаты",
+      "rep_abc_xyz": "Отчёт ABC/XYZ",
+      "rep_debt_book": "Отчёт долговая книга",
+      "rep_buyers": "Отчёт по покупателям",
+      "rep_sales": "Отчёт продаж",
+      "rep_checks": "Отчёт чеков",
+      "rep_single_bonus": "Отчёт по бонусам",
+      "rep_discounts": "Отчёт по скидкам",
+      "rep_illiquid_products": "Отчёт неликвидов",
+      "market_coupons": "Маркетинг: купоны",
+      "market_stock": "Маркетинг: акции",
+      "market_bonuses": "Маркетинг: бонусы",
+      "market_create_discount": "Маркетинг: создание скидки",
+      "market_gift": "Маркетинг: подарки",
+      "whs_leftovers": "Склад: остатки",
+      "whs_inv_history": "Склад: история инвентаризации",
+      "whs_prod_move": "Склад: движение продукции",
+      "whs_revision": "Склад: ревизия",
+      "whs_holdings": "Склад: запасы",
+      "whs_exp_dates": "Склад: сроки годности",
+      "whs_reconciliation": "Склад: сверка",
+      "whs_consignment": "Склад: консигнация",
+      "whs_prod_period": "Склад: период продукции"
+    }
+  
+  }
 
 }
