@@ -67,8 +67,14 @@
     ,"adminattribute": "Атрибуты"
     ,"adminabrand": "Бренды"
     ,"adminusers": "Пользователи"
+
+    ,"report": "Отчёты"
+    ,"reportticet": "Продажи по чекам"
     
     
+    
+    
+
   },
   "userMenu": {
     "profile": "Компания",
@@ -2920,7 +2926,8 @@
       "elct_inv_attach_eds": "Электронная инвентаризация – прикрепление ЭЦП",
       "setting_sales_plan": "Настройка плана продаж",
       "setting_user_chekout": "Настройка кассиров",
-      "setting_buyers": "Настройка покупателей",
+      "setting_buyers": "Покупатели юр.лица",
+      "setting_buyers_fiz": "Покупатели физ.лица",
       "setting_supplies": "Настройка поставок",
       "setting_portal_user": "Настройка пользователей портала",
       "setting_gen_info": "Общая информация",
@@ -2967,6 +2974,87 @@
       "whs_prod_period": "Склад: период продукции"
     }
   
+  }
+  ,
+  "reportchecks": {
+ "modalDiscount": "Скидка",
+    "common": {
+    "all": "Все"
+    
+  },
+    "mainTitle": "Продажа по чекам",
+    "loadPointsError": "Ошибка загрузки точек",
+    "loadUsersError": "Ошибка загрузки пользователей",
+    "loadReportError": "Ошибка загрузки отчёта",
+    "loadCheckError": "Ошибка загрузки данных чека",
+    "loadInvoiceError": "Ошибка загрузки накладной",
+    "downloadInvoiceError": "Ошибка скачивания накладной",
+    "exportNoData": "Нет данных для экспорта",
+    
+   
+    "pointPlaceholder": "Торговая точка",
+    "clientTypePlaceholder": "Тип клиента",
+    "clientFiz": "По физ. лицам",
+    "clientJur": "По юр. лицам",
+    "cashierPlaceholder": "Кассир",
+    "consultantPlaceholder": "Консультант",
+    "checkBonusAdd": "С начисленными бонусами",
+    "checkBonusPay": "С оплатой бонусами",
+    "reportButton": "Отчёт",
+    "exportButton": "Экспорт в Excel",
+
+    
+    "colDate": "Дата",
+    "colPaymentType": "Способ оплаты",
+    "colOperationType": "Тип операции",
+    "colCashier": "Кассир",
+    "colConsultant": "Консультант",
+    "colTotalPrice": "Общая сумма",
+    "colCheck": "Чек",
+    "colInvoice": "Накладная",
+
+    
+    "paymentTypeCard": "Карта",
+    "paymentTypeCash": "Наличными",
+    "paymentTypeDebit": "Перевод",
+    "paymentTypeMixed": "Смешанная",
+    "operationTypeReturn": "Возврат",
+    "operationTypePurchase": "Покупка",
+
+    
+    "excelSheetName": "Отчёт",
+    "excelFileName": "Продажа по чекам",
+    "invoiceFileName": "Накладная",
+    "excelDate": "Дата",
+    "excelPaymentType": "Способ оплаты",
+    "excelOperationType": "Тип операции",
+    "excelCashier": "Кассир",
+    "excelConsultant": "Консультант",
+    "excelTotalPrice": "Общая сумма",
+    "excelPoint": "Точка",
+    "excelCheckNumber": "Номер чека",
+
+   
+    "modalTitle": "Чек",
+    "modalPurchase": "Покупка",
+    "modalCashier": "Кассир",
+    "modalPoint": "Точка",
+    "modalCashbox": "Касса",
+    "modalColName": "Наименование",
+    "modalColUnitsPrice": "Кол-во х Цена",
+    "modalColPrice": "Стоимость",
+    "modalColDiscount": "Скидка",
+    "modalTotalSum": "Итого сумма",
+    "modalBonusAdded": "Начисленные бонусы",
+    "modalBonusPaid": "Оплачено бонусами",
+    "modalVAT": "НДС",
+    "modalToPay": "К оплате",
+    "modalPayments": "Оплаты",
+    "modalCash": "Наличными",
+    "modalCard": "Картой",
+    "modalCertificate": "Сертификатом",
+    "modalDebit": "Безналичным/Перевод",
+    "modalCloseButton": "Закрыть"
   }
 
 }

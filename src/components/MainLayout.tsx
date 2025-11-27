@@ -56,7 +56,21 @@ const MainLayout: React.FC<MainLayoutProps> = ({ username, accesses }) => {
     const accessCodes: string[] = (accesses ?? []).map(access => access.code);
 
     // Коды маршрутов, которые всегда видны независимо от доступа
-    const alwaysVisibleCodes = ['home', 'news', 'change-password','adminnews','admincompanysettings','admincompanycreate','setting_portal_user','businessManagement','admincompanylist','admincompanyinfo','admindownloadproduct','adminattribute','adminattributeadd','adminabrand','adminusers'];
+    //const alwaysVisibleCodes = ['home', 'news', 'change-password','adminnews','admincompanysettings','admincompanycreate','setting_portal_user','businessManagement','admincompanylist','admincompanyinfo','admindownloadproduct','adminattribute','adminattributeadd','adminabrand','adminusers'];
+    const alwaysVisibleCodes1 = [
+         'home', 'news', 'change-password', 'setting_portal_user', 'businessManagement'
+    ];
+
+    const alwaysVisibleCodesd = [
+    'adminnews','admincompanysettings','admincompanycreate','admincompanylist',
+    'admincompanyinfo','admindownloadproduct','adminattribute','adminattributeadd',
+    'adminabrand','adminusers'
+    ];
+
+    const alwaysVisibleCodes =
+        username === 'admin'
+        ? [...alwaysVisibleCodes1, ...alwaysVisibleCodesd]
+        : [...alwaysVisibleCodes1];
 
     // Фильтрация маршрутов по accessCodes + всегда видимые
     const filterRoutesByAccess = (routes: RouteItem[]): RouteItem[] => {
@@ -91,7 +105,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ username, accesses }) => {
     const createMenuItems = (items: RouteItem[]): MenuItem[] => {
         return items.map(item => {
            // const isBold = item.key === 'businessManagement';
-           const boldKeys = ['businessManagement', 'sellersBuyers','tradeObjects','pricing','marketing','productManagement','administration'];
+           const boldKeys = ['businessManagement', 'sellersBuyers','tradeObjects','pricing','marketing','productManagement','administration','report'];
            const isBold = boldKeys.includes(item.key);
 
             if (item.children) {

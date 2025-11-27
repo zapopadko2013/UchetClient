@@ -79,6 +79,8 @@ import ImpNomenclature from './components/Administration/DownloadProduct/ImpNome
 import UpdateAttributePage from './components/Administration/AttributeBrand/UpdateAttributePage';
 import BrandList from './components/Administration/AttributeBrand/BrandList';
 import ERPUserListPage from './components/Administration/AttributeBrand/ERPUserListPage';
+import SalesByChecksReport from './components/Reports/SalesByChecksReport';
+
 
 
 
@@ -422,12 +424,30 @@ export const routes = [
       path: '/adminusers',
       key: 'adminusers',
       label: 'Пользователи',
-      icon: <TrademarkCircleOutlined />,
+      icon: <TeamOutlined />,
       element: <ERPUserListPage />,
       code: 'adminusers',
     },
   ],
 },  
+
+{
+  key: 'report',
+  label: 'Отчёты',
+  icon: <BarChartOutlined />,
+  code: 'report',
+  children: [
+    {
+      path: '/reportticet',
+      key: 'reportticet',
+      label: 'Продажи по чекам',
+      icon: <FileTextOutlined />,
+      element: <SalesByChecksReport />,
+      code: 'rep_checks',
+    },
+    ],
+},  
+
 
 /* {
       path: '/adminattribute/adminattributeadd',

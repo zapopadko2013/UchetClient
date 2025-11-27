@@ -169,7 +169,9 @@ const AddUserAccessForm: React.FC<AddUserAccessFormProps> = ({
   const fetchAccessFunctions = async () => {
     try {
       const id = userData?.id || "";
-      const data = await sendRequest(`${API_URL}/api/erpuser/getaccesses?id=${id}`, { headers: getHeaders() });
+      //const data = await sendRequest(`${API_URL}/api/erpuser/getaccesses?id=${id}`, { headers: getHeaders() });
+      const data = await sendRequest(`${API_URL}/api/erpuser/getuseraccessesun?id=${id}`, { headers: getHeaders() });
+            
       setAccessFunctions(data);
       const accesses: Access[] = data.map((cat: AccessCategory) => cat.functions).flat().map((fn: AccessFunction) => ({ id: fn.id, code: fn.code }));
       setCheckedCheckboxes(accesses);

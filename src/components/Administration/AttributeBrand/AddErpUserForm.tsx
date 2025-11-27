@@ -45,8 +45,10 @@ const AddErpUserForm: React.FC<AddErpUserFormProps> = ({ location, history }) =>
 
   const fetchUserAccesses = async () => {
     try {
-      const data = await sendRequest(`${API_URL}/api/erpuser/getaccesses?id=${userData?.id}`, {
-        headers: {
+      //const data = await sendRequest(`${API_URL}/api/erpuser/getaccesses?id=${userData?.id}`, {
+      const data = await sendRequest(`${API_URL}/api/erpuser/getuseraccessesun?id=${userData?.id}`, {
+      
+      headers: {
           Authorization: `Bearer ${localStorage.getItem("accessToken") || ""}`,
           "Content-Type": "application/json",
         },

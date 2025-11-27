@@ -66,6 +66,10 @@
    ,"adminabrand": "Brands"
    ,"adminusers": "Users"
 
+   ,"report": "Reports",
+"reportticet": "Sales by receipts"
+
+
 
   },
   "userMenu": {
@@ -2593,7 +2597,8 @@
       "elct_inv_attach_eds": "Electronic inventory – attach EDS",
       "setting_sales_plan": "Sales plan settings",
       "setting_user_chekout": "Cashier settings",
-      "setting_buyers": "Buyer settings",
+      "setting_buyers_fiz": "Individual buyers",
+      "setting_buyers": "Corporate buyers",
       "setting_supplies": "Supply settings",
       "setting_portal_user": "Portal user settings",
       "setting_gen_info": "General information",
@@ -2640,5 +2645,83 @@
       "whs_prod_period": "Warehouse: product period"
     }
   }
+  ,
+
+  "reportchecks": {
+  "modalDiscount": "Discount",
+  "common": {
+    "all": "All"
+  },
+
+  "mainTitle": "Sales by receipts",
+  "loadPointsError": "Failed to load points",
+  "loadUsersError": "Failed to load users",
+  "loadReportError": "Failed to load report",
+  "loadCheckError": "Failed to load receipt data",
+  "loadInvoiceError": "Failed to load invoice",
+  "downloadInvoiceError": "Failed to download invoice",
+  "exportNoData": "No data to export",
+
+  "pointPlaceholder": "Sales point",
+  "clientTypePlaceholder": "Client type",
+  "clientFiz": "By individuals",
+  "clientJur": "By legal entities",
+  "cashierPlaceholder": "Cashier",
+  "consultantPlaceholder": "Consultant",
+  "checkBonusAdd": "With accrued bonuses",
+  "checkBonusPay": "With bonus payment",
+  "reportButton": "Report",
+  "exportButton": "Export to Excel",
+
+  "colDate": "Date",
+  "colPaymentType": "Payment method",
+  "colOperationType": "Operation type",
+  "colCashier": "Cashier",
+  "colConsultant": "Consultant",
+  "colTotalPrice": "Total amount",
+  "colCheck": "Receipt",
+  "colInvoice": "Invoice",
+
+  "paymentTypeCard": "Card",
+  "paymentTypeCash": "Cash",
+  "paymentTypeDebit": "Bank transfer",
+  "paymentTypeMixed": "Mixed",
+  "operationTypeReturn": "Return",
+  "operationTypePurchase": "Purchase",
+
+  "excelSheetName": "Report",
+  "excelFileName": "Sales by receipts",
+  "invoiceFileName": "Invoice",
+  "excelDate": "Date",
+  "excelPaymentType": "Payment method",
+  "excelOperationType": "Operation type",
+  "excelCashier": "Cashier",
+  "excelConsultant": "Consultant",
+  "excelTotalPrice": "Total amount",
+  "excelPoint": "Point",
+  "excelCheckNumber": "Receipt number",
+
+  "modalTitle": "Receipt",
+  "modalPurchase": "Purchase",
+  "modalCashier": "Cashier",
+  "modalPoint": "Point",
+  "modalCashbox": "Cashbox",
+  "modalColName": "Name",
+  "modalColUnitsPrice": "Qty × Price",
+  "modalColPrice": "Amount",
+  "modalColDiscount": "Discount",
+  "modalTotalSum": "Total amount",
+  "modalBonusAdded": "Accrued bonuses",
+  "modalBonusPaid": "Paid with bonuses",
+  "modalVAT": "VAT",
+  "modalToPay": "Amount due",
+  "modalPayments": "Payments",
+  "modalCash": "Cash",
+  "modalCard": "Card",
+  "modalCertificate": "Certificate",
+  "modalDebit": "Bank transfer",
+  "modalCloseButton": "Close"
+}
+
 
 }

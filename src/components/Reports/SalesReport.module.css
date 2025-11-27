@@ -1,0 +1,41 @@
+.wrapper {
+  padding: 20px;
+}
+
+.filtersBlock {
+  margin-bottom: 16px;
+}
+
+.bonusCheckbox {
+  display: block;
+  margin-top: 8px;
+}
+
+.modalTotals {
+  font-weight: bold;
+  border-top: 1px solid #eee;
+  padding-top: 8px;
+}
+
+.modalRight {
+  text-align: right;
+}
+
+.modalBlockTitle {
+  margin-top: 20px;
+}
+
+.iconLarge {
+  font-size: 18px;
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+.modalTotalsRight {
+  text-align: right;
+  font-weight: bold;
+  border-top: 1px solid #eee;
+  padding-top: 8px;
+}

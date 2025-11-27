@@ -68,6 +68,9 @@
     ,"adminabrand": "Брендтер"
     ,"adminusers": "Пайдаланушылар"
 
+    ,"report": "Есептер",
+"reportticet": "Чектер бойынша сату"
+
   },
   "auth": {
     "unauthorized": "Рұқсат етілмеген"
@@ -2585,6 +2588,7 @@
       "loadError": "Жүктеу қатесі"
     },
     "accesses": {
+      "setting_buyers_fiz": "Жеке тұлға сатып алушылар",
       "order_create": "Тапсырыстар жасау",
       "order_treatment": "Тапсырыстарды өңдеу",
       "order_weight_prod": "Өнімді таразылау",
@@ -2598,7 +2602,7 @@
       "elct_inv_attach_eds": "Электрондық инвентаризация – ЭЦҚ тіркеу",
       "setting_sales_plan": "Сату жоспарын баптау",
       "setting_user_chekout": "Кассирді баптау",
-      "setting_buyers": "Сатып алушыларды баптау",
+      "setting_buyers": "Заңды тұлға сатып алушылар",
       "setting_supplies": "Жеткізілімдерді баптау",
       "setting_portal_user": "Портал пайдаланушыларын баптау",
       "setting_gen_info": "Жалпы ақпарат",
@@ -2645,5 +2649,83 @@
       "whs_prod_period": "Қойма: өнім мерзімі"
     }
   }
+  ,
+
+  "reportchecks": {
+  "modalDiscount": "Жеңілдік",
+  "common": {
+    "all": "Барлығы"
+  },
+
+  "mainTitle": "Чектер бойынша сату",
+  "loadPointsError": "Сату нүктелерін жүктеу қатесі",
+  "loadUsersError": "Пайдаланушыларды жүктеу қатесі",
+  "loadReportError": "Есепті жүктеу қатесі",
+  "loadCheckError": "Чек деректерін жүктеу қатесі",
+  "loadInvoiceError": "Жеткізу құжатын жүктеу қатесі",
+  "downloadInvoiceError": "Жеткізу құжатын жүктеу қатесі",
+  "exportNoData": "Экспорт үшін деректер жоқ",
+
+  "pointPlaceholder": "Сату нүктесі",
+  "clientTypePlaceholder": "Клиент түрі",
+  "clientFiz": "Жеке тұлғалар бойынша",
+  "clientJur": "Заңды тұлғалар бойынша",
+  "cashierPlaceholder": "Кассир",
+  "consultantPlaceholder": "Кеңесші",
+  "checkBonusAdd": "Бонустары есептелген",
+  "checkBonusPay": "Бонустармен төленген",
+  "reportButton": "Есеп",
+  "exportButton": "Excel-ге экспорт",
+
+  "colDate": "Күні",
+  "colPaymentType": "Төлем түрі",
+  "colOperationType": "Операция түрі",
+  "colCashier": "Кассир",
+  "colConsultant": "Кеңесші",
+  "colTotalPrice": "Жалпы сома",
+  "colCheck": "Чек",
+  "colInvoice": "Жеткізу құжаты",
+
+  "paymentTypeCard": "Карта",
+  "paymentTypeCash": "Қолма-қол",
+  "paymentTypeDebit": "Аударым",
+  "paymentTypeMixed": "Аралас",
+  "operationTypeReturn": "Қайтару",
+  "operationTypePurchase": "Сатып алу",
+
+  "excelSheetName": "Есеп",
+  "excelFileName": "Чектер бойынша сату",
+  "invoiceFileName": "Жеткізу құжаты",
+  "excelDate": "Күні",
+  "excelPaymentType": "Төлем түрі",
+  "excelOperationType": "Операция түрі",
+  "excelCashier": "Кассир",
+  "excelConsultant": "Кеңесші",
+  "excelTotalPrice": "Жалпы сома",
+  "excelPoint": "Нүкте",
+  "excelCheckNumber": "Чек нөмірі",
+
+  "modalTitle": "Чек",
+  "modalPurchase": "Сатып алу",
+  "modalCashier": "Кассир",
+  "modalPoint": "Нүкте",
+  "modalCashbox": "Касса",
+  "modalColName": "Атауы",
+  "modalColUnitsPrice": "Саны × Бағасы",
+  "modalColPrice": "Сомасы",
+  "modalColDiscount": "Жеңілдік",
+  "modalTotalSum": "Жалпы сома",
+  "modalBonusAdded": "Есептелген бонустар",
+  "modalBonusPaid": "Бонустармен төленген",
+  "modalVAT": "ҚҚС",
+  "modalToPay": "Төленуге тиіс",
+  "modalPayments": "Төлемдер",
+  "modalCash": "Қолма-қол",
+  "modalCard": "Карта",
+  "modalCertificate": "Сертификат",
+  "modalDebit": "Аударым",
+  "modalCloseButton": "Жабу"
+}
+
 
 }
