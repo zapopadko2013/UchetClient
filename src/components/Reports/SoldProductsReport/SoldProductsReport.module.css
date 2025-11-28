@@ -1,0 +1,40 @@
+.container {
+  padding: 16px;
+}
+
+.attributeFieldWidth {
+  width: 200px;
+}
+
+.fullWidthControl {
+  width: 100%;
+}
+
+/* Класс для добавления верхнего отступа к таблице */
+.tableMarginTop {
+  margin-top: 16px;
+}
+
+/* Стили для тега "Продажа" */
+.saleTag {
+  color: #237804;           /* тёмно-зелёный текст */
+  background-color: #f6ffed; /* светло-зелёный фон */
+  border: 1px solid #b7eb8f;
+  padding: 2px 6px;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+/* Стили для тега "Возврат" */
+.returnTag {
+  color: #a8071a;           /* тёмно-красный текст */
+  background-color: #fff1f0; /* светло-розовый фон */
+  border: 1px solid #ffa39e;
+  padding: 2px 6px;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.summaryBoldText {
+  font-weight: bold;
+}

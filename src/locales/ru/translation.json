@@ -70,7 +70,7 @@
 
     ,"report": "Отчёты"
     ,"reportticet": "Продажи по чекам"
-    
+    ,"soldProductsReport": "Проданные товары"
     
     
     
@@ -3055,6 +3055,80 @@
     "modalCertificate": "Сертификатом",
     "modalDebit": "Безналичным/Перевод",
     "modalCloseButton": "Закрыть"
+  },
+
+  "soldProducts": {
+    
+    "sheetNameAdvanced": "Проданные товары (Расширенный)",
+    "placeholder": {
+       "attributeValue": "Значение атрибута",
+      "point": "Торговая точка",
+      "brand": "Бренд",
+      "categories": "Категории",
+      "counterparty": "Поставщик",
+      "transactionType": "Тип транзакции",
+      "clientType": "Тип клиента",
+      "sellType": "Тип продажи",
+      "attribute": "Атрибут"
+    },
+    "option": {
+      "all": "Все",
+      "sales": "Продажи",
+      "returns": "Возвраты",
+      "individual": "Физ. лицо",
+      "legalEntity": "Юр. лицо",
+      "notSpecified": "Не указан",
+      "retail": "Розничная",
+      "wholesale": "Оптовая"
+    },
+    "checkbox": {
+      "splitAttributes": "Разбить товары по характеристикам",
+      "includeConsignment": "Включая товары на консигнации"
+    },
+    
+    "advancedTable": {
+      "transactionType": "Вид операции",
+      "productName": "Наименование товара",
+      "sellDate": "Дата",
+      "consultant": "Консультант",
+      "priceDiscount": "Итоговая сумма со скидкой",
+      "priceDiscountBonus": "Итоговая сумма со скидкой (за минусом бонусов)",
+      "quantity": "Количество",
+      "stock": "Текущий остаток",
+      "counterparty": "Поставщик",
+      "brand": "Бренд",
+      "category": "Категория"
+    },
+   
+
+    "tab": {
+      "simple": "Упрощённый",
+      "advanced": "Расширенный"
+    },
+    "loadError": "Ошибка загрузки данных",
+    "sheetName": "Проданные товары",
+    
+    "button": {
+      "search": "Поиск",
+      "export": "Экспорт в Excel"
+    },
+    "table": {
+      "number": "№",
+      "operationType": "Вид операции",
+      "warehouse": "Склад",
+      "productName": "Наименование",
+      "amount": "Сумма",
+      "quantity": "Количество",
+      "brand": "Бренд",
+      "category": "Категория"
+    },
+    "operationTypes": {
+      "Продажа": "Продажа",
+      "Возврат": "Возврат"
+    },
+    "summary": {
+      "total": "Итого"
+    }
   }
 
 }

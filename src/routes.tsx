@@ -80,6 +80,7 @@ import UpdateAttributePage from './components/Administration/AttributeBrand/Upda
 import BrandList from './components/Administration/AttributeBrand/BrandList';
 import ERPUserListPage from './components/Administration/AttributeBrand/ERPUserListPage';
 import SalesByChecksReport from './components/Reports/SalesByChecksReport';
+import SoldProductsReport from './components/Reports/SoldProductsReport/SoldProductsReport';
 
 
 
@@ -444,6 +445,14 @@ export const routes = [
       icon: <FileTextOutlined />,
       element: <SalesByChecksReport />,
       code: 'rep_checks',
+    },
+    {
+      path: '/soldProductsReport',
+      key: 'soldProductsReport',
+      label: 'Проданные товары',
+      icon: <ShoppingOutlined />,
+      element: <SoldProductsReport />,
+      code: 'rep_prod_solds',
     },
     ],
 },  
