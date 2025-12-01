@@ -72,6 +72,8 @@
 "reportticet": "Чектер бойынша сату"
 ,"soldProductsReport": "Сатылған тауарлар"
 ,"invoicesHistoryReport": "Құжаттар бойынша тарих"
+,"revisionReport": "Тексеру"
+
 
   },
   "auth": {
@@ -2876,5 +2878,51 @@
       "Ожидает обработки от кассы": "Кассадан өңдеуді күтуде"
     }
   }
+
+  ,
+  "revisionReport": {
+    "loadDetailsError": "Құжат деректерін жүктеу қатесі",
+    "details": {
+        "unitsWas": "Ревизияға дейін",
+        "units": "Ревизиядан кейін",
+        "price": "Сату бағасы",
+        "leftCost": "Қалдық",
+        "diffUnits": "Данамен айырмашылық",
+        "diffPrice": "Айырмашылық (құны)",
+        
+        "productName": "Тауар атауы",
+        "revisionDate": "Ревизия уақыты",
+        "comment": "Түсініктеме",
+        "revisor": "Ревизор:",
+        "createDate": "Ревизия күні:",
+        "revisia": "Ревизия",
+        "total": "Барлығы",
+        "taxCategory": "Салық санаты",
+        "cnofeacode": "СЭҚ ТН коды (ТН ВЭД)",
+        "reason": "Себебі",
+        "oldPrice": "Ескі баға",
+        "newPrice": "Жаңа баға",
+        "vatStandard": "Стандартты ҚҚС",
+        "vatNone": "ҚҚС жоқ"
+    },
+    "reportTitle": "Ревизиялар туралы есеп",
+    "loadError": "Құжаттар тарихын жүктеу қатесі",
+    "sheetName": "Ревизиялартуралыесеп",
+    "filter": {
+        "point": "Сауда нүктесі"
+    },
+    "button": {
+        "search": "Іздеу",
+        "export": "Excel-ге экспорттау"
+    },
+    "table": {
+        "number": "№",
+        "revisionnumber": "Ревизия нөмірі",
+        "username": "Ревизор",
+        "type_name": "Түрі",
+        "createdate": "Бастау күні",
+        "submitdate": "Аяқтау күні"
+    }
+}
 
 }

@@ -70,7 +70,7 @@
 "reportticet": "Sales by receipts"
 ,"soldProductsReport": "Sold Products"
 ,"invoicesHistoryReport": "Invoice History Report"
-
+,"revisionReport": "Revision"
 
   },
   "userMenu": {
@@ -2871,6 +2871,53 @@
       "Ожидает обработки от кассы": "Awaiting processing from POS"
     }
   }
+
+  ,
+
+  "revisionReport": {
+    "loadDetailsError": "Error loading invoice details",
+    "details": {
+        "unitsWas": "Before Revision",
+        "units": "After Revision",
+        "price": "Sale Price",
+        "leftCost": "Remaining Cost",
+        "diffUnits": "Difference (Units)",
+        "diffPrice": "Difference (Price)",
+        
+        "productName": "Product Name",
+        "revisionDate": "Revision Time",
+        "comment": "Comment",
+        "revisor": "Auditor:",
+        "createDate": "Revision Date:",
+        "revisia": "Revision",
+        "total": "Total",
+        "taxCategory": "Tax Category",
+        "cnofeacode": "HS Code (CN FEAC)",
+        "reason": "Reason",
+        "oldPrice": "Old Price",
+        "newPrice": "New Price",
+        "vatStandard": "Standard VAT",
+        "vatNone": "No VAT"
+    },
+    "reportTitle": "Revision Report",
+    "loadError": "Error loading invoice history",
+    "sheetName": "RevisionReport",
+    "filter": {
+        "point": "Sales Point"
+    },
+    "button": {
+        "search": "Search",
+        "export": "Export to Excel"
+    },
+    "table": {
+        "number": "№",
+        "revisionnumber": "Revision Number",
+        "username": "Auditor",
+        "type_name": "Type",
+        "createdate": "Start Date",
+        "submitdate": "Completion Date"
+    }
+}
 
 
 }

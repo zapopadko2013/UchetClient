@@ -72,6 +72,7 @@
     ,"reportticet": "Продажи по чекам"
     ,"soldProductsReport": "Проданные товары"
     ,"invoicesHistoryReport": "История по накладным"
+    ,"revisionReport": "Ревизия"
     
     
 
@@ -3209,5 +3210,57 @@
       "Ожидает обработки от кассы": "Ожидает обработки от кассы"
     }
   }
+
+
+,
+ 
+  "revisionReport": {
+    "loadDetailsError": "Ошибка загрузки деталей накладной",
+  "details": {
+    
+    "unitsWas": "До ревизии",
+    "units": "После ревизии",
+    "price": "Цена реализации",
+    "leftCost": "Остаток",
+    "diffUnits": "Разница в шт.",
+    "diffPrice": "Разница",
+    
+    "productName": "Наименование товара",
+    "revisionDate": "Время проведения ревизии",
+    "comment": "Комментарий",
+    "revisor": "Ревизор:",
+    "createDate": "Дата ревизии:",
+    "revisia": "Ревизия",
+    "total": "Итого",
+    "taxCategory": "Налоговая категория",
+    "cnofeacode": "Код ТН ВЭД",
+    "reason": "Причина",
+    "oldPrice": "Старая цена",
+    "newPrice": "Новая цена",
+    "vatStandard": "Стандартный НДС",
+    "vatNone": "Без НДС"
+  },
+    "reportTitle": "Отчёт по ревизиям",
+    "loadError": "Ошибка загрузки истории накладных",
+    "sheetName": "ОтчётПоРевизиям",
+    "filter": {
+      
+      "point": "Торговая точка"
+    },
+    "button": {
+      "search": "Поиск",
+      "export": "Экспорт в Excel"
+    },
+    
+    "table": {
+      "number": "№",
+      "revisionnumber": "Номер ревизии",
+      "username": "Ревизор",
+      "type_name": "Тип",
+      "createdate": "Дата начала",
+      "submitdate": "Дата завершения"
+    }
+  }
+
 
 }

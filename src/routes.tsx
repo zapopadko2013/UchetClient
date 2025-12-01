@@ -35,7 +35,7 @@ import {
   DashboardOutlined,
   FileTextOutlined,
   AuditOutlined,ClusterOutlined,InboxOutlined,
-  TrademarkCircleOutlined,
+  TrademarkCircleOutlined,ReconciliationOutlined,
 } from '@ant-design/icons';
 
 import HomePage from './components/HomePage';
@@ -82,6 +82,7 @@ import ERPUserListPage from './components/Administration/AttributeBrand/ERPUserL
 import SalesByChecksReport from './components/Reports/SalesByChecksReport';
 import SoldProductsReport from './components/Reports/SoldProductsReport/SoldProductsReport';
 import InvoicesHistoryReport from './components/Reports/InvoicesHistoryReport/InvoicesHistoryReport';
+import RevisionReport from './components/Reports/RevisionReport/RevisionReport';
 
 
 
@@ -459,10 +460,19 @@ export const routes = [
       path: '/invoicesHistoryReport',
       key: 'invoicesHistoryReport',
       label: 'История по накладным',
-      icon: <ShoppingOutlined />,
+      icon: <ReconciliationOutlined />,
       element: <InvoicesHistoryReport />,
       code: 'whs_inv_history',
     },
+     {
+      path: '/revisionReport',
+      key: 'revisionReport',
+      label: 'Ревизия',
+      icon: <ShoppingOutlined />,
+      element: <RevisionReport />,
+      code: 'whs_revision',
+    },
+
     ],
 },  
 
