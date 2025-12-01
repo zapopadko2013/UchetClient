@@ -68,7 +68,8 @@
 
    ,"report": "Reports",
 "reportticet": "Sales by receipts"
-
+,"soldProductsReport": "Sold Products"
+,"invoicesHistoryReport": "Invoice History Report"
 
 
   },
@@ -2722,6 +2723,154 @@
   "modalDebit": "Bank transfer",
   "modalCloseButton": "Close"
 }
+,
+"soldProducts": {
+    "sheetNameAdvanced": "Sold Products (Advanced)",
+    "placeholder": {
+      "attributeValue": "Attribute Value",
+      "point": "Sales Point",
+      "brand": "Brand",
+      "categories": "Categories",
+      "counterparty": "Supplier",
+      "transactionType": "Transaction Type",
+      "clientType": "Client Type",
+      "sellType": "Sale Type",
+      "attribute": "Attribute"
+    },
+    "option": {
+      "all": "All",
+      "sales": "Sales",
+      "returns": "Returns",
+      "individual": "Individual",
+      "legalEntity": "Legal Entity",
+      "notSpecified": "Not Specified",
+      "retail": "Retail",
+      "wholesale": "Wholesale"
+    },
+    "checkbox": {
+      "splitAttributes": "Split products by attributes",
+      "includeConsignment": "Including consignment goods"
+    },
+    "advancedTable": {
+      "transactionType": "Operation Type",
+      "productName": "Product Name",
+      "sellDate": "Date",
+      "consultant": "Consultant",
+      "priceDiscount": "Total amount with discount",
+      "priceDiscountBonus": "Total amount with discount (minus bonuses)",
+      "quantity": "Quantity",
+      "stock": "Current Stock",
+      "counterparty": "Supplier",
+      "brand": "Brand",
+      "category": "Category"
+    },
+    "tab": {
+      "simple": "Simple",
+      "advanced": "Advanced"
+    },
+    "loadError": "Error loading data",
+    "sheetName": "Sold Products",
+    "button": {
+      "search": "Search",
+      "export": "Export to Excel"
+    },
+    "table": {
+      "number": "No.",
+      "operationType": "Operation Type",
+      "warehouse": "Warehouse",
+      "productName": "Name",
+      "amount": "Amount",
+      "quantity": "Quantity",
+      "brand": "Brand",
+      "category": "Category"
+    },
+    "operationTypes": {
+      "Продажа": "Sale",
+      "Возврат": "Return"
+    },
+    "summary": {
+      "total": "Total"
+    }
+  }
+
+  ,
+  
+  "invoicesHistoryReport": "Invoice History Report",
+  "invoicesHistory": {
+    "loadDetailsError": "Error loading invoice details",
+  "details": {
+    "invoiceOf": "Invoice dated",
+    "type": "Type",
+    "toStockShort": "To",
+    "fromStockShort": "From Stock",
+    "stock": "Stock",
+    "total": "Total",
+    "excelSheetName": "InvoiceDetails",
+
+    "productName": "Product Name",
+    "barcode": "Barcode",
+    "quantity": "Quantity",
+    "totalAmount": "Total Amount",
+    "purchasePrice": "Purchase Price",
+    "salePrice": "Sale Price",
+    "piecePrice": "Piece Price",
+    "taxCategory": "Tax Category",
+    "cnofeacode": "HS Code (CN FEAC)",
+    "reason": "Reason",
+    "oldPrice": "Old Price",
+    "newPrice": "New Price",
+    "vatStandard": "Standard VAT",
+    "vatNone": "No VAT"
+  },
+    "reportTitle": "Invoice History",
+    "loadError": "Error loading invoice history",
+    "sheetName": "InvoiceHistory",
+    "filter": {
+      "dateRange": "Date Range",
+      "productBarcode": "Product Name / Barcode",
+      "invoiceType": "Invoice Type",
+      "fromStock": "From Stock",
+      "toStock": "To Stock",
+      "supplier": "Supplier",
+      "consignator": "Consignee"
+    },
+    "option": {
+      "allTypes": "All types",
+      "allStocks": "All",
+      "allSuppliers": "All",
+      "allConsignators": "All"
+    },
+    "button": {
+      "search": "Search",
+      "export": "Export to Excel"
+    },
+    "invoiceTypes": {
+      "1": "Transfer",
+      "2": "Goods Receipt",
+      "7": "Write-off",
+      "0": "Price Change",
+      "16": "Consignment (Shipment)",
+      "17": "Consignment (Return)"
+    },
+    "table": {
+      "number": "No.",
+      "invoiceNumber": "Invoice Number",
+      "from": "of",
+      "totalPurchasePrice": "Total Purchase Price",
+      "totalSalePrice": "Total Sale Price",
+      "fullName": "Full Name",
+      "toStock": "To Stock",
+      "supplier": "Supplier",
+      "amount": "Amount",
+      "fromStock": "From Stock",
+      "goodsCost": "Goods Cost",
+      "status": "Status"
+    },
+    "statuses": {
+      "Принят на кассе": "Accepted at POS",
+      "Ожидает обработки от кассы": "Awaiting processing from POS"
+    }
+  }
 
 
 }

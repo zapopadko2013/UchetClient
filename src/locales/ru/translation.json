@@ -71,7 +71,7 @@
     ,"report": "Отчёты"
     ,"reportticet": "Продажи по чекам"
     ,"soldProductsReport": "Проданные товары"
-    
+    ,"invoicesHistoryReport": "История по накладным"
     
     
 
@@ -3128,6 +3128,85 @@
     },
     "summary": {
       "total": "Итого"
+    }
+  }
+
+
+  ,
+  "invoicesHistoryReport": "История по накладным",
+  "invoicesHistory": {
+    "loadDetailsError": "Ошибка загрузки деталей накладной",
+  "details": {
+    "invoiceOf": "Накладная от",
+    "type": "Тип",
+    "toStockShort": "Куда",
+    "fromStockShort": "Со склада",
+    "stock": "Склад",
+    "total": "Итого",
+    "excelSheetName": "Детали накладной",
+    
+    "productName": "Наименование товара",
+    "barcode": "Штрих код",
+    "quantity": "Количество",
+    "totalAmount": "Общая сумма",
+    "purchasePrice": "Цена закупки",
+    "salePrice": "Цена продажи",
+    "piecePrice": "Цена за штуку",
+    "taxCategory": "Налоговая категория",
+    "cnofeacode": "Код ТН ВЭД",
+    "reason": "Причина",
+    "oldPrice": "Старая цена",
+    "newPrice": "Новая цена",
+    "vatStandard": "Стандартный НДС",
+    "vatNone": "Без НДС"
+  },
+    "reportTitle": "История по накладным",
+    "loadError": "Ошибка загрузки истории накладных",
+    "sheetName": "ИсторияНаКладных",
+    "filter": {
+      "dateRange": "Диапазон дат",
+      "productBarcode": "Наименование товара / Штрих-код",
+      "invoiceType": "Тип накладной",
+      "fromStock": "Со склада",
+      "toStock": "На склад",
+      "supplier": "Поставщик",
+      "consignator": "Консигнатор"
+    },
+    "option": {
+      "allTypes": "Все типы",
+      "allStocks": "Все",
+      "allSuppliers": "Все",
+      "allConsignators": "Все"
+    },
+    "button": {
+      "search": "Поиск",
+      "export": "Экспорт в Excel"
+    },
+    "invoiceTypes": {
+      "1": "Перемещение",
+      "2": "Приём товара",
+      "7": "Списание",
+      "0": "Смена цен",
+      "16": "Консигнация (Отгрузка)",
+      "17": "Консигнация (Возврат)"
+    },
+    "table": {
+      "number": "№",
+      "invoiceNumber": "Номер накладной",
+      "from": "от",
+      "totalPurchasePrice": "Итого цена закупки",
+      "totalSalePrice": "Итого цена продажи",
+      "fullName": "ФИО",
+      "toStock": "На склад",
+      "supplier": "Поставщик",
+      "amount": "Сумма",
+      "fromStock": "Со склада",
+      "goodsCost": "Стоимость товаров",
+      "status": "Статус"
+    },
+    "statuses": {
+      "Принят на кассе": "Принят на кассе",
+      "Ожидает обработки от кассы": "Ожидает обработки от кассы"
     }
   }
 

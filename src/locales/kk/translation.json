@@ -70,6 +70,8 @@
 
     ,"report": "Есептер",
 "reportticet": "Чектер бойынша сату"
+,"soldProductsReport": "Сатылған тауарлар"
+,"invoicesHistoryReport": "Құжаттар бойынша тарих"
 
   },
   "auth": {
@@ -2726,6 +2728,153 @@
   "modalDebit": "Аударым",
   "modalCloseButton": "Жабу"
 }
+,
+"soldProducts": {
+    "sheetNameAdvanced": "Сатылған тауарлар (Кеңейтілген)",
+    "placeholder": {
+      "attributeValue": "Атрибут мәні",
+      "point": "Сауда нүктесі",
+      "brand": "Бренд",
+      "categories": "Санаттар",
+      "counterparty": "Жеткізуші",
+      "transactionType": "Транзакция түрі",
+      "clientType": "Клиент түрі",
+      "sellType": "Сату түрі",
+      "attribute": "Атрибут"
+    },
+    "option": {
+      "all": "Барлығы",
+      "sales": "Сатылымдар",
+      "returns": "Қайтарымдар",
+      "individual": "Жеке тұлға",
+      "legalEntity": "Заңды тұлға",
+      "notSpecified": "Көрсетілмеген",
+      "retail": "Бөлшек сауда",
+      "wholesale": "Көтерме сауда"
+    },
+    "checkbox": {
+      "splitAttributes": "Тауарларды сипаттамалары бойынша бөлу",
+      "includeConsignment": "Консигнациядағы тауарларды қоса алғанда"
+    },
+    "advancedTable": {
+      "transactionType": "Операция түрі",
+      "productName": "Тауар атауы",
+      "sellDate": "Күні",
+      "consultant": "Кеңесші",
+      "priceDiscount": "Жеңілдікпен жалпы сома",
+      "priceDiscountBonus": "Жеңілдікпен жалпы сома (бонустарды есептемегенде)",
+      "quantity": "Саны",
+      "stock": "Ағымдағы қалдық",
+      "counterparty": "Жеткізуші",
+      "brand": "Бренд",
+      "category": "Санат"
+    },
+    "tab": {
+      "simple": "Қарапайым",
+      "advanced": "Кеңейтілген"
+    },
+    "loadError": "Деректерді жүктеу қатесі",
+    "sheetName": "Сатылған тауарлар",
+    "button": {
+      "search": "Іздеу",
+      "export": "Excel-ге экспорттау"
+    },
+    "table": {
+      "number": "№",
+      "operationType": "Операция түрі",
+      "warehouse": "Қойма",
+      "productName": "Атауы",
+      "amount": "Сома",
+      "quantity": "Саны",
+      "brand": "Бренд",
+      "category": "Санат"
+    },
+    "operationTypes": {
+      "Продажа": "Сату",
+      "Возврат": "Қайтару"
+    },
+    "summary": {
+      "total": "Нәтиже"
+    }
+  }
 
+  ,
+
+  "invoicesHistoryReport": "Құжаттар бойынша тарих",
+  "invoicesHistory": {
+    "loadDetailsError": "Құжат деректерін жүктеу қатесі",
+  "details": {
+    "invoiceOf": "Құжат жасалған күні",
+    "type": "Түрі",
+    "toStockShort": "Қайда",
+    "fromStockShort": "Қоймадан",
+    "stock": "Қойма",
+    "total": "Барлығы",
+    "excelSheetName": "ҚұжатДеректері",
+
+    "productName": "Тауар атауы",
+    "barcode": "Штрих-код",
+    "quantity": "Саны",
+    "totalAmount": "Жалпы сома",
+    "purchasePrice": "Сатып алу бағасы",
+    "salePrice": "Сату бағасы",
+    "piecePrice": "Дана бағасы",
+    "taxCategory": "Салық санаты",
+    "cnofeacode": "СЭҚ ТН коды (ТН ВЭД)",
+    "reason": "Себебі",
+    "oldPrice": "Ескі баға",
+    "newPrice": "Жаңа баға",
+    "vatStandard": "Стандартты ҚҚС",
+    "vatNone": "ҚҚС жоқ"
+  },
+    "reportTitle": "Құжаттар бойынша тарих",
+    "loadError": "Құжаттар тарихын жүктеу қатесі",
+    "sheetName": "ҚұжаттарТарихы",
+    "filter": {
+      "dateRange": "Күндер диапазоны",
+      "productBarcode": "Тауар атауы / Штрих-код",
+      "invoiceType": "Құжат түрі",
+      "fromStock": "Қай қоймадан",
+      "toStock": "Қай қоймаға",
+      "supplier": "Жеткізуші",
+      "consignator": "Консигнатор"
+    },
+    "option": {
+      "allTypes": "Барлық түрлері",
+      "allStocks": "Барлығы",
+      "allSuppliers": "Барлығы",
+      "allConsignators": "Барлығы"
+    },
+    "button": {
+      "search": "Іздеу",
+      "export": "Excel-ге экспорттау"
+    },
+    "invoiceTypes": {
+      "1": "Ауыстыру",
+      "2": "Тауарды қабылдау",
+      "7": "Есептен шығару",
+      "0": "Бағаны өзгерту",
+      "16": "Консигнация (Жөнелту)",
+      "17": "Консигнация (Қайтару)"
+    },
+    "table": {
+      "number": "№",
+      "invoiceNumber": "Құжат нөмірі",
+      "from": "қойылған",
+      "totalPurchasePrice": "Жалпы сатып алу бағасы",
+      "totalSalePrice": "Жалпы сату бағасы",
+      "fullName": "Аты-жөні",
+      "toStock": "Қай қоймаға",
+      "supplier": "Жеткізуші",
+      "amount": "Сомасы",
+      "fromStock": "Қай қоймадан",
+      "goodsCost": "Тауарлар құны",
+      "status": "Мәртебесі"
+    },
+    "statuses": {
+      "Принят на кассе": "Кассада қабылданды",
+      "Ожидает обработки от кассы": "Кассадан өңдеуді күтуде"
+    }
+  }
 
 }

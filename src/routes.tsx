@@ -81,6 +81,7 @@ import BrandList from './components/Administration/AttributeBrand/BrandList';
 import ERPUserListPage from './components/Administration/AttributeBrand/ERPUserListPage';
 import SalesByChecksReport from './components/Reports/SalesByChecksReport';
 import SoldProductsReport from './components/Reports/SoldProductsReport/SoldProductsReport';
+import InvoicesHistoryReport from './components/Reports/InvoicesHistoryReport/InvoicesHistoryReport';
 
 
 
@@ -453,6 +454,14 @@ export const routes = [
       icon: <ShoppingOutlined />,
       element: <SoldProductsReport />,
       code: 'rep_prod_solds',
+    },
+    {
+      path: '/invoicesHistoryReport',
+      key: 'invoicesHistoryReport',
+      label: 'История по накладным',
+      icon: <ShoppingOutlined />,
+      element: <InvoicesHistoryReport />,
+      code: 'whs_inv_history',
     },
     ],
 },  
