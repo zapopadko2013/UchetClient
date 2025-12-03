@@ -35,7 +35,7 @@ import {
   DashboardOutlined,
   FileTextOutlined,
   AuditOutlined,ClusterOutlined,InboxOutlined,
-  TrademarkCircleOutlined,ReconciliationOutlined,
+  TrademarkCircleOutlined,ReconciliationOutlined,DatabaseOutlined,
 } from '@ant-design/icons';
 
 import HomePage from './components/HomePage';
@@ -83,6 +83,7 @@ import SalesByChecksReport from './components/Reports/SalesByChecksReport';
 import SoldProductsReport from './components/Reports/SoldProductsReport/SoldProductsReport';
 import InvoicesHistoryReport from './components/Reports/InvoicesHistoryReport/InvoicesHistoryReport';
 import RevisionReport from './components/Reports/RevisionReport/RevisionReport';
+import StockReport from './components/Reports/StockReport/StockReport';
 
 
 
@@ -468,9 +469,17 @@ export const routes = [
       path: '/revisionReport',
       key: 'revisionReport',
       label: 'Ревизия',
-      icon: <ShoppingOutlined />,
+      icon: <AuditOutlined />,
       element: <RevisionReport />,
       code: 'whs_revision',
+    },
+     {
+      path: '/stockreport',
+      key: 'stockreport',
+      label: 'Остаток на складе',
+      icon: <DatabaseOutlined />,
+      element: <StockReport />,
+      code: 'whs_leftovers',
     },
 
     ],

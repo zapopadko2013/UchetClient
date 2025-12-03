@@ -71,6 +71,7 @@
 ,"soldProductsReport": "Sold Products"
 ,"invoicesHistoryReport": "Invoice History Report"
 ,"revisionReport": "Revision"
+,"stockreport": "Stock balance"
 
   },
   "userMenu": {
@@ -2903,7 +2904,12 @@
     "loadError": "Error loading invoice history",
     "sheetName": "RevisionReport",
     "filter": {
-        "point": "Sales Point"
+        "point": "Sales Point",
+        "status": "Product Status",
+    "allProducts": "All Products",
+    "revised": "Only Revised Products",
+    "notRevised": "Only Non-Revised Products",
+    "onlyDiff": "Only Products with Stock Difference"
     },
     "button": {
         "search": "Search",
@@ -2918,6 +2924,103 @@
         "submitdate": "Completion Date"
     }
 }
+,
+"stockReport": {
+  "sheetNameAdvanced": "Sold Products (Advanced)",
+  "placeholder": {
+    "attributeValue": "Attribute value",
+    "point": "Point of sale",
+    "brand": "Brand",
+    "categories": "Categories",
+    "counterparty": "Supplier",
+    "transactionType": "Transaction type",
+    "clientType": "Client type",
+    "sellType": "Sale type",
+    "attribute": "Attribute",
+    "stock": "Warehouse"
+  },
+  "option": {
+    "all": "All",
+    "sales": "Sales",
+    "returns": "Returns",
+    "individual": "Individual",
+    "legalEntity": "Legal entity",
+    "notSpecified": "Not specified",
+    "retail": "Retail",
+    "wholesale": "Wholesale",
+    "withoutNds": "Without VAT",
+    "withNds": "With VAT"
+  },
+  "checkbox": {
+    "splitAttributes": "Find products by characteristics (e.g., color, size, etc.)",
+    "includeConsignment": "Include consignment goods",
+    "includeDeleted": "Include deleted products"
+  },
 
+  "advancedTable": {
+    "transactionType": "Transaction type",
+    "productName": "Product name",
+    "sellDate": "Date",
+    "consultant": "Consultant",
+    "priceDiscount": "Final amount with discount",
+    "priceDiscountBonus": "Final amount with discount (minus bonuses)",
+    "quantity": "Quantity",
+    "stock": "Current stock",
+    "counterparty": "Supplier",
+    "brand": "Brand",
+    "category": "Category"
+  },
+
+  "tab": {
+    "simple": "Simple",
+    "advanced": "Advanced"
+  },
+
+  "loadError": "Data loading error",
+  "sheetName": "Stock balance",
+
+  "button": {
+    "search": "Search",
+    "export": "Export to Excel"
+  },
+
+  "table": {
+    "number": "№",
+    "operationType": "Operation type",
+    "warehouse": "Warehouse",
+    "productName": "Product name",
+    "amount": "Amount",
+    "quantity": "Quantity",
+    "brand": "Brand",
+    "pointname": "Warehouse",
+    "productname": "Product name",
+    "code": "Barcode",
+    "price": "Sale price",
+    "purchaseprice": "Purchase price",
+    "wholesale_price": "Wholesale price",
+    "units": "Quantity",
+    "counterparty": "Counterparty",
+    "cost": "Total cost",
+    "price1": "Stock value at retail prices",
+    "markup": "Markup",
+    "nds": "VAT",
+    "yes": "Yes",
+    "no": "No",
+    "unitsprid": "Unit of measurement",
+    "pieceprice": "Price per piece",
+    "pieceinpack": "Pieces per pack",
+    "piece": "Piece-by-piece sale",
+    "category": "Category"
+  },
+
+  "operationTypes": {
+    "Продажа": "Sale",
+    "Возврат": "Return"
+  },
+
+  "summary": {
+    "total": "Total"
+  }
+}
 
 }

@@ -189,6 +189,8 @@ const SoldProductsAdvanced: React.FC = () => {
     <div className={styles.container}>
       <Row gutter={[16, 16]}>
     <Col span={12}>
+    <div className={styles.filterLabel}>{t('reportchecks.colDate')}</div>
+      
       <DateRangePickerSafe
         value={dateRange}
         onChange={(dates) => {
@@ -199,6 +201,8 @@ const SoldProductsAdvanced: React.FC = () => {
       />
     </Col>
     <Col span={12}>
+    <div className={styles.filterLabel}>{t('soldProducts.advancedTable.productName')}</div>
+          
       <ProductBarcodeSearch
         onProductSelect={(id, code) => {
           setSelectedProduct(id);
@@ -212,6 +216,8 @@ const SoldProductsAdvanced: React.FC = () => {
       />
     </Col>
     <Col span={12}>
+    <div className={styles.filterLabel}>{t('soldProducts.placeholder.point')}</div>
+          
       <Select
         placeholder={t('soldProducts.placeholder.point')}
         value={selectedPoint}
@@ -223,6 +229,8 @@ const SoldProductsAdvanced: React.FC = () => {
       </Select>
     </Col>
     <Col span={12}>
+    <div className={styles.filterLabel}>{t('soldProducts.placeholder.brand')}</div>
+      
       <Select
         placeholder={t('soldProducts.placeholder.brand')}
         value={selectedBrand}
@@ -234,6 +242,8 @@ const SoldProductsAdvanced: React.FC = () => {
       </Select>
     </Col>
     <Col span={12}>
+    <div className={styles.filterLabel}>{t('soldProducts.placeholder.categories')}</div>
+          
       <TreeSelect
         treeData={renderCategoryTree(categories)}
         value={selectedCategories}
@@ -244,6 +254,8 @@ const SoldProductsAdvanced: React.FC = () => {
       />
     </Col>
     <Col span={12}>
+    <div className={styles.filterLabel}>{t('soldProducts.placeholder.counterparty')}</div>
+          
       <Select
         placeholder={t('soldProducts.placeholder.counterparty')}
         value={selectedCounterparty}
@@ -255,6 +267,8 @@ const SoldProductsAdvanced: React.FC = () => {
       </Select>
     </Col>
     <Col span={12}>
+    <div className={styles.filterLabel}>{t('soldProducts.placeholder.transactionType')}</div>
+          
       <Select
         placeholder={t('soldProducts.placeholder.transactionType')}
         value={transactionType}
@@ -267,6 +281,8 @@ const SoldProductsAdvanced: React.FC = () => {
       </Select>
     </Col>
     <Col span={12}>
+    <div className={styles.filterLabel}>{t('soldProducts.placeholder.clientType')}</div>
+      
       <Select
         placeholder={t('soldProducts.placeholder.clientType')}
         value={clientType}
@@ -280,6 +296,8 @@ const SoldProductsAdvanced: React.FC = () => {
       </Select>
     </Col>
     <Col span={12}>
+    <div className={styles.filterLabel}>{t('soldProducts.placeholder.sellType')}</div>
+          
       <Select
         placeholder={t('soldProducts.placeholder.sellType')}
         value={sellType}
@@ -309,6 +327,8 @@ const SoldProductsAdvanced: React.FC = () => {
     </Col>
     {splitAttributes && (
       <Col span={12}>
+        <div className={styles.filterLabel}>{t('soldProducts.placeholder.attribute')}</div>
+      
         <Select
           placeholder={t('soldProducts.placeholder.attribute')}
           value={selectedAttribute?.id || "@"}

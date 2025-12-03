@@ -329,6 +329,7 @@ const downloadInvoice = async (transactionId: string) => {
 <Row gutter={[16, 16]} align="middle">
   
   <Col xs={24} sm={24} md={12}>
+  <div className={styles.filterLabel}>{t('reportchecks.colDate')}</div>
     <DateRangePickerSafe
       value={dates}
       onChange={setDates}
@@ -336,6 +337,7 @@ const downloadInvoice = async (transactionId: string) => {
   </Col>
 
   <Col xs={24} sm={24} md={12}>
+  <div className={styles.filterLabel}>{t('reportchecks.pointPlaceholder')}</div>
     <Select
       value={pointId}
       onChange={setPointId}
@@ -346,6 +348,7 @@ const downloadInvoice = async (transactionId: string) => {
   </Col>
 
   <Col xs={24} sm={24} md={12}>
+  <div className={styles.filterLabel}>{t('reportchecks.clientTypePlaceholder')}</div>
     <Select
       value={clientType}
       onChange={setClientType}
@@ -359,6 +362,7 @@ const downloadInvoice = async (transactionId: string) => {
   </Col>
 
   <Col xs={24} sm={24} md={12}>
+  <div className={styles.filterLabel}>{t('reportchecks.cashierPlaceholder')}</div>
     <Select
       value={cashierId}
       onChange={setCashierId}
@@ -369,6 +373,7 @@ const downloadInvoice = async (transactionId: string) => {
   </Col>
 
   <Col xs={24} sm={24} md={12}>
+  <div className={styles.filterLabel}>{t('reportchecks.consultantPlaceholder')}</div>
     <Select
       value={consultantId}
       onChange={setConsultantId}

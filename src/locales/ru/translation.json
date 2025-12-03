@@ -73,6 +73,7 @@
     ,"soldProductsReport": "Проданные товары"
     ,"invoicesHistoryReport": "История по накладным"
     ,"revisionReport": "Ревизия"
+    ,"stockreport": "Остаток на складе"
     
     
 
@@ -3216,6 +3217,7 @@
  
   "revisionReport": {
     "loadDetailsError": "Ошибка загрузки деталей накладной",
+    
   "details": {
     
     "unitsWas": "До ревизии",
@@ -3244,7 +3246,11 @@
     "loadError": "Ошибка загрузки истории накладных",
     "sheetName": "ОтчётПоРевизиям",
     "filter": {
-      
+      "status": "Статус товара",
+  "allProducts": "Все товары",
+  "revised": "Только товары прошедшие ревизию",
+  "notRevised": "Только товары не прошедшие ревизию",
+  "onlyDiff": "Только товары с разницей в остатках",
       "point": "Торговая точка"
     },
     "button": {
@@ -3261,6 +3267,107 @@
       "submitdate": "Дата завершения"
     }
   }
+
+  ,  "stockReport": {
+    
+    "sheetNameAdvanced": "Проданные товары (Расширенный)",
+    "placeholder": {
+       "attributeValue": "Значение атрибута",
+      "point": "Торговая точка",
+      "brand": "Бренд",
+      "categories": "Категории",
+      "counterparty": "Поставщик",
+      "transactionType": "Тип транзакции",
+      "clientType": "Тип клиента",
+      "sellType": "Тип продажи",
+      "attribute": "Атрибут",
+      "stock": "Склад"
+    },
+    "option": {
+      "all": "Все",
+      "sales": "Продажи",
+      "returns": "Возвраты",
+      "individual": "Физ. лицо",
+      "legalEntity": "Юр. лицо",
+      "notSpecified": "Не указан",
+      "retail": "Розничная",
+      "wholesale": "Оптовая",
+      "withoutNds": "Без НДС",
+      "withNds": "С НДС"
+      
+    },
+    "checkbox": {
+      "splitAttributes": "Найти товары по характеристикам (Например: по цвету, размеру и т.д.)",
+      "includeConsignment": "Включая товары на консигнации",
+      "includeDeleted": "Включая товары на консигнации"
+      
+    },
+    
+    "advancedTable": {
+      "transactionType": "Вид операции",
+      "productName": "Наименование товара",
+      "sellDate": "Дата",
+      "consultant": "Консультант",
+      "priceDiscount": "Итоговая сумма со скидкой",
+      "priceDiscountBonus": "Итоговая сумма со скидкой (за минусом бонусов)",
+      "quantity": "Количество",
+      "stock": "Текущий остаток",
+      "counterparty": "Поставщик",
+      "brand": "Бренд",
+      "category": "Категория"
+    },
+   
+
+    "tab": {
+      "simple": "Упрощённый",
+      "advanced": "Расширенный"
+    },
+    "loadError": "Ошибка загрузки данных",
+    "sheetName": "Остаток на складе",
+    
+    "button": {
+      "search": "Поиск",
+      "export": "Экспорт в Excel"
+    },
+    "table": {
+      "number": "№",
+      "operationType": "Вид операции",
+      "warehouse": "Склад",
+      "productName": "Наименование",
+      "amount": "Сумма",
+      "quantity": "Количество",
+      "brand": "Бренд",
+      "pointname": "Склад",
+      "productname": "Наименование товара",
+      "code": "Штрих-код",
+      "price": "Цена продажи",
+      "purchaseprice": "Цена закупки",
+      "wholesale_price": "Оптовая цена",
+      "units": "Количество",
+      "counterparty": "Контрагент",
+      "cost": "Общая себестоимость",
+      "price1": "Остаток в ценах реализации",
+      "markup": "Наценка",
+      "nds": "НДС",
+      "yes": "Да",
+      "no": "Нет",
+      "unitsprid": "Единица измерения",
+      "pieceprice": "Цена за штуку",
+      "pieceinpack": "Штук в упаковке",
+      "piece": "Продажа поштучно",
+      "category": "Категория"
+      
+      
+    },
+    "operationTypes": {
+      "Продажа": "Продажа",
+      "Возврат": "Возврат"
+    },
+    "summary": {
+      "total": "Итого"
+    }
+  }
+
 
 
 }

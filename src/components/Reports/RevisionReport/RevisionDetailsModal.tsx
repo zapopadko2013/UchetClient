@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Modal, Table, Button, Row, Col, Typography, message } from "antd";
+import { Modal, Table, Button, Row, Col, Typography, message,  Radio, Checkbox } from "antd";
 import * as XLSX from "xlsx";
 import dayjs from "dayjs";
 import { useTranslation } from "react-i18next"; // 💡 Импорт
@@ -46,6 +46,11 @@ const RevisionDetailsModal: React.FC<RevisionDetailsModalProps> = ({
   const [details, setDetails] = useState<DetailRow[]>([]);
   const [loading, setLoading] = useState(false);
 
+  // 1. Фильтр по статусу ревизии (прошел/не прошел)
+const [revisionStatus, setRevisionStatus] = useState< 'done' | 'undone'>('done'); 
+// 2. Галочка "Только с разницей"
+const [onlyDiff, setOnlyDiff] = useState(false);
+
   const getHeaders = () => ({
     Authorization: `Bearer ${localStorage.getItem("accessToken") || ""}`,
     "Content-Type": "application/json",
@@ -54,17 +59,30 @@ const RevisionDetailsModal: React.FC<RevisionDetailsModalProps> = ({
   // --------------------------
   // Загрузка деталей
   // --------------------------
-  useEffect(() => {
+  /* useEffect(() => {
     if (!visible) return;
     loadDetails();
-  }, [visible]);
+  }, [visible]); */
+
+  useEffect(() => {
+  // Проверка: мы загружаем данные только если модалка видна,
+  // и только после того, как она была инициализирована.
+  if (visible && invoice && invoice.revisionnumber) {
+    loadDetails();
+  }
+//  Добавляем фильтры в массив зависимостей
+}, [visible, invoice, revisionStatus, onlyDiff]);
 
   const loadDetails = async () => {
     setLoading(true);
     try {
+
+      let onlyDiffParam = onlyDiff ? '1' : '0';
+      let parametr = revisionStatus === 'undone' ? '3' : '2';
+
       const url =
         `${API_URL}/api/report/revision/details?` +
-        `revisionnumber=${invoice.revisionnumber}&&parametr=2&onlyDiff=0`;
+        `revisionnumber=${invoice.revisionnumber}&&parametr=${parametr}&onlyDiff=${onlyDiffParam}`;
 
       const res = await sendRequest(url, { headers: getHeaders() });
       setDetails(res);
@@ -89,7 +107,16 @@ const RevisionDetailsModal: React.FC<RevisionDetailsModalProps> = ({
             },
             { 
                 title: t('revisionReport.details.productName'), // Товар
-                dataIndex: "name", 
+               // dataIndex: "name", 
+               render: (row: DetailRow) => {
+      // Проверяем, существует ли attributescaption и не является ли оно пустым
+      if (row.attributescaption) {
+        // Объединяем наименование и описание атрибутов через разделитель
+        return `${row.name}, (${row.code}), (${row.attributescaption})`;
+      }
+      // Если атрибутов нет, возвращаем только наименование
+      return `${row.name}, (${row.code})`;
+    },
                 width: 250 
             },
             { 
@@ -236,6 +263,32 @@ const totalDiffPrice = details.reduce((s, r) => s + (r.diff_price || 0), 0);
           </Col>
 
           
+        </Row>
+        <Row gutter={[16, 16]} align="bottom">
+            {/* Переключатели статуса */}
+            <Col span={10}>
+                <div className={styles.filterLabel}>{t('revisionReport.filter.status')}</div>
+                <Radio.Group 
+                    onChange={(e) => setRevisionStatus(e.target.value)} 
+                    value={revisionStatus}
+                >
+                    
+                    <Radio value="done">{t('revisionReport.filter.revised')}</Radio>
+                    <Radio value="undone">{t('revisionReport.filter.notRevised')}</Radio>
+                </Radio.Group>
+            </Col>
+
+            {/* Галочка разницы */}
+            <Col span={6}>
+                <Checkbox 
+                    checked={onlyDiff} 
+                    onChange={(e) => setOnlyDiff(e.target.checked)}
+                >
+                    {t('revisionReport.filter.onlyDiff')}
+                </Checkbox>
+            </Col>
+
+            
         </Row>
       </div>
 

@@ -168,6 +168,7 @@ const SoldProductsSimple: React.FC = () => {
       <Row gutter={[16, 16]}>
     <Col xs={24} sm={12}>
       {/* DateRangePickerSafe - оставляем как есть, предполагая, что он сам переводит даты */}
+      <div className={styles.filterLabel}>{t('reportchecks.colDate')}</div>
       <DateRangePickerSafe
         value={dateRange}
         onChange={(dates) => {
@@ -180,6 +181,8 @@ const SoldProductsSimple: React.FC = () => {
 
     <Col xs={24} sm={12}>
       {/* ProductBarcodeSearch - оставляем как есть, предполагая, что он внутренне переведен или не содержит видимого текста */}
+      <div className={styles.filterLabel}>{t('soldProducts.advancedTable.productName')}</div>
+      
       <ProductBarcodeSearch
         onProductSelect={(id, code) => {
           setSelectedProduct(id);
@@ -194,6 +197,7 @@ const SoldProductsSimple: React.FC = () => {
     </Col>
 
     <Col xs={24} sm={12}>
+    <div className={styles.filterLabel}>{t('soldProducts.placeholder.point')}</div>
       <Select
         placeholder={t('soldProducts.placeholder.point')} // Перевод плейсхолдера
         value={selectedPoint}
@@ -208,6 +212,7 @@ const SoldProductsSimple: React.FC = () => {
     </Col>
 
     <Col xs={24} sm={12}>
+    <div className={styles.filterLabel}>{t('soldProducts.placeholder.brand')}</div>
       <Select
         placeholder={t('soldProducts.placeholder.brand')} // Перевод плейсхолдера
         value={selectedBrand}
@@ -222,6 +227,8 @@ const SoldProductsSimple: React.FC = () => {
     </Col>
 
     <Col xs={24} sm={12}>
+    <div className={styles.filterLabel}>{t('soldProducts.placeholder.categories')}</div>
+    
       <TreeSelect
         treeData={renderCategoryTree(categories)}
         value={selectedCategories}

@@ -73,6 +73,7 @@
 ,"soldProductsReport": "Сатылған тауарлар"
 ,"invoicesHistoryReport": "Құжаттар бойынша тарих"
 ,"revisionReport": "Тексеру"
+,"stockreport": "Қоймадағы қалдық"
 
 
   },
@@ -2909,7 +2910,12 @@
     "loadError": "Құжаттар тарихын жүктеу қатесі",
     "sheetName": "Ревизиялартуралыесеп",
     "filter": {
-        "point": "Сауда нүктесі"
+        "point": "Сауда нүктесі",
+        "status": "Тауар мәртебесі",
+    "allProducts": "Барлық тауарлар",
+    "revised": "Тек ревизиядан өткен тауарлар",
+    "notRevised": "Тек ревизиядан өтпеген тауарлар",
+    "onlyDiff": "Тек қалдықтарында айырмашылық бар тауарлар"
     },
     "button": {
         "search": "Іздеу",
@@ -2923,6 +2929,104 @@
         "createdate": "Бастау күні",
         "submitdate": "Аяқтау күні"
     }
+}
+,
+"stockReport": {
+  "sheetNameAdvanced": "Сатылған тауарлар (Кеңейтілген)",
+  "placeholder": {
+    "attributeValue": "Атрибут мәні",
+    "point": "Сату нүктесі",
+    "brand": "Бренд",
+    "categories": "Санаттар",
+    "counterparty": "Жеткізуші",
+    "transactionType": "Транзакция түрі",
+    "clientType": "Клиент түрі",
+    "sellType": "Сату түрі",
+    "attribute": "Атрибут",
+    "stock": "Қойма"
+  },
+  "option": {
+    "all": "Барлығы",
+    "sales": "Сату",
+    "returns": "Қайтарым",
+    "individual": "Жеке тұлға",
+    "legalEntity": "Заңды тұлға",
+    "notSpecified": "Көрсетілмеген",
+    "retail": "Бөлшек",
+    "wholesale": "Жаппай",
+    "withoutNds": "ҚҚС-сыз",
+    "withNds": "ҚҚС-пен"
+  },
+  "checkbox": {
+    "splitAttributes": "Тауарларды сипаттамалары бойынша іздеу (мысалы: түсі, өлшемі және т.б.)",
+    "includeConsignment": "Кеңселік тауарларды қосу",
+    "includeDeleted": "Жойылған тауарларды қосу"
+  },
+
+  "advancedTable": {
+    "transactionType": "Операция түрі",
+    "productName": "Тауар атауы",
+    "sellDate": "Күні",
+    "consultant": "Кеңесші",
+    "priceDiscount": "Жеңілдікпен соңғы сома",
+    "priceDiscountBonus": "Жеңілдікпен соңғы сома (бонуссыз)",
+    "quantity": "Саны",
+    "stock": "Ағымдағы қалдық",
+    "counterparty": "Жеткізуші",
+    "brand": "Бренд",
+    "category": "Санат"
+  },
+
+  "tab": {
+    "simple": "Қарапайым",
+    "advanced": "Кеңейтілген"
+  },
+
+  "loadError": "Деректерді жүктеу қатесі",
+  "sheetName": "Қоймадағы қалдық",
+
+  "button": {
+    "search": "Іздеу",
+    "export": "Excel-ге экспорт"
+  },
+
+  "table": {
+    "number": "№",
+    "operationType": "Операция түрі",
+    "warehouse": "Қойма",
+    "productName": "Атауы",
+    "amount": "Сома",
+    "quantity": "Саны",
+    "brand": "Бренд",
+    "pointname": "Қойма",
+    "productname": "Тауар атауы",
+    "code": "Штрихкод",
+    "price": "Сату бағасы",
+    "purchaseprice": "Сатып алу бағасы",
+    "wholesale_price": "Жаппай баға",
+    "units": "Саны",
+    "counterparty": "Контрагент",
+    "cost": "Жалпы өзіндік құн",
+    "price1": "Қалдықтың сату бағасы бойынша құны",
+    "markup": "Үстеме",
+    "nds": "ҚҚС",
+    "yes": "Иә",
+    "no": "Жоқ",
+    "unitsprid": "Өлшем бірлігі",
+    "pieceprice": "Дана бағасы",
+    "pieceinpack": "Қаптамадағы дана саны",
+    "piece": "Даналап сату",
+    "category": "Санат"
+  },
+
+  "operationTypes": {
+    "Продажа": "Сату",
+    "Возврат": "Қайтару"
+  },
+
+  "summary": {
+    "total": "Жалпы"
+  }
 }
 
 }

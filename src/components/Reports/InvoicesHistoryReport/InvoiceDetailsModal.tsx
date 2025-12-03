@@ -28,6 +28,7 @@ interface DetailRow {
   reason: string | null;
   oldprice: number | null;
   newprice: number | null;
+  attributescaption: string | null;
 }
 
 const InvoiceDetailsModal: React.FC<InvoiceDetailsModalProps> = ({
@@ -82,7 +83,24 @@ const InvoiceDetailsModal: React.FC<InvoiceDetailsModalProps> = ({
         render: (_: any, __: any, i: number) => i + 1,
         width: 60,
       },
-      { title: t('invoicesHistory.details.productName'), dataIndex: "name", width: 250 },
+       { title: t('invoicesHistory.details.productName'), 
+        
+        //dataIndex: "name",
+        render: (row: DetailRow) => {
+      // Проверяем, существует ли attributescaption и не является ли оно пустым
+      if (row.attributescaption) {
+        // Объединяем наименование и описание атрибутов через разделитель
+        return `${row.name} (${row.attributescaption})`;
+      }
+      // Если атрибутов нет, возвращаем только наименование
+      return row.name;
+    },
+        
+        width: 250 },
+       
+
+      
+      
       { title: t('invoicesHistory.details.barcode'), dataIndex: "code", width: 120 },
     ];
 
