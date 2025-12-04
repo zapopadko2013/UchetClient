@@ -485,6 +485,14 @@ export const routes = [
     ],
 },  
 
+{
+      path: '/saleslist',
+      key: 'saleslist',
+      label: 'Продажи',
+      icon: <ClusterOutlined />,
+      element: <NewsPage />,
+      code: 'saleslist',
+    },
 
 /* {
       path: '/adminattribute/adminattributeadd',

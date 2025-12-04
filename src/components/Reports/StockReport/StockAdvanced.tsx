@@ -334,9 +334,9 @@ const handleTableChange = (newPagination: any) => {
       align: 'right',
       render: (_, record) => {
         const salePrice = record.price;
-        const purchasePrice = record.pricezak;
+        const purchasePrice = Number(record.cost);
         if (purchasePrice > 0) {
-          return `${(((salePrice / purchasePrice) - 1) * 100).toFixed(1)}%`;
+          return `${(((salePrice -purchasePrice)/ purchasePrice ) * 100).toFixed(2)}%`;
         }
         return 'N/A';
       }

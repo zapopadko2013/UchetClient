@@ -58,7 +58,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ username, accesses }) => {
     // Коды маршрутов, которые всегда видны независимо от доступа
     //const alwaysVisibleCodes = ['home', 'news', 'change-password','adminnews','admincompanysettings','admincompanycreate','setting_portal_user','businessManagement','admincompanylist','admincompanyinfo','admindownloadproduct','adminattribute','adminattributeadd','adminabrand','adminusers'];
     const alwaysVisibleCodes1 = [
-         'home', 'news', 'change-password', 'setting_portal_user', 'businessManagement'
+         'home', 'news', 'change-password', 'setting_portal_user', 'businessManagement','saleslist'
     ];
 
     const alwaysVisibleCodesd = [
