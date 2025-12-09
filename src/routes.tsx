@@ -84,6 +84,7 @@ import SoldProductsReport from './components/Reports/SoldProductsReport/SoldProd
 import InvoicesHistoryReport from './components/Reports/InvoicesHistoryReport/InvoicesHistoryReport';
 import RevisionReport from './components/Reports/RevisionReport/RevisionReport';
 import StockReport from './components/Reports/StockReport/StockReport';
+import SalePage from './components/SalePage/SalePage';
 
 
 
@@ -490,7 +491,7 @@ export const routes = [
       key: 'saleslist',
       label: 'Продажи',
       icon: <ClusterOutlined />,
-      element: <NewsPage />,
+      element: <SalePage />,
       code: 'saleslist',
     },
 
