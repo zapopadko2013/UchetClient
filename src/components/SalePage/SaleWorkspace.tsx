@@ -324,8 +324,10 @@ const SaleWorkspace: React.FC<Props> = ({ pointId, cashboxUser, role4Users }) =>
         role4Users={role4Users}
         cashboxUser={cashboxUser}
         onClose={() => setPaymentVisible(false)}
-        onCompletePayment={(data) => {
-          console.log("Оплата завершена:", data);
+        onCompletePayment={(_) => {
+          //console.log("Оплата завершена:", data);
+          setSaleProducts([]);        
+          setSelectedRowKey(null);   
         }}
       />
     </>

@@ -15,7 +15,8 @@ import AttributeField from './AttributeField'; // Предполагаем, чт
 interface AdvancedSale {
   consultant: string | null;
   counterparty: string;
-  transaction_type: string;
+  //transaction_type: string;
+  type: string;
   sell_date: string;
   name: string;
   brand: string;
@@ -132,7 +133,8 @@ const SoldProductsAdvanced: React.FC = () => {
   const handleExport = () => {
   // Конвертируем данные в формат с переведенными заголовками
   const exportData = data.map(item => ({
-    [t('soldProducts.advancedTable.transactionType')]: t(`soldProducts.operationTypes.${item.transaction_type}`, item.transaction_type), // Перевод
+    //[t('soldProducts.advancedTable.transactionType')]: t(`soldProducts.operationTypes.${item.transaction_type}`, item.transaction_type), // Перевод
+    [t('soldProducts.advancedTable.transactionType')]: t(`soldProducts.operationTypes.${item.type}`, item.type), // Перевод
     [t('soldProducts.advancedTable.productName')]: item.name,
     [t('soldProducts.advancedTable.sellDate')]: dayjs(item.sell_date).format("DD.MM.YYYY"),
     [t('soldProducts.advancedTable.consultant')]: item.consultant || "",
@@ -162,7 +164,8 @@ const SoldProductsAdvanced: React.FC = () => {
   const columns: ColumnsType<AdvancedSale> = [
     { 
       title: t('soldProducts.advancedTable.transactionType'), 
-      dataIndex: 'transaction_type',
+      //dataIndex: 'transaction_type',
+      dataIndex: 'type',
       // Опционально: можно добавить рендер для стилизации, как в SoldProductsSimple
       render: (text: string) => {
         const translatedText = t(`soldProducts.operationTypes.${text}`, text);

@@ -73,6 +73,9 @@ const ProductListModal: React.FC<Props> = ({
             price: s.price ?? 0,
             stock: s.units ?? 0,
             attributes: s.attributes ?? [],
+            ///
+            listcode: s.listcode,
+            ///
           });
         });
       });
