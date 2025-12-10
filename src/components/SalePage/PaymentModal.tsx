@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Modal, Input, Button, Select, Checkbox, message } from "antd";
 import useApiRequest from "../../hooks/useApiRequest";
+import ClientSelectModal from "./ClientSelectModal";
+import { SearchOutlined } from "@ant-design/icons";
 
 const { Option } = Select;
 
@@ -57,6 +59,22 @@ const PaymentModal: React.FC<Props> = ({
       null
     );
 
+  const [selectClientModalOpen, setSelectClientModalOpen] = useState(false);
+  const [foundClients, setFoundClients] = useState<any[]>([]);
+   
+
+
+    // --- Продажа в долг ---
+  const [debtModalVisible, setDebtModalVisible] = useState(false);
+const [debtClient, setDebtClient] = useState<any>(null); // хранит найденного клиента
+const [debtPhone, setDebtPhone] = useState<string>("");
+const [debtFirstname, setDebtFirstname] = useState<string>("");
+const [debtLastname, setDebtLastname] = useState<string>("");
+const [debtAmount, setDebtAmount] = useState<number>(0);  
+
+const [confirmedDebt, setConfirmedDebt] = useState<{ client: any; amount: number } | null>(null);
+  
+
   useEffect(() => {
     if (currentPaymentType === "cash") {
       setChange(cashAmount - totalAmount);
@@ -66,28 +84,229 @@ const PaymentModal: React.FC<Props> = ({
     }
   }, [cashAmount, cardAmount, transferAmount, currentPaymentType, totalAmount]);
 
+   const getHeaders = () => ({
+    Authorization: `Bearer ${localStorage.getItem("accessToken") || ""}`,
+    "Content-Type": "application/json",
+  });
+
+// ======================= ПОИСК КЛИЕНТА ========================
+
+const searchByPhone = async () => {
+   //const phone = debtPhone.replace(/\D/g, "").slice(1); // убираем +7
+   const phone = debtPhone;
+  if (!phone) return message.error("Введите номер телефона");
+
+  try {
+    const data = await sendRequest(
+      `${import.meta.env.VITE_API_URL}/external/api/customers/getfizinfo?telephone=${phone}`
+    ,{ headers: getHeaders() }
+    );
+
+    if (!data) return message.error("Клиент не найден");
+
+    const client = Array.isArray(data) ? data[0] : data;
+
+    setDebtClient(client);
+    setDebtFirstname(client.firstname || "");
+    setDebtLastname(client.lastname || "");
+    setDebtPhone(debtPhone);
+
+  } catch {
+    message.error("Ошибка поиска клиента");
+  }
+};
+
+const searchByFirstname = async () => {
+  if (!debtFirstname) return message.error("Введите имя");
+
+  try {
+    const data = await sendRequest(
+      `${import.meta.env.VITE_API_URL}/external/api/customers/getfizinfobyname?name=${encodeURIComponent(debtFirstname)}`
+    ,{ headers: getHeaders() }
+    );
+
+    if (!data) return message.error("Клиент не найден");
+
+    /* const client = Array.isArray(data) ? data[0] : data;
+
+    setDebtClient(client);
+    setDebtFirstname(client.firstname || "");
+    setDebtLastname(client.lastname || "");
+    setDebtPhone(`${client.telephone}`); */
+
+    if (data.length === 1) {
+      const client = Array.isArray(data) ? data[0] : data;
+      setDebtClient(client);
+      setDebtFirstname(client.firstname || "");
+      setDebtLastname(client.lastname || "");
+      setDebtPhone(`${client.telephone}`);
+    } else {
+      // несколько клиентов — открываем модалку выбора
+      setFoundClients(data);
+      setSelectClientModalOpen(true);
+    }
+
+  } catch {
+    message.error("Ошибка поиска клиента");
+  }
+};
+
+const searchByLastname = async () => {
+  if (!debtLastname) return message.error("Введите фамилию");
+
+  try {
+    const data = await sendRequest(
+      `${import.meta.env.VITE_API_URL}/external/api/customers/getfizinfobylastname?name=${encodeURIComponent(debtLastname)}`
+    ,{ headers: getHeaders() }
+    );
+
+    if (!data) return message.error("Клиент не найден");
+
+    /* const client = Array.isArray(data) ? data[0] : data;
+
+    setDebtClient(client);
+    setDebtFirstname(client.firstname || "");
+    setDebtLastname(client.lastname || "");
+    setDebtPhone(`${client.telephone}`); */
+
+    if (data.length === 1) {
+      const client = Array.isArray(data) ? data[0] : data;
+      setDebtClient(client);
+      setDebtFirstname(client.firstname || "");
+      setDebtLastname(client.lastname || "");
+      setDebtPhone(`${client.telephone}`);
+    } else {
+      // несколько клиентов — открываем модалку выбора
+      setFoundClients(data);
+      setSelectClientModalOpen(true);
+    }
+
+  } catch {
+    message.error("Ошибка поиска клиента");
+  }
+};
+
+const handleClientSelect = (client: any) => {
+  setDebtClient(client);
+  setDebtFirstname(client.firstname || "");
+  setDebtLastname(client.lastname || "");
+  setDebtPhone(client.telephone || "");
+  setSelectClientModalOpen(false);
+};
+
+
+const handleOpenDebt = () => {
+  // если уже выбран клиент
+  if (confirmedDebt) {
+    Modal.confirm({
+      title: "Удалить долг?",
+      content: "Вы хотите удалить текущего должника?",
+      okText: "Да",
+      cancelText: "Нет",
+      onOk: () => {
+        setConfirmedDebt(null);
+        setDebtClient(null);
+        setDebtPhone("");
+        setDebtFirstname("");
+        setDebtLastname("");
+        setDebtAmount(0);
+      }
+    });
+    return;
+  }
+
+  setCurrentPaymentType("debt");
+  setDebtModalVisible(true);
+};
+
+const confirmDebt = () => {
+  if (!debtClient) {
+    message.error("Сначала найдите клиента");
+    return;
+  }
+
+  if (debtAmount <= 0) {
+    message.error("Введите сумму долга");
+    return;
+  }
+
+  if (debtAmount > totalAmount) {
+    message.error("Сумма долга не может превышать сумму оплаты");
+    return;
+  }
+
+  // Сценарий: долг равен сумме чека
+  if (debtAmount === totalAmount) {
+    Modal.confirm({
+      title: "Подтвердите оплату в долг",
+      content: `Продать в долг ${debtAmount} клиенту ${debtClient.firstname} ${debtClient.lastname}?`,
+      onOk: () => {
+        setConfirmedDebt({ client: debtClient, amount: debtAmount });
+        setDebtModalVisible(false);
+        setCurrentPaymentType("debt");
+        message.success("Оплата в долг подтверждена");
+        handlePayment("debt"); // сразу запускаем оплату
+      },
+    });
+    return;
+  }
+
+  // Сценарий: долг меньше суммы чека → смешанная оплата
+  setConfirmedDebt({ client: debtClient, amount: debtAmount });
+  setDebtModalVisible(false);
+  setCurrentPaymentType("mixed");
+  message.success("Долг установлен, будет смешанная оплата");
+};
+
+
+const resetDebtForm = () => {
+  setDebtClient(null);
+  setDebtPhone("");
+  setDebtFirstname("");
+  setDebtLastname("");
+  setDebtAmount(0);
+};
+
+useEffect(() => {
+  if (!debtModalVisible) resetDebtForm();
+}, [debtModalVisible]);
+
+
+
   // -----------------------------------------
   // Открытие модала оплаты
   // -----------------------------------------
   const handleOpenAmountModal = (
-    type: "cash" | "card" | "mixed" | "debit" | "debt" | "certificate"
-  ) => {
-    setCurrentPaymentType(type);
+  type: "cash" | "card" | "mixed" | "debit" | "debt" | "certificate"
+) => {
 
-    if (type === "cash" || type === "mixed") {
-      setAmountModalVisible(true);
-      return;
-    }
 
-    Modal.confirm({
-      title: "Подтвердите оплату",
-      content:
-        type === "card"
-          ? `Подтверждаете оплату картой на сумму ${totalAmount}?`
-          : `Подтверждаете оплату на сумму ${totalAmount}?`,
-      onOk: () => handlePayment(type),
-    });
-  };
+  // --- ЕСЛИ ДОЛГ УСТАНОВЛЕН И ОН < полной суммы ---
+  if (confirmedDebt && confirmedDebt.amount < totalAmount) {
+    setCurrentPaymentType("mixed");
+    setAmountModalVisible(true);
+    return;
+  }
+
+  setCurrentPaymentType(type);
+
+  // Если смешанная оплата — учитываем долг
+  if (type === "cash" || type === "mixed") {
+    setAmountModalVisible(true);
+    return;
+  }
+
+  // Прямые подтверждения (карта / дебет / сертификат)
+  Modal.confirm({
+    title: "Подтвердите оплату",
+    content:
+      type === "card"
+        ? `Подтверждаете оплату картой на сумму ${totalAmount}?`
+        : `Подтверждаете оплату на сумму ${totalAmount}?`,
+    onOk: () => handlePayment(type),
+  });
+};
+
 
   // -----------------------------------------
   // Основная логика оплаты
@@ -107,10 +326,22 @@ const PaymentModal: React.FC<Props> = ({
       return;
     }
 
-    if (type === "mixed" && cashAmount + cardAmount + transferAmount < totalAmount) {
-      message.error("Недостаточно средств для оплаты");
-      return;
-    }
+  if (type === "mixed") {
+  const debtPay = confirmedDebt ? confirmedDebt.amount : 0;
+  const requiredMixedPay = totalAmount - debtPay;
+
+  const realPay = cashAmount + cardAmount + transferAmount;
+
+  if (realPay < requiredMixedPay) {
+    message.error(`Недостаточно средств. Не хватает ${requiredMixedPay - realPay}`);
+    return;
+  }
+
+  if (realPay > requiredMixedPay) {
+    message.error("Сумма оплаты превышает остаток после учета долга");
+    return;
+  }
+}
 
     if (!saleProducts.length) {
       message.error("Нет товаров в чеке");
@@ -140,7 +371,9 @@ const PaymentModal: React.FC<Props> = ({
     const transaction = {
       date: new Date().toLocaleString("ru-RU"),
       bonusadd: accruedBonuses,
-      cashpay: type === "cash" ? cashAmount : cashAmount,
+      //cashpay: type === "cash" ? cashAmount : cashAmount,
+      //cashpay: cashAmount,
+      cashpay: Math.min(cashAmount, totalAmount),
       discount,
       cert: [],
       bonuspay: usedBonuses,
@@ -154,15 +387,19 @@ const PaymentModal: React.FC<Props> = ({
       ofdnumber: "1",
       certpay: certificateAmount,
       tickettype: 0,
-      cardpay: type === "card" ? totalAmount : cardAmount,
+      //cardpay: type === "card" ? totalAmount : cardAmount,
+      cardpay: cardAmount,
       ticketid: 0,
       bonusid: 0,
       cashbox: cashboxUser.cashboxId,
       sellerid: selectedConsultant,
       customerid: 0,
-      fizid: 0,
-      debtpay: type === "debt" ? totalAmount : 0,
-      paymenttype: type,
+      //fizid: 0,
+      //fizid: type === "debt" && debtClient ? debtClient.id : 0,
+      //debtpay: type === "debt" ? totalAmount : 0,
+      //debtpay: type === "debt" ? debtAmount : 0,
+      fizid: confirmedDebt ? confirmedDebt.client.id : 0,
+      debtpay: confirmedDebt ? confirmedDebt.amount : 0, paymenttype: type,
       hash: "",
       debitpay: transferAmount,
       detailsdiscount: 0,
@@ -220,6 +457,11 @@ const PaymentModal: React.FC<Props> = ({
              <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 5 }}>
                 <span><b>Клиент:</b></span>
                 <span>{clientName}</span> 
+                <span>
+   {confirmedDebt
+     ? `${confirmedDebt.client.firstname} ${confirmedDebt.client.lastname}`
+      : ""}
+  </span>
                 </div> 
                 <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 5 }}> 
                   <span><b>ИИН клиента:</b></span> 
@@ -247,7 +489,7 @@ const PaymentModal: React.FC<Props> = ({
                 </div> 
                 <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 5 }}> 
                   <span><b>Долг:</b></span> 
-                  <span>0</span> 
+                  <span>{confirmedDebt ? confirmedDebt.amount : 0}</span> 
                 </div> 
                 <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 5 }}> 
                   <span><b>Продавец консультант:</b></span> 
@@ -294,7 +536,7 @@ const PaymentModal: React.FC<Props> = ({
               🏦 Безналичный
             </Button>
 
-            <Button size="large" onClick={() => handleOpenAmountModal("debt")}>
+            <Button size="large" onClick={() => handleOpenDebt()}>
               📜 В долг
             </Button>
             <Button size="large" onClick={() => handleOpenAmountModal("certificate")}>
@@ -325,33 +567,38 @@ const PaymentModal: React.FC<Props> = ({
           </>
         )}
 
-        {currentPaymentType === "mixed" && (
-          <>
-            <label>Наличные:</label>
-            <Input
-              type="number"
-              value={cashAmount}
-              onChange={(e) => setCashAmount(Number(e.target.value))}
-              style={{ marginBottom: 5 }}
-            />
+       {currentPaymentType === "mixed" && (
+  <>
+    <label>Наличные:</label>
+    <Input
+      type="number"
+      value={cashAmount}
+      onChange={(e) => setCashAmount(Number(e.target.value))}
+      style={{ marginBottom: 5 }}
+    />
 
-            <label>Карта:</label>
-            <Input
-              type="number"
-              value={cardAmount}
-              onChange={(e) => setCardAmount(Number(e.target.value))}
-              style={{ marginBottom: 5 }}
-            />
+    <label>Карта:</label>
+    <Input
+      type="number"
+      value={cardAmount}
+      onChange={(e) => setCardAmount(Number(e.target.value))}
+      style={{ marginBottom: 5 }}
+    />
 
-            <label>Перевод:</label>
-            <Input
-              type="number"
-              value={transferAmount}
-              onChange={(e) => setTransferAmount(Number(e.target.value))}
-              style={{ marginBottom: 5 }}
-            />
-          </>
-        )}
+    <label>Перевод:</label>
+    <Input
+      type="number"
+      value={transferAmount}
+      onChange={(e) => setTransferAmount(Number(e.target.value))}
+      style={{ marginBottom: 5 }}
+    />
+
+    <p>
+      Остаток после долга к оплате:{" "}
+      <b>{totalAmount - (confirmedDebt ? confirmedDebt.amount : 0)}</b>
+    </p>
+  </>
+)}
 
         <Button
           type="primary"
@@ -368,6 +615,72 @@ const PaymentModal: React.FC<Props> = ({
           Завершить оплату
         </Button>
       </Modal>
+
+
+      {/* ===== МОДАЛ: ПРОДАЖА В ДОЛГ ===== */}
+<Modal
+  open={debtModalVisible}
+  title="Продажа в долг"
+  onCancel={() => setDebtModalVisible(false)}
+  footer={null}
+>
+
+  <div style={{ marginBottom: 10 }}>
+    <b>Номер телефона</b>
+    <div style={{ display: "flex", gap: 5 }}>
+      <Input
+        value={debtPhone}
+        addonBefore="+7"
+        onChange={(e) =>
+          setDebtPhone(e.target.value.replace(/\D/g, "").slice(0, 10))
+        }
+      />
+      <Button icon={<SearchOutlined />} onClick={searchByPhone} />
+    </div>
+  </div>
+
+  <div style={{ marginBottom: 10 }}>
+    <b>Имя</b>
+    <div style={{ display: "flex", gap: 5 }}>
+      <Input value={debtFirstname} onChange={(e) => setDebtFirstname(e.target.value)} />
+      <Button icon={<SearchOutlined />} onClick={searchByFirstname} />
+    </div>
+  </div>
+
+  <div style={{ marginBottom: 10 }}>
+    <b>Фамилия</b>
+    <div style={{ display: "flex", gap: 5 }}>
+      <Input value={debtLastname} onChange={(e) => setDebtLastname(e.target.value)} />
+      <Button icon={<SearchOutlined />} onClick={searchByLastname} />
+    </div>
+  </div>
+
+  <div style={{ marginBottom: 10 }}>
+    <b>Текущий долг:</b> {debtClient?.debt || 0}
+  </div>
+
+  <div style={{ marginBottom: 20 }}>
+    <b>Сумма (долг)</b>
+    <Input
+      type="number"
+      value={debtAmount}
+      onChange={(e) => setDebtAmount(Number(e.target.value))}
+    />
+  </div>
+
+  <div style={{ display: "flex", justifyContent: "space-between" }}>
+    <Button onClick={() => setDebtModalVisible(false)}>Отмена</Button>
+    <Button type="primary" onClick={confirmDebt}>Подтвердить</Button>
+  </div>
+</Modal>
+
+<ClientSelectModal
+  open={selectClientModalOpen}
+  clients={foundClients}
+  onSelect={handleClientSelect}
+  onCancel={() => setSelectClientModalOpen(false)}
+/>
+
     </>
   );
 };

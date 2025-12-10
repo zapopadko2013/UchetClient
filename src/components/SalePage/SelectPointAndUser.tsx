@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   Card,
   Select,
@@ -57,23 +57,37 @@ const SelectPointAndUser: React.FC<Props> = ({
   const [step, setStep] = useState(0);
 
   const [selectedPoint, setSelectedPoint] = useState<string | null>(null);
-  const [selectedCashboxId, setSelectedCashboxId] = useState<number | null>(null);
+  const [selectedCashboxId, setSelectedCashboxId] = useState<number | null>(
+    null
+  );
   const [selectedUserId, setSelectedUserId] = useState<string | null>(null);
 
-  // исключаем роль 4
+  // Фильтрация роли 4
   const filteredUsers = users.filter((u) => String(u.role) !== "4");
-  const selectedUser = filteredUsers.find((u) => u.id === selectedUserId);
 
+  const selectedUser = filteredUsers.find(
+    (u) => String(u.id) === selectedUserId
+  );
+
+  // ---------------------------------------------
+  // Выбор торговой точки
+  // ---------------------------------------------
   const handleSelectPoint = async (id: string) => {
     setSelectedPoint(id);
     setStep(1);
     await loadCashboxes(id);
   };
 
+  // ---------------------------------------------
+  // Выбор кассы
+  // ---------------------------------------------
   const handleSelectCashbox = async (id: number) => {
     setSelectedCashboxId(id);
     setStep(2);
-    await loadUsers(selectedPoint!);
+
+    if (selectedPoint) {
+      await loadUsers(selectedPoint);
+    }
   };
 
   return (

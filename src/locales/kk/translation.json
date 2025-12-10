@@ -2694,6 +2694,7 @@
   "paymentTypeCard": "Карта",
   "paymentTypeCash": "Қолма-қол",
   "paymentTypeDebit": "Аударым",
+  "paymentTypeDebt": "Қарызға",
   "paymentTypeMixed": "Аралас",
   "operationTypeReturn": "Қайтару",
   "operationTypePurchase": "Сатып алу",
@@ -2729,6 +2730,7 @@
   "modalCard": "Карта",
   "modalCertificate": "Сертификат",
   "modalDebit": "Аударым",
+  "modalDebt": "Қарызға",
   "modalCloseButton": "Жабу"
 }
 ,

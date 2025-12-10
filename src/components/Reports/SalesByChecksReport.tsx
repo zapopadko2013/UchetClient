@@ -57,6 +57,7 @@ interface FullDetails {
   cardpay: number;
   cashpay: number;
   debitpay: number;
+  debtpay: number;
   certpay: number;
   bonuspay: number;
   bonusadd: number;
@@ -118,6 +119,8 @@ const SalesByChecksReport: React.FC = () => {
           return t('reportchecks.paymentTypeDebit'); // Перевод
         case "mixed":
           return t('reportchecks.paymentTypeMixed'); // Смешанная
+        case "debt":
+          return t('reportchecks.paymentTypeDebt'); // Долг
         default:
           return val;
       }
@@ -494,6 +497,9 @@ const downloadInvoice = async (transactionId: string) => {
 
               <Col span={12}>{t('reportchecks.modalDebit')}:</Col>
               <Col span={12} className={styles.modalRight}>{details.debitpay ?? 0}</Col>
+
+              <Col span={12}>{t('reportchecks.modalDebt')}:</Col>
+              <Col span={12} className={styles.modalRight}>{details.debtpay ?? 0}</Col>
             </Row>
 
             <Button

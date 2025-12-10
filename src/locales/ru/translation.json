@@ -3020,6 +3020,7 @@
     "paymentTypeCard": "Карта",
     "paymentTypeCash": "Наличными",
     "paymentTypeDebit": "Перевод",
+    "paymentTypeDebt": "Долг",
     "paymentTypeMixed": "Смешанная",
     "operationTypeReturn": "Возврат",
     "operationTypePurchase": "Покупка",
@@ -3057,6 +3058,7 @@
     "modalCard": "Картой",
     "modalCertificate": "Сертификатом",
     "modalDebit": "Безналичным/Перевод",
+    "modalDebt": "В долг",
     "modalCloseButton": "Закрыть"
   },
 
