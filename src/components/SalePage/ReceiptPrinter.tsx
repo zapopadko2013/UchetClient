@@ -4,6 +4,7 @@ import useApiRequest from "../../hooks/useApiRequest";
 interface SaleProduct {
   name: string;
   price: number;
+  originalPrice: number;
   qty: number;
   discount?: number;
 }
@@ -94,12 +95,36 @@ const [logoUrl, setLogoUrl] = useState<string | undefined>(undefined);
     }
   }, [displayFile, onLogoLoaded]); // onLogoLoaded должен быть в зависимостях
 
-  const productLines = saleProducts.map((p) => {
+  /* const productLines = saleProducts.map((p) => {
     const priceStr = p.price.toFixed(2) + " ";
     const qtyStr = p.qty.toFixed(3);
     const totalStr = (p.price * p.qty).toFixed(2) + " ";
     return `${padRight(p.name, 20)}\n${padLeft(priceStr, 10)} x${padLeft(qtyStr, 7)} ${padLeft(totalStr, 10)}`;
-  });
+  }); */
+
+  /* const productLines = saleProducts.map((p) => {
+    const priceStr = p.originalPrice.toFixed(2) + " ";
+    const qtyStr = p.qty.toFixed(3);
+    const totalStr = (p.originalPrice * p.qty).toFixed(2) + " ";
+    return `${padRight(p.name, 20)}\n${padLeft(priceStr, 10)} x${padLeft(qtyStr, 7)} ${padLeft(totalStr, 10)}`;
+  }); */
+
+  const productLines = saleProducts.map((p) => {
+  const lineTotal = (p.price || p.originalPrice) * p.qty; // цена после скидки или оригинал
+  const totalStr = lineTotal.toFixed(2) + " ";
+  const priceStr = p.originalPrice.toFixed(2) + " ";
+  const qtyStr = p.qty.toFixed(3);
+
+  // Основная строка товара
+  let line = `${padRight(p.name, 20)}\n${padLeft(priceStr, 10)} x${padLeft(qtyStr, 7)} ${padLeft(totalStr, 10)}`;
+
+  // Если есть скидка, показываем её прямо под товаром
+  if (p.discount && p.discount > 0) {
+    line += `\n${padRight("Скидка:", 20)}-${padLeft(p.discount.toFixed(2) + " ", 10)}`;
+  }
+
+  return line;
+});
 
   const totalDiscount = saleProducts.reduce((sum, p) => sum + (p.discount || 0), 0);
 
@@ -138,13 +163,16 @@ const [logoUrl, setLogoUrl] = useState<string | undefined>(undefined);
         {"\n"}
         {"------------------------------------------\n"}
         {productLines.join("\n------------------------------------------\n")}
-        {totalDiscount > 0 && `\n↳ скидка${padLeft(totalDiscount.toFixed(2) + " ", 30)}`}
+        {/* {totalDiscount > 0 && `\n↳ скидка${padLeft(totalDiscount.toFixed(2) + " ", 30)}`}
+         */}
         {"\n------------------------------------------\n"}
         {`Тауарлар/Товаров:                 ${saleProducts.reduce((sum, p) => sum + p.qty, 0).toFixed(3)}\n`}
-        {`Сомасы/Сумма:                   ${(totalAmount - totalDiscount).toFixed(2)} \n`}
+        {/* {`Сомасы/Сумма:                   ${(totalAmount - totalDiscount).toFixed(2)} \n`} */}
+        {`Сомасы/Сумма:                   ${(totalAmount ).toFixed(2)} \n`}
         {`Жеңілдіктер/Скидки:              ${totalDiscount.toFixed(2)} \n`}
         {"\n"}
-        {`БАРЛЫҒЫ/ИТОГ:                   ${(totalAmount - totalDiscount).toFixed(2)} \n`}
+        {/* {`БАРЛЫҒЫ/ИТОГ:                   ${(totalAmount - totalDiscount).toFixed(2)} \n`} */}
+        {`БАРЛЫҒЫ/ИТОГ:                   ${(totalAmount).toFixed(2)} \n`}
         {"ҚҚС/НДС:                           " + VAT + "\n"}
         {"\n"}
         {paymentMethodText ? paymentMethodText + "\n" : ""}

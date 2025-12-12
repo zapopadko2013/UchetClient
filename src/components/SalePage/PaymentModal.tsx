@@ -489,7 +489,8 @@ useEffect(() => {
 
     const transactionDetails = saleProducts.map((p, index) => ({
       bonusadd: 0,
-      product: Number(p.id.split("_")[0]),
+      //product: Number(p.id.split("_")[0]),
+      product: p.productId,
       excisestamp: [],
       price: p.price,
       line: index + 1,
@@ -646,7 +647,7 @@ const receiptData = isTicketFormatEmpty
       displayFile: ticketFormat.json.displayFile,
     };
 
-
+//console.log(saleProducts);
 
 printReceipt({
   saleProducts,

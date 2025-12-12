@@ -29,9 +29,20 @@ const ProductListModal: React.FC<Props> = ({
     "Content-Type": "application/json",
   });
 
+  // Хелпер для парсинга даты DD.MM.YYYY
+  const parseDate = (dateStr: string): Date | null => {
+    if (!dateStr) return null;
+    const parts = dateStr.split('.');
+    if (parts.length === 3) {
+      // new Date(year, monthIndex, day)
+      return new Date(Number(parts[2]), Number(parts[1]) - 1, Number(parts[0]));
+    }
+    return null;
+  };
+
   const loadData = async () => {
     try {
-      const [prod, stock, attrs] = await Promise.all([
+      const [prod, stock, attrs, discounts] = await Promise.all([
         sendRequest(`${API_URL}/external/api/primary/information`, {
           method: "POST",
           headers: getHeaders(),
@@ -47,9 +58,14 @@ const ProductListModal: React.FC<Props> = ({
           headers: getHeaders(),
           body: JSON.stringify({ point: pointId, type: "attributes" }),
         }),
+        sendRequest(`${API_URL}/external/api/primary/information`, {
+          method: "POST",
+          headers: getHeaders(),
+          body: JSON.stringify({ point: pointId, type: "discount" }),
+        }),
       ]);
 
-      // карта атрибутов (если понадобится)
+    /*   // карта атрибутов (если понадобится)
       const attrMap = new Map<number, any[]>();
       attrs.catalog.forEach((a: any) => attrMap.set(a.id, a.values));
 
@@ -78,7 +94,93 @@ const ProductListModal: React.FC<Props> = ({
             ///
           });
         });
+      }); */
+
+     // ============================
+    // 1. КАРТА СКИДОК ПО STOCKID
+    // ============================
+
+    const stockDiscountMap = new Map<number, number>();
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    if (Array.isArray(discounts.catalog)) {
+      for (const d of discounts.catalog) {
+        const expiration = d.expirationdate ? parseDate(d.expirationdate) : null;
+
+        // скидка активна
+        if (d.discount > 0 && (!expiration || expiration >= today)) {
+          if (Array.isArray(d.products)) {
+            for (const prodItem of d.products) {
+              const stockId = prodItem.id; // << ЭТО stockid
+
+              const current = stockDiscountMap.get(stockId) || 0;
+              if (d.discount > current) {
+                stockDiscountMap.set(stockId, d.discount);
+              }
+            }
+          }
+        }
+      }
+    }
+
+    // ============================
+    // 2. КАРТА АТРИБУТОВ
+    // ============================
+
+    const attrMap = new Map<number, any[]>();
+    if (Array.isArray(attrs.catalog)) {
+      attrs.catalog.forEach(a => attrMap.set(a.id, a.values));
+    }
+
+    // ============================
+    // 3. ГРУППИРОВКА ОСТАТКОВ
+    // ============================
+
+    const stockGrouped = new Map<number, any[]>();
+    stock.catalog.forEach(s => {
+      if (!stockGrouped.has(s.product)) stockGrouped.set(s.product, []);
+      stockGrouped.get(s.product)!.push(s);
+    });
+
+    // ============================
+    // 4. СОБИРАЕМ ИТОГОВЫЙ СПИСОК
+    // ============================
+
+    const combined: any[] = [];
+
+    prod.catalog.forEach((p: any) => {
+      const stockList = stockGrouped.get(p.id) || [];
+
+      stockList.forEach((s: any, __: number) => {
+        const stockId = s.stockid; // ✔ Правильный уникальный ID остатка
+
+        // скидка по stockid
+        const discountPercent = stockDiscountMap.get(stockId) || 0;
+
+        const originalPrice = s.price ?? 0;
+        const discountAmount = originalPrice * (discountPercent / 100);
+        const finalPrice = originalPrice - discountAmount;
+
+        combined.push({
+          id: stockId,                // ID строки = ID остатка
+          productId: p.id,            // ID товара
+          code: p.code,
+          name: p.name,
+
+          originalPrice,
+          price: finalPrice,
+          discountPercent,
+
+          stock: s.units ?? 0,
+
+          attributes: s.attributes || [],
+          listcode: s.listcode,
+        });
       });
+    });
+
+      //console.log(combined);
 
       const result = combined.filter((item) => item.stock > 0);
 
@@ -125,7 +227,8 @@ const ProductListModal: React.FC<Props> = ({
       },
     },
     { title: "Штрих-код", dataIndex: "code", width: 140 },
-    { title: "Цена", dataIndex: "price", width: 100 },
+    /* { title: "Цена", dataIndex: "price", width: 100 }, */
+    { title: "Цена", dataIndex: "originalPrice", width: 100 },
     { title: "Остаток", dataIndex: "stock", width: 90 },
     {
       title: "Действие",

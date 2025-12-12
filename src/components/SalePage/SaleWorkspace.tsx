@@ -162,7 +162,8 @@ const SaleWorkspace: React.FC<Props> = ({
   // --- Колонки таблицы ---
   const columns = [
     { title: "Наименование", dataIndex: "name" },
-    { title: "Цена", dataIndex: "price" },
+    /* { title: "Цена", dataIndex: "price" }, */
+    { title: "Цена", dataIndex: "originalPrice" },
     {
       title: "Кол-во",
       dataIndex: "qty",
@@ -201,7 +202,13 @@ const SaleWorkspace: React.FC<Props> = ({
       title: "Остаток",
       render: (_: any, row: any) => round(productStock.get(row.key)?.current ?? row.stock, 3),
     },
-    { title: "Скидка", dataIndex: "discount" },
+    { title: "Скидка", 
+     // dataIndex: "discount"
+    render: (_: any, row: any) => {
+      const discount = row.originalPrice ? (row.originalPrice - row.price) : 0;
+      return discount > 0 ? (row.qty *discount).toFixed(2) : "0";
+    },
+    },
     {
       title: "Итого",
       render: (_: any, row: any) => (row.qty * row.price).toFixed(2),
@@ -320,7 +327,13 @@ const SaleWorkspace: React.FC<Props> = ({
         //pointId={pointId}
         pointId={point.id}
         onClose={() => setModalVisible(false)}
-        onSelectProduct={(p: any) => addProduct(p)}
+        //onSelectProduct={(p: any) => addProduct(p)}
+        onSelectProduct={(p: any) => addProduct({ 
+          ...p, 
+          originalPrice: p.originalPrice,  // цена без скидки
+    price: p.price,                  // цена со скидкой
+    discount: p.originalPrice - p.price,
+        })}
         onLoadProducts={setAllProducts}
       />
 
