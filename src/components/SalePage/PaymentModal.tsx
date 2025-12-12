@@ -3,6 +3,11 @@ import { Modal, Input, Button, Select, Checkbox, message } from "antd";
 import useApiRequest from "../../hooks/useApiRequest";
 import ClientSelectModal from "./ClientSelectModal";
 import { SearchOutlined } from "@ant-design/icons";
+import ReceiptPrinter from "./ReceiptPrinter";
+import { createRoot } from "react-dom/client";
+import { BrowserRouter } from "react-router-dom";
+
+
 
 const { Option } = Select;
 
@@ -14,6 +19,9 @@ interface Props {
   onCompletePayment: (data: any) => void;
   cashboxUser: any;
   role4Users?: User[];
+  point: any;
+  companyInfo: any;
+  ticketFormat: any;
 }
 
 interface User {
@@ -21,6 +29,122 @@ interface User {
   name: string;
   role: string;
 }
+
+interface ReceiptPrinterProps {
+  saleProducts: any[];
+  totalAmount: number;
+  clientName: string;
+  confirmedDebtAmount?: number;
+  cashboxUser?: { name: string; cashboxId: number }; // теперь optional
+  selectedConsultant?: string;
+  ticketNumber?: string;
+  shiftNumber?: string;
+  date?: string;
+  storeName: string;         // Торговая точка
+  storeAddress: string;      // Адрес точки
+  companyName: string;       // Наименование компании
+  companyBIN: string;        // БИН компании
+  VAT?: string;              // НДС
+  paymentMethodText?: string;
+  Dopol1?: string;
+  Dopol2?: string;
+  showBIN: boolean;
+  showNDS: boolean;
+  showRNM: boolean;
+  showZNM: boolean;
+
+  displayFile?: string;
+  onLogoLoaded?: () => void;
+}
+
+// -------------------- Функция печати --------------------
+/* export const printReceipt = (props: ReceiptPrinterProps) => {
+  // создаём скрытый iframe
+  const iframe = document.createElement("iframe");
+  iframe.style.position = "absolute";
+  iframe.style.width = "0";
+  iframe.style.height = "0";
+  iframe.style.border = "0";
+
+  document.body.appendChild(iframe);
+
+  const doc = iframe.contentWindow?.document;
+  if (!doc) return;
+
+  // создаём контейнер внутри iframe
+  const container = doc.createElement("div");
+  doc.body.appendChild(container);
+
+  // создаём root в контейнере
+  const root = createRoot(container);
+  //root.render(<ReceiptPrinter {...props} />);
+  root.render(<BrowserRouter><ReceiptPrinter {...props} /></BrowserRouter>);
+
+  // ждём рендер и печатаем
+  setTimeout(() => {
+    iframe.contentWindow?.focus();
+    iframe.contentWindow?.print();
+
+    // очистка
+    root.unmount();
+    document.body.removeChild(iframe);
+  }, 100);
+};  */
+
+
+export const printReceipt = (props: ReceiptPrinterProps) => {
+  // создаём скрытый iframe
+  const iframe = document.createElement("iframe");
+  iframe.style.position = "absolute";
+  iframe.style.width = "0";
+  iframe.style.height = "0";
+  iframe.style.border = "0";
+
+  document.body.appendChild(iframe);
+
+  const doc = iframe.contentWindow?.document;
+  if (!doc) return;
+
+  // создаём контейнер внутри iframe
+  const container = doc.createElement("div");
+  doc.body.appendChild(container);
+
+  // создаём root в контейнере
+  const root = createRoot(container);
+
+  // 💡 ФУНКЦИЯ, КОТОРАЯ БУДЕТ ВЫЗВАНА ПОСЛЕ ЗАГРУЗКИ ЛОГО
+  const finishPrinting = () => {
+    // Ждем 50мс, чтобы React точно обновил DOM в iframe
+    setTimeout(() => {
+      iframe.contentWindow?.focus();
+      iframe.contentWindow?.print();
+
+      // очистка
+      root.unmount();
+      document.body.removeChild(iframe);
+    }, 50); 
+  };
+  
+  // 💡 Рендерим компонент, передавая ему эту функцию как prop
+  root.render(
+    <BrowserRouter>
+      {/* Передаем новую функцию-колбэк */}
+      <ReceiptPrinter 
+          {...props} 
+          onLogoLoaded={finishPrinting} 
+      />
+    </BrowserRouter>
+  );
+
+  // 💡 Дополнительный таймаут (на случай, если что-то пошло не так с колбэком)
+  setTimeout(() => {
+      // Если печать еще не запущена, запускаем ее без логотипа
+      if (document.body.contains(iframe)) {
+          console.warn("Timeout reached: Printing fallback.");
+          finishPrinting();
+      }
+  }, 5000); // 5 секунд на загрузку лого
+};
 
 const PaymentModal: React.FC<Props> = ({
   open,
@@ -30,6 +154,9 @@ const PaymentModal: React.FC<Props> = ({
   role4Users,
   saleProducts,
   onCompletePayment,
+  point,
+  companyInfo,
+  ticketFormat,
 }) => {
   const { sendRequest } = useApiRequest();
 
@@ -50,9 +177,14 @@ const PaymentModal: React.FC<Props> = ({
   const [certificateAmount] = useState<number>(0);
   const [useBonuses, setUseBonuses] = useState<boolean>(true);
 
-  const [selectedConsultant, setSelectedConsultant] = useState<number | null>(
+  /* const [selectedConsultant, setSelectedConsultant] = useState<number | null>(
     role4Users && role4Users.length > 0 ? role4Users[0].id : null
   );
+ */
+
+  const [selectedConsultant, setSelectedConsultant] = useState<User | null>(
+  role4Users && role4Users.length > 0 ? role4Users[0] : null
+);
 
   const [currentPaymentType, setCurrentPaymentType] =
     useState<"cash" | "card" | "mixed" | "debit" | "debt" | "certificate" | null>(
@@ -64,6 +196,8 @@ const PaymentModal: React.FC<Props> = ({
    
 
 
+
+
     // --- Продажа в долг ---
   const [debtModalVisible, setDebtModalVisible] = useState(false);
 const [debtClient, setDebtClient] = useState<any>(null); // хранит найденного клиента
@@ -73,7 +207,10 @@ const [debtLastname, setDebtLastname] = useState<string>("");
 const [debtAmount, setDebtAmount] = useState<number>(0);  
 
 const [confirmedDebt, setConfirmedDebt] = useState<{ client: any; amount: number } | null>(null);
-  
+
+
+
+
 
   useEffect(() => {
     if (currentPaymentType === "cash") {
@@ -316,6 +453,8 @@ useEffect(() => {
   ) => {
     const type = forcedType ?? currentPaymentType;
 
+   
+
     if (!type) {
       message.error("Не выбран тип оплаты!");
       return;
@@ -392,7 +531,7 @@ useEffect(() => {
       ticketid: 0,
       bonusid: 0,
       cashbox: cashboxUser.cashboxId,
-      sellerid: selectedConsultant,
+      sellerid: selectedConsultant?.id ?? 0,
       customerid: 0,
       //fizid: 0,
       //fizid: type === "debt" && debtClient ? debtClient.id : 0,
@@ -410,6 +549,28 @@ useEffect(() => {
       promotions: [],
     };
 
+    const getPaymentMethodText = () => {
+  switch (currentPaymentType) {
+    case "cash":
+      return "Наличный расчет";
+    case "card":
+      return "Оплата картой (POS)";
+    case "mixed":
+      return "Смешанная оплата";
+    case "debit":
+      return "Безналичный перевод";
+    case "debt":
+      return "Продажа в долг";
+    case "certificate":
+      return "Оплата сертификатом";
+    default:
+      return "Не указан";
+  }
+};
+
+
+
+
     try {
       const data = await sendRequest(
         `${import.meta.env.VITE_API_URL}/external/api/invoice/transfertransactions`,
@@ -426,9 +587,85 @@ useEffect(() => {
       if (data.code === "success") {
         message.success("Оплата проведена");
 
+       
+
         setAmountModalVisible(false);
         onClose();
         onCompletePayment([]);
+
+        // после успешной оплаты
+
+        // Вставляем компонент печати
+// Печать чека через iframe
+
+ if (!cashboxUser) {
+  message.error("Не указан пользователь кассы");
+  return;
+}
+
+/* printReceipt({
+    saleProducts,
+    totalAmount,
+    clientName: confirmedDebt ? confirmedDebt.client.firstname + " " + confirmedDebt.client.lastname : "Физическое лицо",
+    confirmedDebtAmount: confirmedDebt?.amount,
+    cashboxUser, // <--- передаем cashboxUser из PaymentModal
+    selectedConsultant: selectedConsultant !== null ? selectedConsultant.toString() : undefined,
+}); */
+
+
+const isTicketFormatEmpty =
+  !ticketFormat ||
+  (typeof ticketFormat === "object" &&
+    Object.keys(ticketFormat).length === 0);
+
+const formatJSON = !isTicketFormatEmpty ? ticketFormat.json : null;
+
+const receiptFlags = {
+  showBIN: formatJSON?.BIN ?? true,   
+  showNDS: formatJSON?.NDS ?? false,
+  showRNM: formatJSON?.RNM ?? false,
+  showZNM: formatJSON?.ZNM ?? true,
+};
+
+
+const receiptData = isTicketFormatEmpty
+  ? {
+      storeName: point.name,
+      storeAddress: point.address,
+      companyName: companyInfo.name,
+      companyBIN: companyInfo.bin,
+      Dopol1:'Спасибо за покупку.',
+    }
+  : {
+      storeName: ticketFormat.json.company || companyInfo.name,
+      storeAddress: ticketFormat.json.address || point.address,
+      companyName: ticketFormat.json.company || companyInfo.name,
+      companyBIN: ticketFormat.json.BIN ? companyInfo.bin : "",
+      Dopol1:ticketFormat.json.thanksMessage||"",
+      Dopol2:ticketFormat.json.advertisementMessage||"",
+      displayFile: ticketFormat.json.displayFile,
+    };
+
+
+
+printReceipt({
+  saleProducts,
+  totalAmount,
+  clientName: confirmedDebt
+    ? `${confirmedDebt.client.firstname} ${confirmedDebt.client.lastname}`
+    : "Физическое лицо",
+  confirmedDebtAmount: confirmedDebt?.amount,
+  cashboxUser,
+  selectedConsultant: selectedConsultant ? selectedConsultant.name :"",
+
+  // новые обязательные поля
+  paymentMethodText: getPaymentMethodText(), 
+  VAT:"0",
+  ...receiptData,
+  ...receiptFlags, 
+ 
+});
+
       } else {
         message.error(data.text || "Ошибка сервера");
       }
@@ -493,7 +730,7 @@ useEffect(() => {
                 </div> 
                 <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 5 }}> 
                   <span><b>Продавец консультант:</b></span> 
-                  <Select 
+                  {/* <Select 
                   value={selectedConsultant} 
                   onChange={setSelectedConsultant} 
                   style={{ width: "60%" }} 
@@ -501,7 +738,22 @@ useEffect(() => {
                      {role4Users && role4Users.length > 0 ? 
                      ( role4Users.map((user) => ( <Option key={user.id} value={user.id}> 
                      {user.name} </Option> )) ) : ( <Option value={null}>Нет пользователей</Option> )} 
-                  </Select> 
+                  </Select>  */}
+                  <Select
+  value={selectedConsultant?.id}
+  onChange={(id) => {
+    const user = role4Users?.find(u => u.id === id) || null;
+    setSelectedConsultant(user);
+  }}
+  style={{ width: "60%" }}
+  placeholder="Выберите консультанта"
+>
+  {role4Users?.map(user => (
+    <Option key={user.id} value={user.id}>
+      {user.name}
+    </Option>
+  ))}
+</Select>
                   </div> 
                   <div> 
                   <span><b>Использовать бонусы:</b></span>
@@ -680,6 +932,8 @@ useEffect(() => {
   onSelect={handleClientSelect}
   onCancel={() => setSelectClientModalOpen(false)}
 />
+
+
 
     </>
   );

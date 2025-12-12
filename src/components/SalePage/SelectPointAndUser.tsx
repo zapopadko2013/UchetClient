@@ -43,7 +43,7 @@ interface Props {
   users: User[];
   loadUsers: (pointId: string) => Promise<void>;
   loadCashboxes: (pointId: string) => Promise<void>;
-  onComplete: (pointId: string, cashboxId: number, user: User) => void;
+  onComplete: (pointId: string, cashboxId: number, user: User, pointName: string, address: string) => void;
 }
 
 const SelectPointAndUser: React.FC<Props> = ({
@@ -56,7 +56,8 @@ const SelectPointAndUser: React.FC<Props> = ({
 }) => {
   const [step, setStep] = useState(0);
 
-  const [selectedPoint, setSelectedPoint] = useState<string | null>(null);
+  //const [selectedPoint, setSelectedPoint] = useState<string | null>(null);
+  const [selectedPoint, setSelectedPoint] = useState<{ id: string; name: string; address: string } | null>(null);
   const [selectedCashboxId, setSelectedCashboxId] = useState<number | null>(
     null
   );
@@ -73,9 +74,16 @@ const SelectPointAndUser: React.FC<Props> = ({
   // Выбор торговой точки
   // ---------------------------------------------
   const handleSelectPoint = async (id: string) => {
-    setSelectedPoint(id);
+    /* setSelectedPoint(id);    
     setStep(1);
-    await loadCashboxes(id);
+    await loadCashboxes(id); */
+
+    const point = points.find((p) => p.id === id);
+  if (point) {
+    setSelectedPoint({ id: point.id, name: point.name,address:point.address });
+    setStep(1);
+    await loadCashboxes(point.id);
+  }
   };
 
   // ---------------------------------------------
@@ -86,7 +94,8 @@ const SelectPointAndUser: React.FC<Props> = ({
     setStep(2);
 
     if (selectedPoint) {
-      await loadUsers(selectedPoint);
+      //await loadUsers(selectedPoint);
+      await loadUsers(selectedPoint.id);
     }
   };
 
@@ -189,7 +198,10 @@ const SelectPointAndUser: React.FC<Props> = ({
             block
             disabled={!selectedUser}
             onClick={() =>
-              onComplete(selectedPoint!, selectedCashboxId!, selectedUser!)
+              onComplete(
+                //selectedPoint!,
+                selectedPoint!.id,
+                 selectedCashboxId!, selectedUser!,selectedPoint!.name,selectedPoint!.address)
             }
           >
             Продолжить

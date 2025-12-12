@@ -10,7 +10,8 @@ const SalePage: React.FC = () => {
   const API_URL = import.meta.env.VITE_API_URL || "";
 
   const [points, setPoints] = useState<any[]>([]);
-  const [selectedPoint, setSelectedPoint] = useState<string | null>(null);
+  //const [selectedPoint, setSelectedPoint] = useState<string | null>(null);
+  const [selectedPoint, setSelectedPoint] = useState<{ id: string; name: string; address: string } | null>(null);
 
   const [cashboxUsers, setCashboxUsers] = useState<any[]>([]);
   const [selectedUser, setSelectedUser] = useState<any | null>(null);
@@ -18,12 +19,48 @@ const SalePage: React.FC = () => {
   const [role4Users, setRole4Users] = useState<any[]>([]);
   const [cashboxes, setCashboxes] = useState<any[]>([]);
 
+   const [companyInfo, setCompanyInfo] = useState<any | null>(null);
+
   const [loading, setLoading] = useState(true);
+
+  const [ticketFormat, setTicketFormat] = useState<any | null>(null);
 
   const getHeaders = () => ({
     Authorization: `Bearer ${localStorage.getItem("accessToken") || ""}`,
     "Content-Type": "application/json",
   });
+
+
+  // ------------------------------------------------
+// Загрузка формата чека /api/ticketformat?point=ID
+// ------------------------------------------------
+const loadTicketFormat = async (pointId: string) => {
+  try {
+    const data = await sendRequest(
+      `${API_URL}/api/ticketformat?point=${pointId}`,
+      { headers: getHeaders() }
+    );
+
+    setTicketFormat(data); // может быть {} или полноценный объект
+  } catch {
+    message.error("Ошибка загрузки формата чека");
+  }
+};
+
+   // ------------------------------------------------
+  // Загружаем данные компании /api/company
+  // ------------------------------------------------
+  const loadCompanyInfo = async () => {
+    try {
+      const data = await sendRequest(`${API_URL}/api/company`, {
+        headers: getHeaders(),
+      });
+
+      setCompanyInfo(data);
+    } catch {
+      message.error("Ошибка загрузки данных компании");
+    }
+  };
 
   // ---------------------------------------------
   // Загрузка касс
@@ -90,8 +127,13 @@ const SalePage: React.FC = () => {
     }
   };
 
-  useEffect(() => {
+  /* useEffect(() => {
     loadPoints();
+  }, []); */
+
+  useEffect(() => {
+    Promise.all([loadPoints(), loadCompanyInfo()])
+      .finally(() => setLoading(false));
   }, []);
 
   if (loading) return <Spin />;
@@ -107,9 +149,12 @@ const SalePage: React.FC = () => {
         users={cashboxUsers}
         loadUsers={loadCashboxUsers}
         loadCashboxes={loadCashboxes}
-        onComplete={(pointId, cashboxId, user) => {
-          setSelectedPoint(pointId);
+        onComplete={(pointId, cashboxId, user, pointName,address) => {
+          //setSelectedPoint(pointId);
+           setSelectedPoint({ id: pointId, name: pointName, address:address });
           setSelectedUser({ ...user, cashboxId });
+
+          loadTicketFormat(pointId); 
         }}
       />
     );
@@ -117,9 +162,12 @@ const SalePage: React.FC = () => {
 
   return (
     <SaleWorkspace
-      pointId={selectedPoint}
+      //pointId={selectedPoint}
+      point={selectedPoint}
       cashboxUser={selectedUser}
       role4Users={role4Users}
+      companyInfo={companyInfo}
+      ticketFormat={ticketFormat}
     />
   );
 };

@@ -12,9 +12,12 @@ import ProductListModal from "./ProductListModal";
 import PaymentModal from "./PaymentModal";
 
 interface Props {
-  pointId: string;
+  //pointId: string;
+  point: { id: string; name: string; address: string };
   cashboxUser: any;
   role4Users?: User[];
+  companyInfo: any;
+  ticketFormat: any;
 }
 
 interface User {
@@ -23,7 +26,10 @@ interface User {
   role: string;
 }
 
-const SaleWorkspace: React.FC<Props> = ({ pointId, cashboxUser, role4Users }) => {
+const SaleWorkspace: React.FC<Props> = ({ 
+  //pointId
+  point
+  , cashboxUser, role4Users,companyInfo,ticketFormat }) => {
   const [saleProducts, setSaleProducts] = useState<any[]>([]);
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedRowKey, setSelectedRowKey] = useState<string | null>(null);
@@ -311,7 +317,8 @@ const SaleWorkspace: React.FC<Props> = ({ pointId, cashboxUser, role4Users }) =>
 
       <ProductListModal
         visible={modalVisible}
-        pointId={pointId}
+        //pointId={pointId}
+        pointId={point.id}
         onClose={() => setModalVisible(false)}
         onSelectProduct={(p: any) => addProduct(p)}
         onLoadProducts={setAllProducts}
@@ -323,7 +330,10 @@ const SaleWorkspace: React.FC<Props> = ({ pointId, cashboxUser, role4Users }) =>
         totalAmount={total}
         role4Users={role4Users}
         cashboxUser={cashboxUser}
+        point={point}
+        companyInfo={companyInfo}
         onClose={() => setPaymentVisible(false)}
+        ticketFormat={ticketFormat}
         onCompletePayment={(_) => {
           //console.log("Оплата завершена:", data);
           setSaleProducts([]);        
