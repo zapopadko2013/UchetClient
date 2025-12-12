@@ -29,6 +29,7 @@ const ClientSelectModal: React.FC<ClientSelectModalProps> = ({
       open={open}
       onCancel={onCancel}
       footer={null}
+      getContainer={() => document.body}
     >
       <Table
         rowKey="id"

@@ -58,38 +58,6 @@ interface ReceiptPrinterProps {
 }
 
 // -------------------- Функция печати --------------------
-/* export const printReceipt = (props: ReceiptPrinterProps) => {
-  // создаём скрытый iframe
-  const iframe = document.createElement("iframe");
-  iframe.style.position = "absolute";
-  iframe.style.width = "0";
-  iframe.style.height = "0";
-  iframe.style.border = "0";
-
-  document.body.appendChild(iframe);
-
-  const doc = iframe.contentWindow?.document;
-  if (!doc) return;
-
-  // создаём контейнер внутри iframe
-  const container = doc.createElement("div");
-  doc.body.appendChild(container);
-
-  // создаём root в контейнере
-  const root = createRoot(container);
-  //root.render(<ReceiptPrinter {...props} />);
-  root.render(<BrowserRouter><ReceiptPrinter {...props} /></BrowserRouter>);
-
-  // ждём рендер и печатаем
-  setTimeout(() => {
-    iframe.contentWindow?.focus();
-    iframe.contentWindow?.print();
-
-    // очистка
-    root.unmount();
-    document.body.removeChild(iframe);
-  }, 100);
-};  */
 
 
 export const printReceipt = (props: ReceiptPrinterProps) => {
@@ -195,6 +163,12 @@ const PaymentModal: React.FC<Props> = ({
   const [foundClients, setFoundClients] = useState<any[]>([]);
    
 
+  // -------------------- Юридическое лицо --------------------
+const [legalModalVisible, setLegalModalVisible] = useState(false);
+const [legalBIN, setLegalBIN] = useState("");
+const [legalName, setLegalName] = useState("");
+const [selectedLegal, setSelectedLegal] = useState<any>(null);
+const [foundLegalClients, setFoundLegalClients] = useState<any[]>([]);
 
 
 
@@ -207,10 +181,6 @@ const [debtLastname, setDebtLastname] = useState<string>("");
 const [debtAmount, setDebtAmount] = useState<number>(0);  
 
 const [confirmedDebt, setConfirmedDebt] = useState<{ client: any; amount: number } | null>(null);
-
-
-
-
 
   useEffect(() => {
     if (currentPaymentType === "cash") {
@@ -225,6 +195,47 @@ const [confirmedDebt, setConfirmedDebt] = useState<{ client: any; amount: number
     Authorization: `Bearer ${localStorage.getItem("accessToken") || ""}`,
     "Content-Type": "application/json",
   });
+
+
+const resetPaymentForm = () => {
+  //setCashAmount(totalAmount);
+  setCashAmount(0);
+  setCardAmount(0);
+  setTransferAmount(0);
+  setChange(0);
+
+  setDiscount(0);
+  setMarkup(0);
+  setUsedBonuses(0);
+  setAccruedBonuses(0);
+  // clientName оставим "Физическое лицо" по умолчанию
+  setClientIIN("");
+  setUseBonuses(true);
+  setSelectedConsultant(role4Users && role4Users.length > 0 ? role4Users[0] : null);
+
+  setCurrentPaymentType(null);
+  setAmountModalVisible(false);
+
+  // Сброс долга
+  setDebtModalVisible(false);
+  setDebtClient(null);
+  setDebtPhone("");
+  setDebtFirstname("");
+  setDebtLastname("");
+  setDebtAmount(0);
+  setConfirmedDebt(null);
+
+  // Сброс юридического лица
+  setLegalModalVisible(false);
+  setLegalBIN("");
+  setLegalName("");
+  setSelectedLegal(null);
+
+  // Сброс поиска клиентов
+  setFoundClients([]);
+  setSelectClientModalOpen(false);
+};
+
 
 // ======================= ПОИСК КЛИЕНТА ========================
 
@@ -264,12 +275,7 @@ const searchByFirstname = async () => {
 
     if (!data) return message.error("Клиент не найден");
 
-    /* const client = Array.isArray(data) ? data[0] : data;
-
-    setDebtClient(client);
-    setDebtFirstname(client.firstname || "");
-    setDebtLastname(client.lastname || "");
-    setDebtPhone(`${client.telephone}`); */
+    
 
     if (data.length === 1) {
       const client = Array.isArray(data) ? data[0] : data;
@@ -298,13 +304,6 @@ const searchByLastname = async () => {
     );
 
     if (!data) return message.error("Клиент не найден");
-
-    /* const client = Array.isArray(data) ? data[0] : data;
-
-    setDebtClient(client);
-    setDebtFirstname(client.firstname || "");
-    setDebtLastname(client.lastname || "");
-    setDebtPhone(`${client.telephone}`); */
 
     if (data.length === 1) {
       const client = Array.isArray(data) ? data[0] : data;
@@ -343,6 +342,7 @@ const handleOpenDebt = () => {
       onOk: () => {
         setConfirmedDebt(null);
         setDebtClient(null);
+        setSelectedLegal(null);
         setDebtPhone("");
         setDebtFirstname("");
         setDebtLastname("");
@@ -357,8 +357,8 @@ const handleOpenDebt = () => {
 };
 
 const confirmDebt = () => {
-  if (!debtClient) {
-    message.error("Сначала найдите клиента");
+  if (!debtClient && !selectedLegal) {
+    message.error("Сначала найдите клиента или выберите предприятие!");
     return;
   }
 
@@ -376,13 +376,14 @@ const confirmDebt = () => {
   if (debtAmount === totalAmount) {
     Modal.confirm({
       title: "Подтвердите оплату в долг",
-      content: `Продать в долг ${debtAmount} клиенту ${debtClient.firstname} ${debtClient.lastname}?`,
+      //content: `Продать в долг ${debtAmount} клиенту ${debtClient.firstname} ${debtClient.lastname}?`,
+      content: `Продать в долг ${debtAmount}  ?`,
       onOk: () => {
         setConfirmedDebt({ client: debtClient, amount: debtAmount });
         setDebtModalVisible(false);
         setCurrentPaymentType("debt");
         message.success("Оплата в долг подтверждена");
-        handlePayment("debt"); // сразу запускаем оплату
+        handlePayment("debt", { client: debtClient, amount: debtAmount }); // сразу запускаем оплату
       },
     });
     return;
@@ -408,7 +409,71 @@ useEffect(() => {
   if (!debtModalVisible) resetDebtForm();
 }, [debtModalVisible]);
 
+/////
+// Открытие модального окна
+const handleOpenLegalModal = () => {
+  if (selectedLegal) {
+    Modal.confirm({
+      title: "Удалить выбранное предприятие?",
+      onOk: () => setSelectedLegal(null),
+    });
+  } else {
+    setLegalModalVisible(true);
+  }
+};
 
+// Поиск по БИН
+const searchLegalByBIN = async () => {
+  if (!legalBIN) return message.error("Введите БИН");
+  try {
+    const data = await sendRequest(
+      `${import.meta.env.VITE_API_URL}/external/api/customers?bin=${legalBIN}`,
+      { headers: getHeaders() }
+    );
+    if (!data || data.length === 0) return message.error("Предприятие не найдено");
+    const selected = Array.isArray(data) ? data[0] : data;
+
+    setSelectedLegal(selected); // сохраняем объект
+    setLegalModalVisible(false);
+    setLegalBIN("");
+    setLegalName("");
+
+  } catch {
+    message.error("Ошибка поиска предприятия");
+  }
+};
+
+// Поиск по Наименованию
+const searchLegalByName = async () => {
+  if (!legalName) return message.error("Введите наименование");
+  try {
+    const data = await sendRequest(
+      `${import.meta.env.VITE_API_URL}/external/api/customers?name=${encodeURIComponent(legalName)}`,
+      { headers: getHeaders() }
+    );
+    if (!data || data.length === 0) return message.error("Предприятие не найдено");
+   const selected = Array.isArray(data) ? data[0] : data;
+
+    setSelectedLegal(selected); // сохраняем объект
+    setLegalModalVisible(false);
+    setLegalBIN("");
+    setLegalName("");
+
+  } catch {
+    message.error("Ошибка поиска предприятия");
+  }
+};
+
+// Подтверждение выбора юридического лица
+const confirmLegalClient = (client: any) => {
+  setSelectedLegal(client);
+  setLegalModalVisible(false);
+  setLegalBIN("");
+  setLegalName("");
+  setDebtClient(null); // физ лицо = 0
+  //setConfirmedDebt(null);
+};
+/////
 
   // -----------------------------------------
   // Открытие модала оплаты
@@ -450,6 +515,9 @@ useEffect(() => {
   // -----------------------------------------
   const handlePayment = async (
     forcedType?: "cash" | "card" | "mixed" | "debit" | "debt" | "certificate"
+  
+    ,debtInfo?: { client: any; amount: number; fizid?: number; customerid?: number } | null
+  
   ) => {
     const type = forcedType ?? currentPaymentType;
 
@@ -465,8 +533,12 @@ useEffect(() => {
       return;
     }
 
+  const actualDebt = debtInfo || confirmedDebt;  
+
   if (type === "mixed") {
-  const debtPay = confirmedDebt ? confirmedDebt.amount : 0;
+  //const debtPay = confirmedDebt ? confirmedDebt.amount : 0;
+
+  const debtPay = actualDebt ? actualDebt.amount : 0;
   const requiredMixedPay = totalAmount - debtPay;
 
   const realPay = cashAmount + cardAmount + transferAmount;
@@ -533,13 +605,18 @@ useEffect(() => {
       bonusid: 0,
       cashbox: cashboxUser.cashboxId,
       sellerid: selectedConsultant?.id ?? 0,
-      customerid: 0,
+      //customerid: 0,
+      customerid: selectedLegal ? selectedLegal.id : 0,
+      //selectedLegal
       //fizid: 0,
       //fizid: type === "debt" && debtClient ? debtClient.id : 0,
       //debtpay: type === "debt" ? totalAmount : 0,
       //debtpay: type === "debt" ? debtAmount : 0,
-      fizid: confirmedDebt ? confirmedDebt.client.id : 0,
-      debtpay: confirmedDebt ? confirmedDebt.amount : 0, paymenttype: type,
+      //fizid: confirmedDebt ? confirmedDebt.client.id : 0,
+      fizid: debtClient ? debtClient.id : 0,
+      //debtpay: confirmedDebt ? confirmedDebt.amount : 0,
+      debtpay: actualDebt ? actualDebt.amount : 0,
+      paymenttype: type,
       hash: "",
       debitpay: transferAmount,
       detailsdiscount: 0,
@@ -667,6 +744,9 @@ printReceipt({
  
 });
 
+ // Сбрасываем все формы и состояния
+  resetPaymentForm();
+
       } else {
         message.error(data.text || "Ошибка сервера");
       }
@@ -694,10 +774,16 @@ printReceipt({
              </div>
              <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 5 }}>
                 <span><b>Клиент:</b></span>
-                <span>{clientName}</span> 
+                {/* <span>{clientName}</span>  */}
                 <span>
-   {confirmedDebt
+   {/* {confirmedDebt
      ? `${confirmedDebt.client.firstname} ${confirmedDebt.client.lastname}`
+      : ""} */}
+
+       {selectedLegal
+      ? `Юридическое лицо ${selectedLegal.name} (${selectedLegal.bin})`
+      : confirmedDebt
+      ? `Физическое лицо ${confirmedDebt.client.firstname} ${confirmedDebt.client.lastname}`
       : ""}
   </span>
                 </div> 
@@ -792,6 +878,11 @@ printReceipt({
             <Button size="large" onClick={() => handleOpenDebt()}>
               📜 В долг
             </Button>
+
+            <Button size="large" onClick={handleOpenLegalModal}>
+              🎟 Юридическое лицо
+            </Button>
+
             <Button size="large" onClick={() => handleOpenAmountModal("certificate")}>
               🎟 Сертификат
             </Button>
@@ -888,7 +979,7 @@ printReceipt({
           setDebtPhone(e.target.value.replace(/\D/g, "").slice(0, 10))
         }
       />
-      <Button icon={<SearchOutlined />} onClick={searchByPhone} />
+      <Button icon={<SearchOutlined />} onClick={searchByPhone} disabled={!!selectedLegal}/>
     </div>
   </div>
 
@@ -896,7 +987,7 @@ printReceipt({
     <b>Имя</b>
     <div style={{ display: "flex", gap: 5 }}>
       <Input value={debtFirstname} onChange={(e) => setDebtFirstname(e.target.value)} />
-      <Button icon={<SearchOutlined />} onClick={searchByFirstname} />
+      <Button icon={<SearchOutlined />} onClick={searchByFirstname} disabled={!!selectedLegal}/>
     </div>
   </div>
 
@@ -904,7 +995,7 @@ printReceipt({
     <b>Фамилия</b>
     <div style={{ display: "flex", gap: 5 }}>
       <Input value={debtLastname} onChange={(e) => setDebtLastname(e.target.value)} />
-      <Button icon={<SearchOutlined />} onClick={searchByLastname} />
+      <Button icon={<SearchOutlined />} onClick={searchByLastname} disabled={!!selectedLegal} />
     </div>
   </div>
 
@@ -932,9 +1023,53 @@ printReceipt({
   clients={foundClients}
   onSelect={handleClientSelect}
   onCancel={() => setSelectClientModalOpen(false)}
+  
 />
 
 
+<Modal
+  open={legalModalVisible}
+  title="Юридическое лицо"
+  onCancel={() => setLegalModalVisible(false)}
+  footer={null}
+>
+  <div style={{ marginBottom: 10 }}>
+    <b>БИН предприятия</b>
+    <div style={{ display: "flex", gap: 5 }}>
+      <Input
+        value={legalBIN}
+        onChange={(e) => setLegalBIN(e.target.value.replace(/\D/g, ""))}
+      />
+      <Button icon={<SearchOutlined />} onClick={searchLegalByBIN} />
+    </div>
+  </div>
+
+  <div style={{ marginBottom: 10 }}>
+    <b>Наименование предприятия</b>
+    <div style={{ display: "flex", gap: 5 }}>
+      <Input value={legalName} onChange={(e) => setLegalName(e.target.value)} />
+      <Button icon={<SearchOutlined />} onClick={searchLegalByName} />
+    </div>
+  </div>
+
+  <div style={{ display: "flex", justifyContent: "space-between" }}>
+    <Button onClick={() => setLegalModalVisible(false)}>Отмена</Button>
+    <Button
+      type="primary"
+      onClick={() => {
+        if (foundLegalClients.length === 1) {
+          confirmLegalClient(foundLegalClients[0]);
+        } else if (!legalBIN && !legalName) {
+          message.error("Введите БИН или наименование");
+        } else {
+          message.info("Сначала найдите предприятие");
+        }
+      }}
+    >
+      Продолжить
+    </Button>
+  </div>
+</Modal>
 
     </>
   );
