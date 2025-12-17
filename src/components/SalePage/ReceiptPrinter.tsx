@@ -32,6 +32,7 @@ interface ReceiptPrinterProps {
   showRNM: boolean;
   showZNM: boolean;
   displayFile?: string;
+  tickettype?: number;
   onLogoLoaded?: () => void;
 }
 
@@ -55,7 +56,8 @@ const ReceiptPrinter: React.FC<ReceiptPrinterProps> = ({
   showBIN,
   showZNM,
   displayFile,
-  onLogoLoaded
+  onLogoLoaded,
+  tickettype
 }) => {
 
   
@@ -159,7 +161,7 @@ const [logoUrl, setLogoUrl] = useState<string | undefined>(undefined);
         {showZNM && cashboxUser ? `ЗНМ : UCHET000000${cashboxUser.cashboxId}\n` : ""}
         {"       Тауарлық чек/Товарный чек\n"}
         {date + "               " + "\n"}
-        {"Сату/Продажа :\n"}
+        {tickettype === 1 ? "Қайтару/Возврат" : "Сату/Продажа :\n"}
         {"\n"}
         {"------------------------------------------\n"}
         {productLines.join("\n------------------------------------------\n")}

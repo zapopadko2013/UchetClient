@@ -43,6 +43,7 @@ interface StockItem {
   id: string;
   pointType: number;
   productid: string;
+  attributescaption?: string;
 }
 
 // --- 2. Интерфейс для полного ответа API ---
@@ -299,6 +300,16 @@ const handleTableChange = (newPagination: any) => {
     { 
       title: t('stockReport.table.productname') || 'Наименование товара', 
       dataIndex: 'productname', 
+      render: (text, record) => (
+    <div>
+      <div style={{ fontWeight: '500' }}>{text}</div>
+      {record.attributescaption && (
+        <div style={{ fontSize: '12px', color: '#8c8c8c', marginTop: '4px' }}>
+          {record.attributescaption}
+        </div>
+      )}
+    </div>
+  ),
       width: 300 
     },
     { 

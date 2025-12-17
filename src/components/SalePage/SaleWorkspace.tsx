@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Input, Space, Table, message } from "antd";
+import { Button, Input, Space, Table, message,Modal } from "antd";
 import {
   AppstoreOutlined,
   BarcodeOutlined,
@@ -10,6 +10,13 @@ import {
 } from "@ant-design/icons";
 import ProductListModal from "./ProductListModal";
 import PaymentModal from "./PaymentModal";
+import ReturnWorkspace from "./ReturnWorkspace";
+import useApiRequest from "../../hooks/useApiRequest";
+import type { TicketFromApi, TicketDetailFromApi } from "./types";
+import ReceiptPrinter from "./ReceiptPrinter";
+import { createRoot } from "react-dom/client";
+import { BrowserRouter } from "react-router-dom";
+
 
 interface Props {
   //pointId: string;
@@ -26,6 +33,88 @@ interface User {
   role: string;
 }
 
+interface ReceiptPrinterProps {
+  saleProducts: any[];
+  totalAmount: number;
+  clientName: string;
+  confirmedDebtAmount?: number;
+  cashboxUser?: { name: string; cashboxId: number }; // теперь optional
+  selectedConsultant?: string;
+  ticketNumber?: string;
+  shiftNumber?: string;
+  date?: string;
+  storeName: string;         // Торговая точка
+  storeAddress: string;      // Адрес точки
+  companyName: string;       // Наименование компании
+  companyBIN: string;        // БИН компании
+  VAT?: string;              // НДС
+  paymentMethodText?: string;
+  Dopol1?: string;
+  Dopol2?: string;
+  showBIN: boolean;
+  showNDS: boolean;
+  showRNM: boolean;
+  showZNM: boolean;
+  tickettype?: number;
+
+  displayFile?: string;
+  onLogoLoaded?: () => void;
+}
+
+export const printReceipt = (props: ReceiptPrinterProps) => {
+  // создаём скрытый iframe
+  const iframe = document.createElement("iframe");
+  iframe.style.position = "absolute";
+  iframe.style.width = "0";
+  iframe.style.height = "0";
+  iframe.style.border = "0";
+
+  document.body.appendChild(iframe);
+
+  const doc = iframe.contentWindow?.document;
+  if (!doc) return;
+
+  // создаём контейнер внутри iframe
+  const container = doc.createElement("div");
+  doc.body.appendChild(container);
+
+  // создаём root в контейнере
+  const root = createRoot(container);
+
+  // 💡 ФУНКЦИЯ, КОТОРАЯ БУДЕТ ВЫЗВАНА ПОСЛЕ ЗАГРУЗКИ ЛОГО
+  const finishPrinting = () => {
+    // Ждем 50мс, чтобы React точно обновил DOM в iframe
+    setTimeout(() => {
+      iframe.contentWindow?.focus();
+      iframe.contentWindow?.print();
+
+      // очистка
+      root.unmount();
+      document.body.removeChild(iframe);
+    }, 50); 
+  };
+  
+  // 💡 Рендерим компонент, передавая ему эту функцию как prop
+  root.render(
+    <BrowserRouter>
+      {/* Передаем новую функцию-колбэк */}
+      <ReceiptPrinter 
+          {...props} 
+          onLogoLoaded={finishPrinting} 
+      />
+    </BrowserRouter>
+  );
+
+  // 💡 Дополнительный таймаут (на случай, если что-то пошло не так с колбэком)
+  setTimeout(() => {
+      // Если печать еще не запущена, запускаем ее без логотипа
+      if (document.body.contains(iframe)) {
+          console.warn("Timeout reached: Printing fallback.");
+          finishPrinting();
+      }
+  }, 5000); // 5 секунд на загрузку лого
+};
+
 const SaleWorkspace: React.FC<Props> = ({ 
   //pointId
   point
@@ -36,6 +125,17 @@ const SaleWorkspace: React.FC<Props> = ({
   const [barcode, setBarcode] = useState("");
   const [allProducts, setAllProducts] = useState<any[]>([]);
   const [paymentVisible, setPaymentVisible] = useState(false);
+
+  const [returnVisible, setReturnVisible] = useState(false);
+const [returnItems, setReturnItems] = useState<any[]>([]);
+  const { sendRequest } = useApiRequest();
+
+  const [returnTicket, setReturnTicket] = useState<TicketFromApi | null>(null);
+
+type Mode = "sale" | "return";
+
+const [mode, setMode] = useState<Mode>("sale");
+const [isReturnMode, setIsReturnMode] = useState(false);
 
   const [productStock, setProductStock] = useState<Map<string, { initial: number; current: number }>>(
     new Map()
@@ -74,6 +174,480 @@ const SaleWorkspace: React.FC<Props> = ({
 
     return { isWeight: false, productCode: code, productWeight: null };
   };
+
+  //////
+/* const handlePaymentClick = async () => {
+  if (saleProducts.length === 0) {
+    message.warning("Сначала добавьте товары");
+    return;
+  }
+
+  const totalAmount = saleProducts.reduce((sum, p) => sum + p.price * p.qty, 0);
+
+  if (mode === "return") {
+    // --- Автоплата возврата ---
+
+    if (!returnTicket) {
+    message.error("Не выбран чек для возврата");
+    return;
+  }
+    try {
+     const selectedTicket=returnTicket;
+      // Если режим возврата, то создаем транзакцию на возврат из selectedTicket
+      const transactionDetails = selectedTicket.details.map((d, index) => {
+        // Для каждого товара возврата берём данные из saleProducts
+        const returnItem = saleProducts.find((p) => p.product === d.product);
+        
+        return {
+          bonusadd: d.bonusadd || 0,
+          product: d.product,
+          excisestamp: d.excisestamp || [],
+          price: d.price,
+          line: index + 1,
+          ticketdiscount: d.ticketdiscount || 0,
+          pieceunits: d.pieceunits || 0,
+          discount: d.discount || 0,
+          attributes: d.attributes || [],
+          units: returnItem ? d.units : 0, // Отрицательное количество для возврата
+          bonuspay: d.bonuspay || 0,
+          cert: d.cert || [],
+          bonusrate: d.bonusrate || 0,
+          nds: d.nds || 0,
+          coupon: d.coupon || [],
+          invoicenumber: d.invoicenumber || "",
+          promotions: d.promotions || [],
+        };
+      });
+
+      const transaction = {
+        date: new Date().toLocaleString("ru-RU"),
+        bonusadd: selectedTicket.bonusadd || 0,
+        cashpay: selectedTicket.cashpay || 0,
+        discount: selectedTicket.discount || 0,
+        cert: selectedTicket.cert || [],
+        bonuspay: selectedTicket.bonuspay || 0,
+        debtorid: selectedTicket.debtorid || 0,
+        parentid:  0,
+        coupon: selectedTicket.coupon || [],
+        price: Math.abs(totalAmount),
+        cashboxuser: selectedTicket.cashboxuser,
+        details: transactionDetails,
+        ofdnumber: "1", // Здесь возможно нужно будет добавить реальный номер, если у тебя есть
+        certpay: selectedTicket.certpay || 0,
+        tickettype: 1, // Это возврат
+        cardpay: selectedTicket.cardpay || 0,
+        ticketid: selectedTicket.ticketid,
+        bonusid: selectedTicket.bonusid, // Тут можно подставить из selectedTicket, если нужно
+        cashbox: cashboxUser.cashboxId,
+        sellerid: selectedTicket.sellerid || 0,
+        customerid: selectedTicket.customerid ||0,
+        fizid: selectedTicket.fizid ||0,
+        debtpay: selectedTicket.debtpay || 0,
+        paymenttype: "return",
+        hash: "",
+        debitpay: selectedTicket.debitpay || 0,
+        detailsdiscount: 0,
+        shiftnumber: selectedTicket.shiftnumber,
+        consignment: selectedTicket.consignment,
+        total: Math.abs(totalAmount),
+        issalebypiece: false,
+        promotions:  [],
+      };
+
+      // Отправляем запрос на сервер
+      const data = await sendRequest(
+        `${import.meta.env.VITE_API_URL}/external/api/invoice/transfertransactions`,
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("accessToken") || ""}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ transactions: [transaction] }),
+        }
+      );
+
+      if (data.code === "success") {
+        message.success("Возврат успешно проведён");
+        // очищаем возвратные товары
+        setSaleProducts([]);
+        setIsReturnMode(false);
+        setMode("sale");
+      } else {
+        message.error(data.text || "Ошибка сервера при возврате");
+      }
+    } catch (err) {
+      console.error(err);
+      message.error("Ошибка передачи возврата на сервер");
+    }
+  } else {
+    // --- Обычная продажа через модалку ---
+    setPaymentVisible(true);
+  }
+}; */
+
+
+const handlePaymentClick = async () => {
+  if (saleProducts.length === 0) {
+    message.warning("Сначала добавьте товары");
+    return;
+  }
+
+  const totalAmount = saleProducts.reduce((sum, p) => sum + p.price * p.qty, 0);
+
+  if (mode !== "return") {
+    // обычная продажа через модалку
+    setPaymentVisible(true);
+    return;
+  }
+
+  if (!returnTicket) {
+    message.error("Не выбран чек для возврата");
+    return;
+  }
+
+  const selectedTicket = returnTicket;
+
+//  console.log(saleProducts);
+  
+
+  // Подготовка деталей транзакции
+  /* const transactionDetails = selectedTicket.details.map((d, index) => {
+    
+    const returnItem = saleProducts.find((p) => p.product === d.product);
+    return {
+      bonusadd: d.bonusadd || 0,
+      product: d.product,
+      excisestamp: d.excisestamp || [],
+      price: d.price,
+      line: index + 1,
+      ticketdiscount: d.ticketdiscount || 0,
+      pieceunits: d.pieceunits || 0,
+      discount: d.discount || 0,
+      attributes: d.attributes || 0,
+      units: returnItem ? -Math.abs(returnItem.qty) : 0,
+      bonuspay: d.bonuspay || 0,
+      cert: d.cert || [],
+      bonusrate: d.bonusrate || 0,
+      nds: d.nds || 0,
+      coupon: d.coupon || [],
+      invoicenumber: d.invoicenumber || "",
+      promotions: d.promotions || [],
+    };
+  }); */
+
+  const transactionDetails = saleProducts.map((item, index) => {
+  const originalDetail = selectedTicket.details.find(
+    d => d.product === item.product
+  );
+
+  if (!originalDetail) return null;
+
+  return {
+    bonusadd: originalDetail.bonusadd || 0,
+    product: item.product,
+    excisestamp: originalDetail.excisestamp || [],
+    price: item.price,
+    line: index + 1,
+    ticketdiscount: originalDetail.ticketdiscount || 0,
+    pieceunits: originalDetail.pieceunits || 0,
+    discount: originalDetail.discount || 0,
+    attributes: originalDetail.attributes || 0,
+    units: -Math.abs(item.qty), 
+    bonuspay: originalDetail.bonuspay || 0,
+    cert: originalDetail.cert || [],
+    bonusrate: originalDetail.bonusrate || 0,
+    nds: originalDetail.nds || 0,
+    coupon: originalDetail.coupon || [],
+    invoicenumber: originalDetail.invoicenumber || "",
+    promotions: originalDetail.promotions || [],
+  };
+}).filter(Boolean);
+
+  const createTransaction = (type: string) => {
+    let cashpay = 0, cardpay = 0, debtpay = 0, certpay = 0, debitpay = 0;
+
+    switch (type) {
+      case "cash":
+        cashpay = Math.abs(totalAmount);
+        break;
+      case "debt":
+        debtpay = Math.abs(totalAmount);
+        break;
+      case "card":
+        cardpay = Math.abs(totalAmount);
+        break;
+      case "debit":
+        debitpay = Math.abs(totalAmount);
+        break;
+      /* case "mixed":
+        // можно реализовать логику смешанной оплаты, пока распределяем 50/50 как пример
+        cashpay = Math.abs(totalAmount) / 2;
+        cardpay = Math.abs(totalAmount) / 2;
+        break; */
+      default:
+        message.error("Неизвестный тип оплаты");
+        return null;
+    }
+
+    return {
+      date: new Date().toLocaleString("ru-RU"),
+      bonusadd: selectedTicket.bonusadd || 0,
+      cashpay,
+      cardpay,
+      debitpay,
+      debtpay,
+      certpay,
+      discount: selectedTicket.discount || 0,
+      cert: selectedTicket.cert || [],
+      bonuspay: selectedTicket.bonuspay || 0,
+      debtorid: selectedTicket.debtorid || 0,
+      parentid: selectedTicket.ticketid,
+      coupon: selectedTicket.coupon || [],
+      price: Math.abs(totalAmount),
+      cashboxuser: selectedTicket.cashboxuser,
+      details: transactionDetails,
+      ofdnumber: selectedTicket.ofdnumber,
+      tickettype: 1, // возврат
+      ticketid: selectedTicket.id,
+      bonusid: selectedTicket.bonusid || 0,
+      cashbox: cashboxUser.cashboxId,
+      sellerid: selectedTicket.sellerid || 0,
+      customerid: selectedTicket.customerid || 0,
+      fizid: selectedTicket.fizid || 0,
+      paymenttype: type,
+      hash: "",
+      detailsdiscount: 0,
+      shiftnumber: selectedTicket.shiftnumber,
+      consignment: selectedTicket.consignment,
+      total: Math.abs(totalAmount),
+      issalebypiece: false,
+      promotions: [],
+    };
+  };
+
+  // Для "cash" и "debt" сразу создаем и отправляем транзакцию
+  if (["cash", "debt"].includes(selectedTicket.paymenttype)) {
+    const transaction = createTransaction(selectedTicket.paymenttype);
+    if (!transaction) return;
+
+    try {
+      const data = await sendRequest(
+        `${import.meta.env.VITE_API_URL}/external/api/invoice/transfertransactions`,
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("accessToken") || ""}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ transactions: [transaction] }),
+        }
+      );
+
+      if (data.code === "success") {
+        message.success("Возврат успешно проведён");
+        
+        const productsForPrint = [...saleProducts];
+
+  setSaleProducts([]);
+  setIsReturnMode(false);
+  setMode("sale"); 
+
+        /////////
+
+        const isTicketFormatEmpty =
+          !ticketFormat ||
+          (typeof ticketFormat === "object" &&
+            Object.keys(ticketFormat).length === 0);
+        
+        const formatJSON = !isTicketFormatEmpty ? ticketFormat.json : null;
+        
+        const receiptFlags = {
+          showBIN: formatJSON?.BIN ?? true,   
+          showNDS: formatJSON?.NDS ?? false,
+          showRNM: formatJSON?.RNM ?? false,
+          showZNM: formatJSON?.ZNM ?? true,
+        };
+        
+        
+        const receiptData = isTicketFormatEmpty
+          ? {
+              storeName: point.name,
+              storeAddress: point.address,
+              companyName: companyInfo.name,
+              companyBIN: companyInfo.bin,
+              Dopol1:'Спасибо за покупку.',
+            }
+          : {
+              storeName: ticketFormat.json.company || companyInfo.name,
+              storeAddress: ticketFormat.json.address || point.address,
+              companyName: ticketFormat.json.company || companyInfo.name,
+              companyBIN: ticketFormat.json.BIN ? companyInfo.bin : "",
+              Dopol1:ticketFormat.json.thanksMessage||"",
+              Dopol2:ticketFormat.json.advertisementMessage||"",
+              displayFile: ticketFormat.json.displayFile,
+            };
+        
+        
+        
+        printReceipt({
+          saleProducts: productsForPrint,
+          totalAmount,
+          clientName: "",
+          confirmedDebtAmount: selectedTicket.debtpay,
+          cashboxUser,
+          selectedConsultant: "",
+        
+          // новые обязательные поля
+          paymentMethodText: selectedTicket.paymenttype,
+          tickettype: 1,
+          VAT:"0",
+          ...receiptData,
+          ...receiptFlags, 
+         
+        });
+
+        /////////
+
+      } else {
+        message.error(data.text || "Ошибка сервера при возврате");
+      }
+    } catch (err) {
+      console.error(err);
+      message.error("Ошибка передачи возврата на сервер");
+    }
+
+    return;
+  }
+
+  // Для "card", "debit", "mixed" показываем модальное окно с выбором
+  Modal.info({
+    title: "Выберите способ возврата",
+    content: (
+      <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+        {selectedTicket.paymenttype === "card" && (
+          <>
+            <button onClick={() => processReturn("card")}>Возврат на карту</button>
+            <button onClick={() => processReturn("cash")}>Возврат наличными</button>
+          </>
+        )}
+        {selectedTicket.paymenttype === "debit" && (
+          <>
+            <button onClick={() => processReturn("debit")}>Возврат безналичный</button>
+            <button onClick={() => processReturn("cash")}>Возврат наличными</button>
+          </>
+        )}
+        {selectedTicket.paymenttype === "mixed" && (
+          <>
+            <button onClick={() => processReturn("card")}>Возврат на карту</button>
+            <button onClick={() => processReturn("debit")}>Возврат безналичный</button>
+            <button onClick={() => processReturn("cash")}>Возврат наличными</button>
+          </>
+        )}
+        <button onClick={() => Modal.destroyAll()}>Отмена</button>
+      </div>
+    ),
+    onOk() {},
+  });
+
+  const processReturn = async (type: string) => {
+    Modal.destroyAll(); // закрываем окно
+    const transaction = createTransaction(type);
+    if (!transaction) return;
+
+    try {
+      const data = await sendRequest(
+        `${import.meta.env.VITE_API_URL}/external/api/invoice/transfertransactions`,
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("accessToken") || ""}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ transactions: [transaction] }),
+        }
+      );
+
+      if (data.code === "success") {
+        message.success("Возврат успешно проведён");
+        /* setSaleProducts([]);
+        setIsReturnMode(false);
+        setMode("sale"); */
+
+        const productsForPrint = [...saleProducts];
+
+  setSaleProducts([]);
+  setIsReturnMode(false);
+  setMode("sale"); 
+
+        /////////
+
+        const isTicketFormatEmpty =
+          !ticketFormat ||
+          (typeof ticketFormat === "object" &&
+            Object.keys(ticketFormat).length === 0);
+        
+        const formatJSON = !isTicketFormatEmpty ? ticketFormat.json : null;
+        
+        const receiptFlags = {
+          showBIN: formatJSON?.BIN ?? true,   
+          showNDS: formatJSON?.NDS ?? false,
+          showRNM: formatJSON?.RNM ?? false,
+          showZNM: formatJSON?.ZNM ?? true,
+        };
+        
+        
+        const receiptData = isTicketFormatEmpty
+          ? {
+              storeName: point.name,
+              storeAddress: point.address,
+              companyName: companyInfo.name,
+              companyBIN: companyInfo.bin,
+              Dopol1:'Спасибо за покупку.',
+            }
+          : {
+              storeName: ticketFormat.json.company || companyInfo.name,
+              storeAddress: ticketFormat.json.address || point.address,
+              companyName: ticketFormat.json.company || companyInfo.name,
+              companyBIN: ticketFormat.json.BIN ? companyInfo.bin : "",
+              Dopol1:ticketFormat.json.thanksMessage||"",
+              Dopol2:ticketFormat.json.advertisementMessage||"",
+              displayFile: ticketFormat.json.displayFile,
+            };
+        
+        
+        
+        printReceipt({
+          saleProducts: productsForPrint,
+          totalAmount,
+          clientName: "",
+          confirmedDebtAmount: selectedTicket.debtpay,
+          cashboxUser,
+          selectedConsultant: "",
+        
+          // новые обязательные поля
+          paymentMethodText: selectedTicket.paymenttype, 
+          tickettype: 1,
+          VAT:"0",
+          ...receiptData,
+          ...receiptFlags, 
+         
+        });
+
+        /////////
+
+      } else {
+        message.error(data.text || "Ошибка сервера при возврате");
+      }
+    } catch (err) {
+      console.error(err);
+      message.error("Ошибка передачи возврата на сервер");
+    }
+  };
+};
+
+
+  //////
 
   // --- Добавление товара ---
   const addProduct = (product: any, qty: number = 1, weight?: number) => {
@@ -167,6 +741,7 @@ const SaleWorkspace: React.FC<Props> = ({
     {
       title: "Кол-во",
       dataIndex: "qty",
+     
       render: (_: any, row: any) => {
         const stock = productStock.get(row.key)!;
         return (
@@ -178,6 +753,7 @@ const SaleWorkspace: React.FC<Props> = ({
             //step={row.isWeight ? 0.001 : 1}
             step={undefined}
             value={row.qty}
+            disabled={mode === "return"} 
             onChange={(e) => {
               const newQty = Number(e.target.value);
               //if (newQty < 1) {
@@ -206,12 +782,12 @@ const SaleWorkspace: React.FC<Props> = ({
      // dataIndex: "discount"
     render: (_: any, row: any) => {
       const discount = row.originalPrice ? (row.originalPrice - row.price) : 0;
-      return discount > 0 ? (row.qty *discount).toFixed(2) : "0";
+      return discount > 0 ? (Math.abs(row.qty) *discount).toFixed(2) : "0";
     },
     },
     {
       title: "Итого",
-      render: (_: any, row: any) => (row.qty * row.price).toFixed(2),
+      render: (_: any, row: any) => (Math.abs(row.qty) * row.price).toFixed(2),
     },
   ];
 
@@ -253,9 +829,24 @@ const SaleWorkspace: React.FC<Props> = ({
           }}
         />
 
-        <Button icon={<PlusOutlined />} onClick={increaseQty} />
-        <Button icon={<MinusOutlined />} onClick={decreaseQty} />
-        <Button icon={<DeleteOutlined />} danger onClick={deleteProduct} />
+        <Button
+  icon={<PlusOutlined />}
+  onClick={increaseQty}
+  disabled={mode === "return"}
+/>
+
+<Button
+  icon={<MinusOutlined />}
+  onClick={decreaseQty}
+  disabled={mode === "return"}
+/>
+
+<Button
+  icon={<DeleteOutlined />}
+  danger
+  onClick={deleteProduct}
+  disabled={mode === "return"}
+/>
 
         <Button
           icon={<MoneyCollectOutlined />}
@@ -289,7 +880,7 @@ const SaleWorkspace: React.FC<Props> = ({
         </Button>
 
         <div style={{ background: "black", color: "white", padding: 10 }}>
-          Сумма: {total.toFixed(2)}
+          Сумма: {Math.abs(total.toFixed(2))}
         </div>
       </Space>
 
@@ -306,8 +897,41 @@ const SaleWorkspace: React.FC<Props> = ({
       />
 
       <Space style={{ marginTop: 10 }}>
-        <Button danger>Возврат</Button>
-        <Button
+      
+  {mode === "sale" && (
+  <Button
+    danger
+    onClick={() => setReturnVisible(true)}
+  >
+    Возврат
+  </Button>
+)}
+
+{mode === "return" && (
+  <Button
+    danger
+    onClick={() => {
+      setSaleProducts((prev) => {
+        const returnItems = prev.filter((p) => p.isReturn);
+        const restoredStock = new Map(productStock);
+        returnItems.forEach((item) => {
+          const stock = restoredStock.get(item.key);
+          if (stock) stock.current = stock.initial;
+        });
+        setProductStock(restoredStock);
+        return prev.filter((p) => !p.isReturn);
+      });
+      setSelectedRowKey(null);
+      setMode("sale");  // переключаем обратно
+    }}
+  >
+    Отменить возврат
+  </Button>
+)}
+
+
+
+{/* <Button
           type="primary"
           size="large"
           onClick={() => {
@@ -319,7 +943,15 @@ const SaleWorkspace: React.FC<Props> = ({
           }}
         >
           Оплата
-        </Button>
+        </Button> */}
+
+        <Button
+  type="primary"
+  size="large"
+  onClick={handlePaymentClick} // вызываем новую функцию
+>
+  Оплата
+</Button>
       </Space>
 
       <ProductListModal
@@ -353,6 +985,115 @@ const SaleWorkspace: React.FC<Props> = ({
           setSelectedRowKey(null);   
         }}
       />
+
+{/* <ReturnWorkspace
+  visible={returnVisible}
+  pointId={point.id}
+  onClose={() => {
+    setReturnVisible(false);
+    setIsReturnMode(false);
+  }}
+  onReturnReady={(returnedItems, __, allProducts) => {
+  // Подготовка возвратных товаров
+  const preparedReturnItems = returnedItems.map((item) => {
+    const key = makeProductKey(item);
+    const productFromCatalog = allProducts.find(p => p.id === item.product);
+
+    return {
+      ...item,
+      key,
+      isReturn: true,                               // помечаем как возврат
+      name: item.name || productFromCatalog?.name || "Товар", // корректное имя
+      qty: -Math.abs(item.qty),                     // отрицательное количество
+      price: item.price,                            // цена со скидкой
+      originalPrice: item.originalPrice || item.price, // оригинальная цена
+    };
+  });
+
+  // Обновляем остатки
+  const newStock = new Map(productStock);
+  preparedReturnItems.forEach((item) => {
+    if (newStock.has(item.key)) {
+      const stock = newStock.get(item.key)!;
+      stock.current = 0; // при возврате остаток = 0
+    } else {
+      newStock.set(item.key, {
+        initial: Math.abs(item.qty),
+        current: 0,
+      });
+    }
+  });
+  setProductStock(newStock);
+
+  // Добавляем возврат в таблицу
+  setSaleProducts((prev) => [...prev, ...preparedReturnItems]);
+
+  // Переключаем режим возврата
+  setIsReturnMode(true);
+  setMode("return");
+
+  // Закрываем окно возврата
+  setReturnVisible(false);
+}}
+
+/> */}
+
+<ReturnWorkspace
+  visible={returnVisible}
+  pointId={point.id}
+  onClose={() => {
+    setReturnVisible(false);
+    setIsReturnMode(false);
+  }}
+  onReturnReady={(returnedItems, ticket, allProducts) => {
+    // Сохраняем выбранный чек
+    setReturnTicket(ticket);
+
+    // Подготовка возвратных товаров
+    const preparedReturnItems = returnedItems.map((item) => {
+      const key = makeProductKey(item);
+      const productFromCatalog = allProducts.find((p) => p.id === item.product);
+
+      return {
+        ...item,
+        key,
+        isReturn: true,                               // помечаем как возврат
+        name: item.name || productFromCatalog?.name || "Товар", // корректное имя
+        qty: -Math.abs(item.qty),                     // отрицательное количество
+        price: item.price,                            // цена со скидкой
+        originalPrice: item.originalPrice || item.price, // оригинальная цена
+      };
+    });
+
+    // Обновляем остатки
+    const newStock = new Map(productStock);
+    preparedReturnItems.forEach((item) => {
+      if (newStock.has(item.key)) {
+        const stock = newStock.get(item.key)!;
+        stock.current = 0; // при возврате остаток = 0
+      } else {
+        newStock.set(item.key, {
+          initial: Math.abs(item.qty),
+          current: 0,
+        });
+      }
+    });
+    setProductStock(newStock);
+
+    // Добавляем возврат в таблицу
+    setSaleProducts((prev) => [...prev, ...preparedReturnItems]);
+
+    // Переключаем режим возврата
+    setIsReturnMode(true);
+    setMode("return");
+
+    // Закрываем окно возврата
+    setReturnVisible(false);
+  }}
+/>
+
+
+
     </>
   );
 };
