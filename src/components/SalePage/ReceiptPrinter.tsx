@@ -33,6 +33,7 @@ interface ReceiptPrinterProps {
   showZNM: boolean;
   displayFile?: string;
   tickettype?: number;
+  discount?: number;
   onLogoLoaded?: () => void;
 }
 
@@ -57,7 +58,8 @@ const ReceiptPrinter: React.FC<ReceiptPrinterProps> = ({
   showZNM,
   displayFile,
   onLogoLoaded,
-  tickettype
+  tickettype,
+  discount
 }) => {
 
   
@@ -128,7 +130,9 @@ const [logoUrl, setLogoUrl] = useState<string | undefined>(undefined);
   return line;
 });
 
-  const totalDiscount = saleProducts.reduce((sum, p) => sum + (p.discount || 0), 0);
+const discountSafe = discount ?? 0;
+
+  const totalDiscount = saleProducts.reduce((sum, p) => sum + (p.discount || 0), 0)+discountSafe;
 
   return (
    

@@ -130,12 +130,26 @@ const SaleWorkspace: React.FC<Props> = ({
 const [returnItems, setReturnItems] = useState<any[]>([]);
   const { sendRequest } = useApiRequest();
 
-  const [returnTicket, setReturnTicket] = useState<TicketFromApi | null>(null);
+const [manualDiscountVisible, setManualDiscountVisible] = useState(false);
+const [manualDiscountAmount, setManualDiscountAmount] = useState<number>(0);
+const [manualDiscountPercent, setManualDiscountPercent] = useState<number>(0);
+const [selectedDiscountRowKey, setSelectedDiscountRowKey] = useState<string | null>(null);
+
+const [returnTicket, setReturnTicket] = useState<TicketFromApi | null>(null);
 
 type Mode = "sale" | "return";
 
 const [mode, setMode] = useState<Mode>("sale");
 const [isReturnMode, setIsReturnMode] = useState(false);
+
+//////
+/* const maxDiscountPercent =
+  typeof cashboxUser?.discountinfo === "number"
+    ? cashboxUser.discountinfo
+    : cashboxUser?.discountinfo?.maxPercent ?? 0; */
+
+const maxDiscountPercent = cashboxUser?.discountinfo ?? 0;    
+/////
 
   const [productStock, setProductStock] = useState<Map<string, { initial: number; current: number }>>(
     new Map()
@@ -175,116 +189,103 @@ const [isReturnMode, setIsReturnMode] = useState(false);
     return { isWeight: false, productCode: code, productWeight: null };
   };
 
-  //////
-/* const handlePaymentClick = async () => {
-  if (saleProducts.length === 0) {
-    message.warning("Сначала добавьте товары");
+
+// --- Применение скидки к выбранному товару ---
+/* const applyManualDiscount = () => {
+  if (!selectedDiscountRowKey) {
+    message.warning("Сначала выберите товар");
     return;
   }
 
-  const totalAmount = saleProducts.reduce((sum, p) => sum + p.price * p.qty, 0);
-
-  if (mode === "return") {
-    // --- Автоплата возврата ---
-
-    if (!returnTicket) {
-    message.error("Не выбран чек для возврата");
-    return;
-  }
-    try {
-     const selectedTicket=returnTicket;
-      // Если режим возврата, то создаем транзакцию на возврат из selectedTicket
-      const transactionDetails = selectedTicket.details.map((d, index) => {
-        // Для каждого товара возврата берём данные из saleProducts
-        const returnItem = saleProducts.find((p) => p.product === d.product);
-        
+  setSaleProducts((prev) =>
+    prev.map((item) => {
+      if (item.key === selectedDiscountRowKey) {
+        const discountAmount = Math.min(manualDiscountAmount, item.originalPrice);
+        const newPrice = item.originalPrice - discountAmount;
         return {
-          bonusadd: d.bonusadd || 0,
-          product: d.product,
-          excisestamp: d.excisestamp || [],
-          price: d.price,
-          line: index + 1,
-          ticketdiscount: d.ticketdiscount || 0,
-          pieceunits: d.pieceunits || 0,
-          discount: d.discount || 0,
-          attributes: d.attributes || [],
-          units: returnItem ? d.units : 0, // Отрицательное количество для возврата
-          bonuspay: d.bonuspay || 0,
-          cert: d.cert || [],
-          bonusrate: d.bonusrate || 0,
-          nds: d.nds || 0,
-          coupon: d.coupon || [],
-          invoicenumber: d.invoicenumber || "",
-          promotions: d.promotions || [],
+          ...item,
+          price: newPrice,
+          discount: discountAmount,
         };
-      });
-
-      const transaction = {
-        date: new Date().toLocaleString("ru-RU"),
-        bonusadd: selectedTicket.bonusadd || 0,
-        cashpay: selectedTicket.cashpay || 0,
-        discount: selectedTicket.discount || 0,
-        cert: selectedTicket.cert || [],
-        bonuspay: selectedTicket.bonuspay || 0,
-        debtorid: selectedTicket.debtorid || 0,
-        parentid:  0,
-        coupon: selectedTicket.coupon || [],
-        price: Math.abs(totalAmount),
-        cashboxuser: selectedTicket.cashboxuser,
-        details: transactionDetails,
-        ofdnumber: "1", // Здесь возможно нужно будет добавить реальный номер, если у тебя есть
-        certpay: selectedTicket.certpay || 0,
-        tickettype: 1, // Это возврат
-        cardpay: selectedTicket.cardpay || 0,
-        ticketid: selectedTicket.ticketid,
-        bonusid: selectedTicket.bonusid, // Тут можно подставить из selectedTicket, если нужно
-        cashbox: cashboxUser.cashboxId,
-        sellerid: selectedTicket.sellerid || 0,
-        customerid: selectedTicket.customerid ||0,
-        fizid: selectedTicket.fizid ||0,
-        debtpay: selectedTicket.debtpay || 0,
-        paymenttype: "return",
-        hash: "",
-        debitpay: selectedTicket.debitpay || 0,
-        detailsdiscount: 0,
-        shiftnumber: selectedTicket.shiftnumber,
-        consignment: selectedTicket.consignment,
-        total: Math.abs(totalAmount),
-        issalebypiece: false,
-        promotions:  [],
-      };
-
-      // Отправляем запрос на сервер
-      const data = await sendRequest(
-        `${import.meta.env.VITE_API_URL}/external/api/invoice/transfertransactions`,
-        {
-          method: "POST",
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("accessToken") || ""}`,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ transactions: [transaction] }),
-        }
-      );
-
-      if (data.code === "success") {
-        message.success("Возврат успешно проведён");
-        // очищаем возвратные товары
-        setSaleProducts([]);
-        setIsReturnMode(false);
-        setMode("sale");
-      } else {
-        message.error(data.text || "Ошибка сервера при возврате");
       }
-    } catch (err) {
-      console.error(err);
-      message.error("Ошибка передачи возврата на сервер");
-    }
-  } else {
-    // --- Обычная продажа через модалку ---
-    setPaymentVisible(true);
-  }
+      return item;
+    })
+  );
+
+  setManualDiscountVisible(false);
+  setManualDiscountAmount(0);
+  setManualDiscountPercent(0);
 }; */
+
+// --- Обновление суммы при изменении процента ---
+/* const handlePercentChange = (percent: number, originalPrice: number) => {
+  const validPercent = Math.min(Math.max(percent, 0), 100);
+  setManualDiscountPercent(validPercent);
+  setManualDiscountAmount((originalPrice * validPercent) / 100);
+}; */
+
+const handlePercentChange = (percent: number, originalPrice: number) => {
+  if (percent > maxDiscountPercent) {
+    message.error(`Максимальная скидка ${maxDiscountPercent}%`);
+    percent = maxDiscountPercent;
+  }
+
+  const validPercent = Math.min(Math.max(percent, 0), 100);
+  setManualDiscountPercent(validPercent);
+  setManualDiscountAmount((originalPrice * validPercent) / 100);
+};
+
+// --- Обновление процента при изменении суммы ---
+/* const handleAmountChange = (amount: number, originalPrice: number) => {
+  const validAmount = Math.min(Math.max(amount, 0), originalPrice);
+  setManualDiscountAmount(validAmount);
+  setManualDiscountPercent((validAmount / originalPrice) * 100);
+}; */
+
+const handleAmountChange = (amount: number, originalPrice: number) => {
+  const maxAmountByPercent = (originalPrice * maxDiscountPercent) / 100;
+
+  if (amount > maxAmountByPercent) {
+    message.error(
+      `Максимальная скидка ${maxDiscountPercent}% (${maxAmountByPercent.toFixed(2)})`
+    );
+    amount = maxAmountByPercent;
+  }
+
+  const validAmount = Math.min(Math.max(amount, 0), originalPrice);
+  setManualDiscountAmount(validAmount);
+  setManualDiscountPercent((validAmount / originalPrice) * 100);
+};
+
+const applyManualDiscount = () => {
+  if (!selectedDiscountRowKey) return;
+
+  const item = saleProducts.find(p => p.key === selectedDiscountRowKey);
+  if (!item) return;
+
+  const discountPercent = (manualDiscountAmount / item.originalPrice) * 100;
+
+  if (discountPercent > maxDiscountPercent) {
+    message.error(`Превышен лимит скидки (${maxDiscountPercent}%)`);
+    return;
+  }
+
+  setSaleProducts(prev =>
+    prev.map(p =>
+      p.key === selectedDiscountRowKey
+        ? {
+            ...p,
+            price: item.originalPrice - manualDiscountAmount,
+            discount: manualDiscountAmount,
+          }
+        : p
+    )
+  );
+
+  setManualDiscountVisible(false);
+};
+
+  //////
 
 
 const handlePaymentClick = async () => {
@@ -312,30 +313,7 @@ const handlePaymentClick = async () => {
   
 
   // Подготовка деталей транзакции
-  /* const transactionDetails = selectedTicket.details.map((d, index) => {
-    
-    const returnItem = saleProducts.find((p) => p.product === d.product);
-    return {
-      bonusadd: d.bonusadd || 0,
-      product: d.product,
-      excisestamp: d.excisestamp || [],
-      price: d.price,
-      line: index + 1,
-      ticketdiscount: d.ticketdiscount || 0,
-      pieceunits: d.pieceunits || 0,
-      discount: d.discount || 0,
-      attributes: d.attributes || 0,
-      units: returnItem ? -Math.abs(returnItem.qty) : 0,
-      bonuspay: d.bonuspay || 0,
-      cert: d.cert || [],
-      bonusrate: d.bonusrate || 0,
-      nds: d.nds || 0,
-      coupon: d.coupon || [],
-      invoicenumber: d.invoicenumber || "",
-      promotions: d.promotions || [],
-    };
-  }); */
-
+  
   const transactionDetails = saleProducts.map((item, index) => {
   const originalDetail = selectedTicket.details.find(
     d => d.product === item.product
@@ -930,6 +908,28 @@ const handlePaymentClick = async () => {
 )}
 
 
+<Button
+  onClick={() => {
+    if (!selectedRowKey) {
+      message.warning("Сначала выберите товар");
+      return;
+    }
+    if (!cashboxUser.discount) {
+      message.warning("Выбранный пользователь кассы не может давать скидки!");
+      return;
+    }
+    setSelectedDiscountRowKey(selectedRowKey);
+    const selectedItem = saleProducts.find(p => p.key === selectedRowKey);
+    if (selectedItem) {
+      setManualDiscountAmount(selectedItem.discount || 0);
+      setManualDiscountPercent(((selectedItem.discount || 0) / selectedItem.originalPrice) * 100);
+    }
+    setManualDiscountVisible(true);
+  }}
+>
+  Скидка
+</Button>
+
 
 {/* <Button
           type="primary"
@@ -1092,6 +1092,56 @@ const handlePaymentClick = async () => {
   }}
 />
 
+<Modal
+  title="Ручная скидка"
+  open={manualDiscountVisible}
+  onOk={applyManualDiscount}
+  onCancel={() => setManualDiscountVisible(false)}
+  okText="Применить"
+  cancelText="Отмена"
+>
+  {selectedDiscountRowKey && (() => {
+    const item = saleProducts.find(p => p.key === selectedDiscountRowKey);
+    if (!item) return null;
+
+    return (
+      <div style={{ display: "flex", flexDirection: "column", gap: "15px" }}>
+        {/* Поле для ввода суммы скидки */}
+        <div>
+          <label style={{ display: "block", fontWeight: "bold", marginBottom: 5 }}>
+            Сумма скидки :
+          </label>
+          <Input
+            type="number"
+            min={0}
+            max={item.originalPrice}
+            value={manualDiscountAmount}
+            onChange={(e) => handleAmountChange(Number(e.target.value), item.originalPrice)}
+            placeholder="Введите сумму скидки"
+          />
+        </div>
+
+        {/* Поле для ввода процента скидки */}
+        <div>
+          <label style={{ display: "block", fontWeight: "bold", marginBottom: 5 }}>
+            Процент скидки (%):
+          </label>
+          <Input
+            type="number"
+            min={0}
+            max={100}
+            value={manualDiscountPercent}
+            onChange={(e) => handlePercentChange(Number(e.target.value), item.originalPrice)}
+            placeholder="Введите процент скидки"
+          />
+        </div>
+        <div style={{ color: "#888", fontSize: 12 }}>
+  Максимальная скидка: {maxDiscountPercent}%
+</div>
+      </div>
+    );
+  })()}
+</Modal>
 
 
     </>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Modal, Input, Button, Select, Checkbox, message } from "antd";
+import { Modal, Input, Button, Select, Checkbox, message,Radio } from "antd";
 import useApiRequest from "../../hooks/useApiRequest";
 import ClientSelectModal from "./ClientSelectModal";
 import { SearchOutlined } from "@ant-design/icons";
@@ -52,6 +52,7 @@ interface ReceiptPrinterProps {
   showNDS: boolean;
   showRNM: boolean;
   showZNM: boolean;
+  discount?: number;
 
   displayFile?: string;
   onLogoLoaded?: () => void;
@@ -182,7 +183,85 @@ const [debtAmount, setDebtAmount] = useState<number>(0);
 
 const [confirmedDebt, setConfirmedDebt] = useState<{ client: any; amount: number } | null>(null);
 
-  useEffect(() => {
+const [discountModalVisible, setDiscountModalVisible] = useState(false);
+  const [discountType, setDiscountType] = useState<"sum" | "percent">("sum");
+  const [discountValue, setDiscountValue] = useState(0);
+
+///
+const maxDiscountPercent = cashboxUser?.discountinfo ?? 0;
+
+
+const originalTotal = saleProducts.reduce(
+  (sum, p) => sum + p.originalPrice * Math.abs(p.qty),
+  0
+);
+
+const itemsDiscountTotal = saleProducts.reduce(
+  (sum, p) => sum + (p.discount || 0) * Math.abs(p.qty),
+  0
+);
+
+const totalAfterItems = originalTotal - itemsDiscountTotal;
+
+const applyReceiptPercentDiscount = (percent: number) => {
+  const safePercent = Math.max(percent, 0);
+
+  const maxReceiptDiscountAmount =
+    (originalTotal * maxDiscountPercent) / 100
+    - itemsDiscountTotal;
+
+  const available = Math.max(maxReceiptDiscountAmount, 0);
+
+  const calculatedDiscount =
+    (totalAfterItems * safePercent) / 100;
+
+  if (calculatedDiscount > available) {
+    message.warning(
+      `Превышен лимит скидки. Доступно: ${available.toFixed(2)}`
+    );
+    
+    return;
+  }
+
+  setDiscount((originalTotal * safePercent) / 100);
+};
+
+
+const applyReceiptSumDiscount = (amount: number) => {
+  const safeAmount = Math.max(amount, 0);
+
+  const maxReceiptDiscountAmount =
+    (originalTotal * maxDiscountPercent) / 100
+    - itemsDiscountTotal;
+
+  const available = Math.max(maxReceiptDiscountAmount, 0);
+
+  if (safeAmount > available) {
+    message.warning(
+      `Превышен лимит скидки. Доступно: ${available.toFixed(2)}`
+    );
+   
+    return;
+  }
+
+  setDiscount(safeAmount);
+};
+
+
+
+const applyDiscount = () => {
+  if (discountType === "percent") {
+    applyReceiptPercentDiscount(discountValue);
+  } else {
+    applyReceiptSumDiscount(discountValue);
+  }
+
+  setDiscountModalVisible(false);
+};
+////
+
+
+/*   useEffect(() => {
     if (currentPaymentType === "cash") {
       setChange(cashAmount - totalAmount);
     }
@@ -190,6 +269,18 @@ const [confirmedDebt, setConfirmedDebt] = useState<{ client: any; amount: number
       setChange(cashAmount + cardAmount + transferAmount - totalAmount);
     }
   }, [cashAmount, cardAmount, transferAmount, currentPaymentType, totalAmount]);
+ */
+
+  useEffect(() => {
+    const effectiveTotal = totalAmount - discount;
+    let totalPaid = 0;
+    if (currentPaymentType === "cash") totalPaid = cashAmount;
+    else if (currentPaymentType === "mixed") totalPaid = cardAmount;
+    else totalPaid = cashAmount + cardAmount + transferAmount;
+
+    setChange(totalPaid - effectiveTotal);
+  }, [cashAmount, cardAmount, transferAmount, currentPaymentType, totalAmount, discount]);
+
 
    const getHeaders = () => ({
     Authorization: `Bearer ${localStorage.getItem("accessToken") || ""}`,
@@ -367,13 +458,16 @@ const confirmDebt = () => {
     return;
   }
 
-  if (debtAmount > totalAmount) {
+ 
+  //if (debtAmount > totalAmount) {
+  if (debtAmount > totalAmount- discount) {
     message.error("Сумма долга не может превышать сумму оплаты");
     return;
   }
 
   // Сценарий: долг равен сумме чека
-  if (debtAmount === totalAmount) {
+  //if (debtAmount === totalAmount) {
+  if (debtAmount === totalAmount- discount) {
     Modal.confirm({
       title: "Подтвердите оплату в долг",
       //content: `Продать в долг ${debtAmount} клиенту ${debtClient.firstname} ${debtClient.lastname}?`,
@@ -484,7 +578,8 @@ const confirmLegalClient = (client: any) => {
 
 
   // --- ЕСЛИ ДОЛГ УСТАНОВЛЕН И ОН < полной суммы ---
-  if (confirmedDebt && confirmedDebt.amount < totalAmount) {
+  //if (confirmedDebt && confirmedDebt.amount < totalAmount) {
+  if (confirmedDebt && confirmedDebt.amount < totalAmount- discount) {
     setCurrentPaymentType("mixed");
     setAmountModalVisible(true);
     return;
@@ -498,17 +593,39 @@ const confirmLegalClient = (client: any) => {
     return;
   }
 
+  
   // Прямые подтверждения (карта / дебет / сертификат)
   Modal.confirm({
     title: "Подтвердите оплату",
     content:
       type === "card"
-        ? `Подтверждаете оплату картой на сумму ${totalAmount}?`
-        : `Подтверждаете оплату на сумму ${totalAmount}?`,
+     //   ? `Подтверждаете оплату картой на сумму ${totalAmount}?`
+     //   : `Подтверждаете оплату на сумму ${totalAmount}?`,
+       ? `Подтверждаете оплату картой на сумму ${totalAmount- discount}?`
+        : `Подтверждаете оплату на сумму ${totalAmount- discount}?`,
     onOk: () => handlePayment(type),
   });
 };
 
+/////
+
+const openDiscountModal = () => {
+    setDiscountValue(discount);
+    setDiscountModalVisible(true);
+  };
+
+  /* const applyDiscount = () => {
+    if (discountType === "sum") {
+      setDiscount(discountValue >= 0 ? Math.min(discountValue, totalAmount) : 0);
+    } else {
+      // процентная скидка
+      const percent = Math.min(Math.max(discountValue, 0), 100);
+      setDiscount((totalAmount * percent) / 100);
+    }
+    setDiscountModalVisible(false);
+  }; */
+
+/////
 
   // -----------------------------------------
   // Основная логика оплаты
@@ -528,7 +645,9 @@ const confirmLegalClient = (client: any) => {
       return;
     }
 
-    if (type === "cash" && cashAmount < totalAmount) {
+   
+   // if (type === "cash" && cashAmount < totalAmount) {
+    if (type === "cash" && cashAmount < totalAmount- discount) {
       message.error("Сумма наличных меньше суммы к оплате");
       return;
     }
@@ -538,8 +657,10 @@ const confirmLegalClient = (client: any) => {
   if (type === "mixed") {
   //const debtPay = confirmedDebt ? confirmedDebt.amount : 0;
 
+  
   const debtPay = actualDebt ? actualDebt.amount : 0;
-  const requiredMixedPay = totalAmount - debtPay;
+  //const requiredMixedPay = totalAmount - debtPay;
+  const requiredMixedPay = totalAmount- discount - debtPay;
 
   const realPay = cashAmount + cardAmount + transferAmount;
 
@@ -585,7 +706,8 @@ const confirmLegalClient = (client: any) => {
       bonusadd: accruedBonuses,
       //cashpay: type === "cash" ? cashAmount : cashAmount,
       //cashpay: cashAmount,
-      cashpay: Math.min(cashAmount, totalAmount),
+      //cashpay: Math.min(cashAmount, totalAmount),
+      cashpay: Math.min(cashAmount, totalAmount-discount),
       discount,
       cert: [],
       bonuspay: usedBonuses,
@@ -593,7 +715,8 @@ const confirmLegalClient = (client: any) => {
       parentid: 0,
       coupon: [],
       ofdurl: "",
-      price: totalAmount,
+      //price: totalAmount,
+      price: totalAmount-discount,
       cashboxuser: cashboxUser.id,
       details: transactionDetails,
       ofdnumber: "1",
@@ -622,7 +745,7 @@ const confirmLegalClient = (client: any) => {
       detailsdiscount: 0,
       shiftnumber: 1,
       consignment: false,
-      total: totalAmount,
+      total: totalAmount-discount,
       issalebypiece: false,
       promotions: [],
     };
@@ -632,7 +755,7 @@ const confirmLegalClient = (client: any) => {
     case "cash":
       return "Наличный расчет";
     case "card":
-      return "Оплата картой (POS)";
+      return "Оплата картой";
     case "mixed":
       return "Смешанная оплата";
     case "debit":
@@ -681,14 +804,7 @@ const confirmLegalClient = (client: any) => {
   return;
 }
 
-/* printReceipt({
-    saleProducts,
-    totalAmount,
-    clientName: confirmedDebt ? confirmedDebt.client.firstname + " " + confirmedDebt.client.lastname : "Физическое лицо",
-    confirmedDebtAmount: confirmedDebt?.amount,
-    cashboxUser, // <--- передаем cashboxUser из PaymentModal
-    selectedConsultant: selectedConsultant !== null ? selectedConsultant.toString() : undefined,
-}); */
+
 
 
 const isTicketFormatEmpty =
@@ -728,7 +844,9 @@ const receiptData = isTicketFormatEmpty
 
 printReceipt({
   saleProducts,
-  totalAmount,
+  //totalAmount,
+  totalAmount:totalAmount- discount,
+  discount,
   clientName: confirmedDebt
     ? `${confirmedDebt.client.firstname} ${confirmedDebt.client.lastname}`
     : "Физическое лицо",
@@ -766,11 +884,11 @@ printReceipt({
             <div style={{ display: "flex",              
               justifyContent: "space-between", marginBottom: 5 }}> 
               <span><b>Итого к оплате:</b></span>
-               <span>{totalAmount}</span>
+               <span>{totalAmount-discount}</span>
              </div>
              <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 5 }}>
                <span><b>Сумма чека:</b></span> 
-               <span>{totalAmount}</span> 
+               <span>{totalAmount-discount}</span> 
              </div>
              <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 5 }}>
                 <span><b>Клиент:</b></span>
@@ -817,15 +935,7 @@ printReceipt({
                 </div> 
                 <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 5 }}> 
                   <span><b>Продавец консультант:</b></span> 
-                  {/* <Select 
-                  value={selectedConsultant} 
-                  onChange={setSelectedConsultant} 
-                  style={{ width: "60%" }} 
-                  placeholder="Выберите консультанта" >
-                     {role4Users && role4Users.length > 0 ? 
-                     ( role4Users.map((user) => ( <Option key={user.id} value={user.id}> 
-                     {user.name} </Option> )) ) : ( <Option value={null}>Нет пользователей</Option> )} 
-                  </Select>  */}
+                  
                   <Select
   value={selectedConsultant?.id}
   onChange={(id) => {
@@ -883,9 +993,25 @@ printReceipt({
               🎟 Юридическое лицо
             </Button>
 
-            <Button size="large" onClick={() => handleOpenAmountModal("certificate")}>
-              🎟 Сертификат
+            <Button size="large" 
+            //onClick={openDiscountModal}
+            onClick={() => {
+               
+                if (!cashboxUser.discount) {
+                  message.warning("Выбранный пользователь кассы не может давать скидки!");
+                  return;
+                }
+                openDiscountModal();
+                
+              }}
+            
+            >
+              💸 Скидка
             </Button>
+
+           {/*  <Button size="large" onClick={() => handleOpenAmountModal("certificate")}>
+              🎟 Сертификат
+            </Button> */}
           </div>
         </div>
       </Modal>
@@ -939,7 +1065,8 @@ printReceipt({
 
     <p>
       Остаток после долга к оплате:{" "}
-      <b>{totalAmount - (confirmedDebt ? confirmedDebt.amount : 0)}</b>
+      {/* <b>{totalAmount - (confirmedDebt ? confirmedDebt.amount : 0)}</b> */}
+      <b>{totalAmount- discount - (confirmedDebt ? confirmedDebt.amount : 0)}</b>
     </p>
   </>
 )}
@@ -1070,6 +1197,47 @@ printReceipt({
     </Button>
   </div>
 </Modal>
+
+
+{/* Модальное окно для скидки */}
+      <Modal
+        open={discountModalVisible}
+        onCancel={() => setDiscountModalVisible(false)}
+        onOk={applyDiscount}
+        title="Скидка"
+        okText="Применить"
+        cancelText="Отмена"
+      >
+        <Radio.Group
+          onChange={(e) => setDiscountType(e.target.value)}
+          value={discountType}
+          style={{ marginBottom: 10 }}
+        >
+          <Radio value="sum">Сумма</Radio>
+          <Radio value="percent">Процент</Radio>
+        </Radio.Group>
+        <Input
+          type="number"
+          value={discountValue}
+          onChange={(e) => setDiscountValue(Number(e.target.value))}
+          placeholder={discountType === "sum" ? "Сумма скидки" : "% скидки"}
+        />
+        {/* {discountType === "percent" && (
+          <div style={{ marginTop: 5, color: "#888" }}>
+            Скидка : {((totalAmount * discountValue) / 100).toFixed(2)}
+          </div>
+        )} */}
+        {discountType === "percent" && (
+  <div style={{ color: "#888" }}>
+    Скидка составит:{" "}
+    {((originalTotal * discountValue) / 100).toFixed(2)}
+  </div>
+)}
+
+<div style={{ color: "#888", fontSize: 12 }}>
+  Максимальная скидка: {maxDiscountPercent}%
+</div>
+      </Modal>
 
     </>
   );
