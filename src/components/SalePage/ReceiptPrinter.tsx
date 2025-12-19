@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import useApiRequest from "../../hooks/useApiRequest";
+import { useTranslation } from "react-i18next"; // 1. Импорт хука
+import styles from "./Sale.module.css";
 
 interface SaleProduct {
   name: string;
@@ -50,7 +51,7 @@ const ReceiptPrinter: React.FC<ReceiptPrinterProps> = ({
   storeAddress,
   companyName,
   companyBIN,
-  VAT ,
+  VAT,
   paymentMethodText,
   Dopol1,
   Dopol2,
@@ -61,12 +62,9 @@ const ReceiptPrinter: React.FC<ReceiptPrinterProps> = ({
   tickettype,
   discount
 }) => {
+  const { t } = useTranslation(); // 2. Инициализация перевода
+  const [logoUrl, setLogoUrl] = useState<string | undefined>(undefined);
 
-  
-  // 1. Хук для хранения Blob URL
-const [logoUrl, setLogoUrl] = useState<string | undefined>(undefined);
-
-  // 2. Асинхронная загрузка Blob URL
   useEffect(() => {
     if (displayFile) {
       fetch(displayFile)
@@ -77,13 +75,11 @@ const [logoUrl, setLogoUrl] = useState<string | undefined>(undefined);
         .then(blob => {
           const url = URL.createObjectURL(blob);
           setLogoUrl(url); 
-          // 💡 УСПЕХ: вызываем колбэк
           if (onLogoLoaded) onLogoLoaded();
         })
         .catch(error => {
           console.error("Error loading logo:", error);
           setLogoUrl(undefined);
-          // 💡 ОШИБКА: вызываем колбэк, чтобы печать не заблокировалась
           if (onLogoLoaded) onLogoLoaded();
         });
         
@@ -94,102 +90,78 @@ const [logoUrl, setLogoUrl] = useState<string | undefined>(undefined);
       };
     } else {
         setLogoUrl(undefined);
-        // 💡 НЕТ ФАЙЛА: вызываем колбэк немедленно
         if (onLogoLoaded) onLogoLoaded();
     }
-  }, [displayFile, onLogoLoaded]); // onLogoLoaded должен быть в зависимостях
-
-  /* const productLines = saleProducts.map((p) => {
-    const priceStr = p.price.toFixed(2) + " ";
-    const qtyStr = p.qty.toFixed(3);
-    const totalStr = (p.price * p.qty).toFixed(2) + " ";
-    return `${padRight(p.name, 20)}\n${padLeft(priceStr, 10)} x${padLeft(qtyStr, 7)} ${padLeft(totalStr, 10)}`;
-  }); */
-
-  /* const productLines = saleProducts.map((p) => {
-    const priceStr = p.originalPrice.toFixed(2) + " ";
-    const qtyStr = p.qty.toFixed(3);
-    const totalStr = (p.originalPrice * p.qty).toFixed(2) + " ";
-    return `${padRight(p.name, 20)}\n${padLeft(priceStr, 10)} x${padLeft(qtyStr, 7)} ${padLeft(totalStr, 10)}`;
-  }); */
+  }, [displayFile, onLogoLoaded]);
 
   const productLines = saleProducts.map((p) => {
-  const lineTotal = (p.price || p.originalPrice) * p.qty; // цена после скидки или оригинал
-  const totalStr = lineTotal.toFixed(2) + " ";
-  const priceStr = p.originalPrice.toFixed(2) + " ";
-  const qtyStr = p.qty.toFixed(3);
+    const lineTotal = (p.price || p.originalPrice) * p.qty;
+    const totalStr = lineTotal.toFixed(2) + " ";
+    const priceStr = p.originalPrice.toFixed(2) + " ";
+    const qtyStr = p.qty.toFixed(3);
 
-  // Основная строка товара
-  let line = `${padRight(p.name, 20)}\n${padLeft(priceStr, 10)} x${padLeft(qtyStr, 7)} ${padLeft(totalStr, 10)}`;
+    let line = `${padRight(p.name, 20)}\n${padLeft(priceStr, 10)} x${padLeft(qtyStr, 7)} ${padLeft(totalStr, 10)}`;
 
-  // Если есть скидка, показываем её прямо под товаром
-  if (p.discount && p.discount > 0) {
-    line += `\n${padRight("Скидка:", 20)}-${padLeft(p.discount.toFixed(2) + " ", 10)}`;
-  }
+    if (p.discount && p.discount > 0) {
+      // Локализация слова "Скидка" внутри чека
+      line += `\n${padRight(t('sale.receipt.discountLabel') || "Скидка:", 20)}-${padLeft(p.discount.toFixed(2) + " ", 10)}`;
+    }
 
-  return line;
-});
+    return line;
+  });
 
-const discountSafe = discount ?? 0;
-
-  const totalDiscount = saleProducts.reduce((sum, p) => sum + (p.discount || 0), 0)+discountSafe;
+  const discountSafe = discount ?? 0;
+  const totalDiscount = saleProducts.reduce((sum, p) => sum + (p.discount || 0), 0) + discountSafe;
 
   return (
-   
-<div 
-      style={{ 
-        fontFamily: "monospace", 
-        fontSize: "12px",
-        maxWidth: "300px", // Типичная ширина для термочека
-        margin: "0 auto"    // Автоматические отступы слева и справа для центрирования
-      }}
+    <div 
+     className={styles.receiptContainer}
     >
-     
-      {/* Логотип сверху */}
-      {logoUrl && ( // <--- Используем logoUrl для отображения
-        <div style={{ textAlign: "center", marginBottom: 10 }}>
+      {logoUrl && (
+        <div className={styles.logoWrapper}>
           <img
-            src={logoUrl} // <--- ИСПОЛЬЗУЕМ Blob URL
-            alt="Логотип компании"
-            style={{ maxWidth: "150px", maxHeight: "80px", objectFit: "contain" }}
+            src={logoUrl}
+            alt={t('sale.receipt.logoAlt') || "Логотип компании"}
+            style={{ 
+        width: "120px",      // Жестко задаем ширину
+        maxWidth: "120px", 
+        height: "auto",      // Сохраняем пропорции
+        display: "block"
+      }}
           />
         </div>
       )}
 
-      {/* Текст чека */}
       <pre>
         {storeName + "\n"}
         {padLeft(storeAddress, 25) + "\n"}
         {padLeft(companyName, 25) + "\n"}
-        {showBIN ? `ЖСН(БСН)/ИИН(БИН) : ${companyBIN}\n` : ""}
+        {showBIN ? `${t('sale.receipt.binLabel') || "ЖСН(БСН)/ИИН(БИН)"} : ${companyBIN}\n` : ""}
         {showZNM && cashboxUser ? `ЗНМ : UCHET000000${cashboxUser.cashboxId}\n` : ""}
-        {"       Тауарлық чек/Товарный чек\n"}
+        {`       ${t('sale.receipt.header') || "Тауарлық чек/Товарный чек"}\n`}
         {date + "               " + "\n"}
-        {tickettype === 1 ? "Қайтару/Возврат" : "Сату/Продажа :\n"}
+        {tickettype === 1 
+          ? (t('sale.receipt.returnType') || "Қайтару/Возврат") 
+          : (t('sale.receipt.saleType') || "Сату/Продажа :") + "\n"}
         {"\n"}
         {"------------------------------------------\n"}
         {productLines.join("\n------------------------------------------\n")}
-        {/* {totalDiscount > 0 && `\n↳ скидка${padLeft(totalDiscount.toFixed(2) + " ", 30)}`}
-         */}
         {"\n------------------------------------------\n"}
-        {`Тауарлар/Товаров:                 ${saleProducts.reduce((sum, p) => sum + p.qty, 0).toFixed(3)}\n`}
-        {/* {`Сомасы/Сумма:                   ${(totalAmount - totalDiscount).toFixed(2)} \n`} */}
-        {`Сомасы/Сумма:                   ${(totalAmount ).toFixed(2)} \n`}
-        {`Жеңілдіктер/Скидки:              ${totalDiscount.toFixed(2)} \n`}
+        {`${padRight(t('sale.receipt.itemsCount') || "Тауарлар/Товаров:", 34)}${saleProducts.reduce((sum, p) => sum + p.qty, 0).toFixed(3)}\n`}
+        {`${padRight(t('sale.receipt.amount') || "Сомасы/Сумма:", 34)}${(totalAmount).toFixed(2)}\n`}
+        {`${padRight(t('sale.receipt.discounts') || "Жеңілдіктер/Скидки:", 34)}${totalDiscount.toFixed(2)}\n`}
         {"\n"}
-        {/* {`БАРЛЫҒЫ/ИТОГ:                   ${(totalAmount - totalDiscount).toFixed(2)} \n`} */}
-        {`БАРЛЫҒЫ/ИТОГ:                   ${(totalAmount).toFixed(2)} \n`}
-        {"ҚҚС/НДС:                           " + VAT + "\n"}
+        {`${padRight(t('sale.receipt.total') || "БАРЛЫҒЫ/ИТОГ:", 34)}${(totalAmount).toFixed(2)}\n`}
+        {`${t('sale.receipt.vatLabel') || "ҚҚС/НДС:"}                           ${VAT || ""}\n`}
         {"\n"}
         {paymentMethodText ? paymentMethodText + "\n" : ""}
-        {cashboxUser ? `Кассир/Кассир:                     ${cashboxUser.name}\n` : ""}
-        {`Сатушы/Консультант:      ${selectedConsultant}\n`}
-        {`Терминал/Терминал:                   ${cashboxUser ? `${cashboxUser.cashboxId}\n` : ""}\n`}
+        {cashboxUser ? `${padRight(t('sale.receipt.cashier') || "Кассир/Кассир:", 34)}${cashboxUser.name}\n` : ""}
+        {`${padRight(t('sale.receipt.consultant') || "Сатушы/Консультант:", 25)}${selectedConsultant}\n`}
+        {`${padRight(t('sale.receipt.terminal') || "Терминал/Терминал:", 37)}${cashboxUser ? cashboxUser.cashboxId : ""}\n\n`}
         {Dopol1 + "\n"}
         {Dopol2 + "\n"}
       </pre>
     </div>
-    
   );
 };
 

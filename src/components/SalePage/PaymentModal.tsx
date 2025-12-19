@@ -6,6 +6,8 @@ import { SearchOutlined } from "@ant-design/icons";
 import ReceiptPrinter from "./ReceiptPrinter";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import styles from "./Sale.module.css";
 
 
 
@@ -146,11 +148,6 @@ const PaymentModal: React.FC<Props> = ({
   const [certificateAmount] = useState<number>(0);
   const [useBonuses, setUseBonuses] = useState<boolean>(true);
 
-  /* const [selectedConsultant, setSelectedConsultant] = useState<number | null>(
-    role4Users && role4Users.length > 0 ? role4Users[0].id : null
-  );
- */
-
   const [selectedConsultant, setSelectedConsultant] = useState<User | null>(
   role4Users && role4Users.length > 0 ? role4Users[0] : null
 );
@@ -187,6 +184,8 @@ const [discountModalVisible, setDiscountModalVisible] = useState(false);
   const [discountType, setDiscountType] = useState<"sum" | "percent">("sum");
   const [discountValue, setDiscountValue] = useState(0);
 
+  const { t } = useTranslation();
+
 ///
 const maxDiscountPercent = cashboxUser?.discountinfo ?? 0;
 
@@ -216,9 +215,11 @@ const applyReceiptPercentDiscount = (percent: number) => {
     (totalAfterItems * safePercent) / 100;
 
   if (calculatedDiscount > available) {
-    message.warning(
+    /* message.warning(
       `Превышен лимит скидки. Доступно: ${available.toFixed(2)}`
-    );
+    ); */
+
+    message.warning(t('sale.payment.errors.limitExceeded', { available: available.toFixed(2) }));
     
     return;
   }
@@ -237,9 +238,12 @@ const applyReceiptSumDiscount = (amount: number) => {
   const available = Math.max(maxReceiptDiscountAmount, 0);
 
   if (safeAmount > available) {
-    message.warning(
+   /*  message.warning(
       `Превышен лимит скидки. Доступно: ${available.toFixed(2)}`
-    );
+    ); */
+
+     message.warning(t('sale.payment.errors.limitExceeded', { available: available.toFixed(2) }));
+   
    
     return;
   }
@@ -259,17 +263,6 @@ const applyDiscount = () => {
   setDiscountModalVisible(false);
 };
 ////
-
-
-/*   useEffect(() => {
-    if (currentPaymentType === "cash") {
-      setChange(cashAmount - totalAmount);
-    }
-    if (currentPaymentType === "mixed") {
-      setChange(cashAmount + cardAmount + transferAmount - totalAmount);
-    }
-  }, [cashAmount, cardAmount, transferAmount, currentPaymentType, totalAmount]);
- */
 
   useEffect(() => {
     const effectiveTotal = totalAmount - discount;
@@ -333,7 +326,9 @@ const resetPaymentForm = () => {
 const searchByPhone = async () => {
    //const phone = debtPhone.replace(/\D/g, "").slice(1); // убираем +7
    const phone = debtPhone;
-  if (!phone) return message.error("Введите номер телефона");
+  if (!phone) return 
+  //message.error("Введите номер телефона");
+  message.error(t('sale.payment.errors.enterPhone'))
 
   try {
     const data = await sendRequest(
@@ -341,7 +336,9 @@ const searchByPhone = async () => {
     ,{ headers: getHeaders() }
     );
 
-    if (!data) return message.error("Клиент не найден");
+    if (!data) return 
+    //message.error("Клиент не найден");
+    message.error(t('sale.payment.errors.clientNotFound'));
 
     const client = Array.isArray(data) ? data[0] : data;
 
@@ -351,12 +348,15 @@ const searchByPhone = async () => {
     setDebtPhone(debtPhone);
 
   } catch {
-    message.error("Ошибка поиска клиента");
+   // message.error("Ошибка поиска клиента");
+   message.error(t('sale.payment.errors.searchError'));
   }
 };
 
 const searchByFirstname = async () => {
-  if (!debtFirstname) return message.error("Введите имя");
+  if (!debtFirstname) return 
+  //message.error("Введите имя");
+  message.error(t('sale.payment.errors.enterFirstname'));
 
   try {
     const data = await sendRequest(
@@ -364,7 +364,9 @@ const searchByFirstname = async () => {
     ,{ headers: getHeaders() }
     );
 
-    if (!data) return message.error("Клиент не найден");
+    if (!data) return 
+    //message.error("Клиент не найден");
+    message.error(t('sale.payment.errors.clientNotFound'));
 
     
 
@@ -381,12 +383,16 @@ const searchByFirstname = async () => {
     }
 
   } catch {
-    message.error("Ошибка поиска клиента");
+   // message.error("Ошибка поиска клиента");
+   message.error(t('sale.payment.errors.searchError'));
   }
 };
 
 const searchByLastname = async () => {
-  if (!debtLastname) return message.error("Введите фамилию");
+  if (!debtLastname) return 
+  //message.error("Введите фамилию")
+  message.error(t('sale.payment.errors.enterLastname'))
+  ;
 
   try {
     const data = await sendRequest(
@@ -394,7 +400,9 @@ const searchByLastname = async () => {
     ,{ headers: getHeaders() }
     );
 
-    if (!data) return message.error("Клиент не найден");
+    if (!data) return 
+    //message.error("Клиент не найден");
+    message.error(t('sale.payment.errors.clientNotFound'));
 
     if (data.length === 1) {
       const client = Array.isArray(data) ? data[0] : data;
@@ -409,7 +417,8 @@ const searchByLastname = async () => {
     }
 
   } catch {
-    message.error("Ошибка поиска клиента");
+    //message.error("Ошибка поиска клиента");
+    message.error(t('sale.payment.errors.searchError'));
   }
 };
 
@@ -426,10 +435,14 @@ const handleOpenDebt = () => {
   // если уже выбран клиент
   if (confirmedDebt) {
     Modal.confirm({
-      title: "Удалить долг?",
-      content: "Вы хотите удалить текущего должника?",
-      okText: "Да",
-      cancelText: "Нет",
+      //title: "Удалить долг?",
+      //content: "Вы хотите удалить текущего должника?",
+      title: t('sale.payment.modals.debt.deleteTitle'),
+      content: t('sale.payment.modals.debt.deleteContent'),
+      //okText: "Да",
+      //cancelText: "Нет",
+      okText: t('sale.payment.buttons.yes'),
+      cancelText: t('sale.payment.buttons.no'),
       onOk: () => {
         setConfirmedDebt(null);
         setDebtClient(null);
@@ -449,19 +462,22 @@ const handleOpenDebt = () => {
 
 const confirmDebt = () => {
   if (!debtClient && !selectedLegal) {
-    message.error("Сначала найдите клиента или выберите предприятие!");
+    //message.error("Сначала найдите клиента или выберите предприятие!");
+    message.error(t('sale.payment.errors.selectClientOrCompany'));
     return;
   }
 
   if (debtAmount <= 0) {
-    message.error("Введите сумму долга");
+    //message.error("Введите сумму долга");
+    message.error(t('sale.payment.errors.enterDebtAmount'));
     return;
   }
 
  
   //if (debtAmount > totalAmount) {
   if (debtAmount > totalAmount- discount) {
-    message.error("Сумма долга не может превышать сумму оплаты");
+    //message.error("Сумма долга не может превышать сумму оплаты");
+    message.error(t('sale.payment.errors.debtExceedsTotal'));
     return;
   }
 
@@ -469,14 +485,17 @@ const confirmDebt = () => {
   //if (debtAmount === totalAmount) {
   if (debtAmount === totalAmount- discount) {
     Modal.confirm({
-      title: "Подтвердите оплату в долг",
+      //title: "Подтвердите оплату в долг",
       //content: `Продать в долг ${debtAmount} клиенту ${debtClient.firstname} ${debtClient.lastname}?`,
-      content: `Продать в долг ${debtAmount}  ?`,
+      //content: `Продать в долг ${debtAmount}  ?`,
+      title: t('sale.payment.modals.debt.confirmTitle'),
+      content: t('sale.payment.modals.debt.confirmContent', { amount: debtAmount }),
       onOk: () => {
         setConfirmedDebt({ client: debtClient, amount: debtAmount });
         setDebtModalVisible(false);
         setCurrentPaymentType("debt");
-        message.success("Оплата в долг подтверждена");
+        //message.success("Оплата в долг подтверждена");
+        message.success(t('sale.payment.messages.successMessage'));
         handlePayment("debt", { client: debtClient, amount: debtAmount }); // сразу запускаем оплату
       },
     });
@@ -487,7 +506,8 @@ const confirmDebt = () => {
   setConfirmedDebt({ client: debtClient, amount: debtAmount });
   setDebtModalVisible(false);
   setCurrentPaymentType("mixed");
-  message.success("Долг установлен, будет смешанная оплата");
+  //message.success("Долг установлен, будет смешанная оплата");
+  message.success(t('sale.payment.messages.debtMixedSet'));
 };
 
 
@@ -508,7 +528,10 @@ useEffect(() => {
 const handleOpenLegalModal = () => {
   if (selectedLegal) {
     Modal.confirm({
-      title: "Удалить выбранное предприятие?",
+      title: 
+      /* "Удалить выбранное предприятие?" */
+      t('sale.payment.messages.deleteConfirm')
+      ,
       onOk: () => setSelectedLegal(null),
     });
   } else {
@@ -518,13 +541,19 @@ const handleOpenLegalModal = () => {
 
 // Поиск по БИН
 const searchLegalByBIN = async () => {
-  if (!legalBIN) return message.error("Введите БИН");
+  if (!legalBIN) return message.error(
+    /* "Введите БИН" */
+    t('sale.payment.messages.searchByBin')
+  );
   try {
     const data = await sendRequest(
       `${import.meta.env.VITE_API_URL}/external/api/customers?bin=${legalBIN}`,
       { headers: getHeaders() }
     );
-    if (!data || data.length === 0) return message.error("Предприятие не найдено");
+    if (!data || data.length === 0) return message.error(
+      /* "Предприятие не найдено" */
+    t('sale.payment.messages.notFound')
+    );
     const selected = Array.isArray(data) ? data[0] : data;
 
     setSelectedLegal(selected); // сохраняем объект
@@ -533,19 +562,28 @@ const searchLegalByBIN = async () => {
     setLegalName("");
 
   } catch {
-    message.error("Ошибка поиска предприятия");
+    message.error(
+      /* "Ошибка поиска предприятия" */
+      t('sale.payment.messages.searchError')
+    );
   }
 };
 
 // Поиск по Наименованию
 const searchLegalByName = async () => {
-  if (!legalName) return message.error("Введите наименование");
+  if (!legalName) return message.error(
+    /* "Введите наименование" */
+    t('sale.payment.messages.searchByName')
+  );
   try {
     const data = await sendRequest(
       `${import.meta.env.VITE_API_URL}/external/api/customers?name=${encodeURIComponent(legalName)}`,
       { headers: getHeaders() }
     );
-    if (!data || data.length === 0) return message.error("Предприятие не найдено");
+    if (!data || data.length === 0) return message.error(
+     /*  "Предприятие не найдено" */
+     t('sale.payment.messages.notFound')
+    );
    const selected = Array.isArray(data) ? data[0] : data;
 
     setSelectedLegal(selected); // сохраняем объект
@@ -554,7 +592,10 @@ const searchLegalByName = async () => {
     setLegalName("");
 
   } catch {
-    message.error("Ошибка поиска предприятия");
+    message.error(
+      /* "Ошибка поиска предприятия" */
+      t('sale.payment.messages.searchError')
+    );
   }
 };
 
@@ -596,13 +637,16 @@ const confirmLegalClient = (client: any) => {
   
   // Прямые подтверждения (карта / дебет / сертификат)
   Modal.confirm({
-    title: "Подтвердите оплату",
+    //title: "Подтвердите оплату",
+    title: t('sale.payment.modals.confirm.title'),
     content:
       type === "card"
      //   ? `Подтверждаете оплату картой на сумму ${totalAmount}?`
      //   : `Подтверждаете оплату на сумму ${totalAmount}?`,
-       ? `Подтверждаете оплату картой на сумму ${totalAmount- discount}?`
-        : `Подтверждаете оплату на сумму ${totalAmount- discount}?`,
+      //  ? `Подтверждаете оплату картой на сумму ${totalAmount- discount}?`
+      //   : `Подтверждаете оплату на сумму ${totalAmount- discount}?`,
+      ? t('sale.payment.modals.confirm.card', { amount: totalAmount- discount }) 
+      : t('sale.payment.modals.confirm.generic', { amount: totalAmount- discount }),
     onOk: () => handlePayment(type),
   });
 };
@@ -613,17 +657,6 @@ const openDiscountModal = () => {
     setDiscountValue(discount);
     setDiscountModalVisible(true);
   };
-
-  /* const applyDiscount = () => {
-    if (discountType === "sum") {
-      setDiscount(discountValue >= 0 ? Math.min(discountValue, totalAmount) : 0);
-    } else {
-      // процентная скидка
-      const percent = Math.min(Math.max(discountValue, 0), 100);
-      setDiscount((totalAmount * percent) / 100);
-    }
-    setDiscountModalVisible(false);
-  }; */
 
 /////
 
@@ -641,14 +674,20 @@ const openDiscountModal = () => {
    
 
     if (!type) {
-      message.error("Не выбран тип оплаты!");
+      message.error(
+        /* "Не выбран тип оплаты!" */
+        t('sale.payment.errors.noType')
+      );
       return;
     }
 
    
    // if (type === "cash" && cashAmount < totalAmount) {
     if (type === "cash" && cashAmount < totalAmount- discount) {
-      message.error("Сумма наличных меньше суммы к оплате");
+      message.error(
+        /* "Сумма наличных меньше суммы к оплате" */
+        t('sale.payment.errors.insufficientCash')
+      );
       return;
     }
 
@@ -665,18 +704,27 @@ const openDiscountModal = () => {
   const realPay = cashAmount + cardAmount + transferAmount;
 
   if (realPay < requiredMixedPay) {
-    message.error(`Недостаточно средств. Не хватает ${requiredMixedPay - realPay}`);
+    message.error(
+      /* `Недостаточно средств. Не хватает ${requiredMixedPay - realPay}` */
+      t('sale.payment.errors.insufficientMixed', { amount: (requiredMixedPay - realPay).toFixed(2) })
+    );
     return;
   }
 
   if (realPay > requiredMixedPay) {
-    message.error("Сумма оплаты превышает остаток после учета долга");
+    message.error(
+      /* "Сумма оплаты превышает остаток после учета долга" */
+      t('sale.errors.excessPayment')
+    );
     return;
   }
 }
 
     if (!saleProducts.length) {
-      message.error("Нет товаров в чеке");
+      message.error(
+        /* "Нет товаров в чеке" */
+        t('sale.errors.noProducts')
+      );
       return;
     }
 
@@ -753,19 +801,32 @@ const openDiscountModal = () => {
     const getPaymentMethodText = () => {
   switch (currentPaymentType) {
     case "cash":
-      return "Наличный расчет";
+      return        t('sale.payment.methods.cash')
+      /* "Наличный расчет" */
+      
+      ;
     case "card":
-      return "Оплата картой";
+        return   t('sale.payment.methods.card')
+      /* "Оплата картой" */
+      ;
     case "mixed":
-      return "Смешанная оплата";
+      return   t('sale.payment.methods.mixed')
+      /* "Смешанная оплата" */
+      ;
     case "debit":
-      return "Безналичный перевод";
+      return  t('sale.payment.methods.debit')
+      /* "Безналичный перевод" */
+      ;
     case "debt":
-      return "Продажа в долг";
-    case "certificate":
-      return "Оплата сертификатом";
+      return   t('sale.payment.methods.debt')
+      /* "Продажа в долг" */
+      ;
+    /* case "certificate":
+      return "Оплата сертификатом"; */
     default:
-      return "Не указан";
+      return  t('sale.payment.methods.unknown')
+      /* "Не указан" */
+      ;
   }
 };
 
@@ -786,7 +847,8 @@ const openDiscountModal = () => {
       );
 
       if (data.code === "success") {
-        message.success("Оплата проведена");
+        //message.success("Оплата проведена");
+        message.success(t('sale.payment.messages.success'));
 
        
 
@@ -799,10 +861,10 @@ const openDiscountModal = () => {
         // Вставляем компонент печати
 // Печать чека через iframe
 
- if (!cashboxUser) {
+/*  if (!cashboxUser) {
   message.error("Не указан пользователь кассы");
   return;
-}
+} */
 
 
 
@@ -828,7 +890,8 @@ const receiptData = isTicketFormatEmpty
       storeAddress: point.address,
       companyName: companyInfo.name,
       companyBIN: companyInfo.bin,
-      Dopol1:'Спасибо за покупку.',
+     // Dopol1:'Спасибо за покупку.',
+      Dopol1:t('sale.payment.labels.thanks'),
     }
   : {
       storeName: ticketFormat.json.company || companyInfo.name,
@@ -849,7 +912,10 @@ printReceipt({
   discount,
   clientName: confirmedDebt
     ? `${confirmedDebt.client.firstname} ${confirmedDebt.client.lastname}`
-    : "Физическое лицо",
+    : 
+    /* "Физическое лицо" */
+    t('sale.payment.labels.individual')
+    ,
   confirmedDebtAmount: confirmedDebt?.amount,
   cashboxUser,
   selectedConsultant: selectedConsultant ? selectedConsultant.name :"",
@@ -866,32 +932,42 @@ printReceipt({
   resetPaymentForm();
 
       } else {
-        message.error(data.text || "Ошибка сервера");
+       // message.error(data.text || "Ошибка сервера");
+       message.error(data.text || t('sale.payment.errors.serverError'));
       }
     } catch (err) {
       console.error(err);
-      message.error("Ошибка передачи транзакции на сервер");
+     // message.error("Ошибка передачи транзакции на сервер");
+     message.error(t('sale.payment.errors.transferError'));
     }
   };
 
   return (
     <>
       {/* главное модальное окно */}
-      <Modal open={open} title="Оплата" onCancel={onClose} footer={null} width={1000}>
-        <div style={{ display: "flex" }}>
+      <Modal open={open} title=
+      /* "Оплата" */
+      {t('sale.payment.title')}
+       onCancel={onClose} footer={null} width={1000}>
+        <div className={styles.flexRow}>
           {/* ------------------- ЛЕВАЯ ПАНЕЛЬ ------------------- */}
-          <div style={{ flex: 1, paddingRight: 20 }}> 
-            <div style={{ display: "flex",              
-              justifyContent: "space-between", marginBottom: 5 }}> 
-              <span><b>Итого к оплате:</b></span>
+          <div className={styles.flexContent}> 
+            <div className={styles.justifyBetween}> 
+              <span><b>
+               {/*  Итого к оплате */}
+                {t('sale.payment.labels.totalToPay')}:</b></span>
                <span>{totalAmount-discount}</span>
              </div>
-             <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 5 }}>
-               <span><b>Сумма чека:</b></span> 
+             <div className={styles.justifyBetween}>
+               <span><b>
+                {/* Сумма чека */}
+                {t('sale.payment.labels.totalCheckAmount')}:</b></span> 
                <span>{totalAmount-discount}</span> 
              </div>
-             <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 5 }}>
-                <span><b>Клиент:</b></span>
+             <div className={styles.justifyBetween}>
+                <span><b>
+                  {/* Клиент */}
+                  {t('sale.payment.labels.client')}:</b></span>
                 {/* <span>{clientName}</span>  */}
                 <span>
    {/* {confirmedDebt
@@ -899,42 +975,68 @@ printReceipt({
       : ""} */}
 
        {selectedLegal
-      ? `Юридическое лицо ${selectedLegal.name} (${selectedLegal.bin})`
+      ? 
+      //`Юридическое лицо ${selectedLegal.name} (${selectedLegal.bin})`
+      t('sale.payment.labels.legalEntity', { 
+    name: selectedLegal.name, 
+    bin: selectedLegal.bin 
+  })
       : confirmedDebt
-      ? `Физическое лицо ${confirmedDebt.client.firstname} ${confirmedDebt.client.lastname}`
-      : ""}
+      ? 
+      //`Физическое лицо ${confirmedDebt.client.firstname} ${confirmedDebt.client.lastname}`
+      t('sale.payment.labels.physicalPerson', { 
+    firstname: confirmedDebt.client.firstname, 
+    lastname: confirmedDebt.client.lastname 
+  })
+  : ""}
   </span>
                 </div> 
-                <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 5 }}> 
-                  <span><b>ИИН клиента:</b></span> 
-                  <Input value={clientIIN} onChange={(e) => setClientIIN(e.target.value)} style={{ width: "60%" }} /> 
+                <div className={styles.justifyBetween}> 
+                  <span><b>
+                    {/* ИИН клиента   */}                  
+                    {t('sale.payment.labels.iin')}:</b></span> 
+                  <Input value={clientIIN} onChange={(e) => setClientIIN(e.target.value)} className={styles.mainContentArea} /> 
                 </div> 
-                <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 5 }}> 
-                  <span><b>Скидка на чек:</b></span> 
+                <div className={styles.justifyBetween}> 
+                  <span><b>
+                    {/* Скидка на чек */}
+                    {t('sale.payment.labels.discount')}:</b></span> 
                   <span>{discount}</span> 
                 </div> 
-                <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 5 }}> 
-                  <span><b>Наценка на чек:</b></span> 
+                <div className={styles.justifyBetween}> 
+                  <span><b>
+                    {/* Наценка на чек */}
+                    {t('sale.payment.labels.markups')}:</b></span> 
                   <span>{markup}</span> 
                 </div> 
-                <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 5 }}> 
-                  <span><b>Использовано бонусов:</b></span> 
+                <div className={styles.justifyBetween}> 
+                  <span><b>
+                    {/* Использовано бонусов */}
+                    {t('sale.payment.labels.bonusesUsed')}:</b></span> 
                   <span>{usedBonuses}</span> 
                 </div> 
-                <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 5 }}> 
-                  <span><b>Начислено бонусов:</b></span> 
+                <div className={styles.justifyBetween}> 
+                  <span><b>
+                    {/* Начислено бонусов */}
+                    {t('sale.payment.labels.bonusesEarned')}:</b></span> 
                   <span>{accruedBonuses}</span> 
                 </div> 
-                <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 5 }}> 
-                  <span><b>Оплата сертификатом:</b></span> 
+                <div className={styles.justifyBetween}> 
+                  <span><b>
+                    {/* Оплата сертификатом */}
+                    {t('sale.payment.labels.certificatePay')}:</b></span> 
                   <span>{certificateAmount}</span> 
                 </div> 
-                <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 5 }}> 
-                  <span><b>Долг:</b></span> 
+                <div className={styles.justifyBetween}> 
+                  <span><b>
+                    {/* Долг */}
+                    {t('sale.payment.labels.debtAmount1')}:</b></span> 
                   <span>{confirmedDebt ? confirmedDebt.amount : 0}</span> 
                 </div> 
-                <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 5 }}> 
-                  <span><b>Продавец консультант:</b></span> 
+                <div className={styles.justifyBetween}> 
+                  <span><b>
+                   {/*  Продавец консультант */}
+                    {t('sale.payment.labels.consultant')}:</b></span> 
                   
                   <Select
   value={selectedConsultant?.id}
@@ -942,8 +1044,9 @@ printReceipt({
     const user = role4Users?.find(u => u.id === id) || null;
     setSelectedConsultant(user);
   }}
-  style={{ width: "60%" }}
-  placeholder="Выберите консультанта"
+  className={styles.mainContentArea}
+  //placeholder="Выберите консультанта"
+  placeholder={t('sale.payment.labels.selectConsultant')}
 >
   {role4Users?.map(user => (
     <Option key={user.id} value={user.id}>
@@ -953,7 +1056,9 @@ printReceipt({
 </Select>
                   </div> 
                   <div> 
-                  <span><b>Использовать бонусы:</b></span>
+                  <span><b>
+                   {/*  Использовать бонусы */}
+                    {t('sale.payment.labels.useBonuses')}:</b></span>
                  <Checkbox 
                  checked={useBonuses} 
                  onChange={(e) => setUseBonuses(e.target.checked)}>
@@ -963,34 +1068,40 @@ printReceipt({
 
           {/* ------------------- ПРАВАЯ ПАНЕЛЬ (КНОПКИ ОПЛАТЫ) ------------------- */}
           <div
-            style={{
-              flex: 1,
-              display: "grid",
-              gridTemplateColumns: "1fr 1fr",
-              gap: 10,
-              paddingLeft: 20,
-            }}
+           className={styles.actionGrid}
           >
             <Button size="large" onClick={() => handleOpenAmountModal("cash")}>
-              💵 Наличными
+              💵 
+              {/* Наличными */}
+              {t('sale.payment.buttons.cash')}
             </Button>
             <Button size="large" onClick={() => handleOpenAmountModal("card")}>
-              💳 Карта
+              💳 
+              {/* Карта */}
+              {t('sale.payment.buttons.card')}
             </Button>
 
             <Button size="large" onClick={() => handleOpenAmountModal("mixed")}>
-              💰 Смешанная
+              💰 
+             {/*  Смешанная */}
+             {t('sale.payment.buttons.mixed')}
             </Button>
             <Button size="large" onClick={() => handleOpenAmountModal("debit")}>
-              🏦 Безналичный
+              🏦 
+             {/*  Безналичный */}
+              {t('sale.payment.buttons.debit')}
             </Button>
 
             <Button size="large" onClick={() => handleOpenDebt()}>
-              📜 В долг
+              📜 
+               {/* долг */}
+               {t('sale.payment.buttons.debt')}
             </Button>
 
             <Button size="large" onClick={handleOpenLegalModal}>
-              🎟 Юридическое лицо
+              🎟 
+              {/* Юридическое лицо */}
+              {t('sale.payment.buttons.legal')}
             </Button>
 
             <Button size="large" 
@@ -998,7 +1109,8 @@ printReceipt({
             onClick={() => {
                
                 if (!cashboxUser.discount) {
-                  message.warning("Выбранный пользователь кассы не может давать скидки!");
+                  //message.warning("Выбранный пользователь кассы не может давать скидки!");
+                  message.warning(t('sale.workspace.errors.noPermission'));
                   return;
                 }
                 openDiscountModal();
@@ -1006,7 +1118,9 @@ printReceipt({
               }}
             
             >
-              💸 Скидка
+              💸 
+              {/* Скидка */}
+              {t('sale.payment.buttons.discount')}
             </Button>
 
            {/*  <Button size="large" onClick={() => handleOpenAmountModal("certificate")}>
@@ -1019,52 +1133,66 @@ printReceipt({
       {/* модал ввода сумм */}
       <Modal
         open={amountModalVisible}
-        title="Ввод сумм"
+        //title="Ввод сумм"
+        title={t('sale.payment.modals.amounts.title')}
         onCancel={() => setAmountModalVisible(false)}
         footer={null}
       >
         {currentPaymentType === "cash" && (
           <>
-            <label>Сумма наличных:</label>
+            <label>
+              {/* Сумма наличных: */}
+              {t('sale.payment.labels.cashAmount')}
+              </label>
             <Input
               type="number"
               value={cashAmount}
               onChange={(e) => setCashAmount(Number(e.target.value))}
-              style={{ marginBottom: 10 }}
+             className={styles.mb10}
             />
 
-            <p>Сдача: {change >= 0 ? change : 0}</p>
+            <p>
+              {/* Сдача */}
+              {t('sale.payment.labels.change')}
+              : {change >= 0 ? change : 0}</p>
           </>
         )}
 
        {currentPaymentType === "mixed" && (
   <>
-    <label>Наличные:</label>
+    <label>
+      {/* Наличные */}
+      {t('sale.payment.labels.cash')}:</label>
     <Input
       type="number"
       value={cashAmount}
       onChange={(e) => setCashAmount(Number(e.target.value))}
-      style={{ marginBottom: 5 }}
+      className={styles.mb5}
     />
 
-    <label>Карта:</label>
+    <label>
+     {/*  Карта  */}     
+      {t('sale.payment.labels.card')}:</label>
     <Input
       type="number"
       value={cardAmount}
       onChange={(e) => setCardAmount(Number(e.target.value))}
-      style={{ marginBottom: 5 }}
+      className={styles.mb5}
     />
 
-    <label>Перевод:</label>
+    <label>
+      {/* Перевод */}
+      {t('sale.payment.labels.transfer')}:</label>
     <Input
       type="number"
       value={transferAmount}
       onChange={(e) => setTransferAmount(Number(e.target.value))}
-      style={{ marginBottom: 5 }}
+      className={styles.mb5}
     />
 
     <p>
-      Остаток после долга к оплате:{" "}
+      {/* Остаток после долга к оплате */}
+      {t('sale.payment.labels.remainingAfterDebt')}:{" "}
       {/* <b>{totalAmount - (confirmedDebt ? confirmedDebt.amount : 0)}</b> */}
       <b>{totalAmount- discount - (confirmedDebt ? confirmedDebt.amount : 0)}</b>
     </p>
@@ -1077,13 +1205,15 @@ printReceipt({
           size="large"
           onClick={() => {
             if (!currentPaymentType) {
-              message.error("Тип оплаты не выбран");
+             // message.error("Тип оплаты не выбран");
+             message.warning(t('sale.payment.errors.noTypeSelected'));
               return;
             }
             handlePayment(currentPaymentType);
           }}
         >
-          Завершить оплату
+         {/*  Завершить оплату */}
+         {t('sale.payment.buttons.complete')}
         </Button>
       </Modal>
 
@@ -1091,14 +1221,18 @@ printReceipt({
       {/* ===== МОДАЛ: ПРОДАЖА В ДОЛГ ===== */}
 <Modal
   open={debtModalVisible}
-  title="Продажа в долг"
+  //title="Продажа в долг"
+  title={t('sale.payment.modals.debt.title')}
   onCancel={() => setDebtModalVisible(false)}
   footer={null}
 >
 
-  <div style={{ marginBottom: 10 }}>
-    <b>Номер телефона</b>
-    <div style={{ display: "flex", gap: 5 }}>
+  <div className={styles.mb10}>
+    <b>
+      {/* Номер телефона */}
+      {t('sale.payment.labels.phone')}
+      </b>
+    <div className={styles.flexGap5}>
       <Input
         value={debtPhone}
         addonBefore="+7"
@@ -1110,28 +1244,40 @@ printReceipt({
     </div>
   </div>
 
-  <div style={{ marginBottom: 10 }}>
-    <b>Имя</b>
-    <div style={{ display: "flex", gap: 5 }}>
+  <div className={styles.mb10}>
+    <b>
+      {/* Имя */}
+      {t('sale.payment.labels.firstname')}
+      </b>
+    <div className={styles.flexGap5}>
       <Input value={debtFirstname} onChange={(e) => setDebtFirstname(e.target.value)} />
       <Button icon={<SearchOutlined />} onClick={searchByFirstname} disabled={!!selectedLegal}/>
     </div>
   </div>
 
-  <div style={{ marginBottom: 10 }}>
-    <b>Фамилия</b>
-    <div style={{ display: "flex", gap: 5 }}>
+  <div className={styles.mb10}>
+    <b>
+      {/* Фамилия */}
+      {t('sale.payment.labels.lastname')}
+      </b>
+    <div className={styles.flexGap5}>
       <Input value={debtLastname} onChange={(e) => setDebtLastname(e.target.value)} />
       <Button icon={<SearchOutlined />} onClick={searchByLastname} disabled={!!selectedLegal} />
     </div>
   </div>
 
-  <div style={{ marginBottom: 10 }}>
-    <b>Текущий долг:</b> {debtClient?.debt || 0}
+  <div className={styles.mb10}>
+    <b>
+      {/* Текущий долг */}
+      {t('sale.payment.labels.currentDebt')}
+      :</b> {debtClient?.debt || 0}
   </div>
 
-  <div style={{ marginBottom: 20 }}>
-    <b>Сумма (долг)</b>
+  <div className={styles.mb20}>
+    <b>
+      {/* Сумма (долг) */}
+      {t('sale.payment.labels.debtAmount')}
+      </b>
     <Input
       type="number"
       value={debtAmount}
@@ -1139,9 +1285,15 @@ printReceipt({
     />
   </div>
 
-  <div style={{ display: "flex", justifyContent: "space-between" }}>
-    <Button onClick={() => setDebtModalVisible(false)}>Отмена</Button>
-    <Button type="primary" onClick={confirmDebt}>Подтвердить</Button>
+  <div className={styles.justifyBetween1}>
+    <Button onClick={() => setDebtModalVisible(false)}>
+      {/* Отмена */}
+      {t('sale.payment.buttons.cancel')}
+      </Button>
+    <Button type="primary" onClick={confirmDebt}>
+      {t('sale.payment.buttons.confirm')}
+     {/*  Подтвердить */}
+      </Button>
   </div>
 </Modal>
 
@@ -1156,13 +1308,18 @@ printReceipt({
 
 <Modal
   open={legalModalVisible}
-  title="Юридическое лицо"
+  //title="Юридическое лицо"
+  title= {t('sale.payment.labels.legal')}
+ 
   onCancel={() => setLegalModalVisible(false)}
   footer={null}
 >
-  <div style={{ marginBottom: 10 }}>
-    <b>БИН предприятия</b>
-    <div style={{ display: "flex", gap: 5 }}>
+  <div className={styles.mb10}>
+    <b>
+     {/*  БИН предприятия */}
+      {t('sale.payment.messages.binLabel')}
+      </b>
+    <div className={styles.flexGap5}>
       <Input
         value={legalBIN}
         onChange={(e) => setLegalBIN(e.target.value.replace(/\D/g, ""))}
@@ -1171,29 +1328,42 @@ printReceipt({
     </div>
   </div>
 
-  <div style={{ marginBottom: 10 }}>
-    <b>Наименование предприятия</b>
-    <div style={{ display: "flex", gap: 5 }}>
+  <div className={styles.mb10}>
+    <b>
+      {/* Наименование предприятия */}
+       {t('sale.payment.messages.nameLabel')}
+      </b>
+    <div className={styles.flexGap5}>
       <Input value={legalName} onChange={(e) => setLegalName(e.target.value)} />
       <Button icon={<SearchOutlined />} onClick={searchLegalByName} />
     </div>
   </div>
 
-  <div style={{ display: "flex", justifyContent: "space-between" }}>
-    <Button onClick={() => setLegalModalVisible(false)}>Отмена</Button>
+  <div className={styles.justifyBetween1}>
+    <Button onClick={() => setLegalModalVisible(false)}>
+      {/* Отмена */}
+      {t('sale.payment.buttons.cancel')}
+      </Button>
     <Button
       type="primary"
       onClick={() => {
         if (foundLegalClients.length === 1) {
           confirmLegalClient(foundLegalClients[0]);
         } else if (!legalBIN && !legalName) {
-          message.error("Введите БИН или наименование");
+          message.error(
+            /* "Введите БИН или наименование" */
+          t('sale.payment.labels.placeholderSearch')
+          );
         } else {
-          message.info("Сначала найдите предприятие");
+          message.info(
+           /*  "Сначала найдите предприятие" */
+          t('sale.payment.labels.placeholderSearch')
+          );
         }
       }}
     >
-      Продолжить
+      {/* Продолжить */}
+      {t('sale.payment.buttons.continue')}
     </Button>
   </div>
 </Modal>
@@ -1204,38 +1374,54 @@ printReceipt({
         open={discountModalVisible}
         onCancel={() => setDiscountModalVisible(false)}
         onOk={applyDiscount}
-        title="Скидка"
-        okText="Применить"
-        cancelText="Отмена"
+        title=
+        {t('sale.payment.discount.title')}
+        /* "Скидка" */
+        okText={t('sale.payment.discount.apply')}
+        /* "Применить" */
+        cancelText={t('sale.payment.buttons.cancel')}
+        /* "Отмена" */
       >
         <Radio.Group
           onChange={(e) => setDiscountType(e.target.value)}
           value={discountType}
-          style={{ marginBottom: 10 }}
+          className={styles.mb10}
         >
-          <Radio value="sum">Сумма</Radio>
-          <Radio value="percent">Процент</Radio>
+          <Radio value="sum">
+            {/* Сумма */}
+            {t('sale.payment.labels.sum')}
+            </Radio>
+          <Radio value="percent">
+            {/* Процент */}
+            {t('sale.payment.labels.percent')}
+            </Radio>
         </Radio.Group>
         <Input
           type="number"
           value={discountValue}
           onChange={(e) => setDiscountValue(Number(e.target.value))}
-          placeholder={discountType === "sum" ? "Сумма скидки" : "% скидки"}
+          placeholder={discountType === "sum" ? 
+            /* "Сумма скидки" */
+            t('sale.payment.discount.enterSum') 
+            : 
+            /* "% скидки" */
+            t('sale.payment.discount.enterPercent')
+          
+          }
         />
-        {/* {discountType === "percent" && (
-          <div style={{ marginTop: 5, color: "#888" }}>
-            Скидка : {((totalAmount * discountValue) / 100).toFixed(2)}
-          </div>
-        )} */}
+       
         {discountType === "percent" && (
-  <div style={{ color: "#888" }}>
-    Скидка составит:{" "}
+  <div className={styles.secondaryText}>
+    {/* Скидка составит */}
+    {t('sale.payment.discount.calculatedAmount')}
+    :{" "}
     {((originalTotal * discountValue) / 100).toFixed(2)}
   </div>
 )}
 
-<div style={{ color: "#888", fontSize: 12 }}>
-  Максимальная скидка: {maxDiscountPercent}%
+<div className={styles.discountLimitHint}>
+  {/* Максимальная скидка: {maxDiscountPercent}% */}
+  {t('sale.payment.modals.discount.maxLimit', { percent: maxDiscountPercent })}
 </div>
       </Modal>
 

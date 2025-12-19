@@ -15,6 +15,8 @@ import {
   TeamOutlined,
   DatabaseOutlined,
 } from "@ant-design/icons";
+import { useTranslation } from "react-i18next"; // 1. Импорт хука
+import styles from "./Sale.module.css";
 
 const { Title, Text } = Typography;
 
@@ -54,71 +56,53 @@ const SelectPointAndUser: React.FC<Props> = ({
   loadCashboxes,
   onComplete,
 }) => {
+  const { t } = useTranslation(); // 2. Инициализация
   const [step, setStep] = useState(0);
 
-  //const [selectedPoint, setSelectedPoint] = useState<string | null>(null);
   const [selectedPoint, setSelectedPoint] = useState<{ id: string; name: string; address: string } | null>(null);
-  const [selectedCashboxId, setSelectedCashboxId] = useState<number | null>(
-    null
-  );
+  const [selectedCashboxId, setSelectedCashboxId] = useState<number | null>(null);
   const [selectedUserId, setSelectedUserId] = useState<string | null>(null);
 
-  // Фильтрация роли 4
   const filteredUsers = users.filter((u) => String(u.role) !== "4");
+  const selectedUser = filteredUsers.find((u) => String(u.id) === selectedUserId);
 
-  const selectedUser = filteredUsers.find(
-    (u) => String(u.id) === selectedUserId
-  );
-
-  // ---------------------------------------------
-  // Выбор торговой точки
-  // ---------------------------------------------
   const handleSelectPoint = async (id: string) => {
-    /* setSelectedPoint(id);    
-    setStep(1);
-    await loadCashboxes(id); */
-
     const point = points.find((p) => p.id === id);
-  if (point) {
-    setSelectedPoint({ id: point.id, name: point.name,address:point.address });
-    setStep(1);
-    await loadCashboxes(point.id);
-  }
+    if (point) {
+      setSelectedPoint({ id: point.id, name: point.name, address: point.address });
+      setStep(1);
+      await loadCashboxes(point.id);
+    }
   };
 
-  // ---------------------------------------------
-  // Выбор кассы
-  // ---------------------------------------------
   const handleSelectCashbox = async (id: number) => {
     setSelectedCashboxId(id);
     setStep(2);
-
     if (selectedPoint) {
-      //await loadUsers(selectedPoint);
       await loadUsers(selectedPoint.id);
     }
   };
 
   return (
-    <Card style={{ maxWidth: 500, margin: "0 auto", marginTop: 40, padding: 20 }}>
-      <Title level={4} style={{ textAlign: "center" }}>
-        Начало работы кассы
+    <Card className={styles.setupCard}>
+      <Title level={4} className={styles.setupTitle}>
+        {t('sale.setup.title') || "Начало работы кассы"}
       </Title>
 
       <Steps
         current={step}
         items={[
-          { title: "Точка", icon: <ShopOutlined /> },
-          { title: "Касса", icon: <DatabaseOutlined /> },
-          { title: "Пользователь", icon: <TeamOutlined /> },
+          { title: t('sale.setup.stepPoint') || "Точка", icon: <ShopOutlined /> },
+          { title: t('sale.setup.stepCashbox') || "Касса", icon: <DatabaseOutlined /> },
+          { title: t('sale.setup.stepUser') || "Пользователь", icon: <TeamOutlined /> },
         ]}
-        style={{ marginBottom: 30, marginTop: 20 }}
+        className={styles.stepWrapper}
       />
 
       {/* STEP 1 - Точка */}
       {step === 0 && (
-        <Space direction="vertical" style={{ width: "100%" }}>
-          <Text strong>Выберите торговую точку</Text>
+        <Space direction="vertical" className={styles.fullWidth}>
+          <Text strong>{t('sale.setup.selectPoint') || "Выберите торговую точку"}</Text>
 
           <Select
             size="large"
@@ -129,27 +113,27 @@ const SelectPointAndUser: React.FC<Props> = ({
                   <ShopOutlined />
                   <span>
                     <b>{p.name}</b>
-                    <div style={{ fontSize: 12 }}>{p.address}</div>
+                    <div className={styles.optionLabel}>{p.address}</div>
                   </span>
                 </Space>
               ),
             }))}
             onChange={handleSelectPoint}
-            style={{ width: "100%" }}
-            placeholder="Торговая точка"
+            className={styles.fullWidth}
+            placeholder={t('sale.setup.placeholderPoint') || "Торговая точка"}
           />
         </Space>
       )}
 
       {/* STEP 2 - Касса */}
       {step === 1 && (
-        <Space direction="vertical" style={{ width: "100%" }}>
-          <Text strong>Выберите кассу</Text>
+        <Space direction="vertical" className={styles.fullWidth}>
+          <Text strong>{t('sale.setup.selectCashbox') || "Выберите кассу"}</Text>
 
           <Select
             size="large"
-            style={{ width: "100%" }}
-            placeholder="Касса"
+            className={styles.fullWidth}
+            placeholder={t('sale.setup.placeholderCashbox') || "Касса"}
             options={cashboxes.map((c) => ({
               value: c.id,
               label: (
@@ -157,7 +141,7 @@ const SelectPointAndUser: React.FC<Props> = ({
                   <DatabaseOutlined />
                   <span>
                     <b>{c.name}</b>
-                    <div style={{ fontSize: 12 }}>{c.address}</div>
+                    <div className={styles.optionLabel}>{c.address}</div>
                   </span>
                 </Space>
               ),
@@ -169,16 +153,16 @@ const SelectPointAndUser: React.FC<Props> = ({
 
       {/* STEP 3 - Пользователь */}
       {step === 2 && (
-        <Space direction="vertical" style={{ width: "100%" }}>
-          <Text strong>Выберите пользователя кассы</Text>
+        <Space direction="vertical" className={styles.fullWidth}>
+          <Text strong>{t('sale.setup.selectUser') || "Выберите пользователя кассы"}</Text>
 
           {filteredUsers.length === 0 ? (
             <Skeleton active />
           ) : (
             <Select
               size="large"
-              style={{ width: "100%" }}
-              placeholder="Пользователь кассы"
+              className={styles.fullWidth}
+              placeholder={t('sale.setup.placeholderUser') || "Пользователь кассы"}
               options={filteredUsers.map((u) => ({
                 value: u.id,
                 label: (
@@ -199,12 +183,15 @@ const SelectPointAndUser: React.FC<Props> = ({
             disabled={!selectedUser}
             onClick={() =>
               onComplete(
-                //selectedPoint!,
                 selectedPoint!.id,
-                 selectedCashboxId!, selectedUser!,selectedPoint!.name,selectedPoint!.address)
+                selectedCashboxId!, 
+                selectedUser!, 
+                selectedPoint!.name, 
+                selectedPoint!.address
+              )
             }
           >
-            Продолжить
+            {t('sale.setup.continueBtn') || "Продолжить"}
           </Button>
         </Space>
       )}

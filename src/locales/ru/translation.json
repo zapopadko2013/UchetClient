@@ -3371,6 +3371,297 @@
     }
   }
 
+  ,
+  "sale": {
+    "errors": {
+      "loadTicketFormat": "Ошибка загрузки формата чека",
+      "loadCompanyInfo": "Ошибка загрузки данных компании",
+      "loadCashboxes": "Ошибка загрузки касс",
+      "loadPoints": "Ошибка загрузки торговых точек",
+      "loadUsers": "Ошибка загрузки пользователей кассы",
+      "excessPayment": "Сумма оплаты превышает остаток после учета долга",
+      "noProducts": "Нет товаров в чеке",
+      "invalidBarcode": "Неверный штрих-код"
+    },
+    "clientModal": {
+      "title": "Выберите клиента",
+      "firstName": "Имя",
+      "lastName": "Фамилия",
+      "phone": "Телефон",
+      "action": "Действие",
+      "selectBtn": "Выбрать"
+    },
+    "productModal": {
+      "title": "Выбор товара",
+      "searchPlaceholder": "Поиск по наименованию или штрих-коду",
+      "loadError": "Ошибка загрузки товаров",
+      "name": "Наименование",
+      "code": "Штрих-код",
+      "price": "Цена",
+      "stock": "Остаток",
+      "action": "Действие",
+      "selectBtn": "Выбрать"
+    },
+    "setup": {
+      "title": "Начало работы кассы",
+      "stepPoint": "Точка",
+      "stepCashbox": "Касса",
+      "stepUser": "Пользователь",
+      "selectPoint": "Выберите торговую точку",
+      "selectCashbox": "Выберите кассу",
+      "selectUser": "Выберите пользователя кассы",
+      "placeholderPoint": "Торговая точка",
+      "placeholderCashbox": "Касса",
+      "placeholderUser": "Пользователь кассы",
+      "continueBtn": "Продолжить"
+    },
+    "returnWorkspace": {
+      "title": "Возврат товаров",
+      "defaultProductName": "Товар",
+      "errors": {
+        "loadCatalog": "Ошибка загрузки каталога продуктов",
+        "loadTickets": "Ошибка загрузки чеков",
+        "alreadyReturned": "По товару \"{{name}}\" уже был выполнен возврат"
+      }
+    },
+    "ticketDetails": {
+      "paymentTypeLabel": "Тип оплаты:",
+      "units": "шт.",
+      "selectAll": "Выбрать все",
+      "unselectAll": "Снять выбор всех",
+      "confirmReturn": "Выполнить возврат",
+      "paymentMethods": {
+        "cash": "Наличный расчет",
+        "card": "Оплата картой",
+        "mixed": "Смешанная оплата",
+        "debit": "Безналичный перевод",
+        "debt": "Продажа в долг",
+        "certificate": "Оплата сертификатом",
+        "unknown": "Не указан"
+      }
+    },
+    "ticketList": {
+      "clearBtn": "Очистить",
+      "searchBtn": "Найти",
+      "emptyText": "Чеки не найдены",
+      "ticketFrom": "от"
+    },
+    "paymentMethods": {
+      "cash": "Наличный расчет",
+      "card": "Оплата картой",
+      "mixed": "Смешанная оплата",
+      "debit": "Безналичный перевод",
+      "debt": "Продажа в долг",
+      "certificate": "Оплата сертификатом",
+      "unknown": "Не указан"
+    },
+    "receipt": {
+      "logoAlt": "Логотип компании",
+      "discountLabel": "Скидка:",
+      "binLabel": "ЖСН(БСН)/ИИН(БИН)",
+      "header": "Тауарлық чек/Товарный чек",
+      "returnType": "Қайтару/Возврат",
+      "saleType": "Сату/Продажа :",
+      "itemsCount": "Тауарлар/Товаров:",
+      "amount": "Сомасы/Сумма:",
+      "discounts": "Жеңілдіктер/Скидки:",
+      "total": "БАРЛЫҒЫ/ИТОГ:",
+      "vatLabel": "ҚҚС/НДС:",
+      "cashier": "Кассир/Кассир:",
+      "consultant": "Сатушы/Консультант:",
+      "terminal": "Терминал/Терминал:",
+      "print": "Печать",
+      "copy": "Копия чека",
+      "windowTitle": "Чек",
+      "thankYou": "Спасибо за покупку!",
+      "errors": {
+        "printWindowFailed": "Не удалось открыть окно печати. Проверьте, не заблокированы ли всплывающие окна в браузере",
+        "printerNotFound": "Принтер не найден или не подключен"
+      }
+    },
+
+    "workspace": {
+      "buttons": {
+        "productList": "Список товаров",
+        "cashDrawer": "Денежный ящик",
+        "return": "Возврат",
+        "cancelReturn": "Отменить возврат",
+        "discount": "Скидка",
+        "payment": "Оплата",
+        "apply": "Применить",
+        "cancel": "Отмена"
+      },
+      "table": {
+        "name": "Наименование",
+        "price": "Цена",
+        "qty": "Кол-во",
+        "stock": "Остаток",
+        "discount": "Скидка",
+        "total": "Итого"
+      },
+      "placeholders": {
+        "barcode": "Штрих-код"
+      },
+      "labels": {
+        "totalSum": "Сумма"
+      },
+      "errors": {
+        "emptyCart": "Сначала добавьте товары",
+        "noStock": "Больше товара нет на складе",
+        "minQty": "Количество не может быть меньше минимального",
+        "maxDiscountExceeded": "Максимальная скидка {{percent}}%",
+        "maxAmountExceeded": "Максимальная скидка {{percent}}% ({{amount}})",
+        "noReturnTicket": "Не выбран чек для возврата",
+        "noDiscountPermission": "Выбранный пользователь кассы не имеет доступа на ручную скидку",
+        "selectProductFirst": "Выберите товар",
+        "barcodeNotFound": "Товар по штрих-коду не найден"
+        
+        
+      },
+      "messages": {
+        "returnSuccess": "Возврат успешно проведён"
+      },
+      "modals": {
+        "manualDiscount": {
+          "title": "Ручная скидка",
+          "amountLabel": "Сумма скидки:",
+          "percentLabel": "Процент скидки (%):",
+          "maxLimit": "Максимальная скидка: {{percent}}%"
+        },
+        "returnMethod": {
+          "title": "Выберите способ возврата",
+          "toCard": "Возврат на карту",
+          "toCash": "Возврат наличными",
+          "toDebit": "Возврат безналичный"
+        }
+      }
+     
+    },
+     "payment": {
+      "title": "Оплата",
+      "unknown": "Неизвестный тип",
+      "buttons": {
+        "cash": "Наличными",
+        "card": "Карта",
+        "mixed": "Смешанная",
+        "debit": "Безналичный",
+        "debt": "В долг",
+        "legal": "Юр. лицо",
+        "discount": "Скидка",
+        "finish": "Завершить оплату",
+        "complete": "Завершить оплату",
+        "cancel": "Отмена",
+        "confirm": "Подтвердить",
+        "continue": "Продолжить",
+        "useBonuses": "Использовать бонусы"
+      },
+      "labels": {
+        "selectConsultant": "Выберите консультанта",
+        "totalToPay": "Итого к оплате",
+        "client": "Клиент",
+        "totalCheckAmount": "Сумма чека",
+        "individual": "Физическое лицо",
+        "legal": "Юридическое лицо",
+        "iin": "ИИН клиента",
+        "discount": "Скидка на чек",
+        "markups": "Наценка на чек",
+        "bonusesUsed": "Использовано бонусов",
+        "bonusesEarned": "Начислено бонусов",
+        "certificatePay": "Оплата сертификатом",
+        "debtAmount1": "Долг",
+        "consultant": "Продавец-консультант",
+        "useBonuses": "Использовать бонусы",
+        "legalEntity": "Юридическое лицо {{name}} ({{bin}})",
+        "physicalPerson": "Физическое лицо {{firstname}} {{lastname}}",
+        "cashAmount": "Сумма наличных",
+        "change": "Сдача",
+        "phone": "Номер телефона",
+        "amount": "Сумма",
+        "sum": "Сумма",
+        "percent": "Процент",
+        "cash": "Наличные",
+        "card": "Карта",
+        "debtAmount": "Сумма долга",
+        "firstname": "Имя",
+        "lastname": "Фамилия",
+        "currentDebt": "Текущий долг",
+        "transfer": "Перевод",
+        "remainingAfterDebt": "Остаток после долга к оплате",
+        "placeholderSearch": "Введите БИН или наименование",
+        "errorFindFirst": "Сначала найдите предприятие",
+        "thanks": "Спасибо за покупку!"
+      },
+      "methods": {
+        "cash": "Наличный расчет",
+        "card": "Оплата картой",
+        "mixed": "Смешанная оплата",
+        "debit": "Безналичный перевод",
+        "debt": "Продажа в долг",
+        "unknown": "Не указан"
+      },
+      "errors": {
+        "limitExceeded": "Превышен лимит скидки. Доступно: {{amount}}",
+        "enterPhone": "Введите номер телефона",
+        "enterFirstname": "Введите имя",
+        "enterLastname": "Введите фамилию",
+        "clientNotFound": "Клиент не найден",
+        "searchError": "Ошибка поиска",
+        "selectClientFirst": "Сначала найдите клиента",
+        "enterAmount": "Введите сумму",
+        "debtTooHigh": "Долг не может быть больше суммы чека",
+        "noType": "Тип оплаты не выбран",
+        "serverError": "Ошибка сервера",
+        "transferError": "Ошибка связи"
+      },
+      "messages": {
+        "debtMixedSet": "Долг установлен, будет смешанная оплата",
+        "successMessage": "Оплата в долг подтверждена",
+
+        "binLabel": "БИН предприятия",
+        "nameLabel": "Наименование предприятия",
+        "deleteConfirm": "Удалить выбранное предприятие?",
+        "searchByBin": "Введите БИН",
+        "searchByName": "Введите наименование",
+        "notFound": "Предприятие не найдено",
+        "searchError": "Ошибка поиска предприятия",
+
+        "success": "Оплата проведена успешно"
+      },
+      "modals": {
+        "amounts": { "title": "Ввод сумм" },
+        "debt": {
+          "title": "Продажа в долг",
+          "deleteTitle": "Удалить долг?",
+          "deleteContent": "Вы хотите удалить текущего должника?",
+          "confirmPay": "Подтвердите долг",
+          "confirmMsg": "Продать в долг на сумму {{amount}}?"
+        },
+        "confirm": {
+          "title": "Подтвердите оплату",
+          "card": "Подтверждаете оплату картой на сумму {{amount}}?",
+        "generic": "Подтверждаете оплату на сумму {{amount}}?",
+          "msg": "Выполнить оплату на сумму {{amount}}?"
+        },
+        "discount": {
+          "title": "Скидка на чек",
+          "maxLimit": "Максимальная скидка: {{percent}}%"
+        }
+      },
+      "discount": {
+        "enterSum": "Введите сумму скидки",
+        "enterPercent": "Введите процент скидки",
+        "calculatedAmount": "Скидка составит",
+        "maxDiscount": "Максимальная скидка",
+        "title": "Скидка",
+        "apply": "Применить",
+        "labelSum": "Сумма скидки",
+        "labelPercent": "% скидки"
+        
+      }
+    }
+  
+  }
+
 
 
 }

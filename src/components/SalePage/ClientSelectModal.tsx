@@ -1,4 +1,6 @@
+import React from "react";
 import { Modal, Table } from "antd";
+import { useTranslation } from "react-i18next"; // 1. Импортируем хук
 
 interface ClientSelectModalProps {
   open: boolean;
@@ -13,19 +15,34 @@ const ClientSelectModal: React.FC<ClientSelectModalProps> = ({
   onSelect,
   onCancel,
 }) => {
+  const { t } = useTranslation(); // 2. Инициализируем перевод
+
   const columns = [
-    { title: "Имя", dataIndex: "firstname" },
-    { title: "Фамилия", dataIndex: "lastname" },
-    { title: "Телефон", dataIndex: "telephone" },
+    { 
+      title: t('sale.clientModal.firstName') || "Имя", 
+      dataIndex: "firstname" 
+    },
+    { 
+      title: t('sale.clientModal.lastName') || "Фамилия", 
+      dataIndex: "lastname" 
+    },
+    { 
+      title: t('sale.clientModal.phone') || "Телефон", 
+      dataIndex: "telephone" 
+    },
     {
-      title: "Выбрать",
-      render: (_, row) => <a onClick={() => onSelect(row)}>Выбрать</a>,
+      title: t('sale.clientModal.action') || "Выбрать",
+      render: (_: any, row: any) => (
+        <a onClick={() => onSelect(row)}>
+          {t('sale.clientModal.selectBtn') || "Выбрать"}
+        </a>
+      ),
     },
   ];
 
   return (
     <Modal
-      title="Выберите клиента"
+      title={t('sale.clientModal.title') || "Выберите клиента"}
       open={open}
       onCancel={onCancel}
       footer={null}

@@ -16,6 +16,8 @@ import type { TicketFromApi, TicketDetailFromApi } from "./types";
 import ReceiptPrinter from "./ReceiptPrinter";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import styles from "./Sale.module.css";
 
 
 interface Props {
@@ -142,11 +144,9 @@ type Mode = "sale" | "return";
 const [mode, setMode] = useState<Mode>("sale");
 const [isReturnMode, setIsReturnMode] = useState(false);
 
+const { t } = useTranslation();
+
 //////
-/* const maxDiscountPercent =
-  typeof cashboxUser?.discountinfo === "number"
-    ? cashboxUser.discountinfo
-    : cashboxUser?.discountinfo?.maxPercent ?? 0; */
 
 const maxDiscountPercent = cashboxUser?.discountinfo ?? 0;    
 /////
@@ -190,43 +190,12 @@ const maxDiscountPercent = cashboxUser?.discountinfo ?? 0;
   };
 
 
-// --- Применение скидки к выбранному товару ---
-/* const applyManualDiscount = () => {
-  if (!selectedDiscountRowKey) {
-    message.warning("Сначала выберите товар");
-    return;
-  }
 
-  setSaleProducts((prev) =>
-    prev.map((item) => {
-      if (item.key === selectedDiscountRowKey) {
-        const discountAmount = Math.min(manualDiscountAmount, item.originalPrice);
-        const newPrice = item.originalPrice - discountAmount;
-        return {
-          ...item,
-          price: newPrice,
-          discount: discountAmount,
-        };
-      }
-      return item;
-    })
-  );
-
-  setManualDiscountVisible(false);
-  setManualDiscountAmount(0);
-  setManualDiscountPercent(0);
-}; */
-
-// --- Обновление суммы при изменении процента ---
-/* const handlePercentChange = (percent: number, originalPrice: number) => {
-  const validPercent = Math.min(Math.max(percent, 0), 100);
-  setManualDiscountPercent(validPercent);
-  setManualDiscountAmount((originalPrice * validPercent) / 100);
-}; */
 
 const handlePercentChange = (percent: number, originalPrice: number) => {
   if (percent > maxDiscountPercent) {
-    message.error(`Максимальная скидка ${maxDiscountPercent}%`);
+    //message.error(`Максимальная скидка ${maxDiscountPercent}%`);
+    message.error(t('sale.workspace.errors.maxDiscountExceeded', { percent: maxDiscountPercent }));
     percent = maxDiscountPercent;
   }
 
@@ -235,20 +204,19 @@ const handlePercentChange = (percent: number, originalPrice: number) => {
   setManualDiscountAmount((originalPrice * validPercent) / 100);
 };
 
-// --- Обновление процента при изменении суммы ---
-/* const handleAmountChange = (amount: number, originalPrice: number) => {
-  const validAmount = Math.min(Math.max(amount, 0), originalPrice);
-  setManualDiscountAmount(validAmount);
-  setManualDiscountPercent((validAmount / originalPrice) * 100);
-}; */
+
 
 const handleAmountChange = (amount: number, originalPrice: number) => {
   const maxAmountByPercent = (originalPrice * maxDiscountPercent) / 100;
 
   if (amount > maxAmountByPercent) {
-    message.error(
+   /*  message.error(
       `Максимальная скидка ${maxDiscountPercent}% (${maxAmountByPercent.toFixed(2)})`
-    );
+    ); */
+    message.error(t('sale.workspace.errors.maxAmountExceeded', { 
+        percent: maxDiscountPercent, 
+        amount: maxAmountByPercent.toFixed(2) 
+      }));
     amount = maxAmountByPercent;
   }
 
@@ -266,7 +234,8 @@ const applyManualDiscount = () => {
   const discountPercent = (manualDiscountAmount / item.originalPrice) * 100;
 
   if (discountPercent > maxDiscountPercent) {
-    message.error(`Превышен лимит скидки (${maxDiscountPercent}%)`);
+    //message.error(`Превышен лимит скидки (${maxDiscountPercent}%)`);
+    message.error(t('sale.workspace.errors.maxDiscountExceeded', { percent: maxDiscountPercent }));
     return;
   }
 
@@ -290,7 +259,8 @@ const applyManualDiscount = () => {
 
 const handlePaymentClick = async () => {
   if (saleProducts.length === 0) {
-    message.warning("Сначала добавьте товары");
+    //message.warning("Сначала добавьте товары");
+    message.warning(t('sale.workspace.errors.emptyCart'));
     return;
   }
 
@@ -303,7 +273,8 @@ const handlePaymentClick = async () => {
   }
 
   if (!returnTicket) {
-    message.error("Не выбран чек для возврата");
+    //message.error("Не выбран чек для возврата");
+    message.error(t('sale.workspace.errors.noReturnTicket'));
     return;
   }
 
@@ -364,7 +335,8 @@ const handlePaymentClick = async () => {
         cardpay = Math.abs(totalAmount) / 2;
         break; */
       default:
-        message.error("Неизвестный тип оплаты");
+       // message.error("Неизвестный тип оплаты");
+       message.error(t('sale.payment.unknown'));
         return null;
     }
 
@@ -423,7 +395,8 @@ const handlePaymentClick = async () => {
       );
 
       if (data.code === "success") {
-        message.success("Возврат успешно проведён");
+       // message.success("Возврат успешно проведён");
+       message.success(t('sale.workspace.messages.returnSuccess'));
         
         const productsForPrint = [...saleProducts];
 
@@ -454,7 +427,8 @@ const handlePaymentClick = async () => {
               storeAddress: point.address,
               companyName: companyInfo.name,
               companyBIN: companyInfo.bin,
-              Dopol1:'Спасибо за покупку.',
+             // Dopol1:'Спасибо за покупку.',
+             Dopol1:t('sale.payment.labels.thanks'),
             }
           : {
               storeName: ticketFormat.json.company || companyInfo.name,
@@ -488,11 +462,13 @@ const handlePaymentClick = async () => {
         /////////
 
       } else {
-        message.error(data.text || "Ошибка сервера при возврате");
+       // message.error(data.text || "Ошибка сервера при возврате");
+       message.error(data.text || t('sale.workspace.errors.serverError'));
       }
     } catch (err) {
       console.error(err);
-      message.error("Ошибка передачи возврата на сервер");
+      //message.error("Ошибка передачи возврата на сервер");
+      message.error(t('sale.workspace.errors.transferError'));
     }
 
     return;
@@ -500,29 +476,38 @@ const handlePaymentClick = async () => {
 
   // Для "card", "debit", "mixed" показываем модальное окно с выбором
   Modal.info({
-    title: "Выберите способ возврата",
+    //title: "Выберите способ возврата",
+    title: t('sale.workspace.modals.returnMethod.title'),
     content: (
-      <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+      <div className={styles.returnActions}>
         {selectedTicket.paymenttype === "card" && (
           <>
-            <button onClick={() => processReturn("card")}>Возврат на карту</button>
-            <button onClick={() => processReturn("cash")}>Возврат наличными</button>
+            {/* <button onClick={() => processReturn("card")}>Возврат на карту</button>
+            <button onClick={() => processReturn("cash")}>Возврат наличными</button> */}
+            <Button onClick={() => processReturn("card")}>{t('sale.workspace.modals.returnMethod.toCard')}</Button>
+            <Button onClick={() => processReturn("cash")}>{t('sale.workspace.modals.returnMethod.toCash')}</Button>
           </>
         )}
         {selectedTicket.paymenttype === "debit" && (
           <>
-            <button onClick={() => processReturn("debit")}>Возврат безналичный</button>
-            <button onClick={() => processReturn("cash")}>Возврат наличными</button>
+            {/* <button onClick={() => processReturn("debit")}>Возврат безналичный</button>
+            <button onClick={() => processReturn("cash")}>Возврат наличными</button> */}
+            <Button onClick={() => processReturn("debit")}>{t('sale.workspace.modals.returnMethod.toDebit')}</Button>
+            <Button onClick={() => processReturn("cash")}>{t('sale.workspace.modals.returnMethod.toCash')}</Button>
           </>
         )}
         {selectedTicket.paymenttype === "mixed" && (
           <>
-            <button onClick={() => processReturn("card")}>Возврат на карту</button>
+           {/*  <button onClick={() => processReturn("card")}>Возврат на карту</button>
             <button onClick={() => processReturn("debit")}>Возврат безналичный</button>
-            <button onClick={() => processReturn("cash")}>Возврат наличными</button>
+            <button onClick={() => processReturn("cash")}>Возврат наличными</button> */}
+             <Button onClick={() => processReturn("card")}>{t('sale.workspace.modals.returnMethod.toCard')}</Button>
+            <Button onClick={() => processReturn("debit")}>{t('sale.workspace.modals.returnMethod.toDebit')}</Button>
+            <Button onClick={() => processReturn("cash")}>{t('sale.workspace.modals.returnMethod.toCash')}</Button>
           </>
         )}
-        <button onClick={() => Modal.destroyAll()}>Отмена</button>
+        {/* <button onClick={() => Modal.destroyAll()}>Отмена</button> */}
+        <Button onClick={() => Modal.destroyAll()}>{t('sale.workspace.buttons.cancel')}</Button>
       </div>
     ),
     onOk() {},
@@ -547,7 +532,8 @@ const handlePaymentClick = async () => {
       );
 
       if (data.code === "success") {
-        message.success("Возврат успешно проведён");
+       // message.success("Возврат успешно проведён");
+        message.success(t('sale.workspace.messages.returnSuccess'));
         /* setSaleProducts([]);
         setIsReturnMode(false);
         setMode("sale"); */
@@ -581,7 +567,8 @@ const handlePaymentClick = async () => {
               storeAddress: point.address,
               companyName: companyInfo.name,
               companyBIN: companyInfo.bin,
-              Dopol1:'Спасибо за покупку.',
+              //Dopol1:'Спасибо за покупку.',
+              Dopol1:t('sale.payment.labels.thanks'),
             }
           : {
               storeName: ticketFormat.json.company || companyInfo.name,
@@ -615,11 +602,13 @@ const handlePaymentClick = async () => {
         /////////
 
       } else {
-        message.error(data.text || "Ошибка сервера при возврате");
+        //message.error(data.text || "Ошибка сервера при возврате");
+        message.error(data.text || t('sale.workspace.errors.serverError'));
       }
     } catch (err) {
       console.error(err);
-      message.error("Ошибка передачи возврата на сервер");
+     //message.error("Ошибка передачи возврата на сервер");
+     message.error(t('sale.workspace.errors.transferError'));
     }
   };
 };
@@ -639,7 +628,8 @@ const handlePaymentClick = async () => {
     const stock = productStock.get(key)!;
 
     if (stock.current <= 0) {
-      message.warning("Больше товара нет на складе");
+     // message.warning("Больше товара нет на складе");
+     message.warning(t('sale.workspace.errors.noStock'));
       return;
     }
 
@@ -668,7 +658,8 @@ const handlePaymentClick = async () => {
     const step = 1;
 
     if (stock.current < step) {
-      message.warning("Больше товара нет на складе");
+      //message.warning("Больше товара нет на складе");
+      message.warning(t('sale.workspace.errors.noStock'));
       return;
     }
 
@@ -687,7 +678,8 @@ const handlePaymentClick = async () => {
     const step = 1;
 
     if (row.qty <= step) {
-      message.warning("Количество не может быть меньше минимального");
+      //message.warning("Количество не может быть меньше минимального");
+      message.warning(t('sale.workspace.errors.minQty'));
       return;
     }
 
@@ -713,11 +705,19 @@ const handlePaymentClick = async () => {
 
   // --- Колонки таблицы ---
   const columns = [
-    { title: "Наименование", dataIndex: "name" },
+     { 
+      // title: "Наименование",
+      title: t('sale.workspace.table.name'),
+       dataIndex: "name" },
+    
     /* { title: "Цена", dataIndex: "price" }, */
-    { title: "Цена", dataIndex: "originalPrice" },
+    { 
+      //title: "Цена",
+       title: t('sale.workspace.table.price'),
+      dataIndex: "originalPrice" },
     {
-      title: "Кол-во",
+      //title: "Кол-во",
+      title: t('sale.workspace.table.qty'),
       dataIndex: "qty",
      
       render: (_: any, row: any) => {
@@ -736,11 +736,13 @@ const handlePaymentClick = async () => {
               const newQty = Number(e.target.value);
               //if (newQty < 1) {
               if (isNaN(newQty) || newQty < (row.isWeight ? 0.001 : 1)) {
-                message.warning("Количество не может быть меньше минимального");
+                //message.warning("Количество не может быть меньше минимального");
+                message.warning(t('sale.workspace.errors.minQty'));
                 return;
               }
               if (newQty > stock.initial) {
-                message.warning("Больше товара нет на складе");
+                //message.warning("Больше товара нет на складе");
+                message.warning(t('sale.workspace.errors.noStock'));
                 return;
               }
               row.qty = round(newQty);
@@ -753,10 +755,13 @@ const handlePaymentClick = async () => {
       },
     },
     {
-      title: "Остаток",
+      //title: "Остаток",
+      title: t('sale.workspace.table.stock'),
       render: (_: any, row: any) => round(productStock.get(row.key)?.current ?? row.stock, 3),
     },
-    { title: "Скидка", 
+    { 
+      //title: "Скидка", 
+       title: t('sale.workspace.table.discount'), 
      // dataIndex: "discount"
     render: (_: any, row: any) => {
       const discount = row.originalPrice ? (row.originalPrice - row.price) : 0;
@@ -764,29 +769,33 @@ const handlePaymentClick = async () => {
     },
     },
     {
-      title: "Итого",
+      //title: "Итого",
+      title: t('sale.workspace.table.total'),
       render: (_: any, row: any) => (Math.abs(row.qty) * row.price).toFixed(2),
     },
   ];
 
   return (
     <>
-      <Space style={{ marginBottom: 10 }}>
+      <Space className={styles.workspaceActions}>
         <Button icon={<AppstoreOutlined />} onClick={() => setModalVisible(true)}>
-          Список товаров
+          {/* Список товаров */}
+          {t('sale.workspace.buttons.productList')}
         </Button>
 
         <Input
           prefix={<BarcodeOutlined />}
-          placeholder="Штрих-код"
-          style={{ width: 200 }}
+         /*  placeholder="Штрих-код" */
+         placeholder={t('sale.workspace.placeholders.barcode')}
+          className={styles.barcodeInput}
           value={barcode}
           onChange={(e) => setBarcode(e.target.value)}
           onPressEnter={() => {
             const parsed = parseBarcode(barcode);
 
             if (!parsed.productCode) {
-              message.warning("Неверный штрих-код");
+              //message.warning("Неверный штрих-код");
+              message.warning(t('sale.errors.invalidBarcode'));
               return;
             }
 
@@ -795,7 +804,8 @@ const handlePaymentClick = async () => {
             );
 
             if (!product) {
-              message.warning("Товар с таким штрих-кодом не найден");
+              //message.warning("Товар с таким штрих-кодом не найден");
+              message.warning(t('sale.workspace.errors.barcodeNotFound'));
               return;
             }
 
@@ -830,18 +840,22 @@ const handlePaymentClick = async () => {
           icon={<MoneyCollectOutlined />}
           onClick={() => {
             const printWindow = window.open("", "_blank", "width=300,height=400");
+
+            const receiptTitle = t('sale.receipt.windowTitle');
+            const thankYouMsg = t('sale.receipt.thankYou');
+
             if (printWindow) {
               printWindow.document.write(`
                 <html>
                   <head>
-                    <title>Чек</title>
+                    <title>${receiptTitle}</title>
                     <style>
                       body { font-family: monospace; padding: 20px; }
                       .center { text-align: center; }
                     </style>
                   </head>
                   <body>
-                    <div class="center"><h3>Спасибо за покупку!</h3></div>
+                    <div class="center"><h3>${thankYouMsg}</h3></div>
                   </body>
                 </html>
               `);
@@ -850,15 +864,18 @@ const handlePaymentClick = async () => {
               printWindow.print();
               printWindow.close();
             } else {
-              message.error("Не удалось открыть окно печати");
+             // message.error("Не удалось открыть окно печати");
+             message.error(t('sale.receipt.errors.printWindowFailed'));
             }
           }}
         >
-          Денежный ящик
+          {/* Денежный ящик */}
+          {t('sale.workspace.buttons.cashDrawer')}
         </Button>
 
-        <div style={{ background: "black", color: "white", padding: 10 }}>
-          Сумма: {Math.abs(total.toFixed(2))}
+        <div className={styles.totalDisplay}>
+          {/* Сумма */}
+          {t('sale.workspace.labels.totalSum')}: {Math.abs(total.toFixed(2))}
         </div>
       </Space>
 
@@ -874,14 +891,15 @@ const handlePaymentClick = async () => {
         }}
       />
 
-      <Space style={{ marginTop: 10 }}>
+      <Space className={styles.detailsFooter}>
       
   {mode === "sale" && (
   <Button
     danger
     onClick={() => setReturnVisible(true)}
   >
-    Возврат
+    {/* Возврат */}
+    {t('sale.workspace.buttons.return')}
   </Button>
 )}
 
@@ -903,7 +921,8 @@ const handlePaymentClick = async () => {
       setMode("sale");  // переключаем обратно
     }}
   >
-    Отменить возврат
+   {/*  Отменить возврат */}
+   {t('sale.workspace.buttons.cancelReturn')}
   </Button>
 )}
 
@@ -911,11 +930,13 @@ const handlePaymentClick = async () => {
 <Button
   onClick={() => {
     if (!selectedRowKey) {
-      message.warning("Сначала выберите товар");
+     // message.warning("Сначала выберите товар");
+     message.warning(t('sale.workspace.errors.selectProductFirst'));
       return;
     }
     if (!cashboxUser.discount) {
-      message.warning("Выбранный пользователь кассы не может давать скидки!");
+      //message.warning("Выбранный пользователь кассы не может давать скидки!");
+      message.warning(t('sale.workspace.errors.noDiscountPermission'));
       return;
     }
     setSelectedDiscountRowKey(selectedRowKey);
@@ -927,30 +948,18 @@ const handlePaymentClick = async () => {
     setManualDiscountVisible(true);
   }}
 >
-  Скидка
+  {/* Скидка */}
+  {t('sale.workspace.buttons.discount')}
 </Button>
 
-
-{/* <Button
-          type="primary"
-          size="large"
-          onClick={() => {
-            if (saleProducts.length === 0) {
-              message.warning("Сначала добавьте товары для продажи");
-              return;
-            }
-            setPaymentVisible(true);
-          }}
-        >
-          Оплата
-        </Button> */}
 
         <Button
   type="primary"
   size="large"
   onClick={handlePaymentClick} // вызываем новую функцию
 >
-  Оплата
+{/*   Оплата */}
+{t('sale.workspace.buttons.payment')}
 </Button>
       </Space>
 
@@ -985,59 +994,6 @@ const handlePaymentClick = async () => {
           setSelectedRowKey(null);   
         }}
       />
-
-{/* <ReturnWorkspace
-  visible={returnVisible}
-  pointId={point.id}
-  onClose={() => {
-    setReturnVisible(false);
-    setIsReturnMode(false);
-  }}
-  onReturnReady={(returnedItems, __, allProducts) => {
-  // Подготовка возвратных товаров
-  const preparedReturnItems = returnedItems.map((item) => {
-    const key = makeProductKey(item);
-    const productFromCatalog = allProducts.find(p => p.id === item.product);
-
-    return {
-      ...item,
-      key,
-      isReturn: true,                               // помечаем как возврат
-      name: item.name || productFromCatalog?.name || "Товар", // корректное имя
-      qty: -Math.abs(item.qty),                     // отрицательное количество
-      price: item.price,                            // цена со скидкой
-      originalPrice: item.originalPrice || item.price, // оригинальная цена
-    };
-  });
-
-  // Обновляем остатки
-  const newStock = new Map(productStock);
-  preparedReturnItems.forEach((item) => {
-    if (newStock.has(item.key)) {
-      const stock = newStock.get(item.key)!;
-      stock.current = 0; // при возврате остаток = 0
-    } else {
-      newStock.set(item.key, {
-        initial: Math.abs(item.qty),
-        current: 0,
-      });
-    }
-  });
-  setProductStock(newStock);
-
-  // Добавляем возврат в таблицу
-  setSaleProducts((prev) => [...prev, ...preparedReturnItems]);
-
-  // Переключаем режим возврата
-  setIsReturnMode(true);
-  setMode("return");
-
-  // Закрываем окно возврата
-  setReturnVisible(false);
-}}
-
-/> */}
-
 <ReturnWorkspace
   visible={returnVisible}
   pointId={point.id}
@@ -1093,23 +1049,27 @@ const handlePaymentClick = async () => {
 />
 
 <Modal
-  title="Ручная скидка"
+  // title="Ручная скидка"
+  title={t('sale.workspace.modals.manualDiscount.title')}
   open={manualDiscountVisible}
   onOk={applyManualDiscount}
   onCancel={() => setManualDiscountVisible(false)}
-  okText="Применить"
-  cancelText="Отмена"
+  //okText="Применить"
+ // cancelText="Отмена"
+ okText={t('sale.workspace.buttons.apply')}
+ cancelText={t('sale.workspace.buttons.cancel')}
 >
   {selectedDiscountRowKey && (() => {
     const item = saleProducts.find(p => p.key === selectedDiscountRowKey);
     if (!item) return null;
 
     return (
-      <div style={{ display: "flex", flexDirection: "column", gap: "15px" }}>
+      <div className={styles.discountModalContent}>
         {/* Поле для ввода суммы скидки */}
         <div>
-          <label style={{ display: "block", fontWeight: "bold", marginBottom: 5 }}>
-            Сумма скидки :
+          <label className={styles.inputLabel}>
+            {/* Сумма скидки : */}
+            {t('sale.workspace.modals.manualDiscount.amountLabel')}
           </label>
           <Input
             type="number"
@@ -1117,14 +1077,16 @@ const handlePaymentClick = async () => {
             max={item.originalPrice}
             value={manualDiscountAmount}
             onChange={(e) => handleAmountChange(Number(e.target.value), item.originalPrice)}
-            placeholder="Введите сумму скидки"
+            //placeholder="Введите сумму скидки"
+            placeholder={t('sale.payment.discount.enterSum')}
           />
         </div>
 
         {/* Поле для ввода процента скидки */}
         <div>
-          <label style={{ display: "block", fontWeight: "bold", marginBottom: 5 }}>
-            Процент скидки (%):
+          <label className={styles.inputLabel}>
+            {/* Процент скидки (%): */}
+            {t('sale.workspace.modals.manualDiscount.percentLabel')}
           </label>
           <Input
             type="number"
@@ -1132,11 +1094,13 @@ const handlePaymentClick = async () => {
             max={100}
             value={manualDiscountPercent}
             onChange={(e) => handlePercentChange(Number(e.target.value), item.originalPrice)}
-            placeholder="Введите процент скидки"
+            //placeholder="Введите процент скидки"
+            placeholder={t('sale.payment.discount.enterPercent')}
           />
         </div>
-        <div style={{ color: "#888", fontSize: 12 }}>
-  Максимальная скидка: {maxDiscountPercent}%
+        <div className={styles.discountLimitHint}>
+  {/* Максимальная скидка: {maxDiscountPercent}% */}
+  {t('sale.workspace.modals.manualDiscount.maxLimit', { percent: maxDiscountPercent })}
 </div>
       </div>
     );

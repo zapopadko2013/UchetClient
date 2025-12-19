@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Modal, Input, Table, Button, message } from "antd";
+import { useTranslation } from "react-i18next"; // 1. Импорт хука
 import useApiRequest from "../../hooks/useApiRequest";
+import styles from "./Sale.module.css";
 
 interface Props {
   visible: boolean;
@@ -17,6 +19,7 @@ const ProductListModal: React.FC<Props> = ({
   onSelectProduct,
   onLoadProducts,
 }) => {
+  const { t } = useTranslation(); // 2. Инициализация
   const { sendRequest } = useApiRequest();
   const API_URL = import.meta.env.VITE_API_URL || "";
 
@@ -29,12 +32,10 @@ const ProductListModal: React.FC<Props> = ({
     "Content-Type": "application/json",
   });
 
-  // Хелпер для парсинга даты DD.MM.YYYY
   const parseDate = (dateStr: string): Date | null => {
     if (!dateStr) return null;
     const parts = dateStr.split('.');
     if (parts.length === 3) {
-      // new Date(year, monthIndex, day)
       return new Date(Number(parts[2]), Number(parts[1]) - 1, Number(parts[0]));
     }
     return null;
@@ -65,41 +66,6 @@ const ProductListModal: React.FC<Props> = ({
         }),
       ]);
 
-    /*   // карта атрибутов (если понадобится)
-      const attrMap = new Map<number, any[]>();
-      attrs.catalog.forEach((a: any) => attrMap.set(a.id, a.values));
-
-      // группируем остатки по productId
-      const stockGrouped = new Map<number, any[]>();
-      stock.catalog.forEach((s: any) => {
-        if (!stockGrouped.has(s.product)) stockGrouped.set(s.product, []);
-        stockGrouped.get(s.product)!.push(s);
-      });
-
-      // создаем объединенный массив товаров
-      const combined: any[] = [];
-      prod.catalog.forEach((p: any) => {
-        const stockList = stockGrouped.get(p.id) || [];
-        stockList.forEach((s: any, index: number) => {
-          combined.push({
-            id: s.id ?? `${p.id}_${index}`, // <-- ключ гарантированно уникальный
-            productId: p.id,
-            code: p.code,
-            name: p.name,
-            price: s.price ?? 0,
-            stock: s.units ?? 0,
-            attributes: s.attributes ?? [],
-            ///
-            listcode: s.listcode,
-            ///
-          });
-        });
-      }); */
-
-     // ============================
-    // 1. КАРТА СКИДОК ПО STOCKID
-    // ============================
-
     const stockDiscountMap = new Map<number, number>();
     const today = new Date();
     today.setHours(0, 0, 0, 0);
@@ -107,13 +73,10 @@ const ProductListModal: React.FC<Props> = ({
     if (Array.isArray(discounts.catalog)) {
       for (const d of discounts.catalog) {
         const expiration = d.expirationdate ? parseDate(d.expirationdate) : null;
-
-        // скидка активна
         if (d.discount > 0 && (!expiration || expiration >= today)) {
           if (Array.isArray(d.products)) {
             for (const prodItem of d.products) {
-              const stockId = prodItem.id; // << ЭТО stockid
-
+              const stockId = prodItem.id;
               const current = stockDiscountMap.get(stockId) || 0;
               if (d.discount > current) {
                 stockDiscountMap.set(stockId, d.discount);
@@ -124,74 +87,45 @@ const ProductListModal: React.FC<Props> = ({
       }
     }
 
-    // ============================
-    // 2. КАРТА АТРИБУТОВ
-    // ============================
-
-    const attrMap = new Map<number, any[]>();
-    if (Array.isArray(attrs.catalog)) {
-      attrs.catalog.forEach(a => attrMap.set(a.id, a.values));
-    }
-
-    // ============================
-    // 3. ГРУППИРОВКА ОСТАТКОВ
-    // ============================
-
+    const combined: any[] = [];
     const stockGrouped = new Map<number, any[]>();
-    stock.catalog.forEach(s => {
+    
+    stock.catalog.forEach((s: any) => {
       if (!stockGrouped.has(s.product)) stockGrouped.set(s.product, []);
       stockGrouped.get(s.product)!.push(s);
     });
 
-    // ============================
-    // 4. СОБИРАЕМ ИТОГОВЫЙ СПИСОК
-    // ============================
-
-    const combined: any[] = [];
-
     prod.catalog.forEach((p: any) => {
       const stockList = stockGrouped.get(p.id) || [];
-
-      stockList.forEach((s: any, __: number) => {
-        const stockId = s.stockid; // ✔ Правильный уникальный ID остатка
-
-        // скидка по stockid
+      stockList.forEach((s: any) => {
+        const stockId = s.stockid;
         const discountPercent = stockDiscountMap.get(stockId) || 0;
-
         const originalPrice = s.price ?? 0;
         const discountAmount = originalPrice * (discountPercent / 100);
         const finalPrice = originalPrice - discountAmount;
 
         combined.push({
-          id: stockId,                // ID строки = ID остатка
-          productId: p.id,            // ID товара
+          id: stockId,
+          productId: p.id,
           code: p.code,
           name: p.name,
-
           originalPrice,
           price: finalPrice,
           discountPercent,
-
           stock: s.units ?? 0,
-
           attributes: s.attributes || [],
           listcode: s.listcode,
         });
       });
     });
 
-      //console.log(combined);
-
       const result = combined.filter((item) => item.stock > 0);
-
       setProducts(result);
       setFiltered(result);
-
-      // обновляем родителя
       if (onLoadProducts) onLoadProducts(result);
     } catch (err) {
       console.error(err);
-      message.error("Ошибка загрузки товаров");
+      message.error(t('sale.productModal.loadError') || "Ошибка загрузки товаров");
     }
   };
 
@@ -211,7 +145,7 @@ const ProductListModal: React.FC<Props> = ({
 
   const columns = [
     {
-      title: "Наименование",
+      title: t('sale.productModal.name') || "Наименование",
       dataIndex: "name",
       render: (_: any, row: any) => {
         const attrs =
@@ -226,12 +160,23 @@ const ProductListModal: React.FC<Props> = ({
         );
       },
     },
-    { title: "Штрих-код", dataIndex: "code", width: 140 },
-    /* { title: "Цена", dataIndex: "price", width: 100 }, */
-    { title: "Цена", dataIndex: "originalPrice", width: 100 },
-    { title: "Остаток", dataIndex: "stock", width: 90 },
+    { 
+      title: t('sale.productModal.code') || "Штрих-код", 
+      dataIndex: "code", 
+      width: 140 
+    },
+    { 
+      title: t('sale.productModal.price') || "Цена", 
+      dataIndex: "originalPrice", 
+      width: 100 
+    },
+    { 
+      title: t('sale.productModal.stock') || "Остаток", 
+      dataIndex: "stock", 
+      width: 90 
+    },
     {
-      title: "Действие",
+      title: t('sale.productModal.action') || "Действие",
       width: 120,
       render: (_: any, row: any) => (
         <Button
@@ -242,7 +187,7 @@ const ProductListModal: React.FC<Props> = ({
             onClose();
           }}
         >
-          Выбрать
+          {t('sale.productModal.selectBtn') || "Выбрать"}
         </Button>
       ),
     },
@@ -250,23 +195,23 @@ const ProductListModal: React.FC<Props> = ({
 
   return (
     <Modal
-      title="Выбор товара"
+      title={t('sale.productModal.title') || "Выбор товара"}
       open={visible}
       onCancel={onClose}
       footer={null}
       width={1000}
     >
       <Input
-        placeholder="Поиск по наименованию или штрих-коду"
+        placeholder={t('sale.productModal.searchPlaceholder') || "Поиск по наименованию или штрих-коду"}
         value={search}
         onChange={(e) => setSearch(e.target.value)}
-        style={{ marginBottom: 10 }}
+        className={styles.searchInput}
       />
 
       <Table
         dataSource={filtered}
         columns={columns}
-        rowKey={(record) => `${record.productId}_${record.id}`} // теперь всегда уникальный
+        rowKey={(record) => `${record.productId}_${record.id}`}
         pagination={{ pageSize: 20 }}
         onRow={(row) => ({
           onDoubleClick: () => {

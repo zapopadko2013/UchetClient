@@ -1,19 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { Col, Row, message, Spin, Modal } from "antd";
+import { useTranslation } from "react-i18next"; // 1. Импорт хука
 import TicketList from "./TicketList";
 import TicketDetails from "./TicketDetails";
 import type { TicketFromApi, TicketDetailFromApi } from "./types";
 import useApiRequest from "../../hooks/useApiRequest";
-import { mapTicketDetailsToSaleProducts } from "./types";
 
 interface Props {
   visible: boolean;
   onClose: () => void;
   pointId: string;
-  onReturnReady: (saleProducts: any[], ticket: TicketFromApi, productsCatalog: any[],) => void;
+  onReturnReady: (saleProducts: any[], ticket: TicketFromApi, productsCatalog: any[]) => void;
 }
 
 const ReturnWorkspace: React.FC<Props> = ({ visible, onClose, pointId, onReturnReady }) => {
+  const { t } = useTranslation(); // 2. Инициализация
   const { sendRequest } = useApiRequest();
   const API_URL = import.meta.env.VITE_API_URL || "";
 
@@ -21,13 +22,10 @@ const ReturnWorkspace: React.FC<Props> = ({ visible, onClose, pointId, onReturnR
   const [selectedTicketIndex, setSelectedTicketIndex] = useState<number | null>(null);
   const [loading, setLoading] = useState(false);
   const [productsCatalog, setProductsCatalog] = useState<any[]>([]);
-
   const [returnTickets, setReturnTickets] = useState<TicketFromApi[]>([]);
 
-  // --- Загружаем каталог продуктов ---
   useEffect(() => {
     const fetchProducts = async () => {
-        
       try {
         const res = await sendRequest(`${API_URL}/external/api/primary/information`, {
           method: "POST",
@@ -36,34 +34,34 @@ const ReturnWorkspace: React.FC<Props> = ({ visible, onClose, pointId, onReturnR
         });
         setProductsCatalog(res.catalog || []);
       } catch {
-        message.error("Ошибка загрузки каталога продуктов");
+        message.error(t('sale.returnWorkspace.errors.loadCatalog') || "Ошибка загрузки каталога продуктов");
       }
     };
-    fetchProducts();
-  }, [pointId]);
+    if (visible) fetchProducts();
+  }, [pointId, visible]);
 
   useEffect(() => {
-  if (visible) {
-    setTickets([]);
-    setReturnTickets([]);
-    setSelectedTicketIndex(null);
-  }
-}, [visible]);
+    if (visible) {
+      setTickets([]);
+      setReturnTickets([]);
+      setSelectedTicketIndex(null);
+    }
+  }, [visible]);
 
   const getHeaders = () => ({
     Authorization: `Bearer ${localStorage.getItem("accessToken") || ""}`,
     "Content-Type": "application/json",
   });
 
-const getProductName = (productId: number) => {
-  const product = productsCatalog.find((p) => p.id === productId);
-  return product ? product.name : String(productId);
-};
+  const getProductName = (productId: number) => {
+    const product = productsCatalog.find((p) => p.id === productId);
+    return product ? product.name : String(productId);
+  };
 
-const handleClearTickets = () => {
-  setTickets([]);
-  setSelectedTicketIndex(null);
-};
+  const handleClearTickets = () => {
+    setTickets([]);
+    setSelectedTicketIndex(null);
+  };
 
   const handleSearch = async ({
     ticketNumber,
@@ -88,113 +86,69 @@ const handleClearTickets = () => {
         }),
       });
 
-      //setTickets(res.catalog || []);
-
       const allTickets: TicketFromApi[] = res.catalog || [];
+      const saleTickets = allTickets.filter(t => t.tickettype !== 1);
+      const returns = allTickets.filter(t => t.tickettype === 1);
 
-// обычные продажи
-const saleTickets = allTickets.filter(t => t.tickettype !== 1);
-
-// чеки возвратов
-const returns = allTickets.filter(t => t.tickettype === 1);
-
-setTickets(saleTickets);
-setReturnTickets(returns);
-
-      setSelectedTicketIndex(null); // сброс выбора при новом поиске
+      setTickets(saleTickets);
+      setReturnTickets(returns);
+      setSelectedTicketIndex(null);
     } catch {
-      message.error("Ошибка загрузки чеков");
+      message.error(t('sale.returnWorkspace.errors.loadTickets') || "Ошибка загрузки чеков");
     } finally {
       setLoading(false);
     }
   };
 
-  /* const handleConfirmReturn = (details: TicketDetailFromApi[]) => {
+  const hasProductReturn = (ticketId: number, productId: number): boolean => {
+    return returnTickets.some(rt =>
+      rt.ticketid === ticketId &&
+      rt.details?.some(d => d.product === productId)
+    );
+  };
+
+  const handleConfirmReturn = (details: TicketDetailFromApi[]) => {
     if (selectedTicketIndex === null) return;
 
     const selectedTicket = tickets[selectedTicketIndex];
-    const saleProducts = mapTicketDetailsToSaleProducts(details);
-    console.log(selectedTicket);
-    console.log(saleProducts);
+
+    for (const d of details) {
+      if (hasProductReturn(selectedTicket.id, d.product)) {
+        // Используем интерполяцию для имени товара
+        message.error(
+          t('sale.returnWorkspace.errors.alreadyReturned', { name: getProductName(d.product) }) || 
+          `По товару "${getProductName(d.product)}" уже был выполнен возврат`
+        );
+        return; 
+      }
+    }
+
+    const saleProducts = details.map((d, i) => {
+      const productFromCatalog = productsCatalog.find(p => p.id === d.product);
+      return {
+        key: `${d.product}_${i}`,
+        product: d.product,
+        name: productFromCatalog?.name || t('sale.returnWorkspace.defaultProductName') || "Товар",
+        price: d.price,
+        originalPrice: d.price + d.discount,
+        qty: -Math.abs(d.units),
+        isReturn: true,
+        stock: productFromCatalog?.stock || 0,
+      };
+    });
+
     onReturnReady(saleProducts, selectedTicket, productsCatalog);
     onClose();
-  };  */
-
-  const hasProductReturn = (
-  ticketId: number,
-  productId: number
-): boolean => {
-  return returnTickets.some(rt =>
-    rt.ticketid === ticketId &&
-    rt.details?.some(d => d.product === productId)
-  );
-};
-
-  const handleConfirmReturn = (details: TicketDetailFromApi[]) => {
-  if (selectedTicketIndex === null) return;
-
-  const selectedTicket = tickets[selectedTicketIndex];
-
-   // проверяем каждый выбранный товар
-  for (const d of details) {
-    if (hasProductReturn(selectedTicket.id, d.product)) {
-      message.error(
-        `По товару "${getProductName(d.product)}" уже был выполнен возврат`
-      );
-      return; 
-    }
-  }
-
-const saleProducts = details.map((d, i) => {
-  const productFromCatalog = productsCatalog.find(p => p.id === d.product);
-  return {
-    key: `${d.product}_${i}`,
-    product: d.product,
-    name: productFromCatalog?.name || "Товар",
-    price: d.price,
-    originalPrice:  d.price+d.discount, // <- каст к any
-    qty: -Math.abs(d.units),
-    isReturn: true,
-    stock: productFromCatalog?.stock || 0,
   };
-});
-
-
-
-  onReturnReady(saleProducts, selectedTicket, productsCatalog);
-  onClose();
-};
-
-  
- /*  const handleConfirmReturn = (details: TicketDetailFromApi[]) => {
-  if (selectedTicketIndex === null) return;
-
-  const selectedTicket = tickets[selectedTicketIndex];
-
-  // Преобразуем детали в saleProducts
-  const saleProducts = details.map((d) => {
-    const productFromCatalog = productsCatalog.find(p => p.id === d.product);
-    return {
-      key: `${d.product}_${d.id}`,             // уникальный ключ
-      product: d.product,
-      name: productFromCatalog?.name || "Товар",
-      price: d.price,
-      originalPrice: d.originalPrice || d.price,
-      qty: -Math.abs(d.qty),                   // делаем отрицательным для возврата
-      isReturn: true,                          // помечаем как возврат
-      stock: productFromCatalog?.stock || 0,   // начальный остаток
-    };
-  });
-
-  console.log(selectedTicket);
-  console.log(saleProducts);
-
-  onReturnReady(saleProducts, selectedTicket);
-  onClose();
-}; */
 
   return (
-    <Modal open={visible} onCancel={onClose} footer={null} width={900} title="Возврат товаров">
+    <Modal 
+      open={visible} 
+      onCancel={onClose} 
+      footer={null} 
+      width={900} 
+      title={t('sale.returnWorkspace.title') || "Возврат товаров"}
+    >
       <Spin spinning={loading}>
         <Row gutter={16}>
           <Col span={8}>
@@ -204,7 +158,6 @@ const saleProducts = details.map((d, i) => {
               onSearch={handleSearch}
               onSelect={(ticketIndex: number) => setSelectedTicketIndex(ticketIndex)}
               onClear={handleClearTickets}
-            
             />
           </Col>
 
