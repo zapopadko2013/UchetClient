@@ -142,7 +142,7 @@
 .workspaceActions {
   margin-bottom: 16px;
   display: flex;
-  flex-wrap: wrap;
+/*   flex-wrap: wrap; */
   gap: 8px;
   align-items: center;
 }
@@ -205,7 +205,9 @@
 .flexContent {
   flex: 1;
   padding-right: 20px;
-}
+} 
+
+
 
 /* Для строк, где текст слева, а значение справа (например, Итого внизу) */
 .justifyBetween {
@@ -221,18 +223,23 @@
 
 
 .mainContentArea {
-  width: 60%;
-  margin: 0 auto; /* Центрируем, если нет боковой панели */
+  flex: 1;
+  min-width: 0;
 }
 
+.flexMain > * {
+  min-width: 0;
+}
 
-.actionGrid {
+ .actionGrid {
   flex: 1;
   display: grid;
-  grid-template-columns: 1fr 1fr; /* Две равные колонки */
+  grid-template-columns: 1fr 1fr; 
   gap: 10px;
   padding-left: 20px;
-}
+} 
+
+
 
 /* Адаптивность для небольших мониторов или планшетов */
 @media (max-width: 992px) {
