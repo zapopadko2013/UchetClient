@@ -17,6 +17,10 @@ import NotificationDrawer from '../components/NotificationDrawer';
 import { routes } from '../routes';
 import './MainLayout.css';
 
+import AiChat from './AiChat'; // Путь к вашему компоненту чата
+import { FloatButton } from 'antd'; // Ant Design имеет отличную кнопку для таких целей
+import { MessageOutlined, CloseOutlined } from '@ant-design/icons';
+
 const { Header, Sider, Content } = Layout;
 
 type MenuItem = Required<MenuProps>['items'][number];
@@ -47,6 +51,10 @@ const MainLayout: React.FC<MainLayoutProps> = ({ username, accesses }) => {
     const { t } = useTranslation();
     const location = useLocation();
     const navigate = useNavigate();
+
+    const [isAiChatVisible, setIsAiChatVisible] = useState(false);
+
+    
 
     const {
         token: { colorBgContainer, borderRadiusLG },
@@ -301,6 +309,38 @@ const MainLayout: React.FC<MainLayoutProps> = ({ username, accesses }) => {
                 >
                     <Outlet />
                 </Content>
+
+                {/* --- КНОПКА И ОКНО ЧАТА --- */}
+            <div className="ai-chat-container">
+                {isAiChatVisible && (
+    <div className="ai-chat-wrapper">
+        <div className="ai-chat-header">
+            <Space>
+                <MessageOutlined />
+                <span>{t('misc.aiAssistant') || 'ИИ NuraAi'}</span>
+            </Space>
+            <Button 
+                type="text" 
+                icon={<CloseOutlined />} 
+                onClick={() => setIsAiChatVisible(false)} 
+                style={{ color: 'white' }}
+            />
+        </div>
+        {/* Внутри AiChat убедитесь, что контейнер занимает 100% высоты */}
+        <AiChat />
+    </div>
+)}
+
+<FloatButton
+    icon={isAiChatVisible ? <CloseOutlined /> : <MessageOutlined />}
+    type="primary"
+    style={{ right: 24, bottom: 24, width: 60, height: 60 }}
+    onClick={() => setIsAiChatVisible(!isAiChatVisible)}
+    tooltip={<div>{isAiChatVisible ? t('misc.aiCloseAssistant') ||'Закрыть чат' : t('misc.aiReadAssistant') ||'Спросить NuraAi'}</div>}
+/>
+            </div>
+
+
                 <NotificationDrawer visible={isDrawerVisible} onClose={() => setIsDrawerVisible(false)} onNewsClick={(news) => {
                     setIsDrawerVisible(false);
                     navigate(`/news/${news.id}`);

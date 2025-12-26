@@ -94,7 +94,11 @@
   },
   "misc": {
     "appName": "UchetPro",
-    "usernameGuest": "Гость"
+    "usernameGuest": "Гость",
+    "aiCloseAssistant": "Закрыть NuraAi",
+    "aiReadAssistant": "Спросить NuraAi",
+    "aiAssistant": "ИИ NuraAi"
+    
   },
   "notifications": {
     "title": "Новости",
@@ -3489,6 +3493,9 @@
         "discount": "Скидка",
         "payment": "Оплата",
         "apply": "Применить",
+        "actions": "Действия",  
+        "writeOffDebt": "Списание долга",
+        "markup": "Наценка",
         "cancel": "Отмена"
       },
       "table": {
@@ -3522,6 +3529,7 @@
         "returnSuccess": "Возврат успешно проведён"
       },
       "modals": {
+        "title": "Действия",
         "manualDiscount": {
           "title": "Ручная скидка",
           "amountLabel": "Сумма скидки:",

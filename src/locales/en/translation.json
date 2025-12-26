@@ -3024,6 +3024,294 @@
   "summary": {
     "total": "Total"
   }
-}
+},
+
+"sale": {
+    "errors": {
+      "loadTicketFormat": "Error loading receipt format",
+      "loadCompanyInfo": "Error loading company data",
+      "loadCashboxes": "Error loading cash registers",
+      "loadPoints": "Error loading retail points",
+      "loadUsers": "Error loading cashbox users",
+      "excessPayment": "Payment amount exceeds the balance after debt accounting",
+      "noProducts": "No products in the receipt",
+      "invalidBarcode": "Invalid barcode"
+    },
+    "clientModal": {
+      "title": "Select Client",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "phone": "Phone",
+      "action": "Action",
+      "selectBtn": "Select"
+    },
+    "productModal": {
+      "title": "Select Product",
+      "searchPlaceholder": "Search by name or barcode",
+      "loadError": "Error loading products",
+      "name": "Name",
+      "code": "Barcode",
+      "price": "Price",
+      "stock": "Stock",
+      "action": "Action",
+      "selectBtn": "Select"
+    },
+    "setup": {
+      "title": "POS Startup",
+      "stepPoint": "Point",
+      "stepCashbox": "Cashbox",
+      "stepUser": "User",
+      "selectPoint": "Select retail point",
+      "selectCashbox": "Select cash register",
+      "selectUser": "Select cashbox user",
+      "placeholderPoint": "Retail Point",
+      "placeholderCashbox": "Cashbox",
+      "placeholderUser": "Cashbox User",
+      "continueBtn": "Continue"
+    },
+    "returnWorkspace": {
+      "title": "Returns",
+      "defaultProductName": "Product",
+      "errors": {
+        "loadCatalog": "Error loading product catalog",
+        "loadTickets": "Error loading receipts",
+        "alreadyReturned": "A return has already been processed for product \"{{name}}\""
+      }
+    },
+    "ticketDetails": {
+      "paymentTypeLabel": "Payment type:",
+      "units": "pcs.",
+      "selectAll": "Select All",
+      "unselectAll": "Deselect All",
+      "confirmReturn": "Process Return",
+      "paymentMethods": {
+        "cash": "Cash",
+        "card": "Card Payment",
+        "mixed": "Mixed Payment",
+        "debit": "Bank Transfer",
+        "debt": "Credit Sale",
+        "certificate": "Certificate Payment",
+        "unknown": "Unknown"
+      }
+    },
+    "ticketList": {
+      "clearBtn": "Clear",
+      "searchBtn": "Find",
+      "emptyText": "No receipts found",
+      "ticketFrom": "from"
+    },
+    "paymentMethods": {
+      "cash": "Cash",
+      "card": "Card Payment",
+      "mixed": "Mixed Payment",
+      "debit": "Bank Transfer",
+      "debt": "Credit Sale",
+      "certificate": "Certificate Payment",
+      "unknown": "Unknown"
+    },
+    "receipt": {
+      "logoAlt": "Company Logo",
+      "discountLabel": "Discount:",
+      "binLabel": "BIN/IIN",
+      "header": "Sales Receipt",
+      "returnType": "Return",
+      "saleType": "Sale:",
+      "itemsCount": "Items:",
+      "amount": "Amount:",
+      "discounts": "Discounts:",
+      "total": "TOTAL:",
+      "vatLabel": "VAT:",
+      "cashier": "Cashier:",
+      "consultant": "Consultant:",
+      "terminal": "Terminal:",
+      "print": "Print",
+      "copy": "Receipt Copy",
+      "windowTitle": "Receipt",
+      "thankYou": "Thank you for your purchase!",
+      "errors": {
+        "printWindowFailed": "Could not open print window. Please check if pop-ups are blocked in your browser",
+        "printerNotFound": "Printer not found or disconnected"
+      }
+    },
+    "workspace": {
+      "buttons": {
+        "productList": "Product List",
+        "cashDrawer": "Cash Drawer",
+        "return": "Return",
+        "cancelReturn": "Cancel Return",
+        "discount": "Discount",
+        "payment": "Payment",
+        "apply": "Apply",
+        "actions": "Actions",
+        "writeOffDebt": "Write off debt",
+        "markup": "Markup",
+        "cancel": "Cancel"
+      },
+      "table": {
+        "name": "Name",
+        "price": "Price",
+        "qty": "Qty",
+        "stock": "Stock",
+        "discount": "Discount",
+        "total": "Total"
+      },
+      "placeholders": {
+        "barcode": "Barcode"
+      },
+      "labels": {
+        "totalSum": "Amount"
+      },
+      "errors": {
+        "emptyCart": "Add products first",
+        "noStock": "Out of stock",
+        "minQty": "Quantity cannot be less than minimum",
+        "maxDiscountExceeded": "Maximum discount {{percent}}%",
+        "maxAmountExceeded": "Maximum discount {{percent}}% ({{amount}})",
+        "noReturnTicket": "No receipt selected for return",
+        "noDiscountPermission": "Selected user does not have permission for manual discounts",
+        "selectProductFirst": "Select a product",
+        "barcodeNotFound": "Product not found by barcode"
+      },
+      "messages": {
+        "returnSuccess": "Return processed successfully"
+      },
+      "modals": {
+        "title": "Actions",
+        "manualDiscount": {
+          "title": "Manual Discount",
+          "amountLabel": "Discount Amount:",
+          "percentLabel": "Discount Percent (%):",
+          "maxLimit": "Max Discount: {{percent}}%"
+        },
+        "returnMethod": {
+          "title": "Select Return Method",
+          "toCard": "Return to Card",
+          "toCash": "Return in Cash",
+          "toDebit": "Return via Transfer"
+        }
+      }
+    },
+    "payment": {
+      "title": "Payment",
+      "unknown": "Unknown type",
+      "buttons": {
+        "cash": "Cash",
+        "card": "Card",
+        "mixed": "Mixed",
+        "debit": "Transfer",
+        "debt": "Credit",
+        "legal": "Legal Entity",
+        "discount": "Discount",
+        "finish": "Finish Payment",
+        "complete": "Complete Payment",
+        "cancel": "Cancel",
+        "confirm": "Confirm",
+        "continue": "Continue",
+        "useBonuses": "Use Bonuses"
+      },
+      "labels": {
+        "selectConsultant": "Select consultant",
+        "totalToPay": "Total to pay",
+        "client": "Client",
+        "totalCheckAmount": "Receipt Total",
+        "individual": "Individual",
+        "legal": "Legal Entity",
+        "iin": "Client IIN",
+        "discount": "Receipt Discount",
+        "markups": "Receipt Markup",
+        "bonusesUsed": "Bonuses used",
+        "bonusesEarned": "Bonuses earned",
+        "certificatePay": "Certificate Payment",
+        "debtAmount1": "Debt",
+        "consultant": "Sales Consultant",
+        "useBonuses": "Use Bonuses",
+        "legalEntity": "Legal Entity {{name}} ({{bin}})",
+        "physicalPerson": "Individual {{firstname}} {{lastname}}",
+        "cashAmount": "Cash Amount",
+        "change": "Change",
+        "phone": "Phone Number",
+        "amount": "Amount",
+        "sum": "Sum",
+        "percent": "Percent",
+        "cash": "Cash",
+        "card": "Card",
+        "debtAmount": "Debt Amount",
+        "firstname": "First Name",
+        "lastname": "Last Name",
+        "currentDebt": "Current Debt",
+        "transfer": "Transfer",
+        "remainingAfterDebt": "Remaining balance to pay",
+        "placeholderSearch": "Enter BIN or name",
+        "errorFindFirst": "Find company first",
+        "thanks": "Thank you for your purchase!"
+      },
+      "methods": {
+        "cash": "Cash",
+        "card": "Card Payment",
+        "mixed": "Mixed Payment",
+        "debit": "Bank Transfer",
+        "debt": "Credit Sale",
+        "unknown": "Not specified"
+      },
+      "errors": {
+        "limitExceeded": "Discount limit exceeded. Available: {{amount}}",
+        "enterPhone": "Enter phone number",
+        "enterFirstname": "Enter first name",
+        "enterLastname": "Enter last name",
+        "clientNotFound": "Client not found",
+        "searchError": "Search error",
+        "selectClientFirst": "Find client first",
+        "enterAmount": "Enter amount",
+        "debtTooHigh": "Debt cannot exceed receipt total",
+        "noType": "Payment type not selected",
+        "serverError": "Server error",
+        "transferError": "Connection error"
+      },
+      "messages": {
+        "debtMixedSet": "Debt set, mixed payment enabled",
+        "successMessage": "Credit sale confirmed",
+        "binLabel": "Company BIN",
+        "nameLabel": "Company Name",
+        "deleteConfirm": "Delete selected company?",
+        "searchByBin": "Enter BIN",
+        "searchByName": "Enter name",
+        "notFound": "Company not found",
+        "searchError": "Error searching for company",
+        "success": "Payment successful"
+      },
+      "modals": {
+        "amounts": {
+          "title": "Enter Amounts"
+        },
+        "debt": {
+          "title": "Credit Sale",
+          "deleteTitle": "Delete Debt?",
+          "deleteContent": "Do you want to delete the current debtor?",
+          "confirmPay": "Confirm Debt",
+          "confirmMsg": "Sell on credit for {{amount}}?"
+        },
+        "confirm": {
+          "title": "Confirm Payment",
+          "card": "Confirm card payment for {{amount}}?",
+          "generic": "Confirm payment for {{amount}}?",
+          "msg": "Process payment for {{amount}}?"
+        },
+        "discount": {
+          "title": "Receipt Discount",
+          "maxLimit": "Max Discount: {{percent}}%"
+        }
+      },
+      "discount": {
+        "enterSum": "Enter discount amount",
+        "enterPercent": "Enter discount percent",
+        "calculatedAmount": "Discount will be",
+        "maxDiscount": "Max Discount",
+        "title": "Discount",
+        "apply": "Apply",
+        "labelSum": "Discount Sum",
+        "labelPercent": "Discount %"
+      }
+    }
+  }
 
 }

@@ -6,7 +6,7 @@ import {
   PlusOutlined,
   MinusOutlined,
   DeleteOutlined,
-  MoneyCollectOutlined,
+  MoneyCollectOutlined,UnorderedListOutlined,
 } from "@ant-design/icons";
 import ProductListModal from "./ProductListModal";
 import PaymentModal from "./PaymentModal";
@@ -145,6 +145,9 @@ const [mode, setMode] = useState<Mode>("sale");
 const [isReturnMode, setIsReturnMode] = useState(false);
 
 const { t } = useTranslation();
+
+
+const [actionsModalVisible, setActionsModalVisible] = useState(false);
 
 //////
 
@@ -927,7 +930,7 @@ const handlePaymentClick = async () => {
 )}
 
 
-<Button
+{/* <Button
   onClick={() => {
     if (!selectedRowKey) {
      // message.warning("Сначала выберите товар");
@@ -948,10 +951,79 @@ const handlePaymentClick = async () => {
     setManualDiscountVisible(true);
   }}
 >
-  {/* Скидка */}
+ 
   {t('sale.workspace.buttons.discount')}
+</Button> */}
+
+<Button
+  icon={<UnorderedListOutlined />}
+  onClick={() => {
+    /* if (!selectedRowKey) {
+      message.warning(t('sale.workspace.errors.selectProductFirst'));
+      return;
+    } */
+    setActionsModalVisible(true);
+  }}
+>
+  {t('sale.workspace.buttons.actions')}
 </Button>
 
+<Modal
+  title={t('sale.workspace.modals.title')} 
+  open={actionsModalVisible}
+  footer={null} // кнопки внутри
+  onCancel={() => setActionsModalVisible(false)}
+>
+  <Space direction="vertical" style={{ width: '100%' }}>
+    <Button
+      type="primary"
+      block
+      onClick={() => {
+        // открываем модалку скидки
+        if (!cashboxUser.discount) {
+          message.warning(t('sale.workspace.errors.noDiscountPermission'));
+          return;
+        }
+        const selectedItem = saleProducts.find(p => p.key === selectedRowKey);
+        if (selectedItem) {
+          setManualDiscountAmount(selectedItem.discount || 0);
+          setManualDiscountPercent(
+            ((selectedItem.discount || 0) / selectedItem.originalPrice) * 100
+          );
+        }
+        setManualDiscountVisible(true);
+        setActionsModalVisible(false);
+      }}
+    >
+      {t('sale.workspace.buttons.discount')}
+    </Button>
+
+    <Button
+      type="default"
+      block
+      danger
+      onClick={() => {
+        // TODO: логика списания долга
+        message.info('Списание долга');
+        setActionsModalVisible(false);
+      }}
+    >
+      {t('sale.workspace.buttons.writeOffDebt')}
+    </Button>
+
+    <Button
+      type="dashed"
+      block
+      onClick={() => {
+        // TODO: логика наценки
+        message.info('Наценка');
+        setActionsModalVisible(false);
+      }}
+    >
+      {t('sale.workspace.buttons.markup')}
+    </Button>
+  </Space>
+</Modal>
 
         <Button
   type="primary"

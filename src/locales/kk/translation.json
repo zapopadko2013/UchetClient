@@ -3029,6 +3029,294 @@
   "summary": {
     "total": "Жалпы"
   }
-}
+},
+
+"sale": {
+    "errors": {
+      "loadTicketFormat": "Чек форматын жүктеу қатесі",
+      "loadCompanyInfo": "Компания деректерін жүктеу қатесі",
+      "loadCashboxes": "Кассаларды жүктеу қатесі",
+      "loadPoints": "Сауда нүктелерін жүктеу қатесі",
+      "loadUsers": "Касса пайдаланушыларын жүктеу қатесі",
+      "excessPayment": "Төлем сомасы қарызды есепке алғаннан кейінгі қалдықтан асып кетті",
+      "noProducts": "Чекте тауарлар жоқ",
+      "invalidBarcode": "Штрих-код қате"
+    },
+    "clientModal": {
+      "title": "Клиентті таңдаңыз",
+      "firstName": "Есімі",
+      "lastName": "Тегі",
+      "phone": "Телефон",
+      "action": "Әрекет",
+      "selectBtn": "Таңдау"
+    },
+    "productModal": {
+      "title": "Тауарды таңдау",
+      "searchPlaceholder": "Аты немесе штрих-коды бойынша іздеу",
+      "loadError": "Тауарларды жүктеу қатесі",
+      "name": "Атауы",
+      "code": "Штрих-код",
+      "price": "Бағасы",
+      "stock": "Қалдық",
+      "action": "Әрекет",
+      "selectBtn": "Таңдау"
+    },
+    "setup": {
+      "title": "Касса жұмысын бастау",
+      "stepPoint": "Нүкте",
+      "stepCashbox": "Касса",
+      "stepUser": "Пайдаланушы",
+      "selectPoint": "Сауда нүктесін таңдаңыз",
+      "selectCashbox": "Кассаны таңдаңыз",
+      "selectUser": "Касса пайдаланушысын таңдаңыз",
+      "placeholderPoint": "Сауда нүктесі",
+      "placeholderCashbox": "Касса",
+      "placeholderUser": "Касса пайдаланушысы",
+      "continueBtn": "Жалғастыру"
+    },
+    "returnWorkspace": {
+      "title": "Тауарларды қайтару",
+      "defaultProductName": "Тауар",
+      "errors": {
+        "loadCatalog": "Өнім каталогын жүктеу қатесі",
+        "loadTickets": "Чектерді жүктеу қатесі",
+        "alreadyReturned": "\"{{name}}\" тауары бойынша қайтару бұрын орындалған"
+      }
+    },
+    "ticketDetails": {
+      "paymentTypeLabel": "Төлем түрі:",
+      "units": "дана",
+      "selectAll": "Барлығын таңдау",
+      "unselectAll": "Таңдауды алып тастау",
+      "confirmReturn": "Қайтаруды орындау",
+      "paymentMethods": {
+        "cash": "Қолма-қол есеп айырысу",
+        "card": "Картамен төлеу",
+        "mixed": "Аралас төлем",
+        "debit": "Қолма-қолсыз аударым",
+        "debt": "Қарызға сату",
+        "certificate": "Сертификатпен төлеу",
+        "unknown": "Көрсетілмеген"
+      }
+    },
+    "ticketList": {
+      "clearBtn": "Тазалау",
+      "searchBtn": "Табу",
+      "emptyText": "Чектер табылмады",
+      "ticketFrom": "күні:"
+    },
+    "paymentMethods": {
+      "cash": "Қолма-қол есеп айырысу",
+      "card": "Картамен төлеу",
+      "mixed": "Аралас төлем",
+      "debit": "Қолма-қолсыз аударым",
+      "debt": "Қарызға сату",
+      "certificate": "Сертификатпен төлеу",
+      "unknown": "Көрсетілмеген"
+    },
+    "receipt": {
+      "logoAlt": "Компания логотипі",
+      "discountLabel": "Жеңілдік:",
+      "binLabel": "ЖСН(БСН)/ИИН(БИН)",
+      "header": "Тауарлық чек/Товарный чек",
+      "returnType": "Қайтару/Возврат",
+      "saleType": "Сату/Продажа :",
+      "itemsCount": "Тауарлар/Товаров:",
+      "amount": "Сомасы/Сумма:",
+      "discounts": "Жеңілдіктер/Скидки:",
+      "total": "БАРЛЫҒЫ/ИТОГ:",
+      "vatLabel": "ҚҚС/НДС:",
+      "cashier": "Кассир/Кассир:",
+      "consultant": "Сатушы/Консультант:",
+      "terminal": "Терминал/Терминал:",
+      "print": "Басып шығару",
+      "copy": "Чек көшірмесі",
+      "windowTitle": "Чек",
+      "thankYou": "Сатып алғаныңызға рақмет!",
+      "errors": {
+        "printWindowFailed": "Басып шығару терезесі ашылмады. Браузерде қалқымалы терезелердің бұғатталмағанын тексеріңіз",
+        "printerNotFound": "Принтер табылмады немесе қосылмаған"
+      }
+    },
+    "workspace": {
+      "buttons": {
+        "productList": "Тауарлар тізімі",
+        "cashDrawer": "Ақша жәшігі",
+        "return": "Қайтару",
+        "cancelReturn": "Қайтарудан бас тарту",
+        "discount": "Жеңілдік",
+        "payment": "Төлем",
+        "apply": "Қолдану",
+        "actions": "Әрекеттер",
+        "writeOffDebt": "Қарызды есептен шығару",
+        "markup": "Үстеме баға",
+        "cancel": "Бас тарту"
+      },
+      "table": {
+        "name": "Атауы",
+        "price": "Бағасы",
+        "qty": "Саны",
+        "stock": "Қалдық",
+        "discount": "Жеңілдік",
+        "total": "Жиынтығы"
+      },
+      "placeholders": {
+        "barcode": "Штрих-код"
+      },
+      "labels": {
+        "totalSum": "Сомасы"
+      },
+      "errors": {
+        "emptyCart": "Алдымен тауарларды қосыңыз",
+        "noStock": "Қоймада тауар таусылды",
+        "minQty": "Саны ең аз мөлшерден аз болмауы керек",
+        "maxDiscountExceeded": "Максималды жеңілдік {{percent}}%",
+        "maxAmountExceeded": "Максималды жеңілдік {{percent}}% ({{amount}})",
+        "noReturnTicket": "Қайтару үшін чек таңдалмады",
+        "noDiscountPermission": "Таңдалған касса пайдаланушысының қолмен жеңілдік жасауға құқығы жоқ",
+        "selectProductFirst": "Тауарды таңдаңыз",
+        "barcodeNotFound": "Штрих-код бойынша тауар табылмады"
+      },
+      "messages": {
+        "returnSuccess": "Қайтару сәтті аяқталды"
+      },
+      "modals": {
+        "title": "Әрекеттер",
+        "manualDiscount": {
+          "title": "Қолмен жеңілдік жасау",
+          "amountLabel": "Жеңілдік сомасы:",
+          "percentLabel": "Жеңілдік пайызы (%):",
+          "maxLimit": "Максималды жеңілдік: {{percent}}%"
+        },
+        "returnMethod": {
+          "title": "Қайтару әдісін таңдаңыз",
+          "toCard": "Картаға қайтару",
+          "toCash": "Қолма-қол ақшамен қайтару",
+          "toDebit": "Қолма-қолсыз қайтару"
+        }
+      }
+    },
+    "payment": {
+      "title": "Төлем",
+      "unknown": "Белгісіз түрі",
+      "buttons": {
+        "cash": "Қолма-қол",
+        "card": "Карта",
+        "mixed": "Аралас",
+        "debit": "Қолма-қолсыз",
+        "debt": "Қарызға",
+        "legal": "Заңды тұлға",
+        "discount": "Жеңілдік",
+        "finish": "Төлемді аяқтау",
+        "complete": "Төлемді аяқтау",
+        "cancel": "Бас тарту",
+        "confirm": "Растау",
+        "continue": "Жалғастыру",
+        "useBonuses": "Бонустарды пайдалану"
+      },
+      "labels": {
+        "selectConsultant": "Консультантты таңдаңыз",
+        "totalToPay": "Төлеуге жиыны",
+        "client": "Клиент",
+        "totalCheckAmount": "Чек сомасы",
+        "individual": "Жеке тұлға",
+        "legal": "Заңды тұлға",
+        "iin": "Клиенттің ЖСН",
+        "discount": "Чекке жеңілдік",
+        "markups": "Чекке үстеме баға",
+        "bonusesUsed": "Пайдаланылған бонустар",
+        "bonusesEarned": "Есептелген бонустар",
+        "certificatePay": "Сертификатпен төлеу",
+        "debtAmount1": "Қарыз",
+        "consultant": "Сатушы-консультант",
+        "useBonuses": "Бонустарды пайдалану",
+        "legalEntity": "Заңды тұлға {{name}} ({{bin}})",
+        "physicalPerson": "Жеке тұлға {{firstname}} {{lastname}}",
+        "cashAmount": "Қолма-қол сома",
+        "change": "Қайтарым ақша",
+        "phone": "Телефон нөмірі",
+        "amount": "Сомасы",
+        "sum": "Сомасы",
+        "percent": "Пайыз",
+        "cash": "Қолма-қол ақша",
+        "card": "Карта",
+        "debtAmount": "Қарыз сомасы",
+        "firstname": "Есімі",
+        "lastname": "Тегі",
+        "currentDebt": "Ағымдағы қарыз",
+        "transfer": "Аударым",
+        "remainingAfterDebt": "Қарыздан кейінгі төлеуге қалдық",
+        "placeholderSearch": "БСН немесе атауын енгізіңіз",
+        "errorFindFirst": "Алдымен кәсіпорынды табыңыз",
+        "thanks": "Сатып алғаныңызға рақмет!"
+      },
+      "methods": {
+        "cash": "Қолма-қол есеп айырысу",
+        "card": "Картамен төлеу",
+        "mixed": "Аралас төлем",
+        "debit": "Қолма-қолсыз аударым",
+        "debt": "Қарызға сату",
+        "unknown": "Көрсетілмеген"
+      },
+      "errors": {
+        "limitExceeded": "Жеңілдік лимитінен асты. Қолжетімді: {{amount}}",
+        "enterPhone": "Телефон нөмірін енгізіңіз",
+        "enterFirstname": "Есімін енгізіңіз",
+        "enterLastname": "Тегін енгізіңіз",
+        "clientNotFound": "Клиент табылмады",
+        "searchError": "Іздеу қатесі",
+        "selectClientFirst": "Алдымен клиентті табыңыз",
+        "enterAmount": "Соманы енгізіңіз",
+        "debtTooHigh": "Қарыз чек сомасынан көп болмауы керек",
+        "noType": "Төлем түрі таңдалмады",
+        "serverError": "Сервер қатесі",
+        "transferError": "Байланыс қатесі"
+      },
+      "messages": {
+        "debtMixedSet": "Қарыз белгіленді, аралас төлем болады",
+        "successMessage": "Қарызға сату расталды",
+        "binLabel": "Кәсіпорын БСН",
+        "nameLabel": "Кәсіпорын атауы",
+        "deleteConfirm": "Таңдалған кәсіпорынды жою керек пе?",
+        "searchByBin": "БСН енгізіңіз",
+        "searchByName": "Атауын енгізіңіз",
+        "notFound": "Кәсіпорын табылмады",
+        "searchError": "Кәсіпорынды іздеу қатесі",
+        "success": "Төлем сәтті өтті"
+      },
+      "modals": {
+        "amounts": {
+          "title": "Сомаларды енгізу"
+        },
+        "debt": {
+          "title": "Қарызға сату",
+          "deleteTitle": "Қарызды жою керек пе?",
+          "deleteContent": "Ағымдағы борышкерді жойғыңыз келе ме?",
+          "confirmPay": "Қарызды растаңыз",
+          "confirmMsg": "{{amount}} сомасына қарызға сату керек пе?"
+        },
+        "confirm": {
+          "title": "Төлемді растаңыз",
+          "card": "{{amount}} сомасына картамен төлеуді растайсыз ба?",
+          "generic": "{{amount}} сомасына төлемді растайсыз ба?",
+          "msg": "{{amount}} сомасына төлемді орындау керек пе?"
+        },
+        "discount": {
+          "title": "Чекке жеңілдік",
+          "maxLimit": "Максималды жеңілдік: {{percent}}%"
+        }
+      },
+      "discount": {
+        "enterSum": "Жеңілдік сомасын енгізіңіз",
+        "enterPercent": "Жеңілдік пайызын енгізіңіз",
+        "calculatedAmount": "Жеңілдік сомасы",
+        "maxDiscount": "Максималды жеңілдік",
+        "title": "Жеңілдік",
+        "apply": "Қолдану",
+        "labelSum": "Жеңілдік сомасы",
+        "labelPercent": "Жеңілдік %-ы"
+      }
+    }
+  }
 
 }
