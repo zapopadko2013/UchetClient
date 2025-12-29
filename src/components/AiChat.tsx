@@ -16,11 +16,22 @@ interface StockItem {
   point: string;
 }
 
+
+interface SalesItem {
+  name: string;
+  quantity: number;
+  sum: number | string;
+  profit: number | string;
+  cost: number | string;
+  date: string;
+}
+
 interface Message {
   role: 'user' | 'ai';
   text: string;
   dataType?: 'stock' | 'sales' | 'none';
   stockData?: StockItem[];
+  salesData?: SalesItem[];
 }
 
 export default function AiChat() {
@@ -34,6 +45,21 @@ export default function AiChat() {
   useEffect(() => {
     scrollRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, isLoading]);
+
+  const formatDisplayDate = (dateStr: string) => {
+  if (!dateStr) return "";
+  
+  // Если это период (содержит " - "), разбиваем его и форматируем каждую часть
+  if (dateStr.includes(" - ")) {
+    return dateStr
+      .split(" - ")
+      .map(part => part.split("-").reverse().join("."))
+      .join(" - ");
+  }
+  
+  // Если это одиночная дата (YYYY-MM-DD -> DD.MM.YYYY)
+  return dateStr.split("-").reverse().join(".");
+};
 
   const columns: ColumnsType<StockItem> = [
     {
@@ -85,6 +111,51 @@ export default function AiChat() {
     },
   ];
 
+  ////
+
+  const salesColumns: ColumnsType<SalesItem> = [
+    {
+      title: 'Товар',
+      dataIndex: 'name',
+      key: 'name',
+      render: (text) => <b>{text}</b>,
+    },
+    {
+      title: 'Кол-во',
+      dataIndex: 'quantity',
+      key: 'quantity',
+      align: 'center',
+      render: (val) => <Tag color="blue">{val}</Tag>,
+    },
+     {
+      title: 'Себестоимость',
+      dataIndex: 'cost',
+      key: 'cost',
+      align: 'right',
+      render: (val) => <b>{Number(val).toLocaleString()} </b>,
+    },
+    {
+      title: 'Сумма реализации',
+      dataIndex: 'sum',
+      key: 'sum',
+      align: 'right',
+      render: (val) => <b>{Number(val).toLocaleString()} </b>,
+    },
+    {
+      title: 'Прибыль',
+      dataIndex: 'profit',
+      key: 'profit',
+      align: 'right',
+      render: (val) => <Text style={{ color: '#52c41a' }}>{Number(val).toLocaleString()}</Text>,
+    },
+    {
+        title: 'Период',
+        dataIndex: 'date',
+        key: 'date',
+        render: (date) => <Text type="secondary" style={{ fontSize: '10px' }}>{date}</Text>
+    }
+  ];
+
   const sendMessage = async () => {
     if (!input.trim()) return;
     const userMsg: Message = { role: 'user', text: input };
@@ -112,7 +183,8 @@ export default function AiChat() {
         role: 'ai', 
         text: data.answer, 
         dataType: data.dataType,
-        stockData: data.stockData 
+        stockData: data.stockData,
+        salesData: data.salesData 
       }]);
     } catch (error) {
       setMessages(prev => [...prev, { role: 'ai', text: 'Ошибка сервера.' }]);
@@ -154,6 +226,37 @@ export default function AiChat() {
                       rowKey={(record) => record.name + record.point}
                     />
                   )}
+
+                  {/* Таблица продаж (Добавлено) */}
+                  {msg.dataType === 'sales' && msg.salesData && (
+  <div style={{ marginTop: 10 }}>
+    {/* Вывод периода сверху таблицы */}
+    {msg.salesData[0]?.date && (
+      <div style={{ 
+        marginBottom: 8, 
+        padding: '4px 8px', 
+        backgroundColor: '#e6f7ff', 
+        borderRadius: '4px',
+        display: 'inline-block',
+        border: '1px solid #91d5ff'
+      }}>
+        <Text strong style={{ fontSize: '12px', color: '#0050b3' }}>
+          📅 Период: {formatDisplayDate(msg.salesData[0].date)}
+        </Text>
+      </div>
+    )}
+    
+    <Table 
+      dataSource={msg.salesData} 
+      columns={salesColumns.filter(col => col.key !== 'date')} // Убираем колонку даты из самой таблицы
+      pagination={{ pageSize: 5, size: 'small' }} 
+      size="small" 
+      bordered
+      rowKey={(record, index) => record.name + index}
+      scroll={{ x: 400 }}
+    />
+  </div>
+)}
                 </div>
               </div>
             </List.Item>
