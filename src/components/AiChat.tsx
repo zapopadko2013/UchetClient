@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { Table, Input, Button, Tag, Spin, Avatar, List, Typography } from 'antd';
 import { SendOutlined, UserOutlined, RobotOutlined } from '@ant-design/icons';
 import type { ColumnsType } from 'antd/es/table';
+import { useTranslation } from 'react-i18next';
 
 const { Text } = Typography;
 
@@ -35,6 +36,7 @@ interface Message {
 }
 
 export default function AiChat() {
+  const { t, i18n } = useTranslation(); // 2. Инициализация t
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -46,34 +48,42 @@ export default function AiChat() {
     scrollRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, isLoading]);
 
+  // Форматирование дат в зависимости от текущего языка
   const formatDisplayDate = (dateStr: string) => {
-  if (!dateStr) return "";
-  
-  // Если это период (содержит " - "), разбиваем его и форматируем каждую часть
-  if (dateStr.includes(" - ")) {
-    return dateStr
-      .split(" - ")
-      .map(part => part.split("-").reverse().join("."))
-      .join(" - ");
-  }
-  
-  // Если это одиночная дата (YYYY-MM-DD -> DD.MM.YYYY)
-  return dateStr.split("-").reverse().join(".");
-};
+    if (!dateStr) return "";
+    const locale = i18n.language === 'ru' ? 'ru-RU' : 'en-US';
+    
+    const formatDate = (str: string) => {
+        const [y, m, d] = str.split("-");
+        return new Date(+y, +m - 1, +d).toLocaleDateString(locale);
+    };
 
+    if (dateStr.includes(" - ")) {
+      return dateStr.split(" - ").map(formatDate).join(" - ");
+    }
+    return formatDate(dateStr);
+  };
+
+  // Колонки остатков
   const columns: ColumnsType<StockItem> = [
     {
-      title: 'Статус',
+      title: t('aiChat.status'), // 'Статус'
       dataIndex: 'status',
       key: 'status',
       width: 100,
       render: (status: string) => {
-        const color = status.includes('Дефицит') ? 'error' : (status.includes('Много') ? 'success' : 'default');
-        return <Tag color={color}>{status.replace('⚠️ ', '').replace('📦 ', '').replace('✅ ', '')}</Tag>;
+        let color = 'default';
+        let label = status;
+
+        if (status.includes('Дефицит')) { color = 'error'; label = t('aiChat.deficit'); }
+        else if (status.includes('Много')) { color = 'success'; label = t('aiChat.surplus'); }
+        else if (status.includes('Норма')) { label = t('aiChat.normal'); }
+
+        return <Tag color={color}>{label.replace(/[⚠️📦✅]\s?/, '')}</Tag>;
       },
     },
     {
-      title: 'Товар',
+      title: t('aiChat.product'), // 'Товар'
       key: 'product',
       render: (_, record) => (
         <div>
@@ -83,77 +93,55 @@ export default function AiChat() {
       ),
     },
     {
-      title: 'Склад',
+      title: t('aiChat.warehouse'), // 'Склад'
       dataIndex: 'point',
       key: 'point',
-      render: (text: string) => <Text style={{ fontSize: '11px' }}>{text?.replace('Склад точки ', '')}</Text>,
+      render: (text: string) => <Text style={{ fontSize: '11px' }}>{text?.replace(/Склад точки |Point warehouse /g, '')}</Text>,
     },
     {
-      title: 'Остаток',
+      title: t('aiChat.stockQty'), // 'Остаток'
       dataIndex: 'stock',
       key: 'stock',
       align: 'center',
       render: (stock) => <b>{stock}</b>,
     },
     {
-      title: 'Закуп', 
-      dataIndex: 'purchaseprice',
-      key: 'purchaseprice',
-      align: 'right',
-      render: (val) => <Text type="secondary">{Number(val).toLocaleString()}</Text>,
-    },
-    {
-      title: 'Розница',
-      dataIndex: 'price',
-      key: 'price',
-      align: 'right',
-      render: (val) => <b>{Number(val).toLocaleString()}</b>,
+        title: t('aiChat.price'), // 'Розница'
+        dataIndex: 'price',
+        key: 'price',
+        align: 'right',
+        render: (val) => <b>{Number(val).toLocaleString(i18n.language)}</b>,
     },
   ];
 
-  ////
-
+  // Колонки продаж
   const salesColumns: ColumnsType<SalesItem> = [
     {
-      title: 'Товар',
+      title: t('aiChat.product'),
       dataIndex: 'name',
       key: 'name',
-      render: (text) => <b>{text}</b>,
     },
     {
-      title: 'Кол-во',
+      title: t('aiChat.qty'), // 'Кол-во'
       dataIndex: 'quantity',
       key: 'quantity',
       align: 'center',
       render: (val) => <Tag color="blue">{val}</Tag>,
     },
-     {
-      title: 'Себестоимость',
+    {
+      title: t('aiChat.costPrice'), // 'Себестоимость'
       dataIndex: 'cost',
       key: 'cost',
       align: 'right',
-      render: (val) => <b>{Number(val).toLocaleString()} </b>,
+      render: (val) => <b>{Number(val).toLocaleString(i18n.language)}</b>,
     },
     {
-      title: 'Сумма реализации',
-      dataIndex: 'sum',
-      key: 'sum',
-      align: 'right',
-      render: (val) => <b>{Number(val).toLocaleString()} </b>,
-    },
-    {
-      title: 'Прибыль',
+      title: t('aiChat.profit'), // 'Прибыль'
       dataIndex: 'profit',
       key: 'profit',
       align: 'right',
-      render: (val) => <Text style={{ color: '#52c41a' }}>{Number(val).toLocaleString()}</Text>,
+      render: (val) => <Text style={{ color: '#52c41a' }}>{Number(val).toLocaleString(i18n.language)}</Text>,
     },
-    {
-        title: 'Период',
-        dataIndex: 'date',
-        key: 'date',
-        render: (date) => <Text type="secondary" style={{ fontSize: '10px' }}>{date}</Text>
-    }
   ];
 
   const sendMessage = async () => {
@@ -168,14 +156,15 @@ export default function AiChat() {
         method: 'POST',
         headers: { 
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('accessToken') || ''}` 
+          'Authorization': `Bearer ${localStorage.getItem('accessToken') || ''}`,
+          'Accept-Language': i18n.language // Передаем язык на бэкенд
         },
-        body: JSON.stringify({ message: input }),
+        body: JSON.stringify({ message: input, lang: i18n.language }),
       });
       const data = await response.json();
       
       if (!response.ok && response.status === 401) {
-        setMessages(prev => [...prev, { role: 'ai', text: '❌ Сессия истекла. Перезайдите.' }]);
+        setMessages(prev => [...prev, { role: 'ai', text: t('aiChat.sessionExpired') }]);
         return;
       }
       
@@ -187,7 +176,7 @@ export default function AiChat() {
         salesData: data.salesData 
       }]);
     } catch (error) {
-      setMessages(prev => [...prev, { role: 'ai', text: 'Ошибка сервера.' }]);
+      setMessages(prev => [...prev, { role: 'ai', text: t('aiChat.serverError') }]);
     } finally {
       setIsLoading(false);
     }
@@ -227,36 +216,26 @@ export default function AiChat() {
                     />
                   )}
 
-                  {/* Таблица продаж (Добавлено) */}
                   {msg.dataType === 'sales' && msg.salesData && (
-  <div style={{ marginTop: 10 }}>
-    {/* Вывод периода сверху таблицы */}
-    {msg.salesData[0]?.date && (
-      <div style={{ 
-        marginBottom: 8, 
-        padding: '4px 8px', 
-        backgroundColor: '#e6f7ff', 
-        borderRadius: '4px',
-        display: 'inline-block',
-        border: '1px solid #91d5ff'
-      }}>
-        <Text strong style={{ fontSize: '12px', color: '#0050b3' }}>
-          📅 Период: {formatDisplayDate(msg.salesData[0].date)}
-        </Text>
-      </div>
-    )}
-    
-    <Table 
-      dataSource={msg.salesData} 
-      columns={salesColumns.filter(col => col.key !== 'date')} // Убираем колонку даты из самой таблицы
-      pagination={{ pageSize: 5, size: 'small' }} 
-      size="small" 
-      bordered
-      rowKey={(record, index) => record.name + index}
-      scroll={{ x: 400 }}
-    />
-  </div>
-)}
+                    <div style={{ marginTop: 10 }}>
+                        {msg.salesData[0]?.date && (
+                        <div style={{ marginBottom: 8, padding: '4px 8px', backgroundColor: '#e6f7ff', borderRadius: '4px', display: 'inline-block', border: '1px solid #91d5ff' }}>
+                            <Text strong style={{ fontSize: '12px', color: '#0050b3' }}>
+                            📅 {t('aiChat.period')}: {formatDisplayDate(msg.salesData[0].date)}
+                            </Text>
+                        </div>
+                        )}
+                        <Table 
+                        dataSource={msg.salesData} 
+                        columns={salesColumns} 
+                        pagination={{ pageSize: 5, size: 'small' }} 
+                        size="small" 
+                        bordered
+                        rowKey={(record, index) => record.name + index}
+                        scroll={{ x: 400 }}
+                        />
+                    </div>
+                  )}
                 </div>
               </div>
             </List.Item>
@@ -264,16 +243,16 @@ export default function AiChat() {
         />
         {isLoading && (
           <div style={{ textAlign: 'left', padding: '10px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-    <Spin size="small" /> 
-    <Text type="secondary">Думаю...</Text>
-  </div>
+            <Spin size="small" /> 
+            <Text type="secondary">{t('aiChat.thinking')}</Text>
+          </div>
         )}
         <div ref={scrollRef} />
       </div>
 
       <div style={inputAreaStyle}>
         <Input.Search
-          placeholder="Спроси про остатки..."
+          placeholder={t('aiChat.placeholder')}
           enterButton={<SendOutlined />}
           size="large"
           value={input}

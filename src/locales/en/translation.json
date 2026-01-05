@@ -89,7 +89,10 @@
   },
   "misc": {
     "appName": "UchetPro",
-    "usernameGuest": "Guest"
+    "usernameGuest": "Guest",
+    "aiCloseAssistant": "Close NuraAi",
+  "aiReadAssistant": "Ask NuraAi",
+  "aiAssistant": "NuraAi AI"
   },
   "notifications": {
   "title": "News",
@@ -3312,6 +3315,25 @@
         "labelPercent": "Discount %"
       }
     }
+  },
+
+  "aiChat": {
+    "status": "Status",
+    "deficit": "Shortage",
+    "surplus": "Overstock",
+    "normal": "Normal",
+    "product": "Product",
+    "warehouse": "Warehouse",
+    "stockQty": "Stock",
+    "price": "Price",
+    "qty": "Qty",
+    "costPrice": "Cost",
+    "profit": "Profit",
+    "period": "Period",
+    "thinking": "Thinking...",
+    "placeholder": "Ask about stock or sales...",
+    "sessionExpired": "❌ Session expired. Please login again.",
+    "serverError": "Server error."
   }
 
 }

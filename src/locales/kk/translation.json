@@ -91,7 +91,10 @@
   },
   "misc": {
     "appName": "UchetPro",
-    "usernameGuest": "Қонақ"
+    "usernameGuest": "Қонақ",
+    "aiCloseAssistant": "NuraAi-ды жабу",
+  "aiReadAssistant": "NuraAi-дан сұрау",
+  "aiAssistant": "NuraAi ЖИ"
   },
   "notifications": {
   "title": "Жаңалықтар",
@@ -3317,6 +3320,25 @@
         "labelPercent": "Жеңілдік %-ы"
       }
     }
+  },
+
+  "aiChat": {
+    "status": "Статус",
+    "deficit": "Талшылық (Дефицит)",
+    "surplus": "Артық",
+    "normal": "Қалыпты",
+    "product": "Тауар",
+    "warehouse": "Қойма",
+    "stockQty": "Қалдық",
+    "price": "Бағасы",
+    "qty": "Саны",
+    "costPrice": "Өзіндік құны",
+    "profit": "Пайда",
+    "period": "Кезең",
+    "thinking": "Ойланып жатырмын...",
+    "placeholder": "Қалдықтар немесе сатылымдар туралы сұраңыз...",
+    "sessionExpired": "❌ Сессия аяқталды. Қайта кіріңіз.",
+    "serverError": "Сервер қатесі."
   }
 
 }

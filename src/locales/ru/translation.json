@@ -3669,6 +3669,25 @@
     }
   
   }
+  ,
+  "aiChat": {
+    "status": "Статус",
+    "deficit": "Дефицит",
+    "surplus": "Много",
+    "normal": "Норма",
+    "product": "Товар",
+    "warehouse": "Склад",
+    "stockQty": "Остаток",
+    "price": "Цена",
+    "qty": "Кол-во",
+    "costPrice": "Себестоимость",
+    "profit": "Прибыль",
+    "period": "Период",
+    "thinking": "Думаю...",
+    "placeholder": "Спроси про остатки или продажи...",
+    "sessionExpired": "❌ Сессия истекла. Перезайдите.",
+    "serverError": "Ошибка сервера."
+  }
 
 
 
