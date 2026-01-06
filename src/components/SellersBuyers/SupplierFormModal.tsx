@@ -18,6 +18,7 @@ interface Supplier {
   iik?: string | null;
   kbe?: string | null;
   country?: string;
+  sendwhatsapp?: string | null;
 }
 
 interface SupplierFormModalProps {
@@ -45,6 +46,7 @@ const SupplierFormModal: React.FC<SupplierFormModalProps> = ({
         name: supplier.name,
         bin: supplier.bin,
         email: supplier.email || '',
+        sendwhatsapp: supplier.sendwhatsapp || '',
       });
     } else {
       form.resetFields();
@@ -61,6 +63,7 @@ const SupplierFormModal: React.FC<SupplierFormModalProps> = ({
         counterparties: {
           bin: values.bin,
           name: values.name,
+          sendwhatsapp: values.sendwhatsapp,
           id: null,
           deleted: false,
         },
@@ -81,6 +84,7 @@ const SupplierFormModal: React.FC<SupplierFormModalProps> = ({
           iik: supplier?.iik || null,
           kbe: supplier?.kbe || null,
           country: supplier?.country || 'KZ',
+          sendwhatsapp: values.sendwhatsapp || null,
         },
       };
       
@@ -151,6 +155,9 @@ const SupplierFormModal: React.FC<SupplierFormModalProps> = ({
         </Form.Item>
         <Form.Item label={t('suppliers.form.email')} name="email">
           <Input type="email" />
+        </Form.Item>
+        <Form.Item label={t('suppliers.table.sendwhatsapp')} name="sendwhatsapp">
+          <Input />
         </Form.Item>
       </Form>
     </Modal>

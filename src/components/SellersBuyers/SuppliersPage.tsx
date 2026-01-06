@@ -20,6 +20,7 @@ interface Supplier {
   iik?: string | null;
   kbe?: string | null;
   country?: string;
+  sendwhatsapp?: string | null;
 }
 
 const SuppliersPage: React.FC = () => {
@@ -141,6 +142,11 @@ const SuppliersPage: React.FC = () => {
       title: t('suppliers.table.email'),
       dataIndex: 'email',
       render: (value: string) => value || '-',
+    },
+    {
+      title: t('suppliers.table.sendwhatsapp'),
+      dataIndex: 'sendwhatsapp',
+      render: (value: string) => value || '',
     },
   ];
 

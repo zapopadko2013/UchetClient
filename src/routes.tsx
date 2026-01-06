@@ -35,7 +35,7 @@ import {
   DashboardOutlined,
   FileTextOutlined,
   AuditOutlined,ClusterOutlined,InboxOutlined,
-  TrademarkCircleOutlined,ReconciliationOutlined,DatabaseOutlined,
+  TrademarkCircleOutlined,ReconciliationOutlined,DatabaseOutlined,ShoppingCartOutlined,
 } from '@ant-design/icons';
 
 import HomePage from './components/HomePage';
@@ -69,6 +69,8 @@ import StockTransfer from './components/ProductManagement/StockTransfer/StockTra
 import GoodsWriteoffPage from './components/ProductManagement/GoodsWriteoffPage/GoodsWriteoffPage';
 import RevisionPage from './components/ProductManagement/RevisionPage/RevisionPage';
 import BarcodePrintPage from './components/ProductManagement/BarcodePrintPage/BarcodePrintPage';
+import WorkordersPage from './components/ProductManagement/WorkordersPage/WorkordersPage';
+
 
 import AdminNews from './components/Administration/News/AdminNews';
 import CompanySettings from './components/Administration/CompanySettings/CompanySettings';
@@ -358,6 +360,14 @@ export const routes = [
       icon: <AuditOutlined />,
       element: <RevisionPage />,
       code: 'contr_revision',
+    },
+    {
+      path: '/orderproduct',
+      key: 'orderproduct',
+      label: 'Заказ товаров',
+      icon: <ShoppingCartOutlined />,
+      element: <WorkordersPage />,
+      code: 'contr_reconciliation',
     },
   ],
 },

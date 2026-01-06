@@ -20,6 +20,8 @@
     "changePassword": "Құпия сөзді өзгерту"
 
     ,
+    "orderproduct": "Тауарларға тапсырыс",
+
     "sellersBuyers": "Жеткізушілер мен сатып алушылар",
   "suppliers": "Жеткізушілер",
   "legalBuyers": "Заңды тұлғалар сатып алушылары",
@@ -326,7 +328,9 @@
     "table": {
       "name": "Атау",
       "bin": "БСН",
-      "email": "Электрондық пошта"
+      "email": "Электрондық пошта",
+      "status": "Мәртебе",
+      "sendwhatsapp": "Whatsapp"
     },
     "messages": {
       "addSuccess": "Жеткізуші қосылды",

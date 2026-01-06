@@ -24,6 +24,9 @@
   "legalBuyers": "Legal Entity Buyers",
   "individualBuyers": "Individual Buyers",
 
+  "orderproduct": "Product Order",
+
+
   "tradeObjects": "Trade Objects",
 "warehouse": "Warehouse",
 "storePoints": "Trade Point",
@@ -323,7 +326,9 @@
     "table": {
       "name": "Name",
       "bin": "BIN",
-      "email": "Email"
+      "email": "Email",
+      "status": "Status",
+      "sendwhatsapp": "Whatsapp"
     },
     "messages": {
       "addSuccess": "Supplier added",

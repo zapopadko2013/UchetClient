@@ -56,6 +56,7 @@
     "adminnews": "Новости",
     "admincompanysettings": "Настройка компании",
     "admindownloadproduct": "Загрузить номенклатуру",
+    "orderproduct": "Заказ товаров",
     
     
     
@@ -337,7 +338,8 @@
       "name": "Наименование",
       "bin": "БИН",
       "email": "Электронная почта",
-      "status": "Статус"
+      "status": "Статус",
+      "sendwhatsapp": "Whatsapp"
     },
     "messages": {
       "addSuccess": "Поставщик добавлен",
@@ -3689,6 +3691,82 @@
     "serverError": "Ошибка сервера."
   }
 
+  ,
+  "workorder": {
+    "title": "Заказы товаров",
+    "myOrders": "Мои заказы",
+    "incomingOrders": "Приемка товаров",
+    "date": "Дата",
+    "point": "Склад/Точка",
+    "user": "Пользователь",
+    "addProduct": "Добавление товара в заказ",
+    "counterparty": "Поставщик / Контрагент",
+    "qty": "Количество",
+    "price": "Цена закупа",
+    "addSuccess": "Товар успешно добавлен в заказ",
+    "addError": "Ошибка при добавлении товара",
+    
+    "status1": "Статус",
+    "send": "Отправить",
+    "receive": "Приход товаров",
+    "loadError": "Ошибка загрузки заказов",
+    "alreadyProcessed": "Этот заказ уже обработан и не может быть изменен или отправлен повторно!",
+    
+    "modalTitleAdd": "Создать заказ",
+    "modalTitleEdit": "Редактировать заказ",
+    "pointLabel": "Торговая точка",
+    "numberLabel": "Номер заказа",
+    "pointPlaceholder": "Выберите точку",
+    "numberPlaceholder": "Введите число",
+    "submitSuccess": "Данные успешно сохранены",
+    "submitError": "Ошибка при сохранении",
+    "save": "Сохранить",
+    "cancel": "Отмена",
+    "required": "Обязательное поле",
+  "counterpartiesname": "Поставщик",
+  "sendwhatsapp": "Whatsapp",
+  "deleteDetailConfirm": "Удалить этот товар из заказа?",
+  "deleteDetailSuccess": "Товар удален",
+  "deleteDetailError": "Ошибка при удалении товара",
+  "receiveConfirm": "Вы подтверждаете приход товара по данному заказу?",
+  "receiveSuccess": "Заказ успешно оприходован",
+  "receiveError": "Ошибка при оформлении прихода",
+  "sendSuccess": "Отправлен",
+  
+  
+  "total": "Сумма",
+  "code": "Артикул",
+  "delete": "Удалить",
+  "deleteConfirm": "Вы уверены, что хотите удалить этот заказ?",
+  "deleteSuccess": "Заказ успешно удален",
+  "deleteError": "Ошибка при удалении заказа",
+  "details": "Детали заказа",
+  "product": {
+    "label": "Выберите товар или сканируйте штрих-код",
+  "code": "Артикул",
+  "name": "Наименование"
+},
+  "name": "Наименование",
+    "status": {
+    "draft": "Черновик",
+    "formation": "Сформирован",
+    "inprocess": "Отправлен",
+    "approved": "Одобрен",
+    "part": "Частично",
+    "accepted": "Принят"
+  },
+  "common": {
+    "add": "Добавить",
+    "edit": "Изменить",
+    "save": "Сохранить",
+    "cancel": "Отмена",
+    "required": "Обязательное поле",
+    "close": "Закрыть",
+        "yes": "Да",
+        "no": "Нет"
+  }
+  }
+  
 
 
 }
