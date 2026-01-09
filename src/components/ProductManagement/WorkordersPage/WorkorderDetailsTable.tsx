@@ -4,6 +4,7 @@ import { Button, Space ,Table, Tag, Typography, message, Modal } from 'antd';
 import { useTranslation } from 'react-i18next';
 import useApiRequest from '../../../hooks/useApiRequest';
 import AddDetailModal from './AddDetailModal'; 
+import styles from './WorkordersPage.module.css';
 
 const { Text } = Typography;
 
@@ -102,10 +103,10 @@ const WorkorderDetailsTable: React.FC<Props> = ({ workorderId,point,counterparty
         render: (text: string, record: WorkorderDetail) => (
           <div>
             <Text strong>{text}</Text>
-            <div style={{ fontSize: '12px', color: '#888' }}>
+            <div className={styles.attributes}>
               {/* Рендерим атрибуты (Цвет, Размер и т.д.) */}
               {record.attr_json?.map(attr => (
-                <span key={attr.id} style={{ marginRight: 8 }}>
+                <span key={attr.id} className={styles.attributeItem}>
                   {attr.name}: {attr.value}
                 </span>
               ))}
@@ -146,7 +147,7 @@ const WorkorderDetailsTable: React.FC<Props> = ({ workorderId,point,counterparty
 
   return (
     <>
-    <div style={{ marginBottom: 16, display: 'flex', justifyContent: 'flex-end' }}>
+    <div className={styles.detailsToolbar}>
         <Button 
           type="primary" 
           size="small" 
@@ -163,7 +164,7 @@ const WorkorderDetailsTable: React.FC<Props> = ({ workorderId,point,counterparty
       pagination={false}
       loading={loading}
       size="small"
-      style={{ backgroundColor: '#fafafa', padding: '8px' }}
+      className={styles.detailsTable}
     />
     <AddDetailModal 
         visible={isAddModalVisible}

@@ -347,22 +347,22 @@ const handleAddAttr = async () => {
           </Select>
         </Form.Item> */}
 
-        <div style={{ display: 'flex', gap: '16px' }}>
-          <Form.Item name="units" label={t('workorder.qty')} rules={[{ required: true }]} style={{ flex: 1 }}>
-            <InputNumber min={0.01} style={{ width: '100%' }} />
+        <div className={styles.formRow}>
+          <Form.Item name="units" label={t('workorder.qty')} rules={[{ required: true }]} className={styles.formItemFlex}>
+            <InputNumber min={0.01} className={styles.fullWidthInput} />
           </Form.Item>
-          <Form.Item name="price" label={t('workorder.price')} rules={[{ required: true }]} style={{ flex: 1 }}>
-            <InputNumber min={0} style={{ width: '100%' }} />
+          <Form.Item name="price" label={t('workorder.price')} rules={[{ required: true }]} className={styles.formItemFlex}>
+            <InputNumber min={0} className={styles.fullWidthInput} />
           </Form.Item>
           
         </div>
-        <div style={{ display: 'flex', gap: '16px' }}>
+        <div className={styles.formRow}>
           
-          <Form.Item name="price1" label={t('workorder.price1')} rules={[{ required: false }]} style={{ flex: 1 }}>
-            <InputNumber min={0} style={{ width: '100%' }} />
+          <Form.Item name="price1" label={t('workorder.price1')} rules={[{ required: false }]} className={styles.formItemFlex}>
+            <InputNumber min={0} className={styles.fullWidthInput} />
           </Form.Item>
-          <Form.Item name="wholesaleprice" label={t('workorder.wholesaleprice')} rules={[{ required: false }]} style={{ flex: 1 }}>
-            <InputNumber min={0} style={{ width: '100%' }} />
+          <Form.Item name="wholesaleprice" label={t('workorder.wholesaleprice')} rules={[{ required: false }]} className={styles.formItemFlex}>
+            <InputNumber min={0} className={styles.fullWidthInput} />
           </Form.Item>
         </div>
 

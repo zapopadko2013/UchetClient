@@ -1,0 +1,85 @@
+/* контейнер уже есть */
+.container {
+  padding: 16px;
+}
+
+/* ⭐ Избранное */
+.favoriteActive {
+  color: #fadb14;
+}
+
+.favoriteInactive {
+  color: #bfbfbf;
+}
+
+/* 👁 Просмотр */
+.viewIcon {
+  color: #1890ff;
+}
+
+/* ✅ Кнопка "Принять" */
+.receiveButton {
+  border-color: #52c41a !important;
+}
+
+.receiveButtonActive {
+  background-color: #52c41a !important;
+  color: #fff !important;
+}
+
+.receiveButtonDisabled {
+  background-color: #f5f5f5 !important;
+  color: rgba(0, 0, 0, 0.25) !important;
+}
+
+/* Поле ввода номера заказа */
+.fullWidthInput {
+  width: 100%;
+}
+
+
+
+/* Блок атрибутов товара */
+.attributes {
+  font-size: 12px;
+  color: #888;
+}
+
+.attributeItem {
+  margin-right: 8px;
+}
+
+/* Панель с кнопкой "Добавить" */
+.detailsToolbar {
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Таблица деталей заказа */
+.detailsTable {
+  background-color: #fafafa;
+  padding: 8px;
+}
+
+
+
+/* Горизонтальный ряд полей */
+.formRow {
+  display: flex;
+  gap: 16px;
+}
+
+/* Элемент формы с равной шириной */
+.formItemFlex {
+  flex: 1;
+}
+
+/* Список тегов атрибутов (если ещё не добавлял) */
+.tagList {
+  margin-top: 12px;
+}
+
+.tagItem {
+  margin-bottom: 8px;
+}

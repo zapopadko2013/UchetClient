@@ -302,8 +302,8 @@ const handleSend = async () => {
       <Button
         type="text"
         icon={record.isfavorite ? 
-          <StarFilled style={{ color: '#fadb14' }} /> : 
-          <StarOutlined style={{ color: '#bfbfbf' }} />
+          <StarFilled className={styles.favoriteActive} /> : 
+          <StarOutlined className={styles.favoriteInactive} />
         }
         onClick={(e) => {
           e.stopPropagation(); // Чтобы не выделялась строка
@@ -359,7 +359,7 @@ const handleSend = async () => {
     render: (_, record) => (
       <Button
         type="text" // Прозрачная кнопка
-        icon={<EyeOutlined style={{ color: '#1890ff' }} />} // Синяя иконка глаза
+        icon={<EyeOutlined className={styles.viewIcon} />} // Синяя иконка глаза
         onClick={(e) => {
           e.stopPropagation(); // Важно: чтобы не срабатывал выбор строки radio
           setSelectedRow(record);
@@ -412,12 +412,13 @@ const handleSend = async () => {
             disabled={!selectedRow || selectedRow.status === 'FORMATION' || selectedRow.status === 'ACCEPTED'} 
   icon={<CheckCircleOutlined />}
   type="primary"
-  style={{ 
-    backgroundColor: (!selectedRow || selectedRow.status === 'FORMATION' || selectedRow.status === 'ACCEPTED') 
-      ? '#f5f5f5' 
-      : '#52c41a', 
-    borderColor: '#52c41a' 
-  }}
+  className={`${styles.receiveButton} ${
+    !selectedRow ||
+    selectedRow.status === 'FORMATION' ||
+    selectedRow.status === 'ACCEPTED'
+      ? styles.receiveButtonDisabled
+      : styles.receiveButtonActive
+  }`}
   onClick={handleReceive}
   loading={loading}
           >

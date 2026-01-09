@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Modal, Form, Select, InputNumber, message } from 'antd';
 import { useTranslation } from 'react-i18next';
 import useApiRequest from '../../../hooks/useApiRequest';
+import styles from './WorkordersPage.module.css';
 
 interface Point {
   id: string;
@@ -201,7 +202,7 @@ const WorkorderModal: React.FC<WorkorderModalProps> = ({
           rules={[{ required: true, message: t('workorder.common.required') }]}
         >
           <InputNumber 
-            style={{ width: '100%' }} 
+            className={styles.fullWidthInput}
             placeholder={t('workorder.numberPlaceholder')}
             precision={0} // Только целые числа
           />
