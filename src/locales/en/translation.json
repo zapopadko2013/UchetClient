@@ -328,7 +328,8 @@
       "bin": "BIN",
       "email": "Email",
       "status": "Status",
-      "sendwhatsapp": "Whatsapp"
+      "address": "Address",
+      "sendwhatsapp": "Whatsapp(77771387711)"
     },
     "messages": {
       "addSuccess": "Supplier added",
@@ -3340,5 +3341,90 @@
     "sessionExpired": "❌ Session expired. Please login again.",
     "serverError": "Server error."
   }
+
+  ,
+
+  "workorder": {
+  "title": "Product Orders",
+  "myOrders": "My Orders",
+  "incomingOrders": "Goods Receipt",
+  "date": "Date",
+  "point": "Warehouse / Location",
+  "user": "User",
+  "addProduct": "Add Product to Order",
+  "counterparty": "Supplier / Counterparty",
+  "qty": "Quantity",
+  "price": "Purchase Price",
+  "price1": "Sale price",
+"wholesaleprice": "Wholesale price",
+
+  "addSuccess": "Product successfully added to the order",
+  "addError": "Error adding product",
+
+  "status1": "Status",
+  "send": "Send",
+  "receive": "Goods Receipt",
+  "loadError": "Error loading orders",
+  "alreadyProcessed": "This order has already been processed and cannot be modified or resent!",
+
+  "modalTitleAdd": "Create Order",
+  "modalTitleEdit": "Edit Order",
+  "pointLabel": "Sales Point",
+  "numberLabel": "Order Number",
+  "pointPlaceholder": "Select a point",
+  "numberPlaceholder": "Enter a number",
+  "submitSuccess": "Data saved successfully",
+  "submitError": "Error while saving",
+  "save": "Save",
+  "cancel": "Cancel",
+  "required": "Required field",
+
+  "counterpartiesname": "Supplier",
+  "sendwhatsapp": "Whatsapp",
+  "deleteDetailConfirm": "Remove this product from the order?",
+  "deleteDetailSuccess": "Product removed",
+  "deleteDetailError": "Error removing product",
+  "receiveConfirm": "Do you confirm receipt of goods for this order?",
+  "receiveSuccess": "Order successfully received",
+  "receiveError": "Error during goods receipt",
+  "sendSuccess": "Sent",
+
+  "total": "Total",
+  "code": "SKU",
+  "delete": "Delete",
+  "deleteConfirm": "Are you sure you want to delete this order?",
+  "deleteSuccess": "Order successfully deleted",
+  "deleteError": "Error deleting order",
+  "details": "Order Details",
+
+  "product": {
+    "label": "Select a product or scan the barcode",
+    "code": "SKU",
+    "name": "Name"
+  },
+
+  "name": "Name",
+
+  "status": {
+    "draft": "Draft",
+    "formation": "Formed",
+    "inprocess": "Sent",
+    "approved": "Approved",
+    "part": "Partially",
+    "accepted": "Accepted"
+  },
+
+  "common": {
+    "add": "Add",
+    "edit": "Edit",
+    "save": "Save",
+    "cancel": "Cancel",
+    "required": "Required field",
+    "close": "Close",
+    "yes": "Yes",
+    "no": "No"
+  }
+}
+
 
 }

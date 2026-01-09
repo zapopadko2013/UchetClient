@@ -47,6 +47,7 @@ const SupplierFormModal: React.FC<SupplierFormModalProps> = ({
         bin: supplier.bin,
         email: supplier.email || '',
         sendwhatsapp: supplier.sendwhatsapp || '',
+        address: supplier.address || '',
       });
     } else {
       form.resetFields();
@@ -64,6 +65,7 @@ const SupplierFormModal: React.FC<SupplierFormModalProps> = ({
           bin: values.bin,
           name: values.name,
           sendwhatsapp: values.sendwhatsapp,
+          address: values.address,
           id: null,
           deleted: false,
         },
@@ -76,7 +78,7 @@ const SupplierFormModal: React.FC<SupplierFormModalProps> = ({
           email: values.email || null,
           deleted: false,
           company: supplier?.company || '2',
-          address: supplier?.address || null,
+          address: values.address || null,
           bank: supplier?.bank || null,
           bik: supplier?.bik || null,
           certificatenum: supplier?.certificatenum || null,
@@ -157,6 +159,9 @@ const SupplierFormModal: React.FC<SupplierFormModalProps> = ({
           <Input type="email" />
         </Form.Item>
         <Form.Item label={t('suppliers.table.sendwhatsapp')} name="sendwhatsapp">
+          <Input />
+        </Form.Item>
+        <Form.Item label={t('suppliers.table.address')} name="address">
           <Input />
         </Form.Item>
       </Form>

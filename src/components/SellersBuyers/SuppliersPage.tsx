@@ -135,6 +135,10 @@ const SuppliersPage: React.FC = () => {
       dataIndex: 'name',
     },
     {
+      title: t('suppliers.table.address'),
+      dataIndex: 'address',
+    },
+    {
       title: t('suppliers.table.bin'),
       dataIndex: 'bin',
     },

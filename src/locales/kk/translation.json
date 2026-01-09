@@ -329,8 +329,9 @@
       "name": "Атау",
       "bin": "БСН",
       "email": "Электрондық пошта",
+      "address": "Мекенжай",
       "status": "Мәртебе",
-      "sendwhatsapp": "Whatsapp"
+      "sendwhatsapp": "Whatsapp(77771387711)"
     },
     "messages": {
       "addSuccess": "Жеткізуші қосылды",
@@ -3344,5 +3345,91 @@
     "sessionExpired": "❌ Сессия аяқталды. Қайта кіріңіз.",
     "serverError": "Сервер қатесі."
   }
+
+  ,
+"workorder": {
+  "title": "Тауар тапсырыстары",
+  "myOrders": "Менің тапсырыстарым",
+  "incomingOrders": "Тауарларды қабылдау",
+  "date": "Күні",
+  "point": "Қойма / Нүкте",
+  "user": "Пайдаланушы",
+  "addProduct": "Тапсырысқа тауар қосу",
+  "counterparty": "Жеткізуші / Контрагент",
+  "qty": "Саны",
+  "price": "Сатып алу бағасы",
+  "price1": "Сату бағасы",
+"wholesaleprice": "Көтерме баға",
+
+  "addSuccess": "Тауар тапсырысқа сәтті қосылды",
+  "addError": "Тауарды қосу кезінде қате",
+
+  "status1": "Мәртебе",
+  "send": "Жіберу",
+  "receive": "Тауардың келуі",
+  "loadError": "Тапсырыстарды жүктеу қатесі",
+  "alreadyProcessed": "Бұл тапсырыс өңделген және оны өзгерту немесе қайта жіберу мүмкін емес!",
+
+  "modalTitleAdd": "Тапсырыс құру",
+  "modalTitleEdit": "Тапсырысты өңдеу",
+  "pointLabel": "Сауда нүктесі",
+  "numberLabel": "Тапсырыс нөмірі",
+  "pointPlaceholder": "Нүктені таңдаңыз",
+  "numberPlaceholder": "Санды енгізіңіз",
+  "submitSuccess": "Деректер сәтті сақталды",
+  "submitError": "Сақтау кезінде қате",
+  "save": "Сақтау",
+  "cancel": "Бас тарту",
+  "required": "Міндетті өріс",
+
+  "counterpartiesname": "Жеткізуші",
+  "sendwhatsapp": "Whatsapp",
+  "deleteDetailConfirm": "Бұл тауарды тапсырыстан жою керек пе?",
+  "deleteDetailSuccess": "Тауар жойылды",
+  "deleteDetailError": "Тауарды жою кезінде қате",
+  "receiveConfirm": "Осы тапсырыс бойынша тауардың келуін растайсыз ба?",
+  "receiveSuccess": "Тапсырыс сәтті қабылданды",
+  "receiveError": "Қабылдау кезінде қате",
+  "sendSuccess": "Жіберілді",
+
+  "total": "Сома",
+  "code": "Артикул",
+  "delete": "Жою",
+  "deleteConfirm": "Бұл тапсырысты жоюды қалайсыз ба?",
+  "deleteSuccess": "Тапсырыс сәтті жойылды",
+  "deleteError": "Тапсырысты жою кезінде қате",
+  "details": "Тапсырыс мәліметтері",
+
+  "product": {
+    "label": "Тауарды таңдаңыз немесе штрих-кодты сканерлеңіз",
+    "code": "Артикул",
+    "name": "Атауы"
+  },
+
+  "name": "Атауы",
+
+  "status": {
+    "draft": "Жоба",
+    "formation": "Қалыптастырылған",
+    "inprocess": "Жіберілген",
+    "approved": "Бекітілген",
+    "part": "Ішінара",
+    "accepted": "Қабылданған"
+  },
+
+  "common": {
+    "add": "Қосу",
+    "edit": "Өзгерту",
+    "save": "Сақтау",
+    "cancel": "Бас тарту",
+    "required": "Міндетті өріс",
+    "close": "Жабу",
+    "yes": "Иә",
+    "no": "Жоқ"
+  }
+}
+
+
+
 
 }

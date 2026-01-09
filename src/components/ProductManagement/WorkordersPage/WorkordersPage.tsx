@@ -7,7 +7,9 @@ import {
   PlusOutlined, 
   EditOutlined, 
   SendOutlined, 
-  CheckCircleOutlined , DeleteOutlined, EyeOutlined
+  CheckCircleOutlined , DeleteOutlined, EyeOutlined,
+  StarOutlined, 
+  StarFilled    
 } from '@ant-design/icons';
 import useApiRequest from '../../../hooks/useApiRequest';
 import styles from './WorkordersPage.module.css'; // Используйте ваш файл стилей
@@ -23,6 +25,8 @@ interface Workorder {
   status: string;
   company: string;
   point: string;
+  counterparty: string;
+  isfavorite: boolean;
 }
 
 /* {
@@ -93,6 +97,26 @@ const WorkordersPage: React.FC = () => {
   }, [activeTab]);
 
 
+  const toggleFavorite = async (record: Workorder) => {
+  try {
+    // Временное обновление локального стейта для мгновенного отклика (опционально)
+    const newStatus = !record.isfavorite;
+    
+    await sendRequest(`${API_URL}/api/workorder/favorite`, {
+      method: 'POST',
+      headers: { 
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('accessToken')}` 
+      },
+      body: JSON.stringify({ workorderId: record.id, isfavorite: newStatus }),
+    });
+    
+    fetchWorkorders(); // Перезагружаем список
+  } catch (err) {
+    message.error(t('workorder.favoriteError'));
+  }
+};
+
   const handleReceive = () => {
   if (!selectedRow) return;
 
@@ -102,20 +126,17 @@ const WorkordersPage: React.FC = () => {
     onOk: async () => {
       try {
         setLoading(true);
-        const updateResponse = await sendRequest(`${API_URL}/api/workorder/manage`, {
+        const updateResponse = await sendRequest(`${API_URL}/api/workorder/invoice`, {
           method: 'POST',
           headers: { 
             'Content-Type': 'application/json',
             Authorization: `Bearer ${localStorage.getItem('accessToken')}` 
           },
-          body: JSON.stringify({ 
-            workorder_id: selectedRow.id, // В вашем API параметр называется id или workorder_id (проверьте соответствие)
-            status: 'accepted'
-          }),
+          body: JSON.stringify({ workorder_id: selectedRow.id, counterparty: selectedRow.counterparty }),
         });
 
         // Обработка бизнес-ошибки от сервера (exception)
-        if (updateResponse && updateResponse.code === 'exception') {
+        if (updateResponse && (updateResponse.code === 'exception' || updateResponse.code === 'internal_error')) {
           message.error(updateResponse.text);
         } else {
           message.success(t('workorder.receiveSuccess'));
@@ -229,7 +250,7 @@ const handleSend = async () => {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${localStorage.getItem('accessToken')}` 
       },
-      body: JSON.stringify({ workorderId: selectedRow.id }),
+      body: JSON.stringify({ workorderId: selectedRow.id, counterparty: selectedRow.counterparty }),
     });
 
     message.success(t('workorder.sendSuccess'));
@@ -274,6 +295,24 @@ const handleSend = async () => {
 
   const columns: ColumnsType<Workorder> = [
     {
+    title: '',
+    key: 'favorite',
+    width: 50,
+    render: (_, record) => (
+      <Button
+        type="text"
+        icon={record.isfavorite ? 
+          <StarFilled style={{ color: '#fadb14' }} /> : 
+          <StarOutlined style={{ color: '#bfbfbf' }} />
+        }
+        onClick={(e) => {
+          e.stopPropagation(); // Чтобы не выделялась строка
+          toggleFavorite(record);
+        }}
+      />
+    ),
+  },
+    {
       title: '№',
       dataIndex: 'workorder_number',
       key: 'workorder_number',
@@ -289,6 +328,11 @@ const handleSend = async () => {
       title: t('workorder.point'),
       dataIndex: 'point_name',
       key: 'point_name',
+    },
+     {
+      title: t('workorder.counterparty'),
+      dataIndex: 'counterpartyname',
+      key: 'counterpartyname',
     },
     {
       title: t('workorder.user'),
@@ -421,7 +465,8 @@ const handleSend = async () => {
   initialValues={selectedRow ? {
     id: selectedRow.id,
     workorder_number: Number(selectedRow.workorder_number),
-    point: selectedRow.point
+    point: selectedRow.point,
+    counterparty: selectedRow.counterparty
   } : undefined}
 />
 
@@ -436,7 +481,7 @@ const handleSend = async () => {
         ]}
         width={1000} // Делаем модалку широкой для таблицы
       >
-        {selectedRow && <WorkorderDetailsTable workorderId={selectedRow.id} point={selectedRow.point} />}
+        {selectedRow && <WorkorderDetailsTable workorderId={selectedRow.id} point={selectedRow.point}  counterparty={selectedRow.counterparty}/>}
       </Modal>
 
     </div>

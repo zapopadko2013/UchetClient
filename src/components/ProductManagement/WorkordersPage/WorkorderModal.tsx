@@ -14,7 +14,12 @@ interface WorkorderModalProps {
   visible: boolean;
   onCancel: () => void;
   onSuccess: () => void;
-  initialValues?: { id?: string; workorder_number: number; point: string; };
+  initialValues?: { id?: string; workorder_number: number; point: string; counterparty?: string; };
+}
+
+interface Counterparty {
+  id: string;
+  name: string;
 }
 
 const WorkorderModal: React.FC<WorkorderModalProps> = ({ 
@@ -28,11 +33,12 @@ const WorkorderModal: React.FC<WorkorderModalProps> = ({
   const { sendRequest } = useApiRequest();
   const [points, setPoints] = useState<Point[]>([]);
   const [loading, setLoading] = useState(false);
+  const [counterparties, setCounterparties] = useState<Counterparty[]>([]);
 
   const API_URL = import.meta.env.VITE_API_URL || '';
 
   // Загрузка списка торговых точек
-  useEffect(() => {
+  /* useEffect(() => {
     if (visible) {
       const fetchPoints = async () => {
         try {
@@ -45,17 +51,67 @@ const WorkorderModal: React.FC<WorkorderModalProps> = ({
         }
       };
       fetchPoints();
+         }
+  }, [visible]); */
+
+  useEffect(() => {
+  if (!visible) return; // Сразу выходим, если не видно
+
+  const loadData = async () => {
+    setLoading(true); // Включаем спиннер
+    try {
+      // Запускаем оба запроса одновременно для скорости
+      const [pointsData, counterpartiesData] = await Promise.all([
+        sendRequest(`${API_URL}/api/revision/points`, {
+          headers: { Authorization: `Bearer ${localStorage.getItem('accessToken')}` }
+        }),
+        sendRequest(`${API_URL}/api/counterparties`, {
+          headers: { Authorization: `Bearer ${localStorage.getItem('accessToken')}` }
+        })
+      ]);
+
+      setPoints(pointsData || []);
+      setCounterparties(counterpartiesData || []);
+    } catch (err) {
+      console.error('Error loading modal data:', err);
+      message.error(t('workorder.common.loadError'));
+    } finally {
+      setLoading(false); // Выключаем спиннер
     }
-  }, [visible]);
+  };
+
+  loadData();
+}, [visible]);
 
   // Установка значений при редактировании
-  useEffect(() => {
+  /* useEffect(() => {
     if (visible && initialValues) {
       form.setFieldsValue(initialValues);
     } else {
       form.resetFields();
     }
-  }, [visible, initialValues, form]);
+  }, [visible, initialValues, form]); */
+
+ useEffect(() => {
+  if (visible) {
+    if (initialValues?.id) {
+      // При редактировании убеждаемся, что нет undefined
+      form.setFieldsValue({
+        point: initialValues.point || '',
+        workorder_number: initialValues.workorder_number || 0,
+        counterparty: (initialValues as any)?.counterparty || undefined
+      });
+    } else {
+      // При создании нового заказа устанавливаем пустые, но определенные значения
+      form.resetFields();
+      form.setFieldsValue({
+        point: undefined, // Для Select лучше оставить undefined, чтобы сработал placeholder
+        workorder_number: null, // Для InputNumber используйте null
+        counterparty: (initialValues as any)?.counterparty || undefined
+      });
+    }
+  }
+}, [visible, initialValues, form]);
 
   const handleOk = async () => {
     try {
@@ -65,6 +121,7 @@ const WorkorderModal: React.FC<WorkorderModalProps> = ({
       const body = {
         workorder_number: values.workorder_number,
         point: values.point,
+        counterparty: values.counterparty,
         // Если это редактирование, обычно передается ID
         ...(initialValues?.id && { id: initialValues.id }) 
       };
@@ -108,9 +165,16 @@ const WorkorderModal: React.FC<WorkorderModalProps> = ({
       confirmLoading={loading}
       okText={t('workorder.common.save')}
       cancelText={t('workorder.common.cancel')}
+      forceRender
       destroyOnHidden
     >
-      <Form form={form} layout="vertical" name="workorder_form">
+      <Form form={form} layout="vertical" name="workorder_form"
+      /* initialValues={initialValues} */
+      initialValues={{
+      workorder_number: 0,
+      point: undefined
+    }}
+      >
         <Form.Item
           name="point"
           label={t('workorder.pointLabel')}
@@ -123,6 +187,12 @@ const WorkorderModal: React.FC<WorkorderModalProps> = ({
               </Select.Option>
             ))}
           </Select>
+        </Form.Item>
+
+        <Form.Item name="counterparty" label={t('workorder.counterparty')} rules={[{ required: true }]}>
+                  <Select showSearch optionFilterProp="children">
+                    {counterparties.map(c => <Select.Option key={c.id} value={c.id}>{c.name}</Select.Option>)}
+                  </Select>
         </Form.Item>
 
         <Form.Item

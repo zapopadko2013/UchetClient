@@ -338,8 +338,9 @@
       "name": "Наименование",
       "bin": "БИН",
       "email": "Электронная почта",
+      "address": "Адрес",      
       "status": "Статус",
-      "sendwhatsapp": "Whatsapp"
+      "sendwhatsapp": "Whatsapp(77771387711)"
     },
     "messages": {
       "addSuccess": "Поставщик добавлен",
@@ -3703,6 +3704,8 @@
     "counterparty": "Поставщик / Контрагент",
     "qty": "Количество",
     "price": "Цена закупа",
+    "price1": "Цена продажи",
+    "wholesaleprice": "Оптовая цена",
     "addSuccess": "Товар успешно добавлен в заказ",
     "addError": "Ошибка при добавлении товара",
     

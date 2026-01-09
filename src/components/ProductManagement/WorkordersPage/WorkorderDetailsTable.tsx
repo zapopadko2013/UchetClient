@@ -10,6 +10,7 @@ const { Text } = Typography;
 interface Props {
   workorderId: string;
   point: string;
+  counterparty: string;
 }
 
 interface Attribute {
@@ -28,12 +29,13 @@ interface WorkorderDetail {
   units: number;
   accepted_units: number;
   status: string;
+  counterparty: string;
   counterpartiesname: string;
   sendwhatsapp: string;
   attr_json: Attribute[] | null;
 }
 
-const WorkorderDetailsTable: React.FC<Props> = ({ workorderId,point }) => {
+const WorkorderDetailsTable: React.FC<Props> = ({ workorderId,point,counterparty }) => {
   const { t } = useTranslation();
   const { sendRequest } = useApiRequest();
   const [details, setDetails] = useState<WorkorderDetail[]>([]);
@@ -167,6 +169,7 @@ const WorkorderDetailsTable: React.FC<Props> = ({ workorderId,point }) => {
         visible={isAddModalVisible}
         workorderId={workorderId}
         point={point}
+        counterparty={counterparty}
         onCancel={() => setIsAddModalVisible(false)}
         onSuccess={() => {
           setIsAddModalVisible(false);
