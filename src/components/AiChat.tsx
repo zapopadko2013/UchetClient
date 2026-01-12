@@ -6,6 +6,8 @@ import { useTranslation } from 'react-i18next';
 
 const { Text } = Typography;
 
+const { TextArea } = Input;
+
 interface StockItem {
   name: string;
   brand: string;
@@ -41,6 +43,8 @@ export default function AiChat() {
   const [input, setInput] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const scrollRef = useRef<HTMLDivElement | null>(null);
+
+  
 
   const API_URL = import.meta.env.VITE_API_URL || '';
 
@@ -152,7 +156,8 @@ export default function AiChat() {
     setIsLoading(true);
 
     try {
-      const response = await fetch(`${API_URL}/apichat/chat`, {
+      //const response = await fetch(`${API_URL}/apichat/chat`, {
+       const response = await fetch(`${API_URL}/api/chatroute/chat`, {
         method: 'POST',
         headers: { 
           'Content-Type': 'application/json',
@@ -250,7 +255,7 @@ export default function AiChat() {
         <div ref={scrollRef} />
       </div>
 
-      <div style={inputAreaStyle}>
+      {/* <div style={inputAreaStyle}>
         <Input.Search
           placeholder={t('aiChat.placeholder')}
           enterButton={<SendOutlined />}
@@ -260,7 +265,46 @@ export default function AiChat() {
           onSearch={sendMessage}
           loading={isLoading}
         />
-      </div>
+      </div> */}
+
+     <div style={inputAreaStyle}>
+  <div style={{ display: 'flex', gap: '8px', alignItems: 'flex-end' }}>
+    <TextArea
+      placeholder={t('aiChat.placeholder')}
+      value={input}
+      onChange={(e) => setInput(e.target.value)}
+      // autoSize управляет ростом. minRows: 1 гарантирует, что он начнется с одной строки
+      autoSize={{ minRows: 5, maxRows: 10 }} 
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' && !e.shiftKey) {
+          e.preventDefault();
+          sendMessage();
+        }
+      }}
+      style={{ 
+        borderRadius: '8px',
+        paddingRight: '12px' 
+      }}
+      disabled={isLoading}
+    />
+    <Button 
+      type="primary" 
+      icon={<SendOutlined />} 
+      onClick={sendMessage}
+      loading={isLoading}
+      // Убираем фиксированный height, чтобы кнопка была квадратной и аккуратной
+      style={{ 
+        flexShrink: 0, 
+        borderRadius: '8px',
+        height: '32px' // Высота одной строки TextArea
+      }}
+    />
+  </div>
+  <Text type="secondary" style={{ fontSize: '10px', marginTop: '4px', display: 'block', marginLeft: '4px' }}>
+    {i18n.language === 'ru' ? 'Shift + Enter для новой строки' : 'Shift + Enter for new line'}
+  </Text>
+</div>
+
     </div>
   );
 }
@@ -279,7 +323,13 @@ const chatBoxStyle: React.CSSProperties = {
   padding: '16px',
 };
 
+/* const inputAreaStyle: React.CSSProperties = {
+  padding: '16px',
+  borderTop: '1px solid #f0f0f0',
+}; */
+
 const inputAreaStyle: React.CSSProperties = {
   padding: '16px',
   borderTop: '1px solid #f0f0f0',
+  backgroundColor: '#fff' // Чтобы текст под инпутом не просвечивал
 };

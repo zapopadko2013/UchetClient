@@ -125,6 +125,12 @@ const WorkorderDetailsTable: React.FC<Props> = ({ workorderId,point,counterparty
         render: (val: number) => val?.toLocaleString() 
     },
     { 
+        title: t('workorder.price1'), 
+        dataIndex: 'price', 
+        key: 'price',
+        render: (val: number) => val?.toLocaleString() 
+    },
+    { 
         title: t('workorder.total'), 
         key: 'total',
         align: 'right' as const,
