@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { PlusOutlined, DeleteOutlined } from '@ant-design/icons';
+import { PlusOutlined, DeleteOutlined, SearchOutlined } from '@ant-design/icons';
 import { Button, Space ,Table, Tag, Typography, message, Modal } from 'antd';
 import { useTranslation } from 'react-i18next';
 import useApiRequest from '../../../hooks/useApiRequest';
@@ -19,6 +19,16 @@ interface Attribute {
   name: string; // Название атрибута (например, "Размер")
   value: string; // Значение (например, "XL")
   format: string;
+}
+
+interface CheaperItem {
+  product_name: string;
+  counterparty_name: string;
+  address: string;
+  invoicedate: string;
+  my_order_price: number;
+  cheaper_price: number;
+  price_difference: number;
 }
 
 interface WorkorderDetail {
@@ -43,6 +53,10 @@ const WorkorderDetailsTable: React.FC<Props> = ({ workorderId,point,counterparty
   const [loading, setLoading] = useState(false);
   const [isAddModalVisible, setIsAddModalVisible] = useState(false);
 
+  const [cheaperItems, setCheaperItems] = useState<CheaperItem[]>([]);
+  const [isCheaperModalVisible, setIsCheaperModalVisible] = useState(false);
+  const [cheaperLoading, setCheaperLoading] = useState(false);
+
   const API_URL = import.meta.env.VITE_API_URL || '';
 
 
@@ -59,6 +73,58 @@ const WorkorderDetailsTable: React.FC<Props> = ({ workorderId,point,counterparty
       setLoading(false);
     }
   };
+
+  //////
+  const handleFindBetterPrices = async () => {
+    setCheaperLoading(true);
+    setIsCheaperModalVisible(true);
+    try {
+      const data = await sendRequest(`${API_URL}/api/workorder/check-better-prices?id=${workorderId}`, {
+        headers: { Authorization: `Bearer ${localStorage.getItem('accessToken')}` }
+      });
+      setCheaperItems(data || []);
+    } catch (err) {
+      console.error(err);
+      message.error(t('workorder.analysis.error'));
+    } finally {
+      setCheaperLoading(false);
+    }
+  };
+
+  const cheaperColumns = [
+    { title: t('workorder.product.name'), dataIndex: 'product_name', key: 'product_name' },
+    { 
+      title: t('workorder.analysis.counterparty'), 
+      dataIndex: 'counterparty_name', 
+      key: 'counterparty_name',
+      render: (text: string, record: CheaperItem) => (
+        <span>{text} <br/><small className={styles.addressText}>{record.address}</small></span>
+      )
+    },
+    { 
+      title: t('workorder.analysis.docDate'), 
+      dataIndex: 'invoicedate', 
+      key: 'invoicedate',
+      render: (date: string) => new Date(date).toLocaleDateString()
+    },
+    { 
+      title: t('workorder.analysis.myPrice'), 
+      dataIndex: 'my_order_price', 
+      render: (v: number) => v.toLocaleString() 
+    },
+    { 
+      title: t('workorder.analysis.cheaperPrice'), 
+      dataIndex: 'cheaper_price', 
+      render: (v: number) => <Text type="success" strong>{v.toLocaleString()}</Text> 
+    },
+    { 
+      title: t('workorder.analysis.benefit'), 
+      dataIndex: 'price_difference', 
+      render: (v: number) => <Tag color="green">-{v.toLocaleString()}</Tag> 
+    },
+  ];
+
+  /////
 
   const handleDeleteDetail = (productId: string) => {
     Modal.confirm({
@@ -154,6 +220,7 @@ const WorkorderDetailsTable: React.FC<Props> = ({ workorderId,point,counterparty
   return (
     <>
     <div className={styles.detailsToolbar}>
+      <Space>
         <Button 
           type="primary" 
           size="small" 
@@ -162,6 +229,16 @@ const WorkorderDetailsTable: React.FC<Props> = ({ workorderId,point,counterparty
         >
           {t('workorder.common.add')}
         </Button>
+
+        <Button 
+            size="small" 
+            icon={<SearchOutlined />} 
+            onClick={handleFindBetterPrices}
+            className={styles.btnAnalysis}
+          >
+            {t('workorder.analysis.findCheaper')}
+          </Button>
+          </Space>
       </div>
     <Table
       columns={columns}
@@ -183,6 +260,27 @@ const WorkorderDetailsTable: React.FC<Props> = ({ workorderId,point,counterparty
           fetchDetails(); // Обновляем таблицу после добавления
         }}
       />
+
+      <Modal
+        title={t('workorder.analysis.modalTitle')}
+        open={isCheaperModalVisible}
+        onCancel={() => setIsCheaperModalVisible(false)}
+        width={900}
+        footer={[
+          <Button key="close" onClick={() => setIsCheaperModalVisible(false)}>
+            {t('workorder.common.close')}
+          </Button>
+        ]}
+      >
+        <Table
+          dataSource={cheaperItems}
+          columns={cheaperColumns}
+          loading={cheaperLoading}
+          rowKey={(record) => `${record.product_name}-${record.cheaper_price}`}
+          size="middle"
+          pagination={{ pageSize: 10 }}
+        />
+      </Modal>
     </>
   );
 };

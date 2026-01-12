@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Tabs, Table, Button, Tag, message, Space, Card, Modal } from 'antd';
+import { Tabs, Table, Button, Tag, message, Space, Card, Modal,Typography,Spin } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import dayjs from 'dayjs';
 import { useTranslation } from 'react-i18next';
@@ -9,12 +9,13 @@ import {
   SendOutlined, 
   CheckCircleOutlined , DeleteOutlined, EyeOutlined,
   StarOutlined, 
-  StarFilled    
+  StarFilled, SearchOutlined    
 } from '@ant-design/icons';
 import useApiRequest from '../../../hooks/useApiRequest';
 import styles from './WorkordersPage.module.css'; // Используйте ваш файл стилей
 import WorkorderDetailsTable from './WorkorderDetailsTable';
 import WorkorderModal from './WorkorderModal';
+import ProductBarcodeSearch from '../../ProductBarcodeSearch';
 
 interface Workorder {
   id: string;
@@ -67,6 +68,15 @@ const WorkordersPage: React.FC = () => {
 
   const [detailsVisible, setDetailsVisible] = useState(false);
 
+
+  const [minPriceInfo, setMinPriceInfo] = useState<any>(null);
+  const [isPriceModalVisible, setIsPriceModalVisible] = useState(false);
+  const [priceLoading, setPriceLoading] = useState(false);
+
+  const [isSearchPriceVisible, setIsSearchPriceVisible] = useState(false);
+  
+
+
   const API_URL = import.meta.env.VITE_API_URL || '';
 
   const fetchWorkorders = async () => {
@@ -96,6 +106,29 @@ const WorkordersPage: React.FC = () => {
     fetchWorkorders();
   }, [activeTab]);
 
+  //////
+
+   const fetchMinPrice = async (productId: string) => {
+    setPriceLoading(true);
+    try {
+      const data = await sendRequest(`${API_URL}/api/workorder/get-min-price?productId=${productId}`, {
+        headers: { Authorization: `Bearer ${localStorage.getItem('accessToken')}` }
+      });
+      
+      if (data) {
+        setMinPriceInfo(data);
+        setIsPriceModalVisible(true);
+      } else {
+        message.info(t('workorder.analysis.noData3Months'));
+      }
+    } catch (err) {
+      message.error(t('workorder.analysis.searchError'));
+    } finally {
+      setPriceLoading(false);
+    }
+  };
+
+  //////
 
   const toggleFavorite = async (record: Workorder) => {
   try {
@@ -373,7 +406,12 @@ const handleSend = async () => {
   return (
     <div className={styles.container}>
       <Card title={t('workorder.title')} extra={
+        <div className={styles.toolbarContainer}>
+    
         <Space>
+
+          
+
           <Button 
             type="primary" 
             icon={<PlusOutlined />}
@@ -425,6 +463,18 @@ const handleSend = async () => {
             {t('workorder.receive')}
           </Button>
         </Space>
+
+        <Button 
+            icon={<SearchOutlined />} 
+            onClick={() => {
+              setMinPriceInfo(null); // сброс предыдущих результатов
+              setIsSearchPriceVisible(true);
+            }}
+          >
+            {t('workorder.analysis.findBestPrice')}
+          </Button>
+
+        </div>
       }>
         <Tabs
           activeKey={activeTab}
@@ -483,6 +533,69 @@ const handleSend = async () => {
         width={1000} // Делаем модалку широкой для таблицы
       >
         {selectedRow && <WorkorderDetailsTable workorderId={selectedRow.id} point={selectedRow.point}  counterparty={selectedRow.counterparty}/>}
+      </Modal>
+
+    <Modal
+        title={t('workorder.analysis.analyzerTitle')}
+        open={isSearchPriceVisible}
+        onCancel={() => setIsSearchPriceVisible(false)}
+        footer={[
+          <Button key="close" onClick={() => setIsSearchPriceVisible(false)}>
+            {t('workorder.common.close')}
+          </Button>
+        ]}
+        width={500}
+      >
+        <div className={styles.searchContainer}>
+          <label className={styles.searchLabel}>{t('workorder.analysis.selectProductLabel')}</label>
+          <ProductBarcodeSearch 
+            onProductSelect={(id) => fetchMinPrice(id)} 
+            onClear={() => setMinPriceInfo(null)}
+          />
+        </div>
+
+        {priceLoading && <div className={styles.emptyState}><Spin /></div>}
+
+        {!priceLoading && minPriceInfo && (
+          <Card size="small" className={styles.analysisResultCard}>
+             <Typography.Title level={5} className={styles.analysisTitle}>
+                {minPriceInfo.product_name}
+             </Typography.Title>
+             
+             <Space direction="vertical" className={styles.fullWidthSpace}>
+                <div>
+                   <span className={styles.labelGray}>{t('workorder.analysis.minPriceLabel')}:</span><br/>
+                   <Tag color="green" className={styles.priceTag}>
+                      {minPriceInfo.min_price?.toLocaleString()} 
+                   </Tag>
+                </div>
+                
+                <div>
+                   <span className={styles.labelGray}>{t('workorder.analysis.counterparty')}:</span><br/>
+                   <Typography.Text strong>{minPriceInfo.counterparty_name}</Typography.Text>
+                </div>
+
+                <div>
+                   <span className={styles.labelGray}>{t('workorder.analysis.docDate')}:</span><br/>
+                   <Typography.Text>{dayjs(minPriceInfo.invoicedate).format('DD.MM.YYYY')}</Typography.Text>
+                </div>
+
+                {minPriceInfo.address && (
+                  <div>
+                    <span className={styles.labelGray}>{t('workorder.analysis.address')}:</span><br/>
+                    <Typography.Text className={styles.smallAddress}>{minPriceInfo.address}</Typography.Text>
+                  </div>
+                )}
+             </Space>
+          </Card>
+        )}
+
+        {!priceLoading && !minPriceInfo && (
+           <div className={styles.emptyState}>
+              <SearchOutlined className={styles.emptyIcon} /><br/>
+              {t('workorder.analysis.emptyPrompt')}
+           </div>
+        )}
       </Modal>
 
     </div>

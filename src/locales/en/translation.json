@@ -3423,7 +3423,25 @@
     "close": "Close",
     "yes": "Yes",
     "no": "No"
-  }
+  },
+  "analysis": {
+  "findCheaper": "Find cheaper",
+  "modalTitle": "Price Analysis: Better deals found (last 3 months)",
+  "counterparty": "Supplier",
+  "docDate": "Doc Date",
+  "myPrice": "My Price",
+  "cheaperPrice": "Lower Price",
+  "benefit": "Benefit",
+  "error": "Error searching prices",
+  "findBestPrice": "Find best price",
+  "analyzerTitle": "Minimum Purchase Price Analyzer",
+  "selectProductLabel": "Select a product for analysis:",
+  "noData3Months": "Nothing found for the last 3 months",
+  "searchError": "Price search error",
+  "minPriceLabel": "Minimum Price",
+  "address": "Supplier Address",
+  "emptyPrompt": "Select a product to view price history"
+}
 }
 
 
