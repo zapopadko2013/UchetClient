@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Input, Space, Table, message,Modal } from "antd";
+import { Button, Input, Space, Table, message,Modal,InputNumber } from "antd";
 import {
   AppstoreOutlined,
   BarcodeOutlined,
@@ -621,6 +621,14 @@ const handlePaymentClick = async () => {
 
   // --- Добавление товара ---
   const addProduct = (product: any, qty: number = 1, weight?: number) => {
+
+    ////13.01.2026
+    //console.log(product);
+    if (product.category==-1){
+       weight=1;
+    }
+    ////13.01.2026
+
     const key = makeProductKey(product, weight);
 
     if (!productStock.has(key)) {
@@ -726,7 +734,58 @@ const handlePaymentClick = async () => {
       render: (_: any, row: any) => {
         const stock = productStock.get(row.key)!;
         return (
-          <Input
+
+          /*
+          <InputNumber
+  type="number"
+  // 1. Устанавливаем шаг для браузера
+  step={row.isWeight ? "0.001" : "1"}
+  min={row.isWeight ? 0.001 : 1}
+  value={row.qty}
+  disabled={mode === "return"} 
+  onChange={(e) => {
+    const val = e.target.value;
+    
+    // Позволяем пользователю очистить поле или оставить точку в конце (для ввода 1.2)
+    if (val === "" || val.endsWith(".") || val.endsWith(",")) {
+      row.qty = val; // Временно сохраняем как строку, если стейт позволяет
+      setSaleProducts([...saleProducts]);
+      return;
+    }
+
+    const newQty = parseFloat(val);
+
+    // 2. Проверка на NaN и минимальное значение
+    if (isNaN(newQty)) return;
+
+    // Проверяем минимальное значение только если число "законченное"
+    const minLimit = row.isWeight ? 0.001 : 1;
+    if (newQty < minLimit) {
+      // Не блокируем сразу, чтобы дать возможность допечатать, 
+      // либо выводим предупреждение только при потере фокуса (onBlur)
+      return; 
+    }
+
+    // 3. Проверка остатка
+    if (newQty > stock.initial) {
+      message.warning(t('sale.workspace.errors.noStock'));
+      return;
+    }
+
+    // 4. Важно: Округление должно поддерживать знаки после запятой
+    // Используйте precision для веса (например, 3 знака)
+    const precision = row.isWeight ? 3 : 0;
+    const roundedValue = Number(newQty.toFixed(precision));
+
+    row.qty = roundedValue;
+    stock.current = Number((stock.initial - roundedValue).toFixed(precision));
+    
+    setSaleProducts([...saleProducts]);
+    setProductStock(new Map(productStock));
+  }}
+/>
+*/
+          /* <Input
             type="number"
             //min={1}
             min={row.isWeight ? 0.001 : 1}
@@ -753,7 +812,96 @@ const handlePaymentClick = async () => {
               setSaleProducts([...saleProducts]);
               setProductStock(new Map(productStock));
             }}
-          />
+          /> */
+
+           <InputNumber
+  // type="number" больше не нужен, InputNumber сам это контролирует
+  min={row.isWeight ? 0.001 : 1}
+  step={row.isWeight ? 0.001 : 1}
+  precision={row.isWeight ? 3 : 0}
+  value={row.qty}
+  disabled={mode === "return"}
+  // Важно: здесь приходит сразу значение (value), а не событие (e)
+  onChange={(value) => {
+    // InputNumber может вернуть null, если поле пустое
+    if (value === null) return;
+
+    const newQty = Number(value);
+
+    if (isNaN(newQty) || newQty < (row.isWeight ? 0.001 : 1)) {
+      message.warning(t('sale.workspace.errors.minQty'));
+      return;
+    }
+
+    if (newQty > stock.initial) {
+      message.warning(t('sale.workspace.errors.noStock'));
+      return;
+    }
+
+    // Обновляем данные
+    row.qty = round(newQty);
+    stock.current = round(stock.initial - newQty);
+    
+    setSaleProducts([...saleProducts]);
+    setProductStock(new Map(productStock));
+  }}
+/>
+
+/*
+
+<InputNumber
+  min={row.isWeight ? 0.001 : 1}
+  step={1} // ВАЖНО: всегда 1
+  value={row.qty}
+  disabled={mode === 'return'}
+
+  parser={(value = '') => value.replace(',', '.')}
+
+  onChange={(value) => {
+    // AntD: может быть null
+    if (value === null) return;
+
+    let newQty = Number(value);
+
+    // Невалидное число
+    if (isNaN(newQty)) return;
+
+    // ❌ Дроби для не весовых
+    if (!row.isWeight && !Number.isInteger(newQty)) {
+      message.warning(t('sale.workspace.errors.integerOnly'));
+      return;
+    }
+
+    // Округление ТОЛЬКО для весовых
+    if (row.isWeight) {
+      newQty = Math.round(newQty * 1000) / 1000;
+    }
+
+    // Минимум
+    const minQty = row.isWeight ? 0.001 : 1;
+    if (newQty < minQty) {
+      message.warning(t('sale.workspace.errors.minQty'));
+      return;
+    }
+
+    // Остаток
+    if (newQty > stock.initial) {
+      message.warning(t('sale.workspace.errors.noStock'));
+      return;
+    }
+
+    // ✅ Обновляем
+    row.qty = newQty;
+    stock.current = Math.round((stock.initial - newQty) * 1000) / 1000;
+
+    setSaleProducts([...saleProducts]);
+    setProductStock(new Map(productStock));
+  }}
+/>
+
+
+*/
+          
         );
       },
     },

@@ -115,6 +115,7 @@ const ProductListModal: React.FC<Props> = ({
           stock: s.units ?? 0,
           attributes: s.attributes || [],
           listcode: s.listcode,
+          category: p.category,
         });
       });
     });
