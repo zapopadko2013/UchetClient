@@ -3333,6 +3333,7 @@
     "stockQty": "Stock",
     "price": "Price",
     "qty": "Qty",
+    "sum": "Sale Price",
     "costPrice": "Cost",
     "profit": "Profit",
     "period": "Period",

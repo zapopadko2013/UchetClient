@@ -140,6 +140,13 @@ export default function AiChat() {
       render: (val) => <b>{Number(val).toLocaleString(i18n.language)}</b>,
     },
     {
+      title: t('aiChat.sum'), 
+      dataIndex: 'sum',
+      key: 'sum',
+      align: 'right',
+      render: (val) => <b>{Number(val).toLocaleString(i18n.language)}</b>,
+    },
+    {
       title: t('aiChat.profit'), // 'Прибыль'
       dataIndex: 'profit',
       key: 'profit',
