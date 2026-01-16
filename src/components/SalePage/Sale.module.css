@@ -59,7 +59,7 @@
 }
 
 .receiptContainer {
-  font-family: 'Courier New', Courier, monospace;
+  font-family: 'JetBrains Mono', 'Courier New', Courier, monospace;
   font-size: 12px;
   line-height: 1.2;
   max-width: 300px;

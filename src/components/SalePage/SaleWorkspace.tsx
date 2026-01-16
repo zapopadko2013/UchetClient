@@ -1001,7 +1001,15 @@ const handlePaymentClick = async () => {
                   <head>
                     <title>${receiptTitle}</title>
                     <style>
-                      body { font-family: monospace; padding: 20px; }
+                      body {
+  font-family: 
+    'JetBrains Mono',   
+    'Courier New',      
+    Courier,            
+    monospace;          
+  padding: 20px;
+}
+
                       .center { text-align: center; }
                     </style>
                   </head>
