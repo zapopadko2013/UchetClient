@@ -1,0 +1,3449 @@
+{
+  "login": {
+    "title": "Login",
+    "button": "Sign In",
+    "usernamePlaceholder": "Username",
+    "passwordPlaceholder": "Password",
+    "usernameRequired": "Please input your username!",
+    "passwordRequired": "Please input your password!",
+    "errorInvalid": "Invalid username or password. Error - ",
+    "errorNetwork": "Network or server error. Please try again."
+  },
+  "menu": {
+    "home": "Home",
+    "dashboard": "Dashboard",
+    "settings": "Settings",
+    "news": "News",
+    "businessManagement": "Users",
+    "salesPlan": "Sales Plan",
+    "portalUsers": "Program Users",
+    "cashUsers": "Cashier Users",
+    "changePassword": "Change Password",
+    "sellersBuyers": "Suppliers and Buyers",
+  "suppliers": "Suppliers",
+  "legalBuyers": "Legal Entity Buyers",
+  "individualBuyers": "Individual Buyers",
+
+  "orderproduct": "Product Order",
+
+
+  "tradeObjects": "Trade Objects",
+"warehouse": "Warehouse",
+"storePoints": "Trade Point",
+"cashDesks": "Cash Desks",
+"scales": "Scales"
+, "pricing": "Pricing",
+"priceChange": "Price Change",
+"pricingMaster": "Pricing Wizard",
+"limitPrices": "Price Limits"
+
+,"marketing": "Marketing",
+  "coupons": "Coupons",
+  "giftCertificates": "Gift Certificates",
+  "bonuses": "Bonuses",
+  "discounts": "Discount Creation",
+  "promotions": "Promotions"
+  
+  ,"productManagement": "Product Management",
+  "goodsReceipt": "Goods Receipt",
+  "goodsTransfer": "Goods Transfer",
+  "goodsWriteoff": "Goods Write-off",
+  "barcodePrint": "Barcode Print",
+  "weightGoods": "Weighted Goods",
+  "nomenclature": "Nomenclature",
+  "jobOrder": "Job Order",
+  "inventory": "Inventory"
+  ,
+
+  "administration": "Administration",
+    "adminnews": "News",
+
+   "admincompanysettings": "Company Settings" 
+
+   ,"admincompanycreate": "Company Creation"
+   
+   ,"admincompanylist": "Company List"
+
+   ,"admindownloadproduct": "Download Nomenclature"
+   ,"adminattribute": "Attributes"
+   ,"adminabrand": "Brands"
+   ,"adminusers": "Users"
+
+   ,"report": "Reports",
+"reportticet": "Sales by receipts"
+,"soldProductsReport": "Sold Products"
+,"invoicesHistoryReport": "Invoice History Report"
+,"revisionReport": "Revision"
+,"stockreport": "Stock balance"
+,"saleslist": "Sales"
+
+  },
+  "userMenu": {
+    "profile": "Company",
+    "logout": "Log Out"
+  },
+  "auth": {
+    "unauthorized": "Unauthorized"
+  },
+  "content": {
+    "currentPage": "Current View: {{pageName}}",
+    "dynamicContent": "This is dynamically changing content based on the menu selection.",
+    "unknownPage": "Unknown page"
+  },
+  "misc": {
+    "appName": "UchetPro",
+    "usernameGuest": "Guest",
+    "aiCloseAssistant": "Close NuraAi",
+  "aiReadAssistant": "Ask NuraAi",
+  "aiAssistant": "NuraAi AI"
+  },
+  "notifications": {
+  "title": "News",
+  "apiError": "Error",
+  "noNews": "No news",
+  "loading": "Loading news..."
+},
+"newsDetail": {
+  "loading": "Loading news...",
+  "notFound": "News not found.",
+  "errorTitle": "Error loading news.",
+  "noContentAvailable": "No news found."
+},
+"companyPage": {
+      "title": "Company Information",
+      "readOnlyInfo": "This is the company information page. Click the button below to switch to edit mode.",
+      "editButton": "Edit",
+      "modalTitle": "Edit Company Details",
+      "name": "Name",
+      "bin": "BIN",
+      "address": "Address",
+      "head": "Head",
+      "headIin": "Head's IIN",
+      "accountant": "Chief Accountant",
+      "accountantIin": "Accountant's IIN",
+      "certificatenum": "Number",
+      "certificateseries": "Series",
+      "certificatedate": "Date",
+      "holding": "Holding",
+      "wholesale": "Wholesale",
+      "loading": "Loading data...",
+      "errorLoading": "Failed to load company data.",
+      "error": "Failed to load company data.",
+      "saveButton": "Save",
+      "cancelButton": "Cancel",
+      "successUpdate": "Data updated successfully!",
+      "errorUpdate": "Failed to update data."
+    },
+    "changePasswordPage": {
+      "title": "Change Password",
+      "description": "Please enter your old password and new password to change it.",
+      "oldPassword": "Old Password",
+      "newPassword": "New Password",
+      "confirmPassword": "Confirm New Password",
+      "oldPasswordRequired": "Please enter your old password!",
+      "newPasswordRequired": "Please enter your new password!",
+      "confirmPasswordRequired": "Please confirm your new password!",
+      "passwordsMismatch": "The two passwords that you entered do not match!",
+      "passwordMinLength": "Password must be at least 6 characters long.",
+      "saveButton": "Save",
+      "successMessage": "Password changed successfully!"
+    },
+    "cashBoxUser": {
+    "tabs": {
+      "active": "Active users",
+      "inactive": "Inactive users"
+    },
+    "buttons": {
+      "add": "Add user",
+      "edit": "Edit",
+      "delete": "Delete",
+      "activate": "Activate user"
+    },
+    "columns": {
+      "name": "Name",
+      "iin": "IIN",
+      "role": "User role",
+      "point": "Sales point",
+      "status": "Status"
+    },
+    "status": {
+      "active": "Active",
+      "deleted": "Deleted"
+    },
+    "notifications": {
+      "apiError": "Data loading error",
+      "userDeleted": "User deleted",
+      "userActivated": "User activated",
+      "deleteError": "Error while deleting user",
+      "activateError": "Error while activating user"
+    }
+  },
+  "cashBoxUserAddForm": {
+  "title": {
+    "add": "Add Cashbox User",
+    "edit": "Edit User"
+  },
+  "buttons": {
+    "add": "Add",
+    "save": "Save",
+    "cancel": "Cancel"
+  },
+  "fields": {
+    "name": "Name",
+    "iin": "IIN",
+    "point": "Sales Point",
+    "role": "Role",
+    "allowDiscount": "Allow manual discount?",
+    "discount": "Maximum manual discount (up to 100%)"
+  },
+  "placeholders": {
+    "selectPoint": "Select a sales point",
+    "selectRole": "Select a role",
+    "selectDiscountOption": "Select an option"
+  },
+  "options": {
+    "yes": "Yes",
+    "no": "No"
+  },
+  "validations": {
+    "name": "Please enter the user's name",
+    "iin": "Please enter IIN",
+    "point": "Please select a sales point",
+    "role": "Please select a role",
+    "allowDiscount": "Please specify whether manual discount is allowed",
+    "discountRequired": "Please enter the maximum discount",
+    "discountRange": "Discount must be between 0% and 100%"
+  },
+  "messages": {
+    "created": "User has been added",
+    "updated": "User has been updated",
+    "error": "Error while saving the user"
+  },
+  "errors": {
+    "dataLoad": "Failed to load data",
+    "rolesLoad": "Failed to load roles",
+    "pointsLoad": "Failed to load points"
+  }
+},
+
+"salesPlan": {
+    "individualPlans": "Individual Plans",
+    "teamPlans": "Team Plans",
+    "add": "Add",
+    "edit": "Edit",
+    "delete": "Delete",
+    "cashierName": "Cashier Name",
+    "pointName": "Point of Sale",
+    "pointTitle": "Point Name",
+    "daily": "Daily",
+    "monthly": "Monthly",
+    "quarterly": "Quarterly",
+    "planDeleted": "Plan deleted",
+    "deleteError": "Error deleting plan",
+    "loadError": "Error loading plans",
+    "form": {
+    "addTitle": "Add Plan",
+    "editTitle": "Edit Plan",
+    "cashier": "Cashier",
+    "point": "Sales Point",
+    "selectCashier": "Select a cashier",
+    "selectPoint": "Select a sales point",
+    "dailyPlan": "Daily Plan",
+    "dailyRate": "Rate (daily)",
+    "monthlyPlan": "Monthly Plan",
+    "monthlyRate": "Rate (monthly)",
+    "quarterlyPlan": "Quarterly Plan",
+    "quarterlyRate": "Rate (quarterly)",
+    "saveError": "Failed to save plan",
+    "loadCashiersError": "Failed to load cashiers",
+    "loadPointsError": "Failed to load sales points"
+  }
+  }
+,
+"userProgram": {
+  "activeUsers": "Active Users",
+  "inactiveUsers": "Inactive Users",
+  "fullName": "Full Name",
+  "iin": "IIN",
+  "login": "Login",
+  "accesses": "User Accesses",
+  "add": "Add",
+  "edit": "Edit",
+  "editAccesses": "Edit Accesses",
+  "delete": "Delete",
+  "activate": "Activate User",
+  "editUser": "Edit User",
+  "addUser": "Add User",
+  "submitError": "Error while saving",
+  "editSuccess": "User updated",
+  "addSuccess": "User added",
+  "userActivated": "User activated",
+  "accessLoadError": "Error loading accesses",
+  "loadError": "Error loading users",
+  "fullNameRequired": "Enter full name",
+  "iinRequired": "Enter IIN",
+  "loginRequired": "Enter login",
+  "accessesRequired": "Select at least one access",
+  "selectAccesses": "Select accesses",
+  "viewAllAccesses": "View all",
+  "fullAccesses": "All accesses",
+  "status": "Status",
+  "deleted": "Deleted",
+  "activateError": "Error activating user",
+  "noAccesses": "No accesses",
+  "confirmDelete": "Confirm deletion",
+  "confirmDeleteText": "Are you sure you want to delete this user?",
+  "confirm": "Delete",
+  "cancel": "Cancel",
+  "deleteSuccess": "User deleted successfully",
+  "deleteError": "Error deleting user",
+  "accessesUpdated": "Accesses updated successfully",
+  "accessesUpdateError": "Error updating accesses",
+  "loadAccessError": "Error loading accesses",
+  "save": "Save",
+  "category": "Categories",
+  "functions": "Functions",
+  "fillAccessesToComplete": "Select accesses for the user",
+  "userCreateError": "Error adding user"
+},
+
+"suppliers": {
+    "tabs": {
+      "active": "Active Suppliers",
+      "inactive": "Inactive Suppliers"
+    },
+    "buttons": {
+      "add": "Add",
+      "edit": "Edit",
+      "delete": "Delete",
+      "activate": "Activate",
+      "save": "Save",
+      "cancel": "Cancel"
+    },
+    "search": {
+      "placeholder": "Search by Name or BIN"
+    },
+    "table": {
+      "name": "Name",
+      "bin": "BIN",
+      "email": "Email",
+      "status": "Status",
+      "address": "Address",
+      "sendwhatsapp": "Whatsapp(77771387711)"
+    },
+    "messages": {
+      "addSuccess": "Supplier added",
+      "editSuccess": "Supplier updated",
+      "deleteSuccess": "Supplier deleted",
+      "activateSuccess": "Supplier activated",
+      "loadError": "Error loading data",
+      "saveError": "Error saving data",
+      "confirmDeleteText": "Do you want to delete the supplier?",
+      "validation": {
+        "requiredName": "Please enter the name",
+        "requiredBin": "Please enter the BIN",
+        "binLength": "BIN must be 12 digits"
+      }
+    },
+    "modalTitles": {
+      "add": "Add Supplier",
+      "edit": "Edit Supplier"
+    },
+    "modals": {
+      "addTitle": "Add Supplier",
+      "editTitle": "Edit Supplier"
+    },
+    "form": {
+      "name": "Name",
+      "nameRequired": "Please enter the name",
+      "bin": "BIN",
+      "binRequired": "Please enter the BIN",
+      "binLength": "BIN must be 12 digits",
+      "email": "Email"
+    }
+  },
+
+  "legalBuyers": {
+    "activeBuyers": "Active Buyers",
+    "inactiveBuyers": "Inactive Buyers",
+    "add": "Add",
+    "edit": "Edit",
+    "delete": "Delete",
+    "activate": "Activate",
+    "confirmDeleteTitle": "Delete buyer?",
+    "confirmDeleteContent": "Are you sure you want to delete the buyer?",
+    "buyerDeleted": "Buyer deleted",
+    "deleteError": "Error deleting buyer",
+    "activateSuccess": "Buyer activated",
+    "activateError": "Error activating buyer",
+    "loadingError": "Error loading buyers",
+    "searchPlaceholder": "Search by name or BIN",
+    "name": "Name",
+    "bin": "BIN",
+    "address": "Address",
+    "status": "Status",
+    "deleted": "Deleted",
+
+    "addBuyer": "Add buyer",
+    "editBuyer": "Edit buyer",
+    "buyerAdded": "Buyer added",
+    "buyerUpdated": "Buyer updated",
+    "saveError": "Error saving",
+    "cancel": "Cancel",
+    "save": "Save",
+
+    "validation": {
+      "nameRequired": "Please enter the name",
+      "binRequired": "Please enter the BIN",
+      "binLength": "BIN must be 12 digits",
+      "binDigitsOnly": "BIN must contain only digits",
+      "addressRequired": "Please enter the address"
+    }
+  }
+  ,
+  "individualBuyers": {
+    "activeBuyers": "Active Buyers",
+    "inactiveBuyers": "Inactive Buyers",
+    "add": "Add",
+    "edit": "Edit",
+    "delete": "Delete",
+    "activate": "Activate",
+    "confirmDeleteTitle": "Delete buyer?",
+    "confirmDeleteContent": "Are you sure you want to delete the buyer?",
+    "buyerDeleted": "Buyer deleted",
+    "deleteError": "Error deleting buyer",
+    "activateSuccess": "Buyer activated",
+    "activateError": "Error activating buyer",
+    "loadingError": "Error loading buyers",
+    "searchPlaceholder": "Search by name or phone number",
+    "lastname": "Last Name",
+    "firstname": "First Name",
+    "telephone": "Phone",
+    "status": "Status",
+    "deleted": "Deleted",
+
+    "addBuyer": "Add buyer",
+    "editBuyer": "Edit buyer",
+    "buyerAdded": "Buyer added",
+    "buyerUpdated": "Buyer updated",
+    "saveError": "Error saving",
+    "cancel": "Cancel",
+    "save": "Save",
+
+    "validation": {
+      "firstnameRequired": "Please enter the first name",
+      "lastnameRequired": "Please enter the last name",
+      "telephoneDigitsOnly": "Phone number must contain only digits",
+      "telephoneRequired": "Please enter the phone number"
+    }
+  }
+  ,
+  "warehouse": {
+  "activeWarehouse": "Active Warehouses",
+  "inactiveWarehouse": "Inactive Warehouses",
+  "loadingError": "Failed to load warehouses",
+  "name": "Name",
+  "address": "Address",
+  "status": "Status",
+  "deleted": "Deleted"
+},
+"tradePoint": {
+  "tabs": {
+    "active": "Active Trade Points",
+    "inactive": "Inactive Trade Points"
+  },
+  "fields": {
+    "name": "Name",
+    "address": "Address",
+    "minusAccounting": "Negative Balance",
+    "status": "Status"
+  },
+  "modal": {
+    "addTitle": "Add Trade Point",
+    "editTitle": "Edit Trade Point"
+  },
+  "buttons": {
+    "add": "Add",
+    "edit": "Edit",
+    "save": "Save",
+    "cancel": "Cancel",
+    "activate": "Activate"
+  },
+  "messages": {
+    "added": "Trade point successfully added",
+    "updated": "Trade point successfully updated",
+    "activated": "Trade point activated",
+    "loadingError": "Failed to load trade points",
+    "saveError": "Error saving trade point",
+    "activationError": "Error activating trade point"
+  },
+  "misc": {
+    "yes": "Yes",
+    "no": "No",
+    "required": "Required field",
+    "deleted": "Deleted"
+  }
+}
+,
+
+"scalesPage": {
+    "tabs": {
+      "active": "Active Scales",
+      "inactive": "Inactive Scales"
+    },
+    "fields": {
+      "name": "Name",
+      "warehouse": "Warehouse",
+      "status": "Status"
+    },
+    "buttons": {
+      "add": "Add",
+      "edit": "Edit",
+      "delete": "Delete",
+      "activate": "Activate",
+      "save": "Save",
+      "cancel": "Cancel"
+    },
+    "modal": {
+      "addTitle": "Add Scale",
+      "editTitle": "Edit Scale"
+    },
+    "messages": {
+      "loadWarehousesError": "Error loading warehouses",
+      "loadScalesError": "Error loading scales",
+      "added": "Scale added successfully",
+      "updated": "Scale updated successfully",
+      "deleted": "Scale deleted",
+      "activated": "Scale activated",
+      "activationError": "Error activating scale",
+      "saveError": "Error saving scale",
+      "confirmDeleteTitle": "Confirm deletion",
+      "confirmDeleteContent": "Are you sure you want to delete \"{{name}}\"?"
+    },
+    "misc": {
+      "deleted": "Deleted",
+      "required": "Required field",
+      "requiredWarehouse": "Select warehouse"
+    },
+    "placeholders": {
+      "selectWarehouse": "Select warehouse"
+    }
+  }
+  ,
+
+  "cashDesksPage": {
+  "tabs": {
+    "active": "Active Cash Desks",
+    "inactive": "Inactive Cash Desks"
+  },
+  "buttons": {
+    "add": "Add",
+    "edit": "Edit",
+    "delete": "Delete",
+    "activate": "Activate",
+    "save": "Save",
+    "cancel": "Cancel",
+    "editCheck": "Edit Check"
+  },
+  "fields": {
+    "name": "Cash Desk",
+    "point": "Trade Point",
+    "status": "Status"
+  },
+  "modal": {
+    "addTitle": "Add Cash Desk",
+    "editTitle": "Edit Cash Desk"
+  },
+  "placeholders": {
+    "selectPoint": "Select a trade point"
+  },
+  "messages": {
+    "loadError": "Failed to load cash desks",
+    "pointLoadError": "Failed to load trade points",
+    "nameRequired": "Please enter a cash desk name",
+    "pointRequired": "Please select a trade point",
+    "added": "Cash desk added",
+    "updated": "Cash desk updated",
+    "saveError": "Failed to save cash desk",
+    "deleted": "Cash desk deleted",
+    "deleteError": "Error deleting cash desk",
+    "activated": "Cash desk activated",
+    "activateError": "Error activating cash desk",
+    "confirmDeleteTitle": "Delete Cash Desk?",
+    "confirmDeleteContent": "Are you sure you want to delete the cash desk \"{{name}}\"?"
+  },
+  "misc": {
+    "deleted": "Deleted"
+  }
+},
+
+"checkEditor": {
+      "modalTitle": "Edit Receipt",
+      "labels": {
+        "uploadLogo": "Upload company logo:",
+        "tradePoint": "Trade Point",
+        "address": "Address",
+        "company": "Company",
+        "thanks": "Thank you for your purchase.",
+        "extraText": "Additional text 2",
+        "selectTradePoint": "Select trade point",
+        "dropOrSelectFile": "Drag or select a file",
+        "logo": "Company logo",
+        "sale": "Sale:",
+        "totalProducts": "Total products",
+        "totalAmount": "Total amount",
+        "discountOnCheck": "Discount on receipt",
+        "finalTotal": "Final total",
+        "totalDiscounts": "Total discounts",
+        "vatIncluded": "VAT included",
+        "mixedPayment": "Mixed payment",
+        "cashPayment": "Cash payment",
+        "receivedFromClient": "Received from client",
+        "change": "Change",
+        "cardPayment": "Card payment",
+        "cashier": "Cashier",
+        "terminal": "Terminal",
+        "goodsReceipt": "Goods receipt"
+      },
+      "buttons": {
+        "save": "Save",
+        "cancel": "Cancel"
+      },
+      "placeholders": {
+        "tradePoint": "Trade Point",
+        "address": "Address",
+        "company": "Company",
+        "thanks": "Thank you for your purchase",
+        "advertisement": "Additional text 2"
+      },
+      "checkboxes": {
+        "BIN": "BIN",
+        "NDS": "VAT",
+        "ZNM": "ZNM",
+        "RNM": "RNM"
+      },
+      "messages": {
+        "loadPointsError": "Error loading trade points",
+        "loadTemplateError": "Error loading receipt template",
+        "logoSaved": "Logo saved",
+        "templateSaved": "Template saved",
+        "saveError": "Error saving template",
+        "unknownError": "An unknown error occurred"
+      },
+      "products": {
+        "apricotPuree": "Apricot curd puree 331KZT",
+        "cabbagePuree": "Natural cabbage puree",
+        "certificate5000": "Certificate for 5000KZT"
+      },
+      "payments": {
+        "cash": "Cash payment",
+        "receivedFromClient": "Received from client",
+        "change": "Change",
+        "cardPayment": "Card payment"
+      }
+    }
+ ,
+"limitPrices": {
+  "title": "Limit Prices",
+    "form": {
+      "limitPrice": "Limit Price",
+      "product": "Product Name",
+      "barcode": "Barcode",
+      "selectProduct": "Select Product",
+      "enterBarcode": "Enter Barcode",
+      "price": "Current Sale Price"
+    },
+    "actions": {
+      "add": "Add",
+      "edit": "Edit",
+      "delete": "Delete",
+      "save": "Save",
+      "cancel": "Cancel",
+      "find": "Find"
+    },
+    "messages": {
+      "editSuccess": "Limit price updated",
+      "editError": "Error updating limit price",
+      "deleteSuccess": "Limit price deleted",
+      "deleteError": "Error deleting limit price",
+      "addSuccess": "Limit price added",
+      "addError": "Error adding price",
+      "loadError": "Failed to load product list",
+      "notFound": "Product not found",
+      "barcodeError": "Error searching by barcode"
+    },
+    "validation": {
+      "enterLimitPrice": "Enter limit price",
+      "selectProduct": "Select product"
+    }
+  },
+
+  "pricingMaster": {
+    "title": "Pricing Master",
+    "settingsForm": {
+      "notifyIfIncrease": "Show notification if sale price increased by more than",
+      "notifyIfDecrease": "Show notification if sale price decreased by more than",
+      "checkAvgPurchase": "Check average purchase cost of product batches when price decreases"
+    },
+    "tabs": {
+      "markup": "Markup",
+      "settings": "Settings"
+    },
+    "buttons": {
+      "products": "Products",
+      "brands": "Brands",
+      "categories": "Categories",
+      "add": "Add",
+      "delete": "Delete",
+      "save": "Save",
+      "cancel": "Cancel"
+    },
+    "tableHeaders": {
+      "name": "Name",
+      "marginRate": "Margin Rate",
+      "marginSum": "Margin Sum"
+    },
+    "modalFields": {
+      "selectType": "Select type",
+      "productName": "Product name",
+      "barcode": "Barcode",
+      "marginRate": "Margin Rate",
+      "marginSum": "Margin Sum",
+      "submit": "Save",
+      "cancel": "Cancel",
+      "selectProduct": "Select product",
+      "selectBrand": "Select brand",
+      "selectCategory": "Select category",
+      "enterBarcode": "Enter barcode",
+      "brand": "Brand",
+      "category": "Category"
+    },
+    "validation": {
+      "select": "Please select a value",
+      "enterRate": "Please enter margin rate",
+      "enterSum": "Please enter margin sum",
+      "titleSum": "Either margin sum or margin rate must be 0"
+    },
+    "messages": {
+      "loadError": "Data loading error",
+      "deleteSuccess": "Record deleted successfully",
+      "deleteError": "Error deleting record",
+      "addSuccess": "Record added successfully",
+      "addError": "Error adding record",
+      "settingsLoadError": "Settings loading error",
+      "settingsSaveSuccess": "Settings saved successfully",
+      "settingsSaveError": "Error saving settings",
+      "productFound": "Product found",
+      "productNotFound": "Product not found",
+      "barcodeError": "Error searching by barcode"
+    },
+    "actions": {
+      "add": "Add",
+      "save": "Save",
+      "cancel": "Cancel"
+    },
+    "form": {
+      "barcode": "Barcode",
+      "product": "Product",
+      "brand": "Brand",
+      "category": "Category",
+      "marginRate": "Margin Rate",
+      "marginSum": "Margin Sum",
+      "enterBarcode": "Enter barcode",
+      "selectProduct": "Select product",
+      "selectBrand": "Select brand",
+      "selectCategory": "Select category"
+    }
+  },
+
+  "changePrices": {
+  "title": "Price Change",
+  "selectProductPlaceholder": "Select a product",
+  "barcodeInputPlaceholder": "Barcode",
+  "selectButton": "Select",
+  "retailPriceLabel": "New retail price",
+  "wholesalePriceLabel": "New wholesale price",
+  "addButton": "Add",
+  "finalTableTitle": "Final table",
+  "submitButton": "Submit new prices",
+  "table": {
+    "productName": "Product name",
+    "retailPrice": "Retail price",
+    "wholesalePrice": "Wholesale price",
+    "product": "Product",
+    "barcode": "Barcode",
+    "currentRetailPrice": "Current retail price",
+    "newRetailPrice": "New retail price",
+    "currentWholesalePrice": "Current wholesale price",
+    "newWholesalePrice": "New wholesale price",
+    "point": "Sales point",
+    "delete": "Delete",
+    "select": "Select"
+  },
+  "messages": {
+    "loadError": "Failed to load product list",
+    "emptyBarcode": "Enter or select a barcode",
+    "productFetchError": "Error fetching product information",
+    "noRetailPrice": "New retail price is required",
+    "noSelection": "Select at least one product from the table",
+    "noFinalItems": "Add at least one entry",
+    "success": "Prices updated successfully",
+    "submitError": "Error submitting new prices"
+  }
+},
+
+
+  "coupons": {
+    "loadError": "Error loading coupons",
+    "deleted": "Coupon deleted",
+    "deleteError": "Error deleting coupon",
+    "bindingPrefix": "On",
+
+    "tabs": {
+      "active": "Active Coupons",
+      "inactive": "Inactive Coupons"
+    },
+    "actions": {
+      "add": "Add",
+      "delete": "Delete"
+    },
+    "columns": {
+      "number": "Number",
+      "binding": "Binding",
+      "type": "Type",
+      "expire": "Expiration Date",
+      "discount": "Discount",
+      "status": "Status"
+    },
+    "status": {
+      "active": "Active",
+      "inactive": "Used"
+    },
+    "bindings": {
+      "all": "For All",
+      "category": "For Category",
+      "brand": "For Brand",
+      "product": "For Product",
+      "receipt": "For Receipt"
+    },
+    "types": {
+      "multi": "Reusable",
+      "single": "Single-use"
+    }
+  }
+,
+
+"couponAddModal": {
+  "title": "Add Coupon",
+  "couponType": "Coupon Type",
+  "couponTypeRequired": "Please select a coupon type",
+  "multiUse": "Multi-use",
+  "singleUse": "Single-use",
+  "usage": "Usage",
+  "usageRequired": "Please select a usage type",
+  "onProduct": "On Product(s)",
+  "onReceipt": "On Receipt",
+  "binding": "Coupon Binding",
+  "bindingRequired": "Please select a binding option",
+  "bindingOptions": {
+    "all": "For all products",
+    "category": "By Category",
+    "brand": "By Brand",
+    "product": "By Product"
+  },
+  "category": "Category",
+  "brand": "Brand",
+  "product": "Product",
+  "barcode": "Barcode",
+  "barcodePlaceholder": "Enter barcode and press Enter",
+  "discount": "Discount (%)",
+  "discountRequired": "Please enter a discount",
+  "discountRange": "Between 1 and 100",
+  "expireDate": "Expiration Date",
+  "expireDateRequired": "Please select a date",
+  "couponNumber": "Coupon Number",
+  "couponNumberRequired": "Please enter a number",
+  "numberFrom": "Number Range From",
+  "numberFromRequired": "Please enter the starting number",
+  "numberTo": "Number Range To",
+  "numberToRequired": "Please enter the ending number",
+  "reset": "Reset",
+  "cancel": "Cancel",
+  "save": "Save",
+  "successAdd": "Coupon successfully added",
+  "errorAdd": "Error adding coupon"
+}
+,
+"bonuses": {
+  "products": "Products",
+  "categories": "Categories",
+  "loadCategoriesError": "Error loading categories",
+  "loadBonusError": "Error fetching product bonus rate",
+  "saveBonusSuccess": "Product bonus rate saved",
+  "saveBonusError": "Error saving product bonus rate",
+  "bonusRatePlaceholder": "Bonus percentage",
+  "save": "Save",
+  "keepOld": "Keep products with old bonus",
+  "changeAll": "Change bonuses for all products",
+  "productName": "Product name",
+  "bonusRate": "Bonus rate",
+  "noCategoryData": "Category data not found",
+  "loadCategoryBonusError": "Error loading category bonus data",
+  "saveCategoryBonusSuccess": "Category bonus rate saved",
+  "saveCategoryBonusError": "Error saving category bonus rate"
+}
+,
+"gift": {
+  "downloadTemplate": "Download Template",
+  "dragFileHere": "Click or drag file here to upload",
+  "fileHint": "Supported file types: .xls and .xlsx",
+  "processUpload": "Upload",
+  "selectStock": "Select stock",
+  "save": "Save",
+  "code": "Certificate Number",
+  "balance": "Value",
+  "period": "Validity Period",
+  "selldate": "Sale Date",
+  "templateDownloaded": "Template downloaded successfully",
+  "templateDownloadError": "Error downloading template",
+  "emptyFile": "The file is empty",
+  "loadSuccess": "File uploaded. Click 'Upload' to process.",
+  "parseError": "Error reading the file",
+  "noFile": "File not received",
+  "uploadFirst": "Please upload a file first",
+  "processSuccess": "Data successfully processed by the server",
+  "uploadError": "Error uploading the file to the server",
+  "saveSuccess": "Certificates saved successfully",
+  "saveError": "Error saving certificates"
+}
+,
+"discounts": {
+  "selectType": "Select type",
+  "from": "From",
+  "to": "To",
+  "validationError": "Please fill in all fields",
+  "saved": "Exception added successfully",
+  "saveError": "Error saving exception",
+  "loadError": "Error loading discounts",
+  "deleteError": "Error deleting discount",
+  "deleted": "Discount canceled",
+  "point": "Point of sale",
+  "category": "Category",
+  "product": "Product",
+  "discount": "Discount",
+  "summarize": "Summarize",
+  "tooltip": "Summed with discounts by expiry dates",
+  "period": "Validity period",
+  "status": "Status",
+  "expired": "Expired",
+  "active": "Active",
+  "object": "Object",
+  "productName": "Product name without discount",
+  "name": "Product/Category/Brand",
+  "barcode": "Barcode",
+  "range": "Product expiry date range:",
+  "type": "Type",
+  "day": "Day",
+  "month": "Month",
+  "commonInfo": "If the product has various general discounts (by category/product), all such discounts will be summed when selling the product.",
+  "expdateInfo": "If the product has general discounts (by category/product), the discount by expiry date will be applied in any case. You can configure the application of general discounts in the respective section.",
+  "tabs": {
+    "common": "General discounts",
+    "expdate": "Discounts by expiry dates",
+    "exceptions": "Exceptions",
+    "inactive": "Inactive discounts"
+  },
+  "common": {
+    "add": "Add",
+    "yes": "Yes",
+    "no": "No",
+    "cancelDiscount": "Cancel discount",
+    "removeException": "Remove exception",
+    "discountBy": "Active discounts by",
+    "byPoints": "Points of sale",
+    "byCategories": "Categories",
+    "byProducts": "Products",
+    "save": "Save",
+    "cancel": "Cancel",
+    "clear": "Clear"
+  }
+},
+"discount": {
+  "addDiscount": "Add Discount",
+  "cancel": "Cancel",
+  "reset": "Reset",
+  "save": "Save",
+  "allPoints": "For all points of sale",
+  "byPoint": "By point of sale",
+  "byCategory": "By category",
+  "byProduct": "By product",
+  "selectPoint": "Select point of sale",
+  "choosePoint": "Choose point",
+  "selectCategory": "Select category",
+  "selectProduct": "Select product",
+  "selectStockRows": "Select stock items",
+  "discountParams": "Discount parameters",
+  "percentDiscount": "Discount percent",
+  "discountInTenge": "Discount in Tenge",
+  "ifProductHasExpiryDiscount": "If the product has an expiry discount, sum discounts?",
+  "doNotSum": "Do not sum",
+  "sumDiscounts": "Sum discounts",
+  "considerTime": "Consider time",
+  "from": "From",
+  "to": "To",
+  "added": "Discount successfully added",
+  "addError": "Error adding discount",
+  "sendError": "Error sending request",
+  "unknownError": "Unknown error",
+  "specifyDiscount": "Specify discount (percent or amount)",
+  
+  "errorLoadingPoints": "Error loading points of sale",
+  "errorLoadingCategories": "Error loading categories",
+  "errorLoadingStock": "Error loading stock",
+  "stockPoint": "Point of sale",
+  "address": "Address",
+  "amount": "Amount",
+  "price": "Price"
+}
+,
+"promotions": {
+  "active": "Active promotions",
+  "old": "Old promotions",
+  "add": "Add",
+  "delete": "Delete",
+  "close": "Close",
+  "promotion": "Promotion",
+  "condition": "Condition",
+  "promoProducts": "Promotional products",
+  "name": "Name",
+  "point": "Point of sale",
+  "priority": "Priority",
+  "details": "Details",
+  "validityPeriod": "Validity period",
+  "productName": "Product name",
+  "quantity": "Quantity",
+  "discount": "Discount",
+  "requiredSum": "Required amount: {{sum}}",
+  "discountSum": "Discount on total receipt amount: {{discount}}",
+  "noName": "(No name)",
+  "errorLoadingActive": "Error loading active promotions",
+  "errorLoadingOld": "Error loading old promotions",
+  "errorLoadingPoints": "Error loading points",
+  "errorLoadingDetails": "Error loading promotion details",
+  "errorDeleting": "Error deleting promotion",
+  "successDeleted": "Promotion deleted successfully",
+  "addTitle": "Add Promotion",
+  "promoNamePlaceholder": "Promotion Name",
+  "selectPointPlaceholder": "Sales Point",
+  "continue": "Continue",
+  "enterPromoName": "Enter the promotion name",
+  "selectPoint": "Select a sales point",
+  "selectDateRange": "Select a date range",
+  "conflictWarning": "A promotion already exists for the selected point and date range"
+}
+,
+"promotionsStep2": {
+  "title": "Promotion Setup",
+  "period": "Period",
+  "point": "Sales Point",
+  "promotion": "Promotion",
+  "selectCondition": "Select condition",
+  "selectType": "Select type",
+  "selectProduct": "Select product",
+  "enterQuantity": "Enter quantity",
+  "enterDiscount": "Enter discount",
+  "enterAmount": "Enter amount",
+  "addProduct": "Add product",
+  "addDiscount": "Add discount",
+  "addGift": "Add gift",
+  "quantity": "Quantity",
+  "discount": "Discount",
+  "addAtLeastOneProduct": "Add at least one product for the promotion",
+  "addAtLeastOneTypeProduct": "Add at least one product for the type",
+  "enterDiscountForType": "Enter discount for the type",
+  "noDateRange": "Promotion period not specified",
+  "savedSuccessfully": "Promotion saved successfully",
+  "saveError": "Error saving promotion",
+  "networkError": "Network or server error",
+  "errorLoading": "Error loading data",
+  "back": "Back",
+  "cancel": "Cancel",
+  "save": "Save"
+}
+,
+"weightGoods": {
+  "loadStocksError": "Error loading warehouses",
+  "loadScalesError": "Error loading scales",
+  "loadProductsError": "Error loading products",
+
+  "hotkeyUpdated": "Hotkey successfully updated",
+  "hotkeyUpdateError": "Error updating hotkey",
+
+  "selectStock": "Select warehouse",
+  "selectScale": "Select scale",
+  "selectStockAndScale": "Select warehouse and scale",
+
+  "creatingInvoice": "Creating a new invoice...",
+  "createInvoiceError": "Error creating invoice",
+  "invoiceDeleted": "Invoice deleted",
+  "invoiceDeleteError": "Error deleting invoice",
+
+  "noProductsToExport": "No products to export",
+  "exportExcelSuccess": "Excel file exported successfully",
+  "exportExcelError": "Error exporting Excel",
+  "exportPLUSuccess": "PLU file exported successfully",
+  "exportPLUError": "Error exporting PLU",
+
+  "deleteProductTitle": "Delete product",
+  "deleteProductConfirm": "Are you sure you want to delete the product “{{name}}”?",
+  "deleteError": "Error deleting product",
+  "deleteSuccess": "Product deleted successfully",
+  "deletePartial": "Product deleted, but temporary data could not be cleared",
+
+  "total": "Total:",
+
+  "vatIncluded": "With VAT",
+  "vatExcluded": "Without VAT",
+
+  "columns": {
+    "hotkey": "Scale number",
+    "name": "Product name",
+    "lastpurchaseprice": "Purchase price (1 kg.)",
+    "price": "Price (1 kg.)",
+    "amount": "Quantity (kg.)",
+    "total_purchaseprice": "Total purchase",
+    "total_price": "Total sale",
+    "taxid": "VAT"
+  },
+
+  "buttons": {
+    "refresh": "Refresh",
+    "addProduct": "Add product",
+    "exportPLU": "Export PLU",
+    "exportExcel": "Export Excel"
+  },
+
+  "common": {
+    "delete": "Delete",
+    "cancel": "Cancel"
+  },
+
+  "modal": {
+    "editHotkeyTitle": "Edit hotkey",
+    "continueInvoiceTitle": "Unfinished invoice",
+    "continueInvoiceText": "You have an unfinished invoice. Do you want to continue?",
+    "deleteInvoice": "Delete invoice",
+    "continueInvoice": "Continue",
+    "uploadPLUTitle": "PLU export",
+    "upload": "Export",
+    "cancel": "Cancel"
+  },
+
+  "selectPLUModel": "Select scale model:",
+
+  "models": {
+    "shtrihPrint": "Shtrih-Print"
+  }
+}
+,
+
+"weightGoodsInvoice": {
+  "addProduct": "Add product",
+  "editProduct": "Edit product",
+  "fillRequiredFields": "Please fill in all required fields",
+  "noFreeBarcodes": "No available barcodes",
+  "productUpdated": "Product updated",
+  "productAdded": "Product added",
+  "errorAddingProduct": "Error adding product",
+  "errorSavingProduct": "Error saving product",
+  "messages": {
+    "productDeleted": "Product deleted",
+    "invoiceDeleted": "Invoice deleted",
+    "invoiceSent": "Invoice sent"
+  },
+  "errors": {
+    "loadBarcodes": "Error loading barcodes",
+    "loadInvoiceProducts": "Error loading invoice products",
+    "loadProducts": "Error loading products",
+    "deleteProduct": "Error deleting product",
+    "deleteInvoice": "Error deleting invoice",
+    "sendInvoice": "Error sending invoice",
+    "errorLoadingProductPrices": "Error loading product prices"
+  },
+  "deleteInvoice": {
+    "title": "Delete invoice?",
+    "text": "Are you sure you want to delete this invoice?"
+  },
+  "common": {
+    "delete": "Delete",
+    "cancel": "Cancel",
+    "yes": "Yes",
+    "no": "No",
+    "back": "Back",
+    "total": "Total"
+  },
+  "buttons": {
+    "addProduct": "Add product",
+    "deleteInvoice": "Delete invoice",
+    "sendInvoice": "Send invoice"
+  },
+  "columns": {
+    "name": "Name",
+    "barcode": "Barcode",
+    "purchasePrice": "Purchase price",
+    "amount": "Quantity (kg)",
+    "price": "Selling price",
+    "total": "Total",
+    "actions": "Actions"
+  },
+  "confirm": {
+    "deleteProduct": "Delete this product?"
+  },
+  "chooseFromList": "Choose from list",
+  "newProduct": "New product",
+  "productName": "Product name",
+  "chooseProduct": "Select a product",
+  "enterName": "Enter name",
+  "updatePriceAllPoints": "Update price in all points of sale",
+  "purchasePricePerKg": "Purchase price per kg",
+  "enterPurchasePrice": "Enter purchase price",
+  "sellingPricePerKg": "Selling price per kg",
+  "enterSellingPrice": "Enter selling price",
+  "quantityKg": "Quantity (kg)",
+  "enterQuantity": "Enter quantity",
+  "vat": "VAT",
+  "withoutVat": "Without VAT",
+  "withVat": "With VAT",
+  "cancel": "Cancel",
+  "clear": "Clear",
+  "save": "Save"
+}
+,
+
+"products": {
+    "loading": "Loading...",
+    "loadError": "Failed to load data",
+    "tabs": {
+      "main": "Products",
+      "weighted": "Weighted Products",
+      "categories": "Categories",
+      "attributes": "Attributes"
+    },"common": {
+    "yes": "Yes",
+    "no": "No",
+    "apply": "Apply",
+    "cancel": "Cancel",
+    "reset": "Reset",
+    "filters": "Filters",
+    "select": "Select",
+    "selectBrand": "Select brand",
+    "selectCategory": "Select category",
+    "of": "of"
+  },
+     "buttons": {
+      "add": "Add",
+      "edit": "Edit",
+      "delete": "Delete",
+      "filter": "Filters"
+    },
+    "columns": {
+      "name": "Name",
+      "barcode": "Barcode",
+      "brand": "Brand",
+      "category": "Category",
+      "attributes": "Attributes"
+    },
+    "messages": {
+      "deleted": "Products deleted"
+    },
+    "error": {
+      "load": "Error loading products",
+      "delete": "Error deleting products",
+      "loadBrands": "Error loading brands",
+      "loadCategories": "Error loading categories"
+    },
+    "confirm": {
+      "delete": "Delete selected products?"
+    }
+  },
+
+  "weights": {
+  "columns": {
+    "name": "Name",
+    "tax": "Tax Category"
+  },
+  "buttons": {
+    "add": "Add",
+    "edit": "Edit",
+    "delete": "Delete",
+    "save": "Save",
+    "reset": "Reset"
+  },
+  "fields": {
+    "name": "Name",
+    "tax": "Tax",
+    "unit": "Unit of Measure"
+  },
+  "common": {
+    "kg": "Kilogram",
+    "searchPlaceholder": "Search by name",
+    "of": "of"
+  },
+  "modal": {
+    "addTitle": "Add Weight Product",
+    "editTitle": "Edit Weight Product"
+  },
+  "confirm": {
+    "title": "Attention!",
+    "text": "This weight product will be deleted from all cash registers!"
+  },
+  "messages": {
+    "created": "Weight product added",
+    "updated": "Weight product updated",
+    "deleted": "Deleted"
+  },
+  "error": {
+    "loadWeights": "Error loading weight products",
+    "loadBarcodes": "Error loading unused barcodes",
+    "loadDetails": "Error loading data for editing",
+    "save": "Error saving",
+    "delete": "Error deleting"
+  }
+}
+,
+
+"categories": {
+    "add": "Add Category",
+    "save": "Save",
+    "delete": "Delete",
+    "yes": "Yes",
+    "cancel": "Cancel",
+    "no": "No",
+    "back": "Back",
+    "id": "ID",
+    "name": "Name",
+    "actions": "Actions",
+    "search": "Search by name",
+    "added": "Category added",
+    "addError": "Error adding category",
+    "subAdded": "Subcategory added",
+    "subAddError": "Error adding subcategory",
+    "updated": "Category updated",
+    "updateError": "Error updating category",
+    "deleted": "Category deleted",
+    "deleteError": "Error deleting category",
+    "restored": "Category restored",
+    "restoreError": "Error restoring category",
+    "deletedList": "Deleted categories",
+    "loadError": "Error loading categories",
+    "deletedLoadError": "Error loading deleted categories",
+    "loadSubError": "Error loading subcategories",
+    "deleteConfirm": "Delete this category?",
+    "newSub": "New subcategory",
+    "namePlaceholder": "Category name",
+    "restore": "Restore",
+    "common": {
+  "of": "of"
+}
+  }
+,
+
+"attributes": {
+  "loadError": "Error loading attributes",
+  "loadValuesError": "Error loading attribute values",
+  "saveSuccess": "Changes saved successfully",
+  "saveError": "Error while saving",
+  "addSuccess": "Value added successfully",
+  "addError": "Error while adding value",
+  "deleteSuccess": "Value deleted successfully",
+  "deleteError": "Error while deleting value",
+  "loadDeletedError": "Error loading deleted values",
+  "restoreSuccess": "Value restored successfully",
+  "restoreError": "Error while restoring value",
+  "deletedName": "Name",
+  "save": "Save",
+  "delete": "Delete",
+  "newValuePlaceholder": "New value",
+  "add": "Add",
+  "deletedAttributes": "Deleted attributes",
+  "close": "Close",
+  "restore": "Restore",
+  "selectAttribute": "Select an attribute:",
+  "selectAttributePlaceholder": "Select an attribute"
+}
+,
+"productForm": {
+  "addTitle": "Add Product",
+  "editTitle": "Edit Product",
+  "name": "Name",
+  "enterName": "Enter name",
+  "enterNameMessage": "Enter product name",
+  "barcode": "Barcode",
+  "enterBarcode": "Enter barcode",
+  "enterBarcodeMessage": "Enter barcode",
+  "generate": "Generate",
+  "taxCategory": "Tax Category",
+  "selectTaxCategory": "Select tax category",
+  "selectCategory": "Select category",
+  "unit": "Unit of Measure",
+  "selectUnit": "Select unit of measure",
+  "selectUnitMessage": "Specify unit of measure",
+  "pieceSale": "Sell by piece",
+  "pieceTooltip": "If enabled, the product is sold by piece",
+  "qtyInPack": "Quantity in pack",
+  "min2InPackMessage": "Minimum 2 pcs in pack",
+
+  "additionalBarcodes": "Additional Barcodes",
+  "enterNewBarcode": "Enter new barcode",
+  "addBarcode": "Add",
+  "noAdditionalBarcodes": "No additional barcodes",
+
+  "category": "Category",
+  "noCategory": "No category",
+  "brand": "Brand",
+  "noBrand": "No brand",
+  "tnved": "TN VED Code",
+  "enterTnved": "Enter TN VED code",
+  "numbersOnly": "Numbers only allowed",
+
+  "additionalParams": "Additional Parameters",
+
+  "cancel": "Cancel",
+  "reset": "Reset",
+  "add": "Add",
+  "save": "Save",
+
+  "loadDictionariesError": "Error loading dictionaries",
+  "barcodeGenerationError": "Barcode generation error",
+  "nameExistsWarning": "A product with this name already exists",
+  "nameAvailableInfo": "Name is available",
+  "nameCheckError": "Name check error",
+  "unitNotFoundWarning": "Unit of measure for pack not found",
+  "sameBarcode": "Barcode matches the main one",
+  "duplicateBarcode": "This barcode has already been added",
+  "barcodeAdded": "Barcode added",
+  "barcodeAddError": "Error adding barcode",
+  "barcodeDeleted": "Barcode deleted",
+  "barcodeDeleteError": "Error deleting barcode",
+  "updated": "Product updated successfully",
+
+  "saveError": "Error saving product",
+
+  "deleted": "Deleted",
+  "deleteError": "Delete error",
+
+  "addError": "Add error",
+  "enterValue": "Enter value",
+  "selectValue": "Select value",
+
+  "attrs": "Add attributes",
+  "constantAttrs": "Constant attributes",
+  "batchAttrs": "Batch attributes",
+  "attribute": "Attribute",
+  "attributeAdded": "Attribute added",
+  "attributeAddError": "Error adding attribute",
+  "attributeAlreadyAdded": "This attribute has already been added",
+  "duplicateAttributeWarning": "This attribute already exists",
+  "addAttribute": "Add attribute",
+  "noAttrs": "No attributes",
+  "added1": "Added",
+  "added": "New product added",
+  "addAttrError": "Error adding attribute",
+  "deleteAttrError": "Error deleting attribute",
+  "addDetail": "Add constant attribute",
+  "addBatchAttr": "Add batch attribute"
+}
+,
+"goodsReceipt": {
+  "productEdit": {
+      "modalTitle": "Edit Product | {{productName}}",
+      "loadingProductTitle": "Loading product...",
+      "loadingData": "Loading product data...",
+      "barcode": "Barcode",
+      "category": "Category (HS Code)",
+      "brand": "Brand",
+      "unit": "Unit of measurement",
+      "purchasePrice": "Purchase price",
+      "markup": "Markup",
+      "sellingPrice": "Selling price",
+      "amount": "Quantity",
+      "wholesalePrice": "Wholesale selling price",
+      "updateAllPrices": "Update prices at all sales points",
+      "attributeSectionTitle": "Attribute",
+      "batchAttributes": "Batch attributes",
+      "attributePlaceholder": "Attribute",
+      "enterValuePlaceholder": "Enter value",
+      "selectValuePlaceholder": "Select value",
+      "attributeExistsWarning": "This attribute already exists",
+      "attributeAddedSuccess": "Attribute added",
+      "attributeAddError": "Error adding attribute",
+      "missingDetailsError": "Error: product details or invoice number are missing.",
+      "missingInvoiceListIdError": "Error: invoice list ID (invoicelist_id) is missing.",
+      "deleteOldRecordError": "Error deleting old product record.",
+      "productUpdateSuccess": "Product \"{{productName}}\" updated successfully!",
+      "addNewProductError": "Error adding the updated product.",
+      "updateOperationFailure": "Failed to perform product update operation.",
+      "common": {
+        "reset": "Reset",
+        "cancel": "Cancel",
+        "apply": "Apply",
+        "add": "Add",
+        "deletedSuccess": "Deleted",
+        "deleteError": "Delete error"
+      }
+  },
+    "tabs": {
+      "history": "Invoice History",
+      "create": "Create Invoice"
+    },
+    "create": {
+      "title": "Create New Invoice",
+      "continue": "Continue",
+      "success": "Invoice №{{number}} has been successfully created",
+      "error": "Error creating invoice: {{text}}",
+      "requestError": "An error occurred while creating the invoice"
+    },
+    "status": {
+      "drafting": "Draft"
+    },
+
+    "form": {
+      "stock": "Warehouse",
+      "supplier": "Supplier",
+      "invoiceNumber": "Invoice Number",
+      "invoiceDate": "Invoice Date",
+      "selectStock": "Select warehouse",
+      "selectSupplier": "Select supplier",
+      "enterInvoiceNumber": "Enter invoice number",
+      "loadError": "Failed to load data"
+    },
+
+    "history": {
+
+      "editInvoice": "Edit Invoice",
+      
+      "selectSupplier": "Select supplier",
+      "invoiceNumber": "Invoice Number",
+      "invoiceDate": "Invoice Date",
+      
+      "save": "Save",
+      "invoiceSaved": "Invoice saved successfully",
+      "invoiceSaveError": "Error saving invoice",
+
+      "date": "Date",
+      "reset": "Reset",
+      "cancel": "Cancel",
+      "apply": "Apply",
+      "filter": "Filter",
+      "supplier": "Supplier",
+      "delete": "Delete",
+      "edit": "Edit",
+      "deleted": "Invoice deleted",
+      "deleteError": "Failed to delete",
+      "deleteConfirmTitle": "Delete invoice",
+      "deleteConfirmContent": "Are you sure you want to delete this invoice?",
+      "yes": "Yes",
+      "no": "No",
+      "loadError": "Failed to load data",
+      "loadSuppliersError": "Failed to load suppliers",
+      "allSuppliers": "All",
+      "columns": {
+        "invoiceNumber": "Invoice number",
+        "name": "Name",
+        "stock": "Warehouse",
+        "supplier": "Supplier",
+        "status": "Status"
+      }
+    }
+  },
+  "stockTransfer": {
+    "title": "Stock Transfer",
+    "loadError": "Error loading data",
+    "invoiceDeleted": "Invoice deleted",
+    "invoiceDeleteError": "Error deleting invoice",
+    "continueInvoice": "Continuing invoice №{{number}}",
+    "sameStockWarning": "The 'From' and 'To' warehouses cannot be the same",
+    "created": "Invoice created №{{number}}",
+    "createError": "Error creating invoice",
+    "unfinishedInvoice": "You have an unfinished invoice. Do you want to continue?",
+    "stockFrom": "Warehouse from",
+    "stockTo": "Warehouse to",
+    "selectStock": "Select warehouse",
+    "selectPlaceholder": "Select warehouse",
+    "invoiceNumber": "Invoice number (optional)",
+    "enterNumber": "Enter number",
+    "invoiceDate": "Invoice date",
+    "buttons": {
+      "deleteInvoice": "No, delete invoice",
+      "continue": "Continue"
+    }
+  },
+
+  "addProductFromStock": {
+    "title": "Add product from stock",
+    "loadError": "Error loading products from stock",
+    "detailLoadError": "Error loading product details",
+    "addSuccess": "Product added successfully",
+    "addError": "Error adding product",
+    "cancel": "Cancel",
+    "add": "Add",
+    "enterQuantity": "Enter quantity to transfer.",
+    "quantityGreaterThanZero": "Quantity must be greater than zero.",
+    "selectPrice": "Select which price to use (click the warehouse price).",
+    "noDetails": "Error: failed to load selected product details.",
+    "selectProduct": "Select product",
+    "warehouseFromPrice": "Price {{from}}",
+    "warehouseToPrice": "Price {{to}}",
+    "wholesalePrice": "Wholesale price",
+    "move": "Move",
+    "inStock": "In stock"
+  },
+  "addProductFromInvoice": {
+  "title": "Add product from invoice",
+  "loadError": "Error loading invoices",
+  "productsLoadError": "Error loading products from invoice",
+  "selectAtLeastOne": "Select at least one product and specify a quantity",
+  "name": "Name",
+  "barcode": "Barcode",
+  "attributes": "Attributes",
+  "inInvoice": "In invoice",
+  "inStock": "In stock",
+  "move": "Move",
+  "enterQuantity": "Enter quantity",
+  "selectInvoice": "Select an invoice",
+  "fromDate": "from {{date}}",
+  "cancel": "Cancel",
+  "add": "Add"
+}
+,
+"stockTransferProducts": {
+  "title": "Invoice №{{number}}",
+  "transferInfo": "Stock {{from}} → Stock {{to}}",
+  "deleteInvoice": "Delete Invoice",
+  "deleteInvoiceTitle": "Delete Invoice?",
+  "deleteInvoiceConfirm": "Are you sure you want to delete the current invoice?",
+  "invoiceDeleted": "Invoice deleted",
+  "invoiceDeleteError": "Error deleting invoice",
+  "productRemoved": "Product removed from invoice",
+  "deleteProductError": "Error deleting product",
+  "loadError": "Error loading products",
+  "transferProducts": "Transfer Products",
+  "addFromStock": "Add product from stock",
+  "addFromInvoice": "Add product from invoice",
+  "emptyInvoiceWarning": "Cannot finish an empty invoice",
+  "submitSuccess": "Invoice successfully completed",
+  "submitError": "Error completing invoice",
+  "confirmFinishTitle": "Complete the invoice!",
+  "confirmFinishText": "Are you sure you want to complete the invoice?",
+
+  "common": {
+    "name": "Name",
+    "code": "Barcode",
+    "retailPrice": "Retail Price",
+    "wholesalePrice": "Wholesale Price",
+    "quantity": "Quantity",
+    "total": "Total",
+    "delete": "Delete",
+    "cancel": "Cancel",
+    "confirm": "Confirm"
+  }
+},
+
+"goodsWriteoffPage": {
+  "title": "Goods Write-off",
+  "loadError": "Error loading data",
+  "invoiceDeleted": "Invoice deleted",
+  "invoiceDeleteError": "Error deleting invoice",
+  "continueInvoice": "Continue invoice №{{number}}",
+  "sameStockWarning": "'From' and 'To' warehouses cannot be the same",
+  "created": "Invoice created №{{number}}",
+  "createError": "Error creating invoice",
+  "unfinishedInvoice": "You have an unfinished invoice. Do you want to continue?",
+  "stockFrom": "Warehouse",
+  "stockTo": "Destination Warehouse",
+  "selectStock": "Select warehouse",
+  "selectPlaceholder": "Select warehouse",
+  "invoiceNumber": "Invoice number (optional)",
+  "enterNumber": "Enter number",
+  "invoiceDate": "Invoice date",
+  "buttons": {
+    "deleteInvoice": "No, delete invoice",
+    "continue": "Continue"
+  }
+}
+, "writeOffProducts": {
+  "title": "Invoice №{{number}}",
+  "transferInfo": "Warehouse point {{from}}",
+  "deleteInvoice": "Delete invoice",
+  "deleteInvoiceTitle": "Delete invoice?",
+  "deleteInvoiceConfirm": "Do you really want to delete the current invoice?",
+  "invoiceDeleted": "Invoice deleted",
+  "invoiceDeleteError": "Error deleting invoice",
+  "productRemoved": "Product removed from invoice",
+  "deleteProductError": "Error deleting product",
+  "loadError": "Error loading products",
+  "transferProducts": "Write-off from warehouse",
+  "addFromStock": "Write-off product",
+  "addFromInvoice": "Add product from invoice",
+  "emptyInvoiceWarning": "Cannot complete an empty invoice",
+  "submitSuccess": "Invoice successfully completed",
+  "submitError": "Error completing invoice",
+  "confirmFinishTitle": "Complete invoice!",
+  "confirmFinishText": "Do you really want to complete the invoice?",
+  "selectProduct": "Select a product",
+  "select": "Select ",
+  "addSuccess": "Product added successfully",
+  "addError": "Error adding product",
+  "common": {
+    "name": "Name",
+    "code": "Barcode",
+    "retailPrice": "Retail price",
+    "wholesalePrice": "Wholesale price",
+    "quantity": "Write-off quantity",
+    "reason": "Reason",
+    "delete": "Delete",
+    "cancel": "Cancel",
+    "confirm": "Confirm"
+  }
+},
+
+"revisionPage": {
+    "title": "Revision",
+    "startRevisionButton": "Start Revision",
+    "deleteButton": "Delete",
+    "unfinishedRevisionsTitle": "Unfinished Revisions",
+    
+    "table": {
+      "number": "Number",
+      "point": "Sales Point",
+      "startDate": "Start Date",
+      "administrator": "Administrator",
+      "action": "Action"
+    },
+    
+    "loadRevisionsError": "Error loading revisions",
+    "loadPointsError": "Error loading sales points",
+    "checkActiveRevisionError": "Error checking active revision",
+    "loadRevisionTypeError": "Error loading data for revision type",
+    
+    "revisionDeletedSuccess": "Revision successfully deleted.",
+    "revisionDeleted": "Revision #{{number}} deleted",
+    "failedToDeleteRevision": "Failed to delete revision",
+    "deleteRevisionError": "Error deleting revision",
+    
+    "selectPointRequired": "Select a sales point",
+    "revisionCreated": "Revision created",
+    "createRevisionError": "Error creating revision",
+    
+    "createModal": {
+      "title": "Create New Revision",
+      "selectPointPlaceholder": "Select sales point",
+      "showStock": "Show Stock Balance",
+      "includeZeroStock": "Include zero stock items",
+      "selectBrandPlaceholder": "Select brand",
+      "selectCategoryPlaceholder": "Select category",
+      "selectSupplierPlaceholder": "Select supplier"
+    },
+    
+    "revisionTypes": {
+      "selective": "Selective Items",
+      "allProducts": "All Products",
+      "byBrand": "By Brand",
+      "byCategory": "By Category",
+      "bySupplier": "By Supplier"
+    },
+    
+    "activeModal": {
+      "title": "Attention!",
+      "deleteButton": "No, delete revision",
+      "continueButton": "Continue",
+      "warningText": "You have an unfinished revision at this point. Only one revision can be done at a point simultaneously. Do you want to continue it?"
+    },
+    
+    "confirmDelete": {
+      "title": "Confirm Deletion",
+      "text": "Are you sure you want to delete revision #{{number}}?"
+    }
+  }
+
+  ,
+  
+  "revisionPageDetail": {
+      "title": "Revision Details",
+      "point": "Sales Point",
+      "type": "Type",
+      "backToList": "Back to List",
+      "deleteRevisionButton": "Delete Revision",
+      "deleteItemButton": "Delete Item ({{count}})",
+      "finishAddingItemsButton": "Complete Data Entry",
+      "backToEditButton": "Back to Editing",
+      "exportExcelButton": "Export to Excel",
+      "finishRevisionButton": "Finalize Revision",
+      "addItemButton": "Add Item Manually",
+      "searchBarcodePlaceholder": "Search by Barcode",
+      "searchNamePlaceholder": "Search by Name",
+      "addCommentButton": "Add Comment",
+      
+      "itemAlreadyInList": "Item \"{{name}}\" is already in the list.",
+      "itemAddedToList": "Item \"{{name}}\" has been added to the list",
+      "itemNotFound": "Item not found.",
+      "errorLoadingOrSearchingItems": "Error loading or searching revision items.",
+      "enterNameOrBarcodeForSearch": "Enter name or barcode to search.",
+      "errorSavingQuantity": "Error saving quantity.",
+      "comparisonComplete": "Comparison complete. Check for discrepancies.",
+      "comparisonEmptyError": "Comparison returned an empty list. Check logic.",
+      "errorComparingItems": "Error comparing items.",
+      "editModeSwitched": "Switched to editing mode.",
+      "finishSuccess": "Revision successfully completed and stock levels overwritten.",
+      "errorFinishingRevision": "Error finalizing revision. Status: {{status}}.",
+      "networkErrorFinishing": "Network error when finalizing revision (connection issue).",
+      "noDataToExport": "No data to export.",
+      "excelFileName": "Revision_{{number}}_{{date}}.xlsx",
+      "excelDownloadSuccess": "Excel file successfully downloaded.",
+      "excelServerError": "Server error while generating file.",
+      "excelExportError": "Error exporting to Excel.",
+      "selectItemsForDeletion": "Select items for deletion.",
+      "itemsDeleted": "{{count}} items deleted.",
+      "errorDeletingItems": "Error deleting items.",
+      "enterCommentText": "Enter comment text.",
+      "selectItemForComment": "Select at least one item to comment on.",
+      "commentAdded": "Comment added.",
+      "errorAddingComment": "Error adding comment.",
+      "errorLoadingAvailableItems": "Error loading available items.",
+      "errorGettingStock": "Could not retrieve item stock. Set manually.",
+      "selectItemAndQuantity": "Select item and enter a correct quantity.",
+      "itemAddedManualSuccess": "Item \"{{name}}\" successfully added.",
+      "errorAddingItemManual": "Error adding item manually.",
+      "typeUnknown": "Unknown",
+      "editWarning": "**Important!** The revision must be completed within 3 days from the start date, otherwise the stock levels may be outdated.",
+      "noItemsInRevision": "No items added to the revision.",
+      
+      "table": {
+        "item": "Item",
+        "actualQuantity": "Actual Quantity",
+        "systemQuantity": "System Quantity",
+        "changeDuringRevision": "Change During Revision (+/-)",
+        "status": "Status"
+      },
+      
+      "status": {
+        "discrepancyFound": "Discrepancy Found",
+        "noDiscrepancy": "No Discrepancy"
+      },
+      
+      "compareControls": {
+        "important": "Important!",
+        "warningText": "For correct sales accounting during the revision:",
+        "step1": "Please stop all sales from this moment;",
+        "step2": "Ensure that at least 30 seconds have passed since the last sale, then click the 'Finalize Revision' button.",
+        "all": "All",
+        "discrepancies": "Discrepancies",
+        "noDiscrepancies": "No Discrepancies"
+      },
+      
+      "manualAddModal": {
+        "title": "Add Item Manually",
+        "addButton": "Add",
+        "cancelButton": "Cancel",
+        "barcode": "Barcode",
+        "selectBarcodePlaceholder": "Select Barcode",
+        "itemName": "Item Name",
+        "selectNamePlaceholder": "Select Name",
+        "quantity": "Quantity"
+      },
+      
+      "confirmDelete": {
+        "title": "Confirm Deletion",
+        "text": "Are you sure you want to delete revision #{{number}}?"
+      },
+
+      "confirmFinishModal": {
+        "title": "Attention! Finalizing Revision",
+        "finishButton": "Finalize Revision",
+        "cancelButton": "Cancel",
+        "warning1": "**Attention!** This action will overwrite the stock levels of all items!",
+        "warning2": "Items where the entered quantity is zero will be zeroed out!"
+      },
+      
+      "finishSuccessModal": {
+        "title": "Revision Successfully Completed",
+        "startNewButton": "Start New Revision",
+        "viewReportButton": "View Report",
+        "text": "Revision #{{number}} successfully completed. Stock levels have been updated."
+      },
+      
+      "commentModal": {
+        "title": "Add Comment",
+        "cancelButton": "Cancel",
+        "allFailButton": "All Items with Discrepancies",
+        "selectedButton": "Selected Items ({{count}})",
+        "placeholder": "Comment",
+        "warning": "You can immediately add a comment to all items with discrepancies."
+      }
+    }
+   ,
+
+   "barcodePrint": {
+    "printTitle": "Barcode Printing",
+    "error": {
+      "loadPoints": "Error loading sales points",
+      "loadProducts": "Error loading products",
+      "barcodeNotFound": "Product by barcode not found"
+    },
+    "title": {
+      "selectProduct": "Select product for barcode printing"
+    },
+    "label": {
+      "point": "Sales Point",
+      "productName": "Product Name",
+      "barcode": "Barcode",
+      "barcodeFormat": "Barcode Format",
+      "paperWidth": "Paper Width",
+      "brand": "Brand",
+      "textSize": "Text Size",
+      "extraAttribute": "Extra Attribute"
+    },
+    "placeholder": {
+      "selectPoint": "Select sales point",
+      "enterProductSearch": "Enter at least 3 characters...",
+      "enterBarcode": "Enter barcode",
+      "selectFormat": "Select format"
+    },
+    "option": {
+      "svgNormal": "Normal svg",
+      "imgNormal": "Normal img",
+      "svgPrice": "With price svg (76x40)",
+      "price30x20": "With price 30x20",
+      "price60x30": "With price 60x30",
+      "noPrice30x20": "30x20 (No price)",
+      "bigText": "Big text",
+      "smallText": "Small text"
+    },
+    "button": {
+      "rotate": "Rotate",
+      "print": "Print"
+    },
+    "checkbox": {
+      "hasDiscount": "Has discount",
+      "noDiscount": "No discount"
+    },
+    "tab": { 
+      "productSearch": "Product Search",
+      "invoicePrint": "Print by Invoice"
+    }
+  },
+
+  "invoicePrint": { 
+      "label": {
+        "invoice": "Invoice",
+        "from": "dated",
+        "stockTo": "To Stock",
+        "type": "Type",
+        "counterparty": "Counterparty",
+        "product": "Product",
+        "byInvoice": "by invoice"
+      },
+      "column": {
+        "invoiceNumber": "Invoice Number",
+        "invoiceType": "Invoice Type",
+        "stockTo": "To Stock",
+        "supplier": "Supplier",
+        "details": "Details"
+      },
+      "button": {
+        "filter": "Filter",
+        "cancel": "Cancel",
+        "reset": "Reset",
+        "apply": "Apply",
+        "rotateBarcode": "Rotate Barcode"
+      },
+      "modalTitle": {
+        "filterByDate": "Filter by Dates"
+      },
+      "checkbox": {
+        "showBrand": "Show Brand"
+      }
+    }
+,
+  "adminnews": {
+    "searching": "Searching...",
+    "administration": "Administration",
+    "news": "News",
+    "createNews": "Create News",
+    "changeNews": "Edit News",
+    "category": "Category",
+    "header": "Header",
+    "content": "News Content",
+    "imageUpload": "Upload",
+    "createButton": "Create News",
+    "warningFields": "Fill in the header and news content.",
+    "successAdd": "News successfully added.",
+    "errorAdd": "An error occurred while processing your request.",
+    "selectFile": "Select a file to upload.",
+    "image": "Images",
+    "selectCategory": "Select category",
+    "headerPlaceholder": "Enter news header",
+    "imagePath": "Image Path",
+    "successUpload": "File uploaded successfully!",
+    "bug": "Bug",
+    "notification": "Notification",
+    "feature": "Feature",
+    "successTitle": "Success",
+    "errorTitle": "Error",
+    "errorUploadTitle": "Upload Error",
+    "errorUploadDescription": "Error uploading file",
+    "preview": "Preview",
+    "manageNewsTitle": "News Management",
+    "latestNewsTitle": "Latest News",
+    "errorLoadList": "Failed to load news list.",
+    "emptyNewsList": "Unfortunately, there are no news yet :(",
+    "successDelete": "News successfully deleted!",
+    "errorDeleteDescription": "An error occurred while processing your request.",
+    "emptyList": "No news available",
+    "deleteButton": "Delete",
+    "editor": {
+      "welcome": "Welcome to my React Markdown Previewer!",
+      "subtitle": "This is a sub-heading...",
+      "coolStuff": "And here are some other cool things:",
+      "inlineCode": "Here is some code",
+      "multilineCode": "this is multi-line code",
+      "boldText": "You can also make text",
+      "bold": "bold",
+      "italicText": "Or",
+      "italic": "italic",
+      "combinedText": "Or... wait for it...",
+      "combined": "both!",
+      "strikethroughText": "And feel free to strike text out",
+      "strikethrough": "strikethrough",
+      "linksText": "There are also",
+      "linkExample": "links",
+      "blockquote": "Block Quotes!",
+      "tableIntro": "And if you want to get really crazy, even tables",
+      "tableHeader1": "Wild Header",
+      "tableHeader2": "Crazy Header",
+      "tableHeader3": "Another Header?",
+      "tableContent1": "Your content can",
+      "tableContent2": "be here, and it",
+      "tableContent3": "can be here....",
+      "tableContent4": "And here.",
+      "tableContent5": "Okay.",
+      "tableContent6": "I think we got it.",
+      "listStart": "And of course, there are lists",
+      "listItem1": "Some of them bulleted",
+      "listItem2": "With different levels of indentation",
+      "listItem3": "That look like this",
+      "numberedListStart": "And there are also numbered lists",
+      "numberedListItem1": "Use only 1 if you want",
+      "numberedListItem2": "But the list continues",
+      "mixedList": "Even if you use dashes or asterisks",
+      "imageIntro": "And finally, let's not forget embedded images",
+      "imageAlt": "Example"
+    }
+  },
+
+  "companysettings": {
+      "pointPlaceholder": "Select a sales point from the list",
+      "addPointTitle": "Add a new sales point",
+      "editPointTitle": "Edit sales point information",
+      "backToList": "Sales Points List",
+      "pointName": "Sales Point Name",
+      "pointNamePlaceholder": "Enter the sales point name",
+      "pointAddress": "Sales Point Address",
+      "pointAddressPlaceholder": "Enter the sales point location",
+      "negativeAccounting": "Negative Inventory Accounting",
+      "negativeAccountingPlaceholder": "Allow negative inventory accounting?",
+      "saveChanges": "Save Changes",
+      "addButton": "Add",
+      "clearButton": "Clear",
+      "pointName1": "Sales Point",
+      "prefix": {
+        "label": "Prefix",
+        "placeholder": "Enter prefix (2 digits)",
+        "createButton": "Create",
+        "currentLabel": "Your Prefix",
+        "changeButton": "Change",
+        "successCreate": "Prefix created successfully!",
+        "invalidValue": "The prefix must be a 1 or 2 digit number."
+      },
+      "inactive": {
+        "points": {
+          "showCaption": "Show list of inactive sales points",
+          "hideCaption": "Hide list of inactive sales points"
+        },
+        "cashboxes": {
+          "showCaption": "Show list of inactive cash registers",
+          "hideCaption": "Hide list of inactive cash registers"
+        }
+      },
+      "switch": {
+          "binLabel": "BIN/IIN",
+          "binTooltip": "Enable BIN/IIN check",
+          "ndsLabel": "VAT",
+          "ndsTooltip": "Enable VAT field",
+          "znmLabel": "Factory No.",
+          "znmTooltip": "Enable factory number check",
+          "rnmLabel": "Reg. No.",
+          "rnmTooltip": "Enable registration number field"
+        },
+      "cashbox": {
+        "name1": "Cash Register",
+        "listTitle": "List of active cash registers",
+        "emptyList": "List of active cash registers is empty",
+        "confirmDelete": "Are you sure you want to delete this cash register?",
+        "successDelete": "Cash register successfully deleted",
+        "manage": "Manage Cash Register",
+        "editChecks": "Edit Receipts",
+        "addTitle": "Add new cash register",
+        "editTitle": "Edit cash register information",
+        "backToList": "Cash Registers List",
+        "name": "Cash Register Name",
+        "namePlaceholder": "Enter the cash register name",
+        "successCreate": "Cash register successfully created",
+        
+        "closed": {
+          "name": "Name",
+          "point": "Sales Point",
+          "status": "Status",
+          "statusDeleted": "Deleted",
+          "rollbackTitle": "Restore to list",
+          "rollbackButton": "Restore",
+          "emptyList": "List of deleted cash registers is empty",
+          "confirmTitle": "Are you sure?",
+          "confirmBtnText": "Yes, I'm sure",
+          "cancelBtnText": "No, cancel"
+        }
+      },
+      "messages": {
+        "successEdit": "Changes saved successfully",
+        "successCreatePoint": "Sales point successfully created",
+        "errorTitle": "Error",
+        "defaultApiError": "An error occurred while processing your request. We are already working on a solution. Please try again later",
+        "successTitle": "Excellent",
+        "raiseError": "An error occurred while processing your request. Please try again later.",
+        "areyousure": "Are you sure?",
+        "sure": "Yes, I'm sure",
+        "cancel": "No, cancel",
+        "loadError": "Failed to load data."
+      },
+      "common": {
+        "number": "№",
+        "title": {
+          "edit": "Edit",
+          "delete": "Delete"
+        },
+        "loading": "Loading...",
+        "actions": "Actions",
+        "edit": "Edit",
+        "delete": "Delete",
+        "yes": "Yes",
+        "no": "No",
+        "rollback": "Restore"
+      },
+      "pageTitle": "Company Settings",
+      "selectCompanyPlaceholder": "Select company",
+      "noCompanyFound": "Company not found",
+      "companies": {
+        "loadError": "Failed to load company list."
+      },
+      "pointpage": {
+        "listTitle": "List of active sales points",
+        "addPoint": "Add new sales point",
+        "emptyList": "Sales point list is empty",
+        "columnName": "Name",
+        "columnAddress": "Address",
+        "columnIsMinus": "Negative Accounting",
+        "confirmDelete": "Are you sure you want to delete this sales point?",
+        "successDelete": "Sales point successfully deleted",
+        "loadError": "Failed to load sales point list."
+      },
+      "cashboxpage": {
+        "listTitle": "List of active cash registers",
+        "addCashbox": "Add new cash register",
+        "emptyList": "Cash register list is empty",
+        "columnName": "Name",
+        "columnPoint": "Sales Point",
+        "confirmDelete": "Are you sure you want to delete this cash register?",
+        "successDelete": "Cash register successfully deleted",
+        "loadError": "Failed to load cash register list."
+      },
+      "closed": {
+        "inactiveTitle": "List of inactive {mode}",
+        "emptyList": "List of closed items is empty.",
+        "confirmTitle": "Rollback Confirmation",
+        "confirmContent": "Are you sure you want to restore this item?",
+        "confirmBtnText": "Restore",
+        "cancelBtnText": "Cancel",
+        "successRollback": "Item successfully restored.",
+        "loadClosedError": "Error loading list of closed items."
+      },
+      "ticket": {
+        "title": "Receipt Format Setting",
+        "defaultPoint": "Sales Point No. 1",
+        "defaultAddress": "Almaty | Dostyk Avenue | 1",
+        "defaultCompany": "TOO Demo",
+        "receiptTitle": "Commercial Receipt",
+        "defaultThanks": "Additional Text 1",
+        "defaultThanks1": "Thank you for your purchase.",
+        "defaultAd": "Additional Text 2",
+        "uploadLogo": "Upload Company Logo:",
+        "selectFile": "Select PNG file",
+        "pointName": "Sales Point Name",
+        "address": "Address",
+        "company": "Company",
+        "switchOptions": "Display Settings:",
+        "thanksMessage": "Additional Text 1 (Thank You)",
+        "advertisementMessage": "Additional Text 2 (Advertisement)",
+        "adPlaceholder": "Enter advertisement message",
+        "saveButton": "Edit Receipt",
+        "requiredFieldsWarning": "Specify Sales Point, Address, and Company.",
+        "adLimitWarning": "Advertisement length cannot exceed 2000 characters.",
+        "fileSizeWarning": "File size must be less than 100 KB.",
+        "fileTypeWarning": "File extension must be .png.",
+        "fileSuccess": "File successfully uploaded.",
+        "fileError": "Error uploading file.",
+        "successSave": "Receipt successfully changed",
+        "loadTicketError": "Error loading receipt format.",
+        "selectPointWarning": "Select a sales point first.",
+        "pointNameText": "Point Name",
+    "companyText": "Company Name",
+    "thanksMessageText": "Thank You Message",
+    "advertisementMessageText": "Advertisement Message",
+    "totalText": "Total"
+      }
+    },
+    "errorHandling": {
+      "title": "Error",
+      "fileErrorPrefix": "Error in the uploaded file",
+      "internalServerError": "A server-side error occurred. [internal_server_error]",
+      "dataTransferError": "An error occurred during data transfer to the server.",
+      "networkError": "A network error occurred. Check your connection.",
+      "blobReadFailure": "Failed to read error message in file."
+    },
+    "currency": {
+      "KZT": "KZT",
+      "KGS": "KGS"
+    }
+
+    ,
+    "register": {
+    "validation": {
+      "required": "This field is required.",
+      "min4": "Minimum 4 characters.",
+      "invalidIinBin": "Must contain 12 digits.",
+      "invalidEmail": "Invalid email address.",
+      "passwordLength": "Password must be at least 6 characters.",
+      "passwordsMatch": "Passwords do not match!"
+    },
+    "label": {
+      "createNewProfile": "Create New Profile",
+      "alreadyRegistered": "Already registered?",
+      "selectCountry": "Select Country",
+      "selectCompanyType": "Select Company Type",
+      "selectCompanyTypeAdd": "Additional Company Types",
+      "userIdn": "User's IIN",
+      "userName": "User's Full Name",
+      "companyBin": "Organization's BIN",
+      "companyName": "Organization Name",
+      "companyAddress": "Legal Address",
+      "headIdn": "Head's IIN",
+      "headName": "Head's Full Name",
+      "ndsPayer": "VAT Payer",
+      "hasNds": "VAT Series",
+      "ndsRegisterNumber": "VAT Number",
+      "ndsDate": "VAT Date",
+      "email": "Email / Login",
+      "password": "Password",
+      "confirmPassword": "Confirm Password",
+      "createProfile": "Create Your Profile"
+    },
+    "placeholder": {
+      "userIdn": "Enter IIN",
+      "userName": "Enter Full Name",
+      "companyBin": "Enter BIN",
+      "companyName": "Enter name",
+      "companyAddress": "Enter address",
+      "headIdn": "Enter Head's IIN",
+      "headName": "Enter Head's Full Name",
+      "hasNds": "Series",
+      "ndsRegisterNumber": "Number",
+      "ndsDate": "Select date",
+      "email": "Enter Email",
+      "password": "Enter password",
+      "confirmPassword": "Repeat password"
+    },
+    "alert": {
+      "notVerified": "Confirm that you are not a robot",
+      "signUpfailed": "Oops, an error occurred during registration"
+    },
+    "agreementText": "By clicking this button, you accept the terms of the user agreement"
+  },
+  "countrySelect": {
+    "placeholder": "Select country",
+    "notFound": "Country not found",
+    "loadErrorTitle": "Loading error",
+    "loadErrorDesc": "Failed to load the list of countries."
+  }
+
+,
+
+"companyInfo": {
+  "title": "General Company Information",
+  "companyBin": "BIN",
+  "companyName": "Company Name",
+  "companyAddress": "Legal Address",
+  "companyHead": "Director",
+  "companyHeadIDN": "Director's IDN",
+  "companyAccountant": "Chief Accountant",
+  "companyAccountantIDN": "Chief Accountant's IDN",
+  "certificateSeries": "VAT Series",
+  "certificateNum": "VAT Registration Number",
+  "certificateDate": "VAT Date",
+  "successEdit": "Company BIN successfully updated",
+  "successChangePass": "Password successfully changed",
+  "edit": "Edit",
+  "save": "Save changes",
+  "cancel": "Cancel",
+  "back": "Back",
+  "general": {
+    "loading": "Loading data...",
+    "validation": {
+      "required": "This field is required.",
+      "invalidIinBin": "Must contain 12 digits."
+    },
+    "raiseError": "An error occurred while processing your request. We are working on a solution. Please try again later."
+  }
+},
+
+"companyList": {
+  "general": {
+  "loading": "Loading data...",
+  "validation": {
+    "required": "This field is required.",
+    "invalidIinBin": "Must contain 12 digits."
+  },
+  "raiseError": "An error occurred while processing your request. We are already working on a solution. Please try again later."
+}
+,
+  "reset": {
+    "title": "Reset Password",
+    "close": "Close",
+    "cancel": "Cancel",
+    "button": "Reset Password",
+    "companyId": "Company ID",
+    "placeholder": "User login",
+    "noUsers": "No available users",
+    "error": {
+      "format": "Invalid user data format from API.",
+      "fetchUsers": "Error fetching users.",
+      "api": "Network error while resetting password.",
+      "generic": "An error occurred while resetting the password.",
+      "unknown": "Unexpected response from API."
+    },
+    "success": "Password successfully reset",
+    "message": {
+      "success": "Password successfully reset",
+      "error": "An error occurred while resetting the password",
+      "unknown": "An unknown error occurred while resetting the password"
+    }
+  },
+  "title": "List of Active Companies",
+  "tableHeader": {
+    "name": "Company Name",
+    "status": "Status",
+    "id": "Company ID",
+    "bin": "BIN",
+    "actions": "Actions"
+  },
+  "actions": {
+    "info": "Details",
+    "resetPass": "Reset Password",
+    "deactivate": "Deactivate",
+    "activate": "Activate"
+  },
+  "status": {
+    "active": "Active",
+    "close": "Closed"
+  },
+  "emptyList": "Company list is empty",
+  "successUpdate": "Changes saved",
+  "resetConfirm": "Are you sure you want to reset the password for the company with ID: {{id}}?"
+}
+,
+
+"nomenclature": {
+    "title": "Import Nomenclature",
+    "uploadButton": "Upload",
+    "download": "Download",
+    "delete": "Delete",
+    "actions": "Actions",
+    "fileNumber": "No.",
+    "fileName": "File Name",
+    "logFiles": "Import Log Files",
+    "ok": "Ok",
+    
+    "company": "Company",
+    "selectCompanyPlaceholder": "Select a company",
+    "selectCompanyMsg": "Please select a company",
+    "stock": "Warehouse",
+    "selectStockPlaceholder": "Select a warehouse",
+    "selectStockMsg": "Please select a warehouse",
+    "allStocks": "All warehouses",
+    "isNDSPayer": "Is the company a VAT payer?",
+    "selectNDSPlaceholder": "Select Yes/No",
+    "selectNDSMsg": "Please select Yes/No",
+    "ndsYes": "Yes",
+    "ndsNo": "No",
+    "supplier": "Select a supplier",
+    "selectSupplierPlaceholder": "Select a supplier",
+    "selectSupplierMsg": "Please select a supplier",
+    "noCounterparty": "Not specified",
+    "fileUploadTitle": "File for import",
+    
+    "fillAllFields": "Please fill in all required fields.",
+    "selectFile": "Select a file to upload.",
+    "importSuccess": "Data imported successfully.",
+    "importError": "Error importing data.",
+    "fileDeleted": "File deleted successfully.",
+    "deleteError": "Error deleting file.",
+    "downloadError": "Error downloading file.",
+    "generalError": "An unexpected error occurred.",
+    "filesLoadError": "Error loading file list.",
+    "companiesLoadError": "Error loading company list.",
+    "stocksLoadError": "Error loading warehouse list.",
+    "counterpartiesLoadError": "Error loading supplier list.",
+    "cyrillicErrorTitle": "Import Error",
+    "cyrillicErrorMessage": "Cyrillic characters in the barcode are not allowed.",
+    "cyrillicErrorDetail": "Rows {{rows}} contain Cyrillic characters in the code."
+}
+,
+
+"adminattributes": {
+    "form": {
+      "nameLabel": "Attribute Name",
+      "nameRequired": "Enter attribute name",
+      "namePlaceholder": "Enter name",
+      "typeLabel": "Type",
+      "typeRequired": "Select type",
+      "typePlaceholder": "Select attribute type",
+      "saveChanges": "Save changes",
+      "add": "Add"
+    },
+    "emptyList": "List is empty",
+    "common": { 
+      "cancel": "Cancel",
+      "confirm": {
+        "areYouSure": "Are you sure?",
+        "deleteYes": "Yes, delete",
+        "restoreYes": "Yes, restore",
+        "cancel": "Cancel"
+      }
+    },
+    "title": {
+      "activeList": "List of active attributes",
+      "edit": "Edit attribute",
+      "add": "Add attribute"
+    },
+    "buttons": {
+      "addNew": "Add new attribute"
+    },
+    "columns": {
+      "number": "№",
+      "name": "Name",
+      "type": "Type",
+      "status": "Status"    
+    },
+    "confirm": {
+      "delete": "Do you really want to delete the attribute?",
+      "restore": "Do you really want to restore the item?"
+    },
+    "success": {
+      "deleted": "Attribute successfully deleted",
+      "changesSaved": "Changes saved",
+      "attributeCreated": "Attribute created",
+      "itemRestored": "Item successfully restored"
+    },
+    "error": {
+      "load": "Error loading attributes",
+      "delete": "Error deleting",
+      "save": "Error saving attribute",
+      "loadFormats": "Error loading formats",
+      "loadData": "Error loading data", 
+      "restore": "Error restoring" 
+    },
+    "entities": {
+      "attribute": "inactive attributes", 
+      "erpUser": "inactive ERP users",
+      "brand": "inactive brands",
+      "discount": "inactive discounts"
+    },
+    "showInactive": {
+      "showList": "Show list", 
+      "hideList": "Hide list",
+      "showEntity": "Show list of {{entity}}",
+      "hideEntity": "Hide list of {{entity}}"
+    },
+    "status": {
+      "deleted": "Deleted" 
+    }
+}
+
+ ,
+
+ "adminbrands": {
+  "list": "Brand list",
+  "add": "Add brand",
+  "name": "Name",
+  "company": "Manufacturer",
+
+  "confirmDelete": "Are you sure you want to delete this brand?",
+
+  "loadError": "Loading error",
+
+  "edit": "Edit",
+  "save": "Save",
+  "cancel": "Cancel",
+  "addBrand": "Add brand",
+  "editBrand": "Edit brand",
+  "enterName": "Enter brand name",
+  "enterCompany": "Enter company name",
+  "saved": "Brand saved",
+  "saveError": "Error while saving",
+  "listSaved": "Brands saved successfully",
+  "listSaveError": "Error while saving brand list",
+  "excelWrongFormat": "Invalid Excel file format",
+  "excelReadError": "Error reading Excel file",
+  "excelImported": "{{count}} rows imported",
+  "dragOrClick": "Drag file here or click to select",
+  "selectFile": "Select file",
+  "saveAll": "Save all brands",
+
+  "index": "№",
+
+  "status": "Status",
+  "deleted": "Deleted",
+  "restore": "Restore",
+
+  "common": {
+    "yes": "Yes",
+    "cancel": "Cancel",
+    "edit": "Edit",
+    "delete": "Delete",
+    "error": "Error",
+    "internalError": "Internal server error"
+  }
+}
+,
+
+"erpusers": {
+    "editUser": "Edit User",
+    "template": "Template",
+    "loadRolesError": "Failed to load roles",
+    "loadAccessesError": "Failed to load accesses",
+    "userCreatedSuccess": "User successfully created",
+    "userUpdatedSuccess": "User updated",
+    "saveError": "Save error",
+    "updateError": "Update error",
+    "selectAccessesForUser": "Select accesses for user {{userName}}",
+    "accessHint": "Check accesses or select a ready-made template",
+    "templatePlaceholder": "Select a template",
+    "backButton": "Back",
+    "submittingText": "Please wait...",
+    "saveAccessesButton": "Save accesses",
+    "loadUserAccessesError": "Failed to load user accesses",
+    "editUserTitle": "Edit user",
+    "addUserTitle": "Add new  user",
+    "userListButton": "User list",
+    "iinLabel": "User IIN",
+    "iinRequiredMessage": "Enter IIN",
+    "digitsOnlyMessage": "Digits only",
+    "iinPlaceholder": "Enter employee IIN",
+    "nameLabel": "User full name",
+    "nameRequiredMessage": "Enter full name",
+    "namePlaceholder": "Enter full employee name",
+    "loginLabel": "User email (login)",
+    "loginRequiredMessage": "Enter email",
+    "invalidEmailMessage": "Invalid email format",
+    "loginPlaceholder": "Enter user email address",
+    "nextButton": "Next",
+    "clearButton": "Clear",
+    "list": "User list",
+    "add": "Add user",
+    "addUser": "Add user",
+    "empty": "User list is empty",
+    "userName": "Full name",
+    "login": "Login",
+    "accessName": "User accesses",
+    "userIDN": "IIN",
+    "noAccesses": "No accesses",
+    "title": {
+      "edit": "Edit",
+      "delete": "Delete"
+    },
+    "status": "Status",
+    "restore": "Restore",
+    "company": "Company ID",
+    "confirmDelete": "Are you sure you want to delete this user?",
+    "deleted": "Deleted",
+    "editSaved": "Changes saved",
+    "loadError": "Failed to load users",
+    "common": {
+      "yes": "Yes",
+      "cancel": "Cancel",
+      "ok": "OK",
+      "areYouSure": "Are you sure?",
+      "error": "Error",
+      "success": "Success",
+      "loadError": "Load error"
+    },
+    "accesses": {
+      "order_create": "Create orders",
+      "order_treatment": "Process orders",
+      "order_weight_prod": "Weigh products",
+      "order_receipt": "Receive orders",
+      "price_wizard": "Price wizard",
+      "price_change": "Change prices",
+      "price_marginal": "Marginal prices",
+      "elct_inv_broadcast": "Electronic inventory – broadcast",
+      "elct_inv_report": "Electronic inventory – report",
+      "elct_inv_reception": "Electronic inventory – reception",
+      "elct_inv_attach_eds": "Electronic inventory – attach EDS",
+      "setting_sales_plan": "Sales plan settings",
+      "setting_user_chekout": "Cashier settings",
+      "setting_buyers_fiz": "Individual buyers",
+      "setting_buyers": "Corporate buyers",
+      "setting_supplies": "Supply settings",
+      "setting_portal_user": "Portal user settings",
+      "setting_gen_info": "General information",
+      "setting_whs": "Warehouse settings",
+      "setting_scales": "Scales settings",
+      "setting_store": "Store settings",
+      "setting_cash_reg": "Cash register settings",
+      "contr_prod_new_whr": "New product control",
+      "contr_move_between": "Transfers between warehouses",
+      "contr_revision": "Inventory",
+      "contr_weigh_prod": "Product weighing",
+      "contr_nomenclature": "Nomenclature control",
+      "contr_reconciliation": "Reconciliation",
+      "contr_newto_whr": "Add to warehouse",
+      "contr_removefrom_whr": "Write off from warehouse",
+      "contr_barcode_print": "Print barcodes",
+      "rep_team_bonus": "Team bonus report",
+      "rep_prod_solds": "Sales report",
+      "rep_checkout": "Cash report",
+      "rep_gross_profit": "Gross profit report",
+      "rep_consultants": "Consultants report",
+      "rep_certificates": "Certificates report",
+      "rep_abc_xyz": "ABC/XYZ report",
+      "rep_debt_book": "Debt book report",
+      "rep_buyers": "Buyers report",
+      "rep_sales": "Sales report",
+      "rep_checks": "Checks report",
+      "rep_single_bonus": "Single bonus report",
+      "rep_discounts": "Discounts report",
+      "rep_illiquid_products": "Illiquid products report",
+      "market_coupons": "Marketing: coupons",
+      "market_stock": "Marketing: promotions",
+      "market_bonuses": "Marketing: bonuses",
+      "market_create_discount": "Marketing: create discount",
+      "market_gift": "Marketing: gifts",
+      "whs_leftovers": "Warehouse: leftovers",
+      "whs_inv_history": "Warehouse: inventory history",
+      "whs_prod_move": "Warehouse: product movement",
+      "whs_revision": "Warehouse: revision",
+      "whs_holdings": "Warehouse: stock",
+      "whs_exp_dates": "Warehouse: expiration dates",
+      "whs_reconciliation": "Warehouse: reconciliation",
+      "whs_consignment": "Warehouse: consignment",
+      "whs_prod_period": "Warehouse: product period"
+    }
+  }
+  ,
+
+  "reportchecks": {
+  "modalDiscount": "Discount",
+  "common": {
+    "all": "All"
+  },
+
+  "mainTitle": "Sales by receipts",
+  "loadPointsError": "Failed to load points",
+  "loadUsersError": "Failed to load users",
+  "loadReportError": "Failed to load report",
+  "loadCheckError": "Failed to load receipt data",
+  "loadInvoiceError": "Failed to load invoice",
+  "downloadInvoiceError": "Failed to download invoice",
+  "exportNoData": "No data to export",
+
+  "pointPlaceholder": "Sales point",
+  "clientTypePlaceholder": "Client type",
+  "clientFiz": "By individuals",
+  "clientJur": "By legal entities",
+  "cashierPlaceholder": "Cashier",
+  "consultantPlaceholder": "Consultant",
+  "checkBonusAdd": "With accrued bonuses",
+  "checkBonusPay": "With bonus payment",
+  "reportButton": "Report",
+  "exportButton": "Export to Excel",
+
+  "colDate": "Date",
+  "colPaymentType": "Payment method",
+  "colOperationType": "Operation type",
+  "colCashier": "Cashier",
+  "colConsultant": "Consultant",
+  "colTotalPrice": "Total amount",
+  "colCheck": "Receipt",
+  "colInvoice": "Invoice",
+
+  "paymentTypeCard": "Card",
+  "paymentTypeCash": "Cash",
+  "paymentTypeDebit": "Bank transfer",
+  "paymentTypeDebt": "Debt",
+  "paymentTypeMixed": "Mixed",
+  "operationTypeReturn": "Return",
+  "operationTypePurchase": "Purchase",
+
+  "excelSheetName": "Report",
+  "excelFileName": "Sales by receipts",
+  "invoiceFileName": "Invoice",
+  "excelDate": "Date",
+  "excelPaymentType": "Payment method",
+  "excelOperationType": "Operation type",
+  "excelCashier": "Cashier",
+  "excelConsultant": "Consultant",
+  "excelTotalPrice": "Total amount",
+  "excelPoint": "Point",
+  "excelCheckNumber": "Receipt number",
+
+  "modalTitle": "Receipt",
+  "modalPurchase": "Purchase",
+  "modalCashier": "Cashier",
+  "modalPoint": "Point",
+  "modalCashbox": "Cashbox",
+  "modalColName": "Name",
+  "modalColUnitsPrice": "Qty × Price",
+  "modalColPrice": "Amount",
+  "modalColDiscount": "Discount",
+  "modalTotalSum": "Total amount",
+  "modalBonusAdded": "Accrued bonuses",
+  "modalBonusPaid": "Paid with bonuses",
+  "modalVAT": "VAT",
+  "modalToPay": "Amount due",
+  "modalPayments": "Payments",
+  "modalCash": "Cash",
+  "modalCard": "Card",
+  "modalCertificate": "Certificate",
+  "modalDebit": "Bank transfer",
+  "modalDebt": "Debt",
+  "modalCloseButton": "Close"
+}
+,
+"soldProducts": {
+    "sheetNameAdvanced": "Sold Products (Advanced)",
+    "placeholder": {
+      "attributeValue": "Attribute Value",
+      "point": "Sales Point",
+      "brand": "Brand",
+      "categories": "Categories",
+      "counterparty": "Supplier",
+      "transactionType": "Transaction Type",
+      "clientType": "Client Type",
+      "sellType": "Sale Type",
+      "attribute": "Attribute"
+    },
+    "option": {
+      "all": "All",
+      "sales": "Sales",
+      "returns": "Returns",
+      "individual": "Individual",
+      "legalEntity": "Legal Entity",
+      "notSpecified": "Not Specified",
+      "retail": "Retail",
+      "wholesale": "Wholesale"
+    },
+    "checkbox": {
+      "splitAttributes": "Split products by attributes",
+      "includeConsignment": "Including consignment goods"
+    },
+    "advancedTable": {
+      "transactionType": "Operation Type",
+      "productName": "Product Name",
+      "sellDate": "Date",
+      "consultant": "Consultant",
+      "priceDiscount": "Total amount with discount",
+      "priceDiscountBonus": "Total amount with discount (minus bonuses)",
+      "quantity": "Quantity",
+      "stock": "Current Stock",
+      "counterparty": "Supplier",
+      "brand": "Brand",
+      "category": "Category"
+    },
+    "tab": {
+      "simple": "Simple",
+      "advanced": "Advanced"
+    },
+    "loadError": "Error loading data",
+    "sheetName": "Sold Products",
+    "button": {
+      "search": "Search",
+      "export": "Export to Excel"
+    },
+    "table": {
+      "number": "No.",
+      "operationType": "Operation Type",
+      "warehouse": "Warehouse",
+      "productName": "Name",
+      "amount": "Amount",
+      "quantity": "Quantity",
+      "brand": "Brand",
+      "category": "Category"
+    },
+    "operationTypes": {
+      "Продажа": "Sale",
+      "Возврат": "Return"
+    },
+    "summary": {
+      "total": "Total"
+    }
+  }
+
+  ,
+  
+  "invoicesHistoryReport": "Invoice History Report",
+  "invoicesHistory": {
+    "loadDetailsError": "Error loading invoice details",
+  "details": {
+    "invoiceOf": "Invoice dated",
+    "type": "Type",
+    "toStockShort": "To",
+    "fromStockShort": "From Stock",
+    "stock": "Stock",
+    "total": "Total",
+    "excelSheetName": "InvoiceDetails",
+
+    "productName": "Product Name",
+    "barcode": "Barcode",
+    "quantity": "Quantity",
+    "totalAmount": "Total Amount",
+    "purchasePrice": "Purchase Price",
+    "salePrice": "Sale Price",
+    "piecePrice": "Piece Price",
+    "taxCategory": "Tax Category",
+    "cnofeacode": "HS Code (CN FEAC)",
+    "reason": "Reason",
+    "oldPrice": "Old Price",
+    "newPrice": "New Price",
+    "vatStandard": "Standard VAT",
+    "vatNone": "No VAT"
+  },
+    "reportTitle": "Invoice History",
+    "loadError": "Error loading invoice history",
+    "sheetName": "InvoiceHistory",
+    "filter": {
+      "dateRange": "Date Range",
+      "productBarcode": "Product Name / Barcode",
+      "invoiceType": "Invoice Type",
+      "fromStock": "From Stock",
+      "toStock": "To Stock",
+      "supplier": "Supplier",
+      "consignator": "Consignee"
+    },
+    "option": {
+      "allTypes": "All types",
+      "allStocks": "All",
+      "allSuppliers": "All",
+      "allConsignators": "All"
+    },
+    "button": {
+      "search": "Search",
+      "export": "Export to Excel"
+    },
+    "invoiceTypes": {
+      "1": "Transfer",
+      "2": "Goods Receipt",
+      "7": "Write-off",
+      "0": "Price Change",
+      "16": "Consignment (Shipment)",
+      "17": "Consignment (Return)"
+    },
+    "table": {
+      "number": "No.",
+      "invoiceNumber": "Invoice Number",
+      "from": "of",
+      "totalPurchasePrice": "Total Purchase Price",
+      "totalSalePrice": "Total Sale Price",
+      "fullName": "Full Name",
+      "toStock": "To Stock",
+      "supplier": "Supplier",
+      "amount": "Amount",
+      "fromStock": "From Stock",
+      "goodsCost": "Goods Cost",
+      "status": "Status"
+    },
+    "statuses": {
+      "Принят на кассе": "Accepted at POS",
+      "Ожидает обработки от кассы": "Awaiting processing from POS"
+    }
+  }
+
+  ,
+
+  "revisionReport": {
+    "loadDetailsError": "Error loading invoice details",
+    "details": {
+        "unitsWas": "Before Revision",
+        "units": "After Revision",
+        "price": "Sale Price",
+        "leftCost": "Remaining Cost",
+        "diffUnits": "Difference (Units)",
+        "diffPrice": "Difference (Price)",
+        
+        "productName": "Product Name",
+        "revisionDate": "Revision Time",
+        "comment": "Comment",
+        "revisor": "Auditor:",
+        "createDate": "Revision Date:",
+        "revisia": "Revision",
+        "total": "Total",
+        "taxCategory": "Tax Category",
+        "cnofeacode": "HS Code (CN FEAC)",
+        "reason": "Reason",
+        "oldPrice": "Old Price",
+        "newPrice": "New Price",
+        "vatStandard": "Standard VAT",
+        "vatNone": "No VAT"
+    },
+    "reportTitle": "Revision Report",
+    "loadError": "Error loading invoice history",
+    "sheetName": "RevisionReport",
+    "filter": {
+        "point": "Sales Point",
+        "status": "Product Status",
+    "allProducts": "All Products",
+    "revised": "Only Revised Products",
+    "notRevised": "Only Non-Revised Products",
+    "onlyDiff": "Only Products with Stock Difference"
+    },
+    "button": {
+        "search": "Search",
+        "export": "Export to Excel"
+    },
+    "table": {
+        "number": "№",
+        "revisionnumber": "Revision Number",
+        "username": "Auditor",
+        "type_name": "Type",
+        "createdate": "Start Date",
+        "submitdate": "Completion Date"
+    }
+}
+,
+"stockReport": {
+  "sheetNameAdvanced": "Sold Products (Advanced)",
+  "placeholder": {
+    "attributeValue": "Attribute value",
+    "point": "Point of sale",
+    "brand": "Brand",
+    "categories": "Categories",
+    "counterparty": "Supplier",
+    "transactionType": "Transaction type",
+    "clientType": "Client type",
+    "sellType": "Sale type",
+    "attribute": "Attribute",
+    "stock": "Warehouse"
+  },
+  "option": {
+    "all": "All",
+    "sales": "Sales",
+    "returns": "Returns",
+    "individual": "Individual",
+    "legalEntity": "Legal entity",
+    "notSpecified": "Not specified",
+    "retail": "Retail",
+    "wholesale": "Wholesale",
+    "withoutNds": "Without VAT",
+    "withNds": "With VAT"
+  },
+  "checkbox": {
+    "splitAttributes": "Find products by characteristics (e.g., color, size, etc.)",
+    "includeConsignment": "Include consignment goods",
+    "includeDeleted": "Include deleted products"
+  },
+
+  "advancedTable": {
+    "transactionType": "Transaction type",
+    "productName": "Product name",
+    "sellDate": "Date",
+    "consultant": "Consultant",
+    "priceDiscount": "Final amount with discount",
+    "priceDiscountBonus": "Final amount with discount (minus bonuses)",
+    "quantity": "Quantity",
+    "stock": "Current stock",
+    "counterparty": "Supplier",
+    "brand": "Brand",
+    "category": "Category"
+  },
+
+  "tab": {
+    "simple": "Simple",
+    "advanced": "Advanced"
+  },
+
+  "loadError": "Data loading error",
+  "sheetName": "Stock balance",
+
+  "button": {
+    "search": "Search",
+    "export": "Export to Excel"
+  },
+
+  "table": {
+    "number": "№",
+    "operationType": "Operation type",
+    "warehouse": "Warehouse",
+    "productName": "Product name",
+    "amount": "Amount",
+    "quantity": "Quantity",
+    "brand": "Brand",
+    "pointname": "Warehouse",
+    "productname": "Product name",
+    "code": "Barcode",
+    "price": "Sale price",
+    "purchaseprice": "Purchase price",
+    "wholesale_price": "Wholesale price",
+    "units": "Quantity",
+    "counterparty": "Counterparty",
+    "cost": "Total cost",
+    "price1": "Stock value at retail prices",
+    "markup": "Markup",
+    "nds": "VAT",
+    "yes": "Yes",
+    "no": "No",
+    "unitsprid": "Unit of measurement",
+    "pieceprice": "Price per piece",
+    "pieceinpack": "Pieces per pack",
+    "piece": "Piece-by-piece sale",
+    "category": "Category"
+  },
+
+  "operationTypes": {
+    "Продажа": "Sale",
+    "Возврат": "Return"
+  },
+
+  "summary": {
+    "total": "Total"
+  }
+},
+
+"sale": {
+    "errors": {
+      "loadTicketFormat": "Error loading receipt format",
+      "loadCompanyInfo": "Error loading company data",
+      "loadCashboxes": "Error loading cash registers",
+      "loadPoints": "Error loading retail points",
+      "loadUsers": "Error loading cashbox users",
+      "excessPayment": "Payment amount exceeds the balance after debt accounting",
+      "noProducts": "No products in the receipt",
+      "invalidBarcode": "Invalid barcode"
+    },
+    "clientModal": {
+      "title": "Select Client",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "phone": "Phone",
+      "action": "Action",
+      "selectBtn": "Select"
+    },
+    "productModal": {
+      "title": "Select Product",
+      "searchPlaceholder": "Search by name or barcode",
+      "loadError": "Error loading products",
+      "name": "Name",
+      "code": "Barcode",
+      "price": "Price",
+      "stock": "Stock",
+      "action": "Action",
+      "selectBtn": "Select"
+    },
+    "setup": {
+      "title": "POS Startup",
+      "stepPoint": "Point",
+      "stepCashbox": "Cashbox",
+      "stepUser": "User",
+      "selectPoint": "Select retail point",
+      "selectCashbox": "Select cash register",
+      "selectUser": "Select cashbox user",
+      "placeholderPoint": "Retail Point",
+      "placeholderCashbox": "Cashbox",
+      "placeholderUser": "Cashbox User",
+      "continueBtn": "Continue"
+    },
+    "returnWorkspace": {
+      "title": "Returns",
+      "defaultProductName": "Product",
+      "errors": {
+        "loadCatalog": "Error loading product catalog",
+        "loadTickets": "Error loading receipts",
+        "alreadyReturned": "A return has already been processed for product \"{{name}}\""
+      }
+    },
+    "ticketDetails": {
+      "paymentTypeLabel": "Payment type:",
+      "units": "pcs.",
+      "selectAll": "Select All",
+      "unselectAll": "Deselect All",
+      "confirmReturn": "Process Return",
+      "paymentMethods": {
+        "cash": "Cash",
+        "card": "Card Payment",
+        "mixed": "Mixed Payment",
+        "debit": "Bank Transfer",
+        "debt": "Credit Sale",
+        "certificate": "Certificate Payment",
+        "unknown": "Unknown"
+      }
+    },
+    "ticketList": {
+      "clearBtn": "Clear",
+      "searchBtn": "Find",
+      "emptyText": "No receipts found",
+      "ticketFrom": "from"
+    },
+    "paymentMethods": {
+      "cash": "Cash",
+      "card": "Card Payment",
+      "mixed": "Mixed Payment",
+      "debit": "Bank Transfer",
+      "debt": "Credit Sale",
+      "certificate": "Certificate Payment",
+      "unknown": "Unknown"
+    },
+    "receipt": {
+      "logoAlt": "Company Logo",
+      "discountLabel": "Discount:",
+      "binLabel": "BIN/IIN",
+      "header": "Sales Receipt",
+      "returnType": "Return",
+      "saleType": "Sale:",
+      "itemsCount": "Items:",
+      "amount": "Amount:",
+      "discounts": "Discounts:",
+      "total": "TOTAL:",
+      "vatLabel": "VAT:",
+      "cashier": "Cashier:",
+      "consultant": "Consultant:",
+      "terminal": "Terminal:",
+      "print": "Print",
+      "copy": "Receipt Copy",
+      "windowTitle": "Receipt",
+      "thankYou": "Thank you for your purchase!",
+      "errors": {
+        "printWindowFailed": "Could not open print window. Please check if pop-ups are blocked in your browser",
+        "printerNotFound": "Printer not found or disconnected"
+      }
+    },
+    "workspace": {
+      "buttons": {
+        "productList": "Product List",
+        "cashDrawer": "Cash Drawer",
+        "return": "Return",
+        "cancelReturn": "Cancel Return",
+        "discount": "Discount",
+        "payment": "Payment",
+        "apply": "Apply",
+        "actions": "Actions",
+        "writeOffDebt": "Write off debt",
+        "markup": "Markup",
+        "cancel": "Cancel"
+      },
+      "table": {
+        "name": "Name",
+        "price": "Price",
+        "qty": "Qty",
+        "stock": "Stock",
+        "discount": "Discount",
+        "total": "Total"
+      },
+      "placeholders": {
+        "barcode": "Barcode"
+      },
+      "labels": {
+        "totalSum": "Amount"
+      },
+      "errors": {
+        "emptyCart": "Add products first",
+        "noStock": "Out of stock",
+        "minQty": "Quantity cannot be less than minimum",
+        "maxDiscountExceeded": "Maximum discount {{percent}}%",
+        "maxAmountExceeded": "Maximum discount {{percent}}% ({{amount}})",
+        "noReturnTicket": "No receipt selected for return",
+        "noDiscountPermission": "Selected user does not have permission for manual discounts",
+        "selectProductFirst": "Select a product",
+        "barcodeNotFound": "Product not found by barcode"
+      },
+      "messages": {
+        "returnSuccess": "Return processed successfully"
+      },
+      "modals": {
+        "title": "Actions",
+        "manualDiscount": {
+          "title": "Manual Discount",
+          "amountLabel": "Discount Amount:",
+          "percentLabel": "Discount Percent (%):",
+          "maxLimit": "Max Discount: {{percent}}%"
+        },
+        "returnMethod": {
+          "title": "Select Return Method",
+          "toCard": "Return to Card",
+          "toCash": "Return in Cash",
+          "toDebit": "Return via Transfer"
+        }
+      }
+    },
+    "payment": {
+      "title": "Payment",
+      "unknown": "Unknown type",
+      "buttons": {
+        "cash": "Cash",
+        "card": "Card",
+        "mixed": "Mixed",
+        "debit": "Transfer",
+        "debt": "Credit",
+        "legal": "Legal Entity",
+        "discount": "Discount",
+        "finish": "Finish Payment",
+        "complete": "Complete Payment",
+        "cancel": "Cancel",
+        "confirm": "Confirm",
+        "continue": "Continue",
+        "useBonuses": "Use Bonuses"
+      },
+      "labels": {
+        "selectConsultant": "Select consultant",
+        "totalToPay": "Total to pay",
+        "client": "Client",
+        "totalCheckAmount": "Receipt Total",
+        "individual": "Individual",
+        "legal": "Legal Entity",
+        "iin": "Client IIN",
+        "discount": "Receipt Discount",
+        "markups": "Receipt Markup",
+        "bonusesUsed": "Bonuses used",
+        "bonusesEarned": "Bonuses earned",
+        "certificatePay": "Certificate Payment",
+        "debtAmount1": "Debt",
+        "consultant": "Sales Consultant",
+        "useBonuses": "Use Bonuses",
+        "legalEntity": "Legal Entity {{name}} ({{bin}})",
+        "physicalPerson": "Individual {{firstname}} {{lastname}}",
+        "cashAmount": "Cash Amount",
+        "change": "Change",
+        "phone": "Phone Number",
+        "amount": "Amount",
+        "sum": "Sum",
+        "percent": "Percent",
+        "cash": "Cash",
+        "card": "Card",
+        "debtAmount": "Debt Amount",
+        "firstname": "First Name",
+        "lastname": "Last Name",
+        "currentDebt": "Current Debt",
+        "transfer": "Transfer",
+        "remainingAfterDebt": "Remaining balance to pay",
+        "placeholderSearch": "Enter BIN or name",
+        "errorFindFirst": "Find company first",
+        "thanks": "Thank you for your purchase!"
+      },
+      "methods": {
+        "cash": "Cash",
+        "card": "Card Payment",
+        "mixed": "Mixed Payment",
+        "debit": "Bank Transfer",
+        "debt": "Credit Sale",
+        "unknown": "Not specified"
+      },
+      "errors": {
+        "limitExceeded": "Discount limit exceeded. Available: {{amount}}",
+        "enterPhone": "Enter phone number",
+        "enterFirstname": "Enter first name",
+        "enterLastname": "Enter last name",
+        "clientNotFound": "Client not found",
+        "searchError": "Search error",
+        "selectClientFirst": "Find client first",
+        "enterAmount": "Enter amount",
+        "debtTooHigh": "Debt cannot exceed receipt total",
+        "noType": "Payment type not selected",
+        "serverError": "Server error",
+        "transferError": "Connection error"
+      },
+      "messages": {
+        "debtMixedSet": "Debt set, mixed payment enabled",
+        "successMessage": "Credit sale confirmed",
+        "binLabel": "Company BIN",
+        "nameLabel": "Company Name",
+        "deleteConfirm": "Delete selected company?",
+        "searchByBin": "Enter BIN",
+        "searchByName": "Enter name",
+        "notFound": "Company not found",
+        "searchError": "Error searching for company",
+        "success": "Payment successful"
+      },
+      "modals": {
+        "amounts": {
+          "title": "Enter Amounts"
+        },
+        "debt": {
+          "title": "Credit Sale",
+          "deleteTitle": "Delete Debt?",
+          "deleteContent": "Do you want to delete the current debtor?",
+          "confirmPay": "Confirm Debt",
+          "confirmMsg": "Sell on credit for {{amount}}?"
+        },
+        "confirm": {
+          "title": "Confirm Payment",
+          "card": "Confirm card payment for {{amount}}?",
+          "generic": "Confirm payment for {{amount}}?",
+          "msg": "Process payment for {{amount}}?"
+        },
+        "discount": {
+          "title": "Receipt Discount",
+          "maxLimit": "Max Discount: {{percent}}%"
+        }
+      },
+      "discount": {
+        "enterSum": "Enter discount amount",
+        "enterPercent": "Enter discount percent",
+        "calculatedAmount": "Discount will be",
+        "maxDiscount": "Max Discount",
+        "title": "Discount",
+        "apply": "Apply",
+        "labelSum": "Discount Sum",
+        "labelPercent": "Discount %"
+      }
+    }
+  },
+
+  "aiChat": {
+    "status": "Status",
+    "deficit": "Shortage",
+    "surplus": "Overstock",
+    "normal": "Normal",
+    "product": "Product",
+    "warehouse": "Warehouse",
+    "stockQty": "Stock",
+    "price": "Price",
+    "qty": "Qty",
+    "sum": "Sale Price",
+    "costPrice": "Cost",
+    "profit": "Profit",
+    "period": "Period",
+    "thinking": "Thinking...",
+    "placeholder": "Ask about stock or sales...",
+    "sessionExpired": "❌ Session expired. Please login again.",
+    "serverError": "Server error."
+  }
+
+  ,
+
+  "workorder": {
+  "title": "Product Orders",
+  "myOrders": "My Orders",
+  "incomingOrders": "Goods Receipt",
+  "date": "Date",
+  "point": "Warehouse / Location",
+  "user": "User",
+  "addProduct": "Add Product to Order",
+  "counterparty": "Supplier / Counterparty",
+  "qty": "Quantity",
+  "price": "Purchase Price",
+  "price1": "Sale price",
+"wholesaleprice": "Wholesale price",
+
+  "addSuccess": "Product successfully added to the order",
+  "addError": "Error adding product",
+
+  "status1": "Status",
+  "send": "Send",
+  "receive": "Goods Receipt",
+  "loadError": "Error loading orders",
+  "alreadyProcessed": "This order has already been processed and cannot be modified or resent!",
+
+  "modalTitleAdd": "Create Order",
+  "modalTitleEdit": "Edit Order",
+  "pointLabel": "Sales Point",
+  "numberLabel": "Order Number",
+  "pointPlaceholder": "Select a point",
+  "numberPlaceholder": "Enter a number",
+  "submitSuccess": "Data saved successfully",
+  "submitError": "Error while saving",
+  "save": "Save",
+  "cancel": "Cancel",
+  "required": "Required field",
+
+  "counterpartiesname": "Supplier",
+  "sendwhatsapp": "Whatsapp",
+  "deleteDetailConfirm": "Remove this product from the order?",
+  "deleteDetailSuccess": "Product removed",
+  "deleteDetailError": "Error removing product",
+  "receiveConfirm": "Do you confirm receipt of goods for this order?",
+  "receiveSuccess": "Order successfully received",
+  "receiveError": "Error during goods receipt",
+  "sendSuccess": "Sent",
+
+  "total": "Total",
+  "code": "SKU",
+  "delete": "Delete",
+  "deleteConfirm": "Are you sure you want to delete this order?",
+  "deleteSuccess": "Order successfully deleted",
+  "deleteError": "Error deleting order",
+  "details": "Order Details",
+
+  "product": {
+    "label": "Select a product or scan the barcode",
+    "code": "SKU",
+    "name": "Name"
+  },
+
+  "name": "Name",
+
+  "status": {
+    "draft": "Draft",
+    "formation": "Formed",
+    "inprocess": "Sent",
+    "approved": "Approved",
+    "part": "Partially",
+    "accepted": "Accepted"
+  },
+
+  "common": {
+    "add": "Add",
+    "edit": "Edit",
+    "save": "Save",
+    "cancel": "Cancel",
+    "required": "Required field",
+    "close": "Close",
+    "yes": "Yes",
+    "no": "No"
+  },
+  "analysis": {
+  "findCheaper": "Find cheaper",
+  "modalTitle": "Price Analysis: Better deals found (last 3 months)",
+  "counterparty": "Supplier",
+  "docDate": "Doc Date",
+  "myPrice": "My Price",
+  "cheaperPrice": "Lower Price",
+  "benefit": "Benefit",
+  "error": "Error searching prices",
+  "findBestPrice": "Find best price",
+  "analyzerTitle": "Minimum Purchase Price Analyzer",
+  "selectProductLabel": "Select a product for analysis:",
+  "noData3Months": "Nothing found for the last 3 months",
+  "searchError": "Price search error",
+  "minPriceLabel": "Minimum Price",
+  "address": "Supplier Address",
+  "emptyPrompt": "Select a product to view price history"
+}
+}
+
+
+}
