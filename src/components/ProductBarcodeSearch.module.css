@@ -17,3 +17,17 @@
   width: 250px;
   margin-top: 0;
 }
+
+#barcode-reader {
+    width: 100% !important;
+    min-height: 250px;
+    background: #f0f0f0;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+#barcode-reader video {
+    width: 100% !important;
+    height: auto !important;
+    object-fit: cover;
+}

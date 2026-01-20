@@ -3346,6 +3346,10 @@
   ,
 
   "workorder": {
+"scanner": {
+      "title": "Scan Code",
+      "cameraError": "Camera access error. Please check permissions."
+    },
   "title": "Product Orders",
   "myOrders": "My Orders",
   "incomingOrders": "Goods Receipt",

@@ -17,11 +17,12 @@ import {
 } from 'antd';
 import {
   SearchOutlined,
-  QuestionCircleOutlined,  
+  QuestionCircleOutlined, ScanOutlined 
 } from '@ant-design/icons';
 import useApiRequest from '../../hooks/useApiRequest';
 import { useTranslation } from 'react-i18next'; 
 import styles from './Products.module.css';
+import BarcodeScanner from '../../components/BarcodeScanner';
 
 interface Unit {
   id: string;
@@ -96,6 +97,27 @@ const ProductFormModal: React.FC<Props> = ({ visible, onClose, onSuccess ,onBarc
   >([]);
   const [selectedAttr, setSelectedAttr] = useState<string | null>(null);
   const [selectedAttrValue, setSelectedAttrValue] = useState<string>('');
+
+
+  ////
+    
+      // СОСТОЯНИЕ ДЛЯ СКАНЕРА
+    
+      const [isScannerOpen, setIsScannerOpen] = useState(false);
+      
+    
+      const handleScanSuccess = (decodedText: string) => {
+  // Устанавливаем значение в поле формы "code"
+  form.setFieldsValue({ code: decodedText });
+  // Если вы хотите также добавить его в массив дополнительных баркодов (только для режима редактирования):
+  if (isEdit) {
+    setBarcodeInput(decodedText); 
+  }
+  setIsScannerOpen(false);
+//  message.success(t('productForm.barcodeScanned')); // "Штрих-код отсканирован"
+};
+    
+      ////
 
   const getHeaders = () => ({
     Authorization: `Bearer ${localStorage.getItem('accessToken') || ''}`,
@@ -547,11 +569,22 @@ const handleAddAttr = async () => {
                 disabled={isEdit}
                 placeholder={t('productForm.enterBarcode')}
                 addonAfter={
-                  !isEdit && (
+
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <Button 
+          type="text" 
+          size="small" 
+          icon={<ScanOutlined />} 
+          onClick={() => setIsScannerOpen(true)}
+          style={{ border: 'none', background: 'transparent' }}
+        /> 
+
+                  {!isEdit && (
                     <Button onClick={handleGenerateBarcode}>
                       {t('productForm.generate')}
                     </Button>
-                  )
+                  )}
+                  </div>
                 }
               />
             </Form.Item>
@@ -944,6 +977,12 @@ const handleAddAttr = async () => {
           </Col>
         </Row>
       </Form>
+
+      <BarcodeScanner 
+    visible={isScannerOpen}
+    onClose={() => setIsScannerOpen(false)}
+    onScan={handleScanSuccess}
+  />
     </Modal>
   );
 };

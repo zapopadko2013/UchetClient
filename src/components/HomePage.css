@@ -56,3 +56,37 @@
 .info-item-wholesale .ant-switch {
   justify-self: start;
 }
+
+
+/* Ширина для Input */
+.barcodeInput {
+  width: 250px;
+  margin-top: 0;
+}
+
+#barcode-reader {
+    width: 100% !important;
+    min-height: 250px;
+    background: #f0f0f0;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+#barcode-reader video {
+    width: 100% !important;
+    height: auto !important;
+    object-fit: cover;
+}
+
+.barcode-section {
+    margin-top: 24px;
+    padding: 16px;
+    background: #fafafa;
+    border-radius: 8px;
+    border: 1px transition #f0f0f0;
+}
+
+/* Увеличиваем шрифт внутри инпута для удобства на телефоне */
+.ant-input {
+    font-size: 16px !important; 
+}

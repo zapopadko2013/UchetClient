@@ -14,6 +14,7 @@
     "bootstrap": "^5.3.8",
     "esc-pos-encoder": "^3.0.0",
     "file-saver": "^2.0.5",
+    "html5-qrcode": "^2.3.8",
     "i18next": "^25.5.1",
     "lodash": "^4.17.21",
     "marked": "^17.0.0",

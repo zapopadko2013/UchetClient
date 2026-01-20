@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { Typography, Space, Spin, message, Card, Button, Switch } from 'antd';
+import { Typography, Space, Spin, message, Card, Button, Switch,Input } from 'antd';
 import { useTranslation } from 'react-i18next';
 import dayjs from 'dayjs';
 import useApiRequest from '../hooks/useApiRequest';
 import EditCompanyModal from '../components/EditCompanyModal';
 import './HomePage.css';
+import { LoadingOutlined, SearchOutlined, ScanOutlined } from '@ant-design/icons';
+import BarcodeScanner from '../components/BarcodeScanner';
+
 
 const { Title, Paragraph, Text } = Typography;
 
@@ -35,6 +38,23 @@ const HomePage: React.FC = () => {
   const [companyData, setCompanyData] = useState<CompanyData | null>(null);
   const [isEditModalVisible, setIsEditModalVisible] = useState(false);
   const { loading, error, sendRequest } = useApiRequest();
+
+
+  ////
+
+  // СОСТОЯНИЕ ДЛЯ СКАНЕРА
+    const [barcode, setBarcode] = useState<string | undefined>(undefined);
+  const [isScannerOpen, setIsScannerOpen] = useState(false);
+  const [barcodeLoading, setBarcodeLoading] = useState(false);
+
+  const handleScanSuccess = (decodedText: string) => {
+  //console.log("Отсканированный код:", decodedText); 
+  setBarcode(decodedText); // Обновляем состояние
+  setIsScannerOpen(false); // Закрываем камеру
+};
+
+  ////
+
 
   // Функция для загрузки данных компании
   const fetchCompanyData = async () => {
@@ -145,13 +165,27 @@ const HomePage: React.FC = () => {
       )}
 
       {companyData && (
+        <div>
         <EditCompanyModal
           visible={isEditModalVisible}
           initialData={companyData}
           onClose={() => setIsEditModalVisible(false)}
           onUpdateSuccess={handleUpdateSuccess}
         />
+
+       
+    
+              </div>
+        
+              
+             
+        
+        
       )}
+
+
+
+
     </div>
   );
 };

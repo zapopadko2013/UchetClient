@@ -74,3 +74,34 @@ button:focus-visible {
 }
 
 
+/* 1. Усмиряем внутренний контейнер библиотеки */
+#reader-element-unique {
+    border: none !important;
+}
+
+/* 2. Самый важный фикс для видео */
+#reader-element-unique video {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    /* Убираем любые смещения, которые библиотека считает автоматически */
+    transform: none !important; 
+}
+
+/* 3. Убираем лишние кнопки и текст «Camera Scan», которые библиотека пихает вниз */
+#reader-element-unique img, 
+#reader-element-unique b, 
+#reader-element-unique button {
+    display: none !important;
+}
+
+/* 4. Фиксируем саму модалку AntD, чтобы она не плавала */
+.ant-modal-wrap {
+    display: flex !important;
+    align-items: flex-start !important; /* Прижимаем к верху, а не к центру */
+    justify-content: center !important;
+    padding-top: 50px !important;
+}

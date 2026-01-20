@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Select, Input, Button, message } from 'antd';
-import { LoadingOutlined, SearchOutlined } from '@ant-design/icons';
+import { LoadingOutlined, SearchOutlined, ScanOutlined } from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
 import styles from './ProductBarcodeSearch.module.css';
 import useApiRequest from '../hooks/useApiRequest';
+
+
+import BarcodeScanner from '../components/BarcodeScanner';
 
 const { Option } = Select;
 
@@ -29,6 +32,21 @@ const ProductBarcodeSearch: React.FC<ProductBarcodeSearchProps> = ({ onProductSe
   const [barcodeLoading, setBarcodeLoading] = useState<boolean>(false);
   const API_URL = import.meta.env.VITE_API_URL || '';
   const { sendRequest } = useApiRequest();
+
+  ////
+  
+    // СОСТОЯНИЕ ДЛЯ СКАНЕРА
+  
+    const [isScannerOpen, setIsScannerOpen] = useState(false);
+    
+  
+    const handleScanSuccess = (decodedText: string) => {
+    //console.log("Отсканированный код:", decodedText); 
+    setBarcode(decodedText); // Обновляем состояние
+    setIsScannerOpen(false); // Закрываем камеру
+  };
+  
+    ////
 
   const getHeaders = () => ({
     Authorization: `Bearer ${localStorage.getItem('accessToken') || ''}`,
@@ -181,13 +199,26 @@ const ProductBarcodeSearch: React.FC<ProductBarcodeSearchProps> = ({ onProductSe
             barcodeLoading ? (
               <LoadingOutlined spin />
             ) : (
+              <>
+                  <ScanOutlined 
+                    onClick={() => setIsScannerOpen(true)} 
+                    style={{ cursor: 'pointer', color: '#1890ff', fontSize: '18px' }} 
+                  />
               <SearchOutlined onClick={() => onBarcodeSearch(undefined, barcode)} />
+                </>
             )
           }
           className={styles.barcodeInput} // Ширина инпута
           onClear={handleBarcodeClear} // Очистка штрих-кода и товара, когда пользователь очищает поле
         />
       </div>
+
+      <BarcodeScanner 
+        visible={isScannerOpen} 
+        onClose={() => setIsScannerOpen(false)} 
+        onScan={handleScanSuccess} 
+      />
+
     </div>
   );
 };
