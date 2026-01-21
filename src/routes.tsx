@@ -36,6 +36,7 @@ import {
   FileTextOutlined,
   AuditOutlined,ClusterOutlined,InboxOutlined,
   TrademarkCircleOutlined,ReconciliationOutlined,DatabaseOutlined,ShoppingCartOutlined,
+  RobotOutlined,QuestionCircleOutlined,
 } from '@ant-design/icons';
 
 import HomePage from './components/HomePage';
@@ -87,8 +88,9 @@ import InvoicesHistoryReport from './components/Reports/InvoicesHistoryReport/In
 import RevisionReport from './components/Reports/RevisionReport/RevisionReport';
 import StockReport from './components/Reports/StockReport/StockReport';
 import SalePage from './components/SalePage/SalePage';
+import AiChatHistory from './components/AiChatHistory';
 
-
+import SupportAdminPage from './components/Administration/SupportAdminPage';
 
 
 export const routes = [
@@ -443,6 +445,14 @@ export const routes = [
       element: <ERPUserListPage />,
       code: 'adminusers',
     },
+{
+      path: '/supportrequests',
+      key: 'supportrequests',
+      label: 'Вопросы пользователей',
+      icon: <QuestionCircleOutlined />,
+      element: <SupportAdminPage />,
+      code: 'supportrequests',
+    },
   ],
 },  
 
@@ -522,6 +532,21 @@ export const routes = [
       element: <InfoCompanyPage />,
       code: 'admincompanyinfo',
     },
+
+//////
+//AiChatHistory
+
+{
+      path: '/aichathistory',
+      key: 'aichathistory',
+      label: 'История AI-помощника',
+      icon: <RobotOutlined />,
+      element: <AiChatHistory />,
+      code: 'aichathistory',
+    },
+
+//////
+
   {
     path: '/news',
     element: <NewsPage />,

@@ -21,6 +21,8 @@
 
     ,
     "orderproduct": "Тауарларға тапсырыс",
+    "aichathistory": "AI-көмекші тарихы",
+"supportrequests": "Бағдарлама бойынша сұрақтар",
 
     "sellersBuyers": "Жеткізушілер мен сатып алушылар",
   "suppliers": "Жеткізушілер",
@@ -3334,6 +3336,14 @@
     "normal": "Қалыпты",
     "product": "Тауар",
     "warehouse": "Қойма",
+
+    "supportTag": "Қолдау",
+  "you": "Сіз",
+  "specialistAnswer": "Маманның жауабы",
+  "waitingAnswer": "Маманның жауабын күтуде",
+  "noHistory": "Тарих бос",
+  "historyTitle": "Хабарламалар тарихы",
+
     "stockQty": "Қалдық",
     "price": "Бағасы",
     "qty": "Саны",

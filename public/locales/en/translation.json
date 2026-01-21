@@ -25,6 +25,9 @@
   "individualBuyers": "Individual Buyers",
 
   "orderproduct": "Product Order",
+  "aichathistory": "AI Assistant History",
+
+"supportrequests": "Support Requests",
 
 
   "tradeObjects": "Trade Objects",
@@ -3332,6 +3335,14 @@
     "warehouse": "Warehouse",
     "stockQty": "Stock",
     "price": "Price",
+
+    "supportTag": "Support",
+  "you": "You",
+  "specialistAnswer": "Specialist Answer",
+  "waitingAnswer": "Awaiting specialist response",
+  "noHistory": "History is empty",
+  "historyTitle": "Chat History",
+  
     "qty": "Qty",
     "sum": "Sale Price",
     "costPrice": "Cost",

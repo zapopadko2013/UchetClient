@@ -24,6 +24,10 @@
     "legalBuyers": "Покупатели юр. лица",
     "individualBuyers": "Покупатели физ. лица",
 
+    "aichathistory": "История AI-помощника",
+    "supportrequests": "Вопросы по программе",
+    
+
     "tradeObjects": "Объекты торговли",
     "warehouse": "Склад",
     "storePoints": "Торговая точка",
@@ -3687,6 +3691,14 @@
     "sum": "Цена продажи",
     "profit": "Прибыль",
     "period": "Период",
+
+    "supportTag": "Поддержка",
+    "you": "Вы",
+    "specialistAnswer": "Ответ специалиста",
+    "waitingAnswer": "Ожидает ответа специалиста",
+    "noHistory": "История пуста",
+    "historyTitle": "История переписки",
+    
     "thinking": "Думаю...",
     "placeholder": "Спроси про остатки или продажи...",
     "sessionExpired": "❌ Сессия истекла. Перезайдите.",

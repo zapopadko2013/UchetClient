@@ -3,6 +3,7 @@ import { Table, Input, Button, Tag, Spin, Avatar, List, Typography } from 'antd'
 import { SendOutlined, UserOutlined, RobotOutlined } from '@ant-design/icons';
 import type { ColumnsType } from 'antd/es/table';
 import { useTranslation } from 'react-i18next';
+import { v4 as uuidv4 } from 'uuid'; // Импортируем генератор
 
 const { Text } = Typography;
 
@@ -43,6 +44,8 @@ export default function AiChat() {
   const [input, setInput] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const scrollRef = useRef<HTMLDivElement | null>(null);
+
+  const [sessionId] = useState<string>(uuidv4());
 
   
 
@@ -171,7 +174,7 @@ export default function AiChat() {
           'Authorization': `Bearer ${localStorage.getItem('accessToken') || ''}`,
           'Accept-Language': i18n.language // Передаем язык на бэкенд
         },
-        body: JSON.stringify({ message: input, lang: i18n.language }),
+        body: JSON.stringify({ message: input, lang: i18n.language, sessionId: sessionId }),
       });
       const data = await response.json();
       

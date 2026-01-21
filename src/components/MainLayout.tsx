@@ -67,12 +67,13 @@ const MainLayout: React.FC<MainLayoutProps> = ({ username, accesses }) => {
     //const alwaysVisibleCodes = ['home', 'news', 'change-password','adminnews','admincompanysettings','admincompanycreate','setting_portal_user','businessManagement','admincompanylist','admincompanyinfo','admindownloadproduct','adminattribute','adminattributeadd','adminabrand','adminusers'];
     const alwaysVisibleCodes1 = [
          'home', 'news', 'change-password', 'setting_portal_user', 'businessManagement','saleslist'
+         ,'aichathistory'
     ];
 
     const alwaysVisibleCodesd = [
     'adminnews','admincompanysettings','admincompanycreate','admincompanylist',
     'admincompanyinfo','admindownloadproduct','adminattribute','adminattributeadd',
-    'adminabrand','adminusers'
+    'adminabrand','adminusers','supportrequests'
     ];
 
     const alwaysVisibleCodes =
