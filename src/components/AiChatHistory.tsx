@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { List, Typography, Card, Tag, Skeleton, Collapse, Divider, Empty, message, Space, Table, Avatar } from 'antd';
+import { List, Typography, Card, Tag, Skeleton, Collapse, Divider, Empty, message, Space, Table, Avatar,Button } from 'antd';
 import { 
   ClockCircleOutlined, 
   MessageOutlined, 
   RobotOutlined, 
   UserOutlined, 
   CheckCircleOutlined, 
-  HistoryOutlined 
+  HistoryOutlined , PlayCircleOutlined
 } from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
 import useApiRequest from '../hooks/useApiRequest';
@@ -203,7 +203,26 @@ export default function AiChatHistory() {
           <Text strong>{session.messages[0]?.question.slice(0, 35)}...</Text>
           {session.messages.some(m => m.isSupportRequest) && <Tag color="gold">{t('aiChat.supportTag')}</Tag>}
         </Space>
+        <Space>
+        <Button 
+            type="primary" 
+            size="small"
+            ghost
+            icon={<PlayCircleOutlined />} 
+            onClick={(e) => {
+                e.stopPropagation();
+                // Генерируем событие
+                const event = new CustomEvent('continueAiSession', { detail: session });
+                window.dispatchEvent(event);
+                //message.success(t('aiChat.sessionRestored') || 'Тема перенесена в чат');
+            }}
+        >
+            {t('aiChat.continue') || 'Продолжить'}
+        </Button>
         <Text type="secondary" className={styles.dateLabel}>{formatDateLabel(session.updated_at)}</Text>
+    </Space>
+        {/* <Text type="secondary" className={styles.dateLabel}>{formatDateLabel(session.updated_at)}</Text>
+      */} 
       </div>
     ),
     children: (

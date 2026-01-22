@@ -155,6 +155,18 @@ const MainLayout: React.FC<MainLayoutProps> = ({ username, accesses }) => {
         return [];
     };
 
+    /////22.01.2026
+    const toggleAiChat = () => {
+    // Если мы открываем чат вручную (не через историю), 
+    // и он сейчас закрыт — сбрасываем предыдущую сессию из истории
+    if (!isAiChatVisible) {
+        setSelectedSession(null); 
+    }
+    setIsAiChatVisible(!isAiChatVisible);
+    };
+    /////22.01.2026
+
+
     // Функция для поиска маршрута по пути (поиск по исходному routes)
     const findRouteByPath = (routes: RouteItem[], path: string): RouteItem | null => {
         for (const route of routes) {
@@ -194,6 +206,22 @@ const MainLayout: React.FC<MainLayoutProps> = ({ username, accesses }) => {
     useEffect(() => {
         setOpenKeys(defaultOpenKeys);
     }, [location.pathname]);
+
+
+    /////22.01.2026
+    const [selectedSession, setSelectedSession] = useState<any>(null);
+
+    useEffect(() => {
+    const handleContinue = (event: any) => {
+        setSelectedSession(event.detail); // Сохраняем данные сессии
+        setIsAiChatVisible(true);        // Открываем чат
+    };
+
+    window.addEventListener('continueAiSession', handleContinue);
+    return () => window.removeEventListener('continueAiSession', handleContinue);
+}, []);
+    /////22.01.2026
+
 
     const onOpenChange = (keys: string[]) => {
         setOpenKeys(keys);
@@ -328,16 +356,24 @@ const MainLayout: React.FC<MainLayoutProps> = ({ username, accesses }) => {
             />
         </div>
         {/* Внутри AiChat убедитесь, что контейнер занимает 100% высоты */}
-        <AiChat />
+        <AiChat initialSession={selectedSession} />
     </div>
 )}
 
-<FloatButton
+{/* <FloatButton
     icon={isAiChatVisible ? <CloseOutlined /> : <MessageOutlined />}
     type="primary"
     style={{ right: 24, bottom: 24, width: 60, height: 60 }}
     onClick={() => setIsAiChatVisible(!isAiChatVisible)}
     tooltip={<div>{isAiChatVisible ? t('misc.aiCloseAssistant') ||'Закрыть чат' : t('misc.aiReadAssistant') ||'Спросить NuraAi'}</div>}
+/> */}
+
+<FloatButton
+    icon={isAiChatVisible ? <CloseOutlined /> : <MessageOutlined />}
+    type="primary"
+    style={{ right: 24, bottom: 24, width: 60, height: 60 }}
+    onClick={toggleAiChat} // Используем нашу новую функцию
+    tooltip={<div>{isAiChatVisible ? t('misc.aiCloseAssistant') : t('misc.aiReadAssistant')}</div>}
 />
             </div>
 

@@ -39,15 +39,38 @@ interface Message {
   salesData?: SalesItem[];
 }
 
-export default function AiChat() {
+interface AiChatProps {
+  initialSession?: any; // Принимаем сессию
+}
+
+export default function AiChat({ initialSession }: AiChatProps) {
   const { t, i18n } = useTranslation(); // 2. Инициализация t
-  const [messages, setMessages] = useState<Message[]>([]);
+  //const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const scrollRef = useRef<HTMLDivElement | null>(null);
 
-  const [sessionId] = useState<string>(uuidv4());
+  //const [sessionId] = useState<string>(uuidv4());
+ const [sessionId, setSessionId] = useState<string>(
+    initialSession?.id || uuidv4()
+  );
 
+  // Инициализируем сообщения сразу при создании компонента
+  const [messages, setMessages] = useState<Message[]>(() => {
+    if (initialSession?.messages) {
+      return initialSession.messages.flatMap((m: any) => [
+        { role: 'user' as const, text: m.question },
+        { 
+          role: 'ai' as const, 
+          text: typeof m.answer === 'string' ? m.answer : m.answer?.text,
+          dataType: m.answer?.dataType,
+          stockData: m.answer?.stockData,
+          salesData: m.answer?.salesData 
+        }
+      ]);
+    }
+    return [];
+  });
   
 
   const API_URL = import.meta.env.VITE_API_URL || '';
@@ -55,6 +78,58 @@ export default function AiChat() {
   useEffect(() => {
     scrollRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, isLoading]);
+
+
+  //////22.01.2026
+
+/*   useEffect(() => {
+    // Функция-обработчик события "продолжить сессию"
+    const handleContinueSession = (event: any) => {
+      const session = event.detail;
+      if (!session) return;
+
+      setSessionId(session.id);
+      
+      // Преобразуем сообщения из истории в формат чата
+      const restoredMessages: Message[] = session.messages.flatMap((m: any) => [
+        { role: 'user', text: m.question },
+        { 
+          role: 'ai', 
+          text: typeof m.answer === 'string' ? m.answer : m.answer?.text,
+          dataType: m.answer?.dataType,
+          stockData: m.answer?.stockData,
+          salesData: m.answer?.salesData 
+        }
+      ]);
+      
+      setMessages(restoredMessages);
+    };
+
+    // Подписываемся на событие
+    window.addEventListener('continueAiSession', handleContinueSession);
+    return () => window.removeEventListener('continueAiSession', handleContinueSession);
+  }, []); */
+
+
+   useEffect(() => {
+    if (initialSession) {
+      setSessionId(initialSession.id);
+      const restored = initialSession.messages.flatMap((m: any) => [
+        { role: 'user' as const, text: m.question },
+        { 
+          role: 'ai' as const, 
+          text: typeof m.answer === 'string' ? m.answer : m.answer?.text,
+          dataType: m.answer?.dataType,
+          stockData: m.answer?.stockData,
+          salesData: m.answer?.salesData 
+        }
+      ]);
+      setMessages(restored);
+    }
+  }, [initialSession]);
+
+  //////22.01.2026
+
 
   // Форматирование дат в зависимости от текущего языка
   const formatDisplayDate = (dateStr: string) => {
