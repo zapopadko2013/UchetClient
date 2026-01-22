@@ -11,6 +11,7 @@ import {
 import { useTranslation } from 'react-i18next';
 import useApiRequest from '../hooks/useApiRequest';
 import type { ColumnsType } from 'antd/es/table';
+import styles from './AiChatHistory.module.css';
 
 const { Text, Title } = Typography;
 
@@ -108,8 +109,8 @@ export default function AiChatHistory() {
       key: 'product',
       render: (_, record) => (
         <div>
-          <div style={{ fontWeight: 500 }}>{record.name}</div>
-          <Text type="secondary" style={{ fontSize: '11px' }}>{record.brand} | {record.category}</Text>
+          <div className={styles.productName}>{record.name}</div>
+          <Text type="secondary" className={styles.dateLabel}>{record.brand} | {record.category}</Text>
         </div>
       ),
     },
@@ -117,7 +118,7 @@ export default function AiChatHistory() {
       title: t('aiChat.warehouse'), // 'Склад'
       dataIndex: 'point',
       key: 'point',
-      render: (text: string) => <Text style={{ fontSize: '11px' }}>{text?.replace(/Склад точки |Point warehouse /g, '')}</Text>,
+      render: (text: string) => <Text className={styles.dateLabel}>{text?.replace(/Склад точки |Point warehouse /g, '')}</Text>,
     },
     {
       title: t('aiChat.stockQty'), // 'Остаток'
@@ -167,7 +168,7 @@ export default function AiChatHistory() {
       dataIndex: 'profit',
       key: 'profit',
       align: 'right',
-      render: (val) => <Text style={{ color: '#52c41a' }}>{Number(val).toLocaleString(i18n.language)}</Text>,
+      render: (val) => <Text className={styles.profitText}>{Number(val).toLocaleString(i18n.language)}</Text>,
     },
   ];
 
@@ -196,13 +197,13 @@ export default function AiChatHistory() {
   const collapseItems = history.map((session) => ({
     key: session.id,
     label: (
-      <div style={{ display: 'flex', justifyContent: 'space-between', width: '95%', alignItems: 'center' }}>
+      <div className={styles.sessionHeader}>
         <Space>
           <MessageOutlined />
           <Text strong>{session.messages[0]?.question.slice(0, 35)}...</Text>
           {session.messages.some(m => m.isSupportRequest) && <Tag color="gold">{t('aiChat.supportTag')}</Tag>}
         </Space>
-        <Text type="secondary" style={{ fontSize: '11px' }}>{formatDateLabel(session.updated_at)}</Text>
+        <Text type="secondary" className={styles.dateLabel}>{formatDateLabel(session.updated_at)}</Text>
       </div>
     ),
     children: (
@@ -212,23 +213,20 @@ export default function AiChatHistory() {
         renderItem={(msg) => {
           const isObj = typeof msg.answer === 'object';
           return (
-            <div key={msg.step} style={{ marginBottom: '20px' }}>
+            <div key={msg.step} className={styles.messageWrapper}>
               {/* Вопрос */}
-              <div style={{ display: 'flex', gap: '10px', marginBottom: '8px' }}>
-                <Avatar size="small" icon={<UserOutlined />} style={{ backgroundColor: '#1677ff' }} />
-                <Text italic style={{ background: '#f0f5ff', padding: '6px 12px', borderRadius: '8px', flex: 1 }}>
+              <div className={styles.questionBox}>
+                <Avatar size="small" icon={<UserOutlined />} className={styles.userAvatar} />
+                <Text italic className={styles.questionText}>
                   {msg.question}
                 </Text>
               </div>
               
               {/* Ответ AI */}
-              <div style={{ display: 'flex', gap: '10px', paddingLeft: '24px', marginBottom: '8px' }}>
-                <Avatar size="small" icon={<RobotOutlined />} style={{ backgroundColor: '#52c41a' }} />
-                <div style={{ flex: 1 }}>
-                  <div style={{ 
-                    whiteSpace: 'pre-wrap', backgroundColor: '#f9f9f9', padding: '10px', 
-                    borderRadius: '8px', border: '1px solid #d9d9d9' 
-                  }}>
+              <div className={styles.answerBox}>
+                <Avatar size="small" icon={<RobotOutlined />} className={styles.botAvatar} />
+                <div className={styles.answerContent}>
+                  <div className={styles.botTextBubble}>
                     {getBotText(msg.answer)}
                   </div>
 
@@ -237,24 +235,28 @@ export default function AiChatHistory() {
                     <Table 
                       dataSource={msg.answer.stockData} 
                       columns={stockColumns} 
-                      size="small" pagination={false} bordered
-                      style={{ marginTop: 8 }} rowKey={(r) => r.name + r.point}
+                      size="small" 
+                      pagination={{ pageSize: 5, size: 'small' }}  
+                      bordered
+                      className={styles.tableContainer} rowKey={(r) => r.name + r.point}
                       scroll={{ x: true }}
                     />
                   )}
 
                   {/* ТАБЛИЦА ПРОДАЖ */}
                   {isObj && msg.answer?.dataType === 'sales' && msg.answer?.salesData?.length > 0 && (
-                    <div style={{ marginTop: 8 }}>
+                    <div className={styles.tableContainer}>
                        {msg.answer.salesData[0]?.date && (
-                         <Tag color="processing" style={{ marginBottom: 4 }}>
+                         <Tag color="processing" className={styles.periodTag}>
                            📅 {t('aiChat.period')}: {formatDisplayDate(msg.answer.salesData[0].date)}
                          </Tag>
                        )}
                        <Table 
                         dataSource={msg.answer.salesData} 
                         columns={salesColumns} 
-                        size="small" pagination={false} bordered
+                        size="small"
+                        pagination={{ pageSize: 5, size: 'small' }} 
+                         bordered
                         rowKey={(r, i) => r.name + i} scroll={{ x: true }}
                       />
                     </div>
@@ -264,9 +266,9 @@ export default function AiChatHistory() {
 
               {/* Техподдержка */}
               {msg.isSupportRequest && (
-                <div style={{ paddingLeft: '50px', marginTop: '8px' }}>
+                <div className={styles.supportSection}>
                   {msg.specialistAnswer ? (
-                    <Card size="small" style={{ backgroundColor: '#fffbe6' }}>
+                    <Card size="small" className={styles.specialistCard}>
                       <Text strong><CheckCircleOutlined /> {t('aiChat.specialistAnswer')}</Text>
                       <br /><Text>{msg.specialistAnswer}</Text>
                     </Card>
@@ -275,7 +277,7 @@ export default function AiChatHistory() {
                   )}
                 </div>
               )}
-              <Divider dashed style={{ margin: '12px 0' }} />
+              <Divider dashed className={styles.divider} />
             </div>
           );
         }}
@@ -284,7 +286,7 @@ export default function AiChatHistory() {
   }));
 
   return (
-    <div style={{ padding: '16px', maxWidth: '900px', margin: '0 auto' }}>
+    <div className={styles.container}>
       <Title level={4}>
         <HistoryOutlined /> {t('aiChat.historyTitle')}
       </Title>

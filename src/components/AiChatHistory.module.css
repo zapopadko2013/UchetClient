@@ -1,0 +1,95 @@
+.container {
+  padding: 16px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.sessionHeader {
+  display: flex;
+  justify-content: space-between;
+  width: 95%;
+  align-items: center;
+}
+
+.dateLabel {
+  font-size: 11px;
+}
+
+.messageWrapper {
+  margin-bottom: 20px;
+}
+
+/* Стили вопроса пользователя */
+.questionBox {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.questionText {
+  font-style: italic;
+  background-color: #f0f5ff;
+  padding: 6px 12px;
+  border-radius: 8px;
+  flex: 1;
+}
+
+/* Стили ответа AI */
+.answerBox {
+  display: flex;
+  gap: 10px;
+  padding-left: 24px;
+  margin-bottom: 8px;
+}
+
+.answerContent {
+  flex: 1;
+}
+
+.botTextBubble {
+  white-space: pre-wrap;
+  background-color: #f9f9f9;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #d9d9d9;
+}
+
+/* Стили таблиц внутри чата */
+.tableContainer {
+  margin-top: 8px;
+}
+
+.periodTag {
+  margin-bottom: 4px;
+}
+
+/* Стили техподдержки */
+.supportSection {
+  padding-left: 50px;
+  margin-top: 8px;
+}
+
+.specialistCard {
+  background-color: #fffbe6;
+}
+
+.divider {
+  margin: 12px 0;
+}
+
+/* Стили внутри колонок таблиц */
+.productName {
+  font-weight: 500;
+}
+
+.profitText {
+  color: #52c41a;
+}
+
+.userAvatar {
+  background-color: #1677ff;
+}
+
+.botAvatar {
+  background-color: #52c41a;
+}

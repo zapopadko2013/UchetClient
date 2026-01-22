@@ -4,6 +4,7 @@ import { SendOutlined, UserOutlined, RobotOutlined } from '@ant-design/icons';
 import type { ColumnsType } from 'antd/es/table';
 import { useTranslation } from 'react-i18next';
 import { v4 as uuidv4 } from 'uuid'; // Импортируем генератор
+import styles from './AiChat.module.css';
 
 const { Text } = Typography;
 
@@ -94,8 +95,8 @@ export default function AiChat() {
       key: 'product',
       render: (_, record) => (
         <div>
-          <div style={{ fontWeight: 500 }}>{record.name}</div>
-          <Text type="secondary" style={{ fontSize: '11px' }}>{record.brand} | {record.category}</Text>
+          <div className={styles.productName}>{record.name}</div>
+          <Text type="secondary" className={styles.smallText}>{record.brand} | {record.category}</Text>
         </div>
       ),
     },
@@ -103,7 +104,7 @@ export default function AiChat() {
       title: t('aiChat.warehouse'), // 'Склад'
       dataIndex: 'point',
       key: 'point',
-      render: (text: string) => <Text style={{ fontSize: '11px' }}>{text?.replace(/Склад точки |Point warehouse /g, '')}</Text>,
+      render: (text: string) => <Text className={styles.smallText}>{text?.replace(/Склад точки |Point warehouse /g, '')}</Text>,
     },
     {
       title: t('aiChat.stockQty'), // 'Остаток'
@@ -154,7 +155,7 @@ export default function AiChat() {
       dataIndex: 'profit',
       key: 'profit',
       align: 'right',
-      render: (val) => <Text style={{ color: '#52c41a' }}>{Number(val).toLocaleString(i18n.language)}</Text>,
+      render: (val) => <Text className={styles.profitText}>{Number(val).toLocaleString(i18n.language)}</Text>,
     },
   ];
 
@@ -198,26 +199,28 @@ export default function AiChat() {
   };
 
   return (
-    <div style={containerStyle}>
-      <div style={chatBoxStyle}>
+    <div className={styles.container}>
+      <div className={styles.chatBox}>
         <List
           itemLayout="horizontal"
           dataSource={messages}
           renderItem={(msg) => (
-            <List.Item style={{ border: 'none', justifyContent: msg.role === 'user' ? 'flex-end' : 'flex-start', padding: '8px 0' }}>
-              <div style={{ display: 'flex', flexDirection: msg.role === 'user' ? 'row-reverse' : 'row', alignItems: 'flex-start', maxWidth: '90%' }}>
+            <List.Item 
+            className={styles.messageRow} 
+            style={{ justifyContent: msg.role === 'user' ? 'flex-end' : 'flex-start' }}
+            >
+              <div 
+              className={styles.messageContent} 
+              style={{ flexDirection: msg.role === 'user' ? 'row-reverse' : 'row' }}
+              >
                 <Avatar 
                   icon={msg.role === 'user' ? <UserOutlined /> : <RobotOutlined />} 
-                  style={{ backgroundColor: msg.role === 'user' ? '#1677ff' : '#52c41a', flexShrink: 0 }} 
+                  className={msg.role === 'user' ? styles.userAvatar : styles.aiAvatar}
                 />
-                <div style={{
-                  margin: msg.role === 'user' ? '0 12px 0 0' : '0 0 0 12px',
-                  padding: '10px 15px',
-                  borderRadius: '12px',
-                  backgroundColor: msg.role === 'user' ? '#e6f4ff' : '#f5f5f5',
-                  border: msg.role === 'user' ? '1px solid #91caff' : '1px solid #d9d9d9'
-                }}>
-                  <div style={{ whiteSpace: 'pre-wrap' }}>{msg.text}</div>
+                <div 
+               className={`${styles.bubble} ${msg.role === 'user' ? styles.userBubble : styles.aiBubble}`}
+                >
+                  <div>{msg.text}</div>
                   
                   {msg.dataType === 'stock' && msg.stockData && (
                     <Table 
@@ -225,17 +228,17 @@ export default function AiChat() {
                       columns={columns} 
                       pagination={{ pageSize: 5, size: 'small' }} 
                       size="small" 
-                      style={{ marginTop: 10 }}
+                      className={styles.chatTable}
                       bordered
                       rowKey={(record) => record.name + record.point}
                     />
                   )}
 
                   {msg.dataType === 'sales' && msg.salesData && (
-                    <div style={{ marginTop: 10 }}>
+                    <div className={styles.chatTable}>
                         {msg.salesData[0]?.date && (
-                        <div style={{ marginBottom: 8, padding: '4px 8px', backgroundColor: '#e6f7ff', borderRadius: '4px', display: 'inline-block', border: '1px solid #91d5ff' }}>
-                            <Text strong style={{ fontSize: '12px', color: '#0050b3' }}>
+                        <div className={styles.periodBadge}>
+                            <Text strong className={styles.periodText}>
                             📅 {t('aiChat.period')}: {formatDisplayDate(msg.salesData[0].date)}
                             </Text>
                         </div>
@@ -257,7 +260,7 @@ export default function AiChat() {
           )}
         />
         {isLoading && (
-          <div style={{ textAlign: 'left', padding: '10px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <div className={styles.loadingArea}>
             <Spin size="small" /> 
             <Text type="secondary">{t('aiChat.thinking')}</Text>
           </div>
@@ -277,8 +280,8 @@ export default function AiChat() {
         />
       </div> */}
 
-     <div style={inputAreaStyle}>
-  <div style={{ display: 'flex', gap: '8px', alignItems: 'flex-end' }}>
+     <div className={styles.inputArea}>
+  <div className={styles.textAreaWrapper}>
     <TextArea
       placeholder={t('aiChat.placeholder')}
       value={input}
@@ -291,10 +294,7 @@ export default function AiChat() {
           sendMessage();
         }
       }}
-      style={{ 
-        borderRadius: '8px',
-        paddingRight: '12px' 
-      }}
+      
       disabled={isLoading}
     />
     <Button 
@@ -303,14 +303,10 @@ export default function AiChat() {
       onClick={sendMessage}
       loading={isLoading}
       // Убираем фиксированный height, чтобы кнопка была квадратной и аккуратной
-      style={{ 
-        flexShrink: 0, 
-        borderRadius: '8px',
-        height: '32px' // Высота одной строки TextArea
-      }}
+      className={styles.sendButton}
     />
   </div>
-  <Text type="secondary" style={{ fontSize: '10px', marginTop: '4px', display: 'block', marginLeft: '4px' }}>
+  <Text type="secondary" className={styles.inputHint}>
     {i18n.language === 'ru' ? 'Shift + Enter для новой строки' : 'Shift + Enter for new line'}
   </Text>
 </div>
@@ -319,27 +315,3 @@ export default function AiChat() {
   );
 }
 
-// Стили
-const containerStyle: React.CSSProperties = {
-  display: 'flex',
-  flexDirection: 'column',
-  height: '100%',
-  backgroundColor: '#fff',
-};
-
-const chatBoxStyle: React.CSSProperties = {
-  flex: 1,
-  overflowY: 'auto',
-  padding: '16px',
-};
-
-/* const inputAreaStyle: React.CSSProperties = {
-  padding: '16px',
-  borderTop: '1px solid #f0f0f0',
-}; */
-
-const inputAreaStyle: React.CSSProperties = {
-  padding: '16px',
-  borderTop: '1px solid #f0f0f0',
-  backgroundColor: '#fff' // Чтобы текст под инпутом не просвечивал
-};

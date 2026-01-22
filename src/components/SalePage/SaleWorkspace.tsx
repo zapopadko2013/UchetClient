@@ -6,7 +6,8 @@ import {
   PlusOutlined,
   MinusOutlined,
   DeleteOutlined,
-  MoneyCollectOutlined,UnorderedListOutlined,
+  MoneyCollectOutlined,UnorderedListOutlined, LoadingOutlined,
+  ScanOutlined,
 } from "@ant-design/icons";
 import ProductListModal from "./ProductListModal";
 import PaymentModal from "./PaymentModal";
@@ -18,6 +19,8 @@ import { createRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import styles from "./Sale.module.css";
+
+import BarcodeScanner from '../../components/BarcodeScanner';
 
 
 interface Props {
@@ -145,6 +148,21 @@ const [mode, setMode] = useState<Mode>("sale");
 const [isReturnMode, setIsReturnMode] = useState(false);
 
 const { t } = useTranslation();
+
+ ////
+  
+    // СОСТОЯНИЕ ДЛЯ СКАНЕРА
+  
+    const [isScannerOpen, setIsScannerOpen] = useState(false);
+    const [barcodeLoading, setBarcodeLoading] = useState<boolean>(false);
+  
+    const handleScanSuccess = (decodedText: string) => {
+    //console.log("Отсканированный код:", decodedText); 
+    setBarcode(decodedText); // Обновляем состояние
+    setIsScannerOpen(false); // Закрываем камеру
+  };
+  
+    ////
 
 
 const [actionsModalVisible, setActionsModalVisible] = useState(false);
@@ -940,6 +958,21 @@ const handlePaymentClick = async () => {
          placeholder={t('sale.workspace.placeholders.barcode')}
           className={styles.barcodeInput}
           value={barcode}
+
+          suffix={
+            barcodeLoading ? (
+              <LoadingOutlined spin />
+            ) : (
+              <>
+                  <ScanOutlined 
+                    onClick={() => setIsScannerOpen(true)} 
+                    style={{ cursor: 'pointer', color: '#1890ff', fontSize: '18px' }} 
+                  />
+              
+                </>
+            )
+          }
+
           onChange={(e) => setBarcode(e.target.value)}
           onPressEnter={() => {
             const parsed = parseBarcode(barcode);
@@ -1335,6 +1368,12 @@ const handlePaymentClick = async () => {
   })()}
 </Modal>
 
+
+<BarcodeScanner 
+        visible={isScannerOpen} 
+        onClose={() => setIsScannerOpen(false)} 
+        onScan={handleScanSuccess} 
+      />
 
     </>
   );
