@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Form, Input, DatePicker, Switch, Row, Col, Modal, Button, message, Typography } from 'antd';
+import { Form, Input, DatePicker, Switch, Row, Col, Modal, Button, message, Typography,InputNumber } from 'antd';
 import { useTranslation } from 'react-i18next';
 import dayjs, { Dayjs } from 'dayjs';
 import useApiRequest from '../hooks/useApiRequest';
@@ -20,6 +20,9 @@ interface FormValues {
     certificateseries: number;
     certificatedate: Dayjs | null;
     wholesale: boolean;
+
+    avtoupdatestocktime: number;
+    avtoupdatestockflag : boolean;
 }
 
 // Определение типа для props компонента модального окна
@@ -151,6 +154,13 @@ const EditCompanyModal: React.FC<EditCompanyModalProps> = ({ visible, onClose, o
                 </Row>
                 <Row gutter={24}>
                     <Col xs={24} sm={12}><Form.Item label={t('companyPage.wholesale')} name="wholesale" valuePropName="checked"><Switch /></Form.Item></Col>
+                </Row>
+
+                <Row gutter={24}>
+                    
+                    <Col xs={24} sm={12}><Form.Item label={t('companyPage.avtoupdatestocktime')} name="avtoupdatestocktime"><InputNumber /></Form.Item></Col>
+                    <Col xs={24} sm={12}><Form.Item label={t('companyPage.avtoupdatestockflag')} name="avtoupdatestockflag" valuePropName="checked"><Switch /></Form.Item></Col>
+                
                 </Row>
             </Form>
         </Modal>

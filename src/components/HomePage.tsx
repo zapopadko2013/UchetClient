@@ -27,6 +27,9 @@ interface CompanyData {
   holding: boolean;
   holding_parent: string | null;
   wholesale: boolean;
+
+  avtoupdatestocktime: number;
+  avtoupdatestockflag: boolean;
 }
 
 /**
@@ -160,6 +163,15 @@ const HomePage: React.FC = () => {
           <div className="info-item">
             <Text strong>{t('companyPage.certificatedate')}:</Text>
             <Text>{companyData.certificatedate}</Text>
+          </div>
+
+          <div className="info-item">
+            <Text strong>{t('companyPage.avtoupdatestocktime')}:</Text>
+            <Text>{companyData.avtoupdatestocktime}</Text>
+          </div>
+          <div className="info-item-wholesale">
+            <Text strong>{t('companyPage.avtoupdatestockflag')}:</Text>
+            <Switch checked={companyData.avtoupdatestockflag} disabled />
           </div>
         </Card>
       )}

@@ -266,6 +266,18 @@ export default function AiChat({ initialSession }: AiChatProps) {
         stockData: data.stockData,
         salesData: data.salesData 
       }]);
+
+      /////23.01.2026
+
+     
+    // Мы можем отправить либо всю сессию, либо просто сигнал "обновись"
+    window.dispatchEvent(new CustomEvent('aiMessageReceived', { 
+        detail: { sessionId: sessionId } 
+    }));
+
+      /////23.01.2026
+
+
     } catch (error) {
       setMessages(prev => [...prev, { role: 'ai', text: t('aiChat.serverError') }]);
     } finally {

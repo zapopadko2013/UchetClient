@@ -55,6 +55,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ username, accesses }) => {
     const [isAiChatVisible, setIsAiChatVisible] = useState(false);
 
     
+    
 
     const {
         token: { colorBgContainer, borderRadiusLG },
@@ -80,6 +81,11 @@ const MainLayout: React.FC<MainLayoutProps> = ({ username, accesses }) => {
         username === 'admin'
         ? [...alwaysVisibleCodes1, ...alwaysVisibleCodesd]
         : [...alwaysVisibleCodes1];
+
+
+    
+
+
 
     // Фильтрация маршрутов по accessCodes + всегда видимые
     const filterRoutesByAccess = (routes: RouteItem[]): RouteItem[] => {
@@ -222,6 +228,161 @@ const MainLayout: React.FC<MainLayoutProps> = ({ username, accesses }) => {
 }, []);
     /////22.01.2026
 
+    //////23.01.2026
+
+    //const FOUR_HOURS = 4 * 60 * 60 * 1000; // 4 часа в миллисекундах
+    /* const FOUR_HOURS =  60*60 * 1000;
+    const API_URL = import.meta.env.VITE_API_URL || '';
+
+    useEffect(() => {
+    const checkAutoFetch = async () => {
+        const lastFetch = localStorage.getItem('lastAutoStockFetch');
+        const now = Date.now();
+
+        // Генерируем ID для авто-сессии (фиксированный, чтобы история копилась в одном месте)
+    const AUTO_SESSION_ID = 'auto-stock-session'; 
+
+    if (!lastFetch || (now - parseInt(lastFetch)) > FOUR_HOURS) {
+        try {
+            const response = await fetch(`${API_URL}/api/chatroute/chat`, {
+                method: 'POST',
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('accessToken') || ''}`,
+                },
+                body: JSON.stringify({ 
+                    message: "Остатки", 
+                    isAutoRequest: true,
+                    // ОБЯЗАТЕЛЬНО ПЕРЕДАЕМ ID СЮДА:
+                    sessionId: AUTO_SESSION_ID 
+                }),
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                
+                const autoSession = {
+                    id: AUTO_SESSION_ID, // Используем тот же ID
+                    messages: [
+                         {
+                            question: t('aiChat.autoUpdateTrigger') || "Авто-проверка остатков",
+                            //answer: data
+                            answer: {
+                    text: data.answer, // Перекладываем data.answer в text
+                    dataType: data.dataType,
+                    stockData: data.stockData,
+                    salesData: data.salesData
+                }
+                        } 
+
+                            
+                    ]
+                };
+
+
+
+
+                setSelectedSession(autoSession);
+                setIsAiChatVisible(true);
+                localStorage.setItem('lastAutoStockFetch', now.toString());
+            }
+            } catch (error) {
+                console.error("Ошибка авто-запроса остатков:", error);
+            }
+        }
+    };
+
+    // Проверяем при загрузке страницы
+    checkAutoFetch();
+
+    // Каждую минуту проверяем, не пора ли сделать новый запрос
+    const interval = setInterval(checkAutoFetch, 60000000); 
+
+    return () => clearInterval(interval);
+}, [t]); // Зависимость от t для корректных переводов
+ */
+
+useEffect(() => {
+    const API_URL = import.meta.env.VITE_API_URL || '';
+    const AUTO_SESSION_ID = 'auto-stock-session';
+
+    const checkAutoFetch = async () => {
+        try {
+            // 1. Сначала запрашиваем настройки компании
+            const companyRes = await fetch(`${API_URL}/api/company`, {
+                headers: { 'Authorization': `Bearer ${localStorage.getItem('accessToken') || ''}` }
+            });
+            
+            if (!companyRes.ok) return;
+            const companyData = await companyRes.json();
+
+            // Проверяем флаг включения автоопроса
+            if (!companyData.avtoupdatestockflag) {
+                console.log("Автоопрос остатков отключен в настройках");
+                return;
+            }
+
+            // Вычисляем интервал из настроек (в часах) или берем 4 часа по умолчанию
+            const hours = companyData.avtoupdatestocktime || 4;
+            const INTERVAL_MS = hours * 60 * 60 * 1000;
+
+            const lastFetch = localStorage.getItem('lastAutoStockFetch');
+            const now = Date.now();
+
+            // 2. Проверяем, пришло ли время для запроса
+            if (!lastFetch || (now - parseInt(lastFetch)) > INTERVAL_MS) {
+                const response = await fetch(`${API_URL}/api/chatroute/chat`, {
+                    method: 'POST',
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${localStorage.getItem('accessToken') || ''}`,
+                    },
+                    body: JSON.stringify({ 
+                        message: "Остатки", 
+                        isAutoRequest: true,
+                        sessionId: AUTO_SESSION_ID 
+                    }),
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    
+                    const autoSession = {
+                        id: AUTO_SESSION_ID,
+                        messages: [{
+                            question: t('aiChat.autoUpdateTrigger'),
+                            answer: {
+                                text: data.answer,
+                                dataType: data.dataType,
+                                stockData: data.stockData,
+                                salesData: data.salesData
+                            }
+                        }]
+                    };
+
+                    setSelectedSession(autoSession);
+                    setIsAiChatVisible(true);
+                    localStorage.setItem('lastAutoStockFetch', now.toString());
+                }
+            }
+        } catch (error) {
+            console.error("Ошибка в процессе авто-запроса:", error);
+        }
+    };
+
+    // Запускаем проверку
+    checkAutoFetch();
+
+    // Проверяем каждые 15 минут, не пора ли сделать новый запрос 
+    // (на случай если пользователь долго не обновлял страницу)
+    const interval = setInterval(checkAutoFetch, 15 * 60 * 1000); 
+
+    return () => clearInterval(interval);
+}, [t]); // Зависимость t для перевода триггера
+
+    //////23.01.2026
+    
+
 
     const onOpenChange = (keys: string[]) => {
         setOpenKeys(keys);
@@ -356,7 +517,11 @@ const MainLayout: React.FC<MainLayoutProps> = ({ username, accesses }) => {
             />
         </div>
         {/* Внутри AiChat убедитесь, что контейнер занимает 100% высоты */}
-        <AiChat initialSession={selectedSession} />
+        <AiChat 
+        
+        key={selectedSession?.id || 'new'}
+        
+        initialSession={selectedSession} />
     </div>
 )}
 

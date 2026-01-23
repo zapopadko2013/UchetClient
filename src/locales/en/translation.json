@@ -119,6 +119,8 @@
       "modalTitle": "Edit Company Details",
       "name": "Name",
       "bin": "BIN",
+      "avtoupdatestocktime": "Stock auto-poll interval (hours)",
+    "avtoupdatestockflag": "Enable automatic stock polling",
       "address": "Address",
       "head": "Head",
       "headIin": "Head's IIN",
@@ -3336,6 +3338,8 @@
     "stockQty": "Stock",
     "price": "Price",
     "continue": "Continue",
+
+    "autoUpdateTrigger": "Automatic stock check (Q&A will not be saved here!)",
 
     "supportTag": "Support",
   "you": "You",

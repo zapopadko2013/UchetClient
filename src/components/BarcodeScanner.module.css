@@ -13,23 +13,43 @@
 }
 
 /* Черный контейнер, где будет видео */
-.scannerContainer {
+/* .scannerContainer {
     width: 100%;
     height: 300px;
     background: #000;
     position: relative;
     overflow: hidden;
     border-radius: 8px;
-}
+} */
 
 /* Принудительная фиксация видео-потока внутри контейнера */
-.scannerContainer :global(video) {
+/* .scannerContainer :global(video) {
     position: absolute !important;
     top: 0 !important;
     left: 0 !important;
     width: 100% !important;
     height: 100% !important;
     object-fit: cover !important;
+    transform: none !important;
+} */
+
+
+.scannerContainer {
+    width: 100%;
+    /* Убираем жесткую высоту 300px, позволяем контейнеру подстроиться под видео */
+    min-height: 300px; 
+    background: #000;
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.scannerContainer :global(video) {
+    display: block;
+    width: 100% !important;
+    height: auto !important; /* Высота должна быть автоматической */
+    max-height: 70vh; /* Ограничиваем, чтобы не вылезло за экран */
+    object-fit: contain !important; /* ВАЖНО: не обрезать края кадра */
     transform: none !important;
 }
 

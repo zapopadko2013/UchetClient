@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { Modal, message } from 'antd';
-import { Html5Qrcode } from 'html5-qrcode';
+import { Html5Qrcode, Html5QrcodeSupportedFormats } from 'html5-qrcode';
 import { useTranslation } from 'react-i18next';
 import styles from './BarcodeScanner.module.css';
 
@@ -19,7 +19,7 @@ const { t } = useTranslation();
   let isMounted = true;
   let html5QrCode: Html5Qrcode | null = null;
 
-  const startScanner = async () => {
+  /* const startScanner = async () => {
     try {
       // 1. Ждем, пока модалка полностью отрисуется
       await new Promise(resolve => setTimeout(resolve, 600));
@@ -41,7 +41,55 @@ const { t } = useTranslation();
     } catch (err) {
       console.error("Scanner start error:", err);
     }
-  };
+  }; */
+
+  const startScanner = async () => {
+  try {
+    await new Promise(resolve => setTimeout(resolve, 600));
+    if (!isMounted) return;
+
+    // 1. Указываем все форматы, которые могут встретиться на товарах
+    html5QrCode = new Html5Qrcode(scannerId, {
+      formatsToSupport: [
+        Html5QrcodeSupportedFormats.EAN_13,
+        Html5QrcodeSupportedFormats.EAN_8,
+        Html5QrcodeSupportedFormats.CODE_128,
+        Html5QrcodeSupportedFormats.CODE_39,
+        Html5QrcodeSupportedFormats.UPC_A,
+        Html5QrcodeSupportedFormats.UPC_E,
+        Html5QrcodeSupportedFormats.QR_CODE,
+      ],
+      verbose: false
+    });
+    scannerRef.current = html5QrCode;
+
+    // 2. Настраиваем конфигурацию сканирования
+    const config = {
+      fps: 20, // Немного увеличим для плавности
+      // Делаем область сканирования шире (для штрих-кодов)
+      qrbox: (viewfinderWidth: number, __: number) => {
+          // На мобильных устройствах делаем окно на 80% ширины
+          const width = viewfinderWidth * 0.8;
+          // Но оставляем его не слишком высоким для штрих-кода
+          const height = 150; 
+          return { width, height };
+      },
+      aspectRatio: 1.0, 
+      // disableFlip: false — важно для некоторых фронталок, но для основной обычно ок
+    };
+
+    await html5QrCode.start(
+      { facingMode: "environment" },
+      config,
+      (text) => {
+        onScan(text);
+      },
+      () => {}
+    );
+  } catch (err) {
+    console.error("Scanner start error:", err);
+  }
+};
 
   if (visible) {
     startScanner();

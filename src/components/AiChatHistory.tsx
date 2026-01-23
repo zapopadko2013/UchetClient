@@ -174,7 +174,33 @@ export default function AiChatHistory() {
 
   // --- Загрузка данных ---
 
+  //////23.01.2026
+
+  const fetchHistory = async () => {
+    try {
+      const data = await sendRequest(`${API_URL}/api/chatroute/history`, {
+        method: 'GET',
+        headers: { 'Authorization': `Bearer ${localStorage.getItem('accessToken') || ''}` },
+      });
+      setHistory(data || []);
+    } catch (err) {
+      // Не будем спамить ошибкой при фоновом обновлении
+      console.error("Error updating history");
+    }
+  };
+
   useEffect(() => {
+    fetchHistory(); // Начальная загрузка
+
+    const handleNewMessage = () => {
+      fetchHistory(); // Перезагружаем список, когда в чате что-то произошло
+    };
+
+    window.addEventListener('aiMessageReceived', handleNewMessage);
+    return () => window.removeEventListener('aiMessageReceived', handleNewMessage);
+  }, [API_URL, sendRequest]); // Убираем t из зависимостей, чтобы не перезагружать при смене языка лишний раз
+
+ /*  useEffect(() => {
     const fetchHistory = async () => {
       try {
         const data = await sendRequest(`${API_URL}/api/chatroute/history`, {
@@ -187,7 +213,8 @@ export default function AiChatHistory() {
       }
     };
     fetchHistory();
-  }, [API_URL, sendRequest, t]);
+  }, [API_URL, sendRequest, t]); */
+  ///////23.01.2026
 
   if (loading) return <Skeleton active title paragraph={{ rows: 10 }} />;
   if (history.length === 0) return <Empty description={t('aiChat.noHistory')} />;
