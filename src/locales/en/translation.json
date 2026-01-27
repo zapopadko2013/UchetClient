@@ -3367,6 +3367,8 @@
       "cameraError": "Camera access error. Please check permissions."
     },
   "title": "Product Orders",
+  "productNotFound": "Product not found",
+  "flagnkt": "Fetch from National Goods Catalog if missing",
   "myOrders": "My Orders",
   "incomingOrders": "Goods Receipt",
   "date": "Date",

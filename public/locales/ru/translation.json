@@ -878,6 +878,8 @@
   
   "couponAddModal": {
     "title": "Добавить купон",
+    "productNotFound": "Не найден товар",
+    
     "couponType": "Тип купона",
     "couponTypeRequired": "Выберите тип купона",
     "multiUse": "Многоразовый",
@@ -3721,6 +3723,7 @@
     },
     "title": "Заказы товаров",
     "myOrders": "Мои заказы",
+    "productNotFound": "Не найден товар",
     "incomingOrders": "Приемка товаров",
     "date": "Дата",
     "point": "Склад/Точка",

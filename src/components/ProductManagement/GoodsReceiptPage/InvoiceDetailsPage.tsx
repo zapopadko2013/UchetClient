@@ -242,6 +242,39 @@ const [isBatchModalVisible, setIsBatchModalVisible] = useState(false);
 const [batchAttributes, setBatchAttributes] = useState<any[]>([]);
 const [currentBatchProduct, setCurrentBatchProduct] = useState<ProductItem | null>(null);
 
+
+////27.01.2026
+    const [flagnkt, setFlagnkt] = useState(true);
+
+    const getHeaders = () => ({
+    Authorization: `Bearer ${localStorage.getItem('accessToken') || ''}`,
+    'Content-Type': 'application/json',
+  });
+
+    const handleSwitchNkt = async (checked: boolean) => {
+  // 1. Сначала обновляем локальный стейт для мгновенного отклика интерфейса
+  setFlagnkt(checked);
+
+  try {
+    // 2. Отправляем запрос на сохранение в настройки компании
+    await sendRequest(`${API_URL}/api/company/flagnktchange`, {
+      method: 'POST',
+      headers: getHeaders(),
+      body: JSON.stringify({ flagnkt: checked }),
+    });
+    
+   // message.success(t('common.saved')); // Сообщение "Сохранено"
+  } catch (err) {
+    console.error('Failed to update flagnkt in DB:', err);
+    message.error(t('common.errors.saveFailed'));
+    
+    // Если произошла ошибка, возвращаем переключатель в исходное состояние
+    setFlagnkt(!checked);
+  }
+};
+    ////27.01.2026
+
+
 //////
 const [pendingBarcode, setPendingBarcode] = useState<string | null>(null);
 
@@ -267,6 +300,33 @@ const fetchBatchAttributesList = async () => {
     if (attributesRes) {
       setBatchAttributesList(attributesRes); 
     }
+
+    ////27.01.2026
+
+     const flagnktUrl = `${API_URL}/api/company`;
+    
+    // Рекомендуется выносить заголовки в отдельный конфиг или интерцептор
+    const flagnktRes = await sendRequest(flagnktUrl, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('accessToken') || ''}`,
+        'Content-Type': 'application/json',
+      },
+    });
+
+    //console.log(flagnktRes);
+  
+    //console.log(flagnktRes.flagnkt);
+
+    //setFlagnkt(flagnktRes.flagnkt)
+     
+     if (flagnktRes && typeof flagnktRes.flagnkt !== 'undefined') {
+      // Преобразуем в boolean, если с базы пришло что-то другое
+      setFlagnkt(!!flagnktRes.flagnkt);
+    }
+
+     ////27.01.2026
+
+
   } catch (error) {
     console.error('Ошибка загрузки атрибутов для модалки:', error);
   }
@@ -526,6 +586,10 @@ const handleDeleteInvoice = async () => {
       },
     });
     setProducts(data);
+
+
+    
+
   } catch (error) {
     // Перевод: 'Ошибка загрузки товаров накладной'
     message.error(t('goodsReceipt.invoiceDetails.productLoadError'));
@@ -1620,23 +1684,72 @@ const columns: ColumnsType<ProductItem> = isForming
       {/* Новый блок выбора товара и кнопок */}
       {isForming && (
         <>
-          <div className={styles.userSettingsRow}>
+          {/* <div className={styles.userSettingsRow}>
             <ProductBarcodeSearch
+
+              flagnkt={flagnkt}
               key={searchKey}
               onProductSelect={onProductSelect}
               onClear={onClearSelection}
               useLocalApi={true}
               resetTrigger={invoicenumber ? Number(invoicenumber) : 0}
             />
-            {/* Перевод: Добавить новый товар в накладную */}
+
+            
+                       
+                    
+
+           
             <Button onClick={onAddNewProduct}>{t('goodsReceipt.invoiceDetails.addNewProductButton')}</Button>
-          </div>
+          
+           <Switch 
+                           checked={flagnkt} 
+                           onChange={handleSwitchNkt} 
+                          loading={loading} 
+                        />
+          
+          </div> */}
+
+      <div className={styles.container}>
+  
+  {/* Группа поиска и кнопки */}
+  <div className={styles.searchActionRow}>
+    <div className={styles.searchWrapper}>
+      <ProductBarcodeSearch
+        flagnkt={flagnkt}
+        key={searchKey}
+        onProductSelect={onProductSelect}
+        onClear={onClearSelection}
+        useLocalApi={true}
+        resetTrigger={invoicenumber ? Number(invoicenumber) : 0}
+      />
+    </div>
+    <Button onClick={onAddNewProduct}>
+      {t('goodsReceipt.invoiceDetails.addNewProductButton')}
+    </Button>
+  </div>
+
+  {/* Строка с переключателем */}
+  <div className={styles.switchRow}>
+    <Switch 
+      checked={flagnkt} 
+      onChange={handleSwitchNkt} 
+      loading={loading} 
+      size="small"
+    />
+    <span className={styles.switchLabel}>
+      {t('workorder.flagnkt')}
+    </span>
+  </div>
+
+</div>
 
           <div className={styles.section}>
             {/* Перевод: Добавить в накладную */}
             <Button type="primary" disabled={!selectedProduct} onClick={onAddProductToInvoice}>
               {t('goodsReceipt.invoiceDetails.addProductToInvoiceButton')}
             </Button>
+           
           </div>
         </>
       )}

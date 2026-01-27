@@ -293,3 +293,40 @@
   font-size: 32px;
   color: #1890ff;
 }
+
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+/* Верхняя строка с поиском и кнопкой */
+.searchActionRow {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  align-items: flex-start; /* Чтобы кнопка не растягивалась по высоте поиска */
+}
+
+/* Контейнер поиска, который забирает всё свободное место */
+.searchWrapper {
+  flex: 1;
+}
+
+/* Нижняя строка с переключателем */
+.switchRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  align-self: flex-start; /* Прижимает к левому краю */
+}
+
+/* Текст рядом с переключателем */
+.switchLabel {
+  font-size: 13px;
+  color: #666;
+  line-height: 1.5;
+  user-select: none; /* Чтобы нельзя было случайно выделить текст при клике */
+}

@@ -2,20 +2,32 @@
 
 /* Контейнер для элементов (Select и Input) */
 .searchContainer {
-  display: flex;
+  display: flex !important;
   align-items: center;
   gap: 10px;
+  width: 100% !important; /* Контейнер обязан быть на всю ширину */
 }
 
-/* Ширина для Select */
-.selectInput {
-  width: 250px;
+/* .selectInput {
+  flex: 1 1 auto !important; 
+  min-width: 0; 
 }
 
-/* Ширина для Input */
 .barcodeInput {
-  width: 250px;
-  margin-top: 0;
+  width: 200px !important; 
+  flex: 0 0 auto !important; 
+} */
+
+/* Наименование: забирает всё оставшееся пространство */
+.selectInput {
+  flex: 1 !important; 
+  min-width: 100px;
+}
+
+/* Штрих-код: золотая середина */
+.barcodeInput {
+  width: 208px !important; /* Попробуйте это значение */
+  flex: 0 0 208px !important;
 }
 
 #barcode-reader {

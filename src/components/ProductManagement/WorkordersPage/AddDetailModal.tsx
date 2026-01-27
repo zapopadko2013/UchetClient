@@ -50,6 +50,32 @@ const AddDetailModal: React.FC<AddDetailModalProps> = ({ visible, onCancel, onSu
 
     const [allAttributes, setAllAttributes] = useState<AttributeItem[]>([]);
 
+    ////27.01.2026
+    const [flagnkt, setFlagnkt] = useState(true);
+
+    const handleSwitchNkt = async (checked: boolean) => {
+  // 1. Сначала обновляем локальный стейт для мгновенного отклика интерфейса
+  setFlagnkt(checked);
+
+  try {
+    // 2. Отправляем запрос на сохранение в настройки компании
+    await sendRequest(`${API_URL}/api/company/flagnktchange`, {
+      method: 'POST',
+      headers: getHeaders(),
+      body: JSON.stringify({ flagnkt: checked }),
+    });
+    
+   // message.success(t('common.saved')); // Сообщение "Сохранено"
+  } catch (err) {
+    console.error('Failed to update flagnkt in DB:', err);
+    message.error(t('common.errors.saveFailed'));
+    
+    // Если произошла ошибка, возвращаем переключатель в исходное состояние
+    setFlagnkt(!checked);
+  }
+};
+    ////27.01.2026
+
    const loadAttributes = async () => {
   setLoading(true); // Включаем спиннер, если он есть
   try {
@@ -65,10 +91,36 @@ const AddDetailModal: React.FC<AddDetailModalProps> = ({ visible, onCancel, onSu
 
     // Всегда проверяем на наличие данных, чтобы не записать null/undefined в стейт
     setAllAttributes(attributesRes || []);
+
+     ////27.01.2026
+
+     const flagnktUrl = `${API_URL}/api/company`;
+    
+    // Рекомендуется выносить заголовки в отдельный конфиг или интерцептор
+    const flagnktRes = await sendRequest(flagnktUrl, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('accessToken') || ''}`,
+        'Content-Type': 'application/json',
+      },
+    });
+
+    //console.log(flagnktRes);
+  
+    //console.log(flagnktRes.flagnkt);
+
+    //setFlagnkt(flagnktRes.flagnkt)
+     
+     if (flagnktRes && typeof flagnktRes.flagnkt !== 'undefined') {
+      // Преобразуем в boolean, если с базы пришло что-то другое
+      setFlagnkt(!!flagnktRes.flagnkt);
+    }
+
+     ////27.01.2026
+
     
   } catch (err) {
     console.error('Failed to load attributes:', err);
-    message.error(t('common.errors.loadFailed')); // Уведомление пользователю
+    message.error('Failed to load'); // Уведомление пользователю
   } finally {
     setLoading(false); // Выключаем спиннер в любом случае
   }
@@ -323,7 +375,9 @@ const handleAddAttr = async () => {
   }}
       >
         <Form.Item label={t('workorder.product.label')} required>
+          
           <ProductBarcodeSearch 
+            flagnkt={flagnkt}
             /* onProductSelect={(id) => form.setFieldsValue({ product: id })}
             onClear={() => form.setFieldsValue({ product: '' })} */
             onProductSelect={(id, barcode) => handleProductSelect(id, barcode)} // Передаем и ID, и barcode
@@ -335,11 +389,22 @@ const handleAddAttr = async () => {
               wholesaleprice: null 
               });
             }}
+           
           />
+         
           {/* Скрытое поле для валидации выбора продукта */}
           <Form.Item name="product" noStyle rules={[{ required: true, message: t('workorder.common.required') }]}>
             <input type="hidden" />
           </Form.Item>
+
+          <Form.Item label={t('workorder.flagnkt')}>
+            <Switch 
+               checked={flagnkt} 
+               onChange={handleSwitchNkt} 
+              loading={loading} 
+            />
+          </Form.Item>
+           
         </Form.Item>
 
         {/* <Form.Item name="counterparty" label={t('workorder.counterparty')} rules={[{ required: true }]}>

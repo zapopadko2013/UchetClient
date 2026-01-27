@@ -158,8 +158,43 @@ const EditCompanyModal: React.FC<EditCompanyModalProps> = ({ visible, onClose, o
 
                 <Row gutter={24}>
                     
-                    <Col xs={24} sm={12}><Form.Item label={t('companyPage.avtoupdatestocktime')} name="avtoupdatestocktime"><InputNumber /></Form.Item></Col>
-                    <Col xs={24} sm={12}><Form.Item label={t('companyPage.avtoupdatestockflag')} name="avtoupdatestockflag" valuePropName="checked"><Switch /></Form.Item></Col>
+                   <Col xs={24} sm={12}>
+  <Form.Item 
+    label={t('companyPage.avtoupdatestocktime')} 
+    name="avtoupdatestocktime"
+    rules={[
+      { 
+        type: 'number', 
+        min: 1, 
+        message: t('validation.minOneHour') || 'Минимум 1 час' 
+      }
+    ]}
+  >
+    <InputNumber 
+  min={1}
+  precision={0}
+  style={{ width: '100%' }}
+  // 1. Запрещаем вводить любые символы кроме цифр, Backspace, Delete и стрелок
+  onKeyDown={(e) => {
+    // Разрешаем: Backspace, Delete, Tab, Escape, Enter
+    if (['Backspace', 'Delete', 'Tab', 'Escape', 'Enter'].includes(e.key)) {
+      return;
+    }
+    // Разрешаем стрелки (вверх, вниз, влево, вправо)
+    if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
+      return;
+    }
+    // Запрещаем всё, что не является цифрой
+    if (!/^[0-9]$/.test(e.key)) {
+      e.preventDefault();
+    }
+  }}
+  // 2. Parser для защиты от вставки (Paste) букв мышкой
+  parser={(value) => value?.replace(/\D/g, '') as unknown as number}
+/>
+  </Form.Item>
+</Col>
+ <Col xs={24} sm={12}><Form.Item label={t('companyPage.avtoupdatestockflag')} name="avtoupdatestockflag" valuePropName="checked"><Switch /></Form.Item></Col>
                 
                 </Row>
             </Form>

@@ -22,9 +22,10 @@ interface ProductBarcodeSearchProps {
   includeAllProduct?: boolean;
   resetTrigger?: number;
   useLocalApi?: boolean;
+  flagnkt?: boolean;
 }
 
-const ProductBarcodeSearch: React.FC<ProductBarcodeSearchProps> = ({ onProductSelect, onClear , includeAllProduct, resetTrigger, useLocalApi = false,}) => {
+const ProductBarcodeSearch: React.FC<ProductBarcodeSearchProps> = ({ onProductSelect, onClear , includeAllProduct, resetTrigger, useLocalApi = false,flagnkt=false}) => {
   const { t } = useTranslation();
   const [barcode, setBarcode] = useState<string | undefined>(undefined);
   const [productSearch, setProductSearch] = useState<string>('');
@@ -127,8 +128,8 @@ const ProductBarcodeSearch: React.FC<ProductBarcodeSearchProps> = ({ onProductSe
     }) */
 
       const url = useLocalApi
-      ? `${API_URL}/api/products/getProductByBarcodeLocal?barcode=${searchBarcode}`
-      : `${API_URL}/api/products/barcode?barcode=${searchBarcode}`;
+      ? `${API_URL}/api/products/getProductByBarcodeLocal?barcode=${searchBarcode}&flagnkt=${flagnkt}`
+      : `${API_URL}/api/products/barcode?barcode=${searchBarcode}&flagnkt=${flagnkt}`;
 
     sendRequest(url, {
       headers: getHeaders(),
@@ -140,7 +141,7 @@ const ProductBarcodeSearch: React.FC<ProductBarcodeSearchProps> = ({ onProductSe
         onProductSelect(product.id, product.code);
       })
       .catch(() => {
-        message.error(t('couponAddModal.productNotFound'));
+        message.error(t('workorder.productNotFound'));
         onClear();
       })
       .finally(() => setBarcodeLoading(false));
