@@ -8,6 +8,7 @@ import { createRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import styles from "./Sale.module.css";
+import KaspiPayment from './KaspiPayment';
 
 
 
@@ -24,6 +25,7 @@ interface Props {
   point: any;
   companyInfo: any;
   ticketFormat: any;
+  KaspiIp: any;
 }
 
 interface User {
@@ -128,6 +130,7 @@ const PaymentModal: React.FC<Props> = ({
   point,
   companyInfo,
   ticketFormat,
+  KaspiIp,
 }) => {
   const { sendRequest } = useApiRequest();
 
@@ -186,6 +189,20 @@ const [discountModalVisible, setDiscountModalVisible] = useState(false);
 
   const { t } = useTranslation();
 
+
+///////28.01.2026
+const [posIp] = KaspiIp; // IP из настроек компании
+const handleKaspiSuccess = (transactionId: string) => {
+    console.log("Транзакция завершена:", transactionId);
+    // Здесь ваша логика:
+    // 1. Отправить transactionId на сервер для закрытия чека
+    // 2. Очистить корзину
+    // 3. Перейти на страницу успеха
+  };
+
+///////28.01.2026
+
+
 ///
 const maxDiscountPercent = cashboxUser?.discountinfo ?? 0;
 
@@ -219,7 +236,7 @@ const applyReceiptPercentDiscount = (percent: number) => {
       `Превышен лимит скидки. Доступно: ${available.toFixed(2)}`
     ); */
 
-    message.warning(t('sale.payment.errors.limitExceeded', { available: available.toFixed(2) }));
+    message.warning(t('sale.payment.errors.limitExceeded', { amount: available.toFixed(2) }));
     
     return;
   }
@@ -242,7 +259,7 @@ const applyReceiptSumDiscount = (amount: number) => {
       `Превышен лимит скидки. Доступно: ${available.toFixed(2)}`
     ); */
 
-     message.warning(t('sale.payment.errors.limitExceeded', { available: available.toFixed(2) }));
+     message.warning(t('sale.payment.errors.limitExceeded', { amount: available.toFixed(2) }));
    
    
     return;
@@ -668,6 +685,10 @@ const openDiscountModal = () => {
   
     ,debtInfo?: { client: any; amount: number; fizid?: number; customerid?: number } | null
   
+    /////28.01.2026
+    , transId?: string
+    /////28.01.2026
+
   ) => {
     const type = forcedType ?? currentPaymentType;
 
@@ -763,6 +784,11 @@ const openDiscountModal = () => {
       parentid: 0,
       coupon: [],
       ofdurl: "",
+
+      /////28.01.2026
+      paymenttransid: transId || "",
+      /////28.01.2026
+
       //price: totalAmount,
       price: totalAmount-discount,
       cashboxuser: cashboxUser.id,
@@ -1110,7 +1136,7 @@ printReceipt({
                
                 if (!cashboxUser.discount) {
                   //message.warning("Выбранный пользователь кассы не может давать скидки!");
-                  message.warning(t('sale.workspace.errors.noPermission'));
+                  message.warning(t('sale.workspace.errors.noDiscountPermission'));
                   return;
                 }
                 openDiscountModal();
@@ -1122,6 +1148,33 @@ printReceipt({
               {/* Скидка */}
               {t('sale.payment.buttons.discount')}
             </Button>
+
+            {/* Вставляем компонент Kaspi */}
+      {/* <KaspiPayment 
+        payTotal={totalAmount - discount}
+        terminalIp={posIp} 
+        onSuccess={handleKaspiSuccess} 
+      /> */}
+
+      <KaspiPayment 
+  // Мы подаем чистую сумму, которую клиент реально должен списать с карты/QR
+  payTotal={totalAmount - discount} 
+  
+  // IP берем из конфига точки (point)
+  //terminalIp={point.kaspiConfig?.ip || ""} 
+  terminalIp={KaspiIp} 
+  
+  onSuccess={(transId) => {
+    // 1. Когда Kaspi подтвердил успех, принудительно ставим суммы
+    setCardAmount(totalAmount - discount);
+    setCashAmount(0);
+    setTransferAmount(0);
+    
+    // 2. Вызываем основную функцию оплаты, передавая тип "card"
+    // transId можно сохранить в объект транзакции или в лог
+    handlePayment("card", null,transId); 
+  }}
+/>
 
            {/*  <Button size="large" onClick={() => handleOpenAmountModal("certificate")}>
               🎟 Сертификат

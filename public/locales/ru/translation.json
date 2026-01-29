@@ -98,7 +98,7 @@
     "unknownPage": "Неизвестная страница"
   },
   "misc": {
-    "appName": "UchetPro",
+    "appName": "Qaz-Invent",
     "usernameGuest": "Гость",
     "aiCloseAssistant": "Закрыть NuraAi",
     "aiReadAssistant": "Спросить NuraAi",
@@ -878,8 +878,6 @@
   
   "couponAddModal": {
     "title": "Добавить купон",
-    "productNotFound": "Не найден товар",
-    
     "couponType": "Тип купона",
     "couponTypeRequired": "Выберите тип купона",
     "multiUse": "Многоразовый",
@@ -3721,9 +3719,11 @@
       "title": "Сканирование кода",
       "cameraError": "Ошибка доступа к камере. Проверьте разрешения."
     },
+    
+    "flagnkt": " При отсутствии брать из Национального каталога товаров",
+    "productNotFound": "Не найден товар",
     "title": "Заказы товаров",
     "myOrders": "Мои заказы",
-    "productNotFound": "Не найден товар",
     "incomingOrders": "Приемка товаров",
     "date": "Дата",
     "point": "Склад/Точка",

@@ -137,7 +137,7 @@ const ReceiptPrinter: React.FC<ReceiptPrinterProps> = ({
         {padLeft(storeAddress, 25) + "\n"}
         {padLeft(companyName, 25) + "\n"}
         {showBIN ? `${t('sale.receipt.binLabel') || "ЖСН(БСН)/ИИН(БИН)"} : ${companyBIN}\n` : ""}
-        {showZNM && cashboxUser ? `ЗНМ : UCHET000000${cashboxUser.cashboxId}\n` : ""}
+        {showZNM && cashboxUser ? `ЗНМ : Qaz-Invent000000${cashboxUser.cashboxId}\n` : ""}
         {`       ${t('sale.receipt.header') || "Тауарлық чек/Товарный чек"}\n`}
         {date + "               " + "\n"}
         {tickettype === 1 

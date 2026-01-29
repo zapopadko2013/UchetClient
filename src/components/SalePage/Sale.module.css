@@ -288,3 +288,33 @@
   font-size: 13px;
   line-height: 1.5;
 }
+
+
+
+
+.payButton {
+    height: 50px;
+    font-weight: bold;
+}
+
+.modalContent {
+    text-align: center;
+    padding: 10px;
+}
+
+.alert {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.statusContainer {
+    margin-top: 20px;
+}
+
+.statusText {
+    font-size: 18px;
+}
+
+.amountContainer {
+    margin-top: 10px;
+}

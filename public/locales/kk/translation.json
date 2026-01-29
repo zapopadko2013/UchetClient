@@ -94,7 +94,7 @@
     "unknownPage": "Белгісіз бет"
   },
   "misc": {
-    "appName": "UchetPro",
+    "appName": "Qaz-Invent",
     "usernameGuest": "Қонақ",
     "aiCloseAssistant": "NuraAi-ды жабу",
   "aiReadAssistant": "NuraAi-дан сұрау",
@@ -3368,6 +3368,8 @@
       "cameraError": "Камераға қол жеткізу қатесі. Рұқсаттарды тексеріңіз."
     },
   "title": "Тауар тапсырыстары",
+  "productNotFound": "Тауар табылмады",
+  "flagnkt": "Жоқ болса, Ұлттық тауарлар каталогынан алу",
   "myOrders": "Менің тапсырыстарым",
   "incomingOrders": "Тауарларды қабылдау",
   "date": "Күні",

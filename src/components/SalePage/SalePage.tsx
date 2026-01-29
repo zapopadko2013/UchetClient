@@ -22,6 +22,10 @@ const SalePage: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [ticketFormat, setTicketFormat] = useState<any | null>(null);
 
+  ////29.01.2026
+  const [selectedKaspiIp, setSelectedKaspiIp] = useState<any | null>(null);
+  ////29.01.2026
+
   const getHeaders = () => ({
     Authorization: `Bearer ${localStorage.getItem("accessToken") || ""}`,
     "Content-Type": "application/json",
@@ -124,10 +128,20 @@ const SalePage: React.FC = () => {
         users={cashboxUsers}
         loadUsers={loadCashboxUsers}
         loadCashboxes={loadCashboxes}
-        onComplete={(pointId, cashboxId, user, pointName, address) => {
+        onComplete={(pointId, cashboxId, user, pointName, address 
+           ////29.01.2026
+          ,KaspiIp1
+           ////29.01.2026
+        
+        ) => {
           setSelectedPoint({ id: pointId, name: pointName, address: address });
           setSelectedUser({ ...user, cashboxId });
           loadTicketFormat(pointId); 
+
+          ////29.01.2026
+          setSelectedKaspiIp(KaspiIp1);
+          ////29.01.2026
+
         }}
       />
     );
@@ -140,6 +154,7 @@ const SalePage: React.FC = () => {
       role4Users={role4Users}
       companyInfo={companyInfo}
       ticketFormat={ticketFormat}
+      KaspiIp={selectedKaspiIp}
     />
   );
 };

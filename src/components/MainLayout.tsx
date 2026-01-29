@@ -452,7 +452,7 @@ useEffect(() => {
                     {!collapsed && (
                         <span className="app-name-text">
                             <img
-    src="Uchet.svg"
+    src="Qazinvent1.svg"
     alt="App Icon"
     className="app-icon"
   />

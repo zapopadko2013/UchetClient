@@ -21,7 +21,8 @@ interface Cashbox {
   id: string;
   name: string;
   point: string;
-  point_name: string;
+  point_name: string;  
+  kaspiip: string;
 }
 
 interface TradePoint {
@@ -122,6 +123,9 @@ const CashDesksPage: React.FC = () => {
               name: selectedCashbox.name,
               point: selectedCashbox.point,
               point_name: selectedCashbox.point_name,
+              ///29.01.2026
+              kaspiip: selectedCashbox.kaspiip,
+              ///29.01.2026
               deleted: 1
             }
           ,
@@ -163,6 +167,9 @@ const CashDesksPage: React.FC = () => {
             name: selectedCashbox.name,
             point: selectedCashbox.point,
             point_name: selectedCashbox.point_name,
+            ///29.01.2026
+              kaspiip: selectedCashbox.kaspiip,
+            ///29.01.2026
             deleted: 0,
           },
           toggle: true,
@@ -182,6 +189,9 @@ const CashDesksPage: React.FC = () => {
         cashbox: {
           name: values.name,
           point: values.point,
+          ///29.01.2026
+              kaspiip: values.kaspiip,
+          ///29.01.2026
         },
       };
 
@@ -221,6 +231,10 @@ const CashDesksPage: React.FC = () => {
     {
       title: t('cashDesksPage.fields.point'),
       dataIndex: 'point_name',
+    },
+     {
+      title: t('cashDesksPage.fields.kaspiip'),
+      dataIndex: 'kaspiip',
     },
     ...(activeTab === 'inactive'
       ? [
@@ -291,9 +305,13 @@ const CashDesksPage: React.FC = () => {
         }
         open={modalVisible}
         onOk={handleModalOk}
-        onCancel={() => setModalVisible(false)}
+        onCancel={() => {
+    setModalVisible(false);
+    form.resetFields(); // Сбрасывает значения и ошибки валидации
+  }}
         okText={t('cashDesksPage.buttons.save')}
         cancelText={t('cashDesksPage.buttons.cancel')}
+        destroyOnHidden
       >
         <Form form={form} layout="vertical">
           <Form.Item
@@ -315,6 +333,13 @@ const CashDesksPage: React.FC = () => {
                 </Option>
               ))}
             </Select>
+          </Form.Item>
+          <Form.Item
+            name="kaspiip"
+            label={t('cashDesksPage.fields.kaspiip')}
+            rules={[{ required: false }]}
+          >
+            <Input />
           </Form.Item>
         </Form>
       </Modal>

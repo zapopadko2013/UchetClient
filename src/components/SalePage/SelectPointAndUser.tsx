@@ -31,6 +31,7 @@ interface Cashbox {
   id: number;
   name: string;
   address: string;
+  kaspiip: string;
 }
 
 interface User {
@@ -45,7 +46,13 @@ interface Props {
   users: User[];
   loadUsers: (pointId: string) => Promise<void>;
   loadCashboxes: (pointId: string) => Promise<void>;
-  onComplete: (pointId: string, cashboxId: number, user: User, pointName: string, address: string) => void;
+  onComplete: (pointId: string, cashboxId: number, user: User, pointName: string, address: string
+
+   ////29.01.2026
+   ,KaspiIp1: string
+   ////29.01.2026
+
+  ) => void;
 }
 
 const SelectPointAndUser: React.FC<Props> = ({
@@ -66,6 +73,10 @@ const SelectPointAndUser: React.FC<Props> = ({
   const filteredUsers = users.filter((u) => String(u.role) !== "4");
   const selectedUser = filteredUsers.find((u) => String(u.id) === selectedUserId);
 
+  ////29.01.2026
+    const [selectedKaspiIp1, setSelectedKaspiIp1] = useState<any | null>(null);
+  ////29.01.2026
+
   const handleSelectPoint = async (id: string) => {
     const point = points.find((p) => p.id === id);
     if (point) {
@@ -76,6 +87,14 @@ const SelectPointAndUser: React.FC<Props> = ({
   };
 
   const handleSelectCashbox = async (id: number) => {
+
+    ////29.01.2026
+    const cashbox = cashboxes.find(c => c.id === id);
+    if (cashbox) {
+      setSelectedKaspiIp1(cashbox.kaspiip || ""); // Сохраняем IP
+    }
+    ////29.01.2026
+
     setSelectedCashboxId(id);
     setStep(2);
     if (selectedPoint) {
@@ -188,6 +207,9 @@ const SelectPointAndUser: React.FC<Props> = ({
                 selectedUser!, 
                 selectedPoint!.name, 
                 selectedPoint!.address
+                ////29.01.2026
+                ,selectedKaspiIp1|| ""
+                ////29.01.2026
               )
             }
           >

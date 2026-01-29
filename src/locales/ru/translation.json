@@ -98,7 +98,7 @@
     "unknownPage": "Неизвестная страница"
   },
   "misc": {
-    "appName": "UchetPro",
+    "appName": "Qaz-Invent",
     "usernameGuest": "Гость",
     "aiCloseAssistant": "Закрыть NuraAi",
     "aiReadAssistant": "Спросить NuraAi",
@@ -581,7 +581,9 @@
     "fields": {
       "name": "Касса",
       "point": "Торговая точка",
-      "status": "Статус"
+      "status": "Статус",
+      "kaspiip": "Ip каспи терминала"
+      
     },
     "modal": {
       "addTitle": "Добавление кассы",
@@ -3817,7 +3819,38 @@
     }
 
   }
+  ,
+
+  "kaspi": {
+  "errors": {
+    "notSupported": "Эта транзакция не поддерживает автоматический возврат через Kaspi",
+    "noConnection": "Нет связи с терминалом Kaspi",
+    "ipNotConfigured": "IP терминала не настроен в системе",
+    "denied": "Kaspi: Отказ в возврате",
+    "terminalError": "Ошибка связи с терминалом"
+  },
   
+  "buttons": {
+    "payBtn": "KASPI QR / КАРТА",
+    "cancelPolling": "Отмена (Прервать опрос)"
+  },
+  "status": {
+    "connecting": "Подключение к терминалу...",
+    "waiting1": "Ожидание действий покупателя...",
+    "successSave": "Оплата принята, сохраняем чек...",
+    "interrupted": "Запрос к терминалу прерван на стороне программы."
+    ,"waiting": "Ожидание ответа от Kaspi...",
+    "success": "Kaspi: Возврат успешно проведен"
+  },
+  "modal": {
+    "title": "Оплата Kaspi",
+    "confirmTitle": "Оплата Kaspi QR / Card",
+    "confirmContent": "Отправить запрос на терминал на сумму",
+    "alertTitle": "Внимание",
+    "alertDesc": "Если терминал не реагирует, проверьте расширение CORS.",
+    "toPay": "К оплате"
+  }
+}
 
 
 }

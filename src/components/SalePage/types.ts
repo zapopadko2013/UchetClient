@@ -46,6 +46,10 @@ export interface TicketFromApi {
   ticketid: number;
   date: string;
 
+  ///28.01.2026
+  paymenttransid: string;
+  ///28.01.2026
+
   // --- платежи ---
   cashpay: number;
   cardpay: number;

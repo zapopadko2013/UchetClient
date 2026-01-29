@@ -30,6 +30,7 @@ interface Props {
   role4Users?: User[];
   companyInfo: any;
   ticketFormat: any;
+  KaspiIp : any;
 }
 
 interface User {
@@ -123,7 +124,9 @@ export const printReceipt = (props: ReceiptPrinterProps) => {
 const SaleWorkspace: React.FC<Props> = ({ 
   //pointId
   point
-  , cashboxUser, role4Users,companyInfo,ticketFormat }) => {
+  , cashboxUser, role4Users,companyInfo,ticketFormat
+  ,KaspiIp
+}) => {
   const [saleProducts, setSaleProducts] = useState<any[]>([]);
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedRowKey, setSelectedRowKey] = useState<string | null>(null);
@@ -278,6 +281,38 @@ const applyManualDiscount = () => {
   //////
 
 
+//////28.01.2026
+
+const executeKaspiRefund = async (paymenttransid: string, amount: number, terminalIp: string) => {
+  // Проверка, что это транзакция Kaspi 
+  if (!paymenttransid || !paymenttransid.includes("KASPI")) {
+    //throw new Error("Эта транзакция не поддерживает автоматический возврат через Kaspi");
+    throw new Error(t('kaspi.errors.notSupported'));
+  }
+
+  // Извлекаем метод (QR/CARD) и ID транзакции
+  const splitIndex = paymenttransid.indexOf("KASPI");
+  const method = paymenttransid.substring(0, splitIndex); // QR или CARD
+  const transactionId = paymenttransid.substring(splitIndex + 5);
+
+  const baseUrl = terminalIp.startsWith('http') ? terminalIp : `http://${terminalIp}`;
+  // Для возврата используется эндпоинт /remains
+  const url = `${baseUrl}/remains?method=${method}&amount=${Math.round(Math.abs(amount))}&transactionId=${transactionId}`;
+
+  const response = await fetch(url, {
+    method: 'GET',
+    headers: { 'Accept': 'application/json' },
+  });
+
+  if (!response.ok) 
+    throw new Error(t('kaspi.errors.noConnection'));
+    //throw new Error("Нет связи с терминалом Kaspi");
+  return await response.json();
+};
+
+//////28.01.2026
+
+
 const handlePaymentClick = async () => {
   if (saleProducts.length === 0) {
     //message.warning("Сначала добавьте товары");
@@ -374,6 +409,11 @@ const handlePaymentClick = async () => {
       bonuspay: selectedTicket.bonuspay || 0,
       debtorid: selectedTicket.debtorid || 0,
       parentid: selectedTicket.ticketid,
+
+      ////29.01.2026
+      paymenttransid: selectedTicket.paymenttransid, 
+      ////29.01.2026
+
       coupon: selectedTicket.coupon || [],
       price: Math.abs(totalAmount),
       cashboxuser: selectedTicket.cashboxuser,
@@ -536,6 +576,49 @@ const handlePaymentClick = async () => {
 
   const processReturn = async (type: string) => {
     Modal.destroyAll(); // закрываем окно
+
+
+  /////28.01.2026  
+    // --- ВСТАВКА KASPI ---
+  if (type === "card") {
+    const transId = selectedTicket.paymenttransid;
+    //console.log(KaspiIp);
+    // Если в ID есть KASPI и это не ручной ввод (bezintegr)
+    if (transId && transId.includes("KASPI") && !transId.includes("bezintegr")) {
+      try {
+        const terminalIp = KaspiIp; // Получаем IP из настроек точки
+     //   console.log(terminalIp);
+        if (!terminalIp) {
+          //message.error("IP терминала не настроен в системе");
+          message.error(t('kaspi.errors.ipNotConfigured'));
+          return;
+        }
+
+        //message.loading({ content: "Ожидание ответа от Kaspi...", key: "kaspi_status" });
+        message.loading({ content: t('kaspi.status.waiting'), key: "kaspi_status" });
+        const res = await executeKaspiRefund(transId, totalAmount, terminalIp);
+
+        if (res.status === 200 || res.status === "success") {
+        //  message.success({ content: "Kaspi: Возврат успешно проведен", key: "kaspi_status" });
+        message.success({ content: t('kaspi.status.success'), key: "kaspi_status" });  
+      } else {
+        //  message.error({ content: "Kaspi: Отказ в возврате", key: "kaspi_status" });
+        message.error({ content: t('kaspi.errors.denied'), key: "kaspi_status" });
+        return; // Прерываем сохранение в БД, так как банк отказал
+        }
+      } catch (
+       // err
+       err: any
+      ) {
+        //message.error({ content: "Ошибка связи с терминалом", key: "kaspi_status" });
+        message.error({ content: err.message || t('kaspi.errors.terminalError'), key: "kaspi_status" });
+        return;
+      }
+    }
+  }
+  // --- КОНЕЦ ВСТАВКИ ---
+  /////28.01.2026  
+
     const transaction = createTransaction(type);
     if (!transaction) return;
 
@@ -1175,6 +1258,11 @@ const handlePaymentClick = async () => {
         }
         const selectedItem = saleProducts.find(p => p.key === selectedRowKey);
         if (selectedItem) {
+
+          /////
+          setSelectedDiscountRowKey(selectedRowKey);
+          //////
+
           setManualDiscountAmount(selectedItem.discount || 0);
           setManualDiscountPercent(
             ((selectedItem.discount || 0) / selectedItem.originalPrice) * 100
@@ -1249,6 +1337,7 @@ const handlePaymentClick = async () => {
         companyInfo={companyInfo}
         onClose={() => setPaymentVisible(false)}
         ticketFormat={ticketFormat}
+        KaspiIp={KaspiIp}
         onCompletePayment={(_) => {
           //console.log("Оплата завершена:", data);
           setSaleProducts([]);        

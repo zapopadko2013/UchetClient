@@ -94,7 +94,7 @@
     "unknownPage": "Unknown page"
   },
   "misc": {
-    "appName": "UchetPro",
+    "appName": "Qaz-Invent",
     "usernameGuest": "Guest",
     "aiCloseAssistant": "Close NuraAi",
   "aiReadAssistant": "Ask NuraAi",
@@ -553,6 +553,7 @@
   "fields": {
     "name": "Cash Desk",
     "point": "Trade Point",
+    "kaspiip": "Kaspi terminal IP",
     "status": "Status"
   },
   "modal": {
@@ -3465,6 +3466,36 @@
   "address": "Supplier Address",
   "emptyPrompt": "Select a product to view price history"
 }
+}
+,
+"kaspi": {
+  "errors": {
+    "notSupported": "This transaction does not support automatic refund via Kaspi",
+    "noConnection": "No connection to Kaspi terminal",
+    "ipNotConfigured": "Terminal IP is not configured in the system",
+    "denied": "Kaspi: Refund denied",
+    "terminalError": "Terminal communication error"
+  },
+  "buttons": {
+    "payBtn": "KASPI QR / CARD",
+    "cancelPolling": "Cancel (Stop polling)"
+  },
+  "status": {
+    "connecting": "Connecting to terminal...",
+    "waiting1": "Waiting for customer action...",
+    "successSave": "Payment accepted, saving receipt...",
+    "interrupted": "Terminal request was interrupted by the software.",
+    "waiting": "Waiting for Kaspi response...",
+    "success": "Kaspi: Refund processed successfully"
+  },
+  "modal": {
+    "title": "Kaspi Payment",
+    "confirmTitle": "Kaspi QR / Card Payment",
+    "confirmContent": "Send a request to the terminal for the amount of",
+    "alertTitle": "Attention",
+    "alertDesc": "If the terminal does not respond, check the CORS extension.",
+    "toPay": "To pay"
+  }
 }
 
 
