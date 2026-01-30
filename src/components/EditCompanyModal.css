@@ -1,0 +1,25 @@
+/* Уменьшаем отступ между полями ввода */
+.ant-modal-body .ant-form-item {
+    margin-bottom: 8px !important; /* Было 24px, ставим 8px для компактности */
+}
+
+/* Уменьшаем отступ между названием поля (label) и самим инпутом */
+.ant-modal-body .ant-form-item-row .ant-form-item-label {
+    padding-bottom: 2px !important;
+}
+
+/* Если есть вспомогательный текст или ошибки, даем им немного места */
+.ant-form-item-explain {
+    font-size: 12px;
+    min-height: 18px;
+}
+
+/* На мобильных телефонах можно сделать еще плотнее */
+@media (max-width: 576px) {
+    .ant-modal-body {
+        padding: 12px !important;
+    }
+    .ant-modal-body .ant-form-item {
+        margin-bottom: 4px !important;
+    }
+}

@@ -55,7 +55,18 @@ const MainLayout: React.FC<MainLayoutProps> = ({ username, accesses }) => {
     const [isAiChatVisible, setIsAiChatVisible] = useState(false);
 
     
-    
+    ///////30.01.2026
+
+    // Автоматически закрывать меню при переходе по ссылке на мобильных устройствах
+useEffect(() => {
+    const handleRouteChange = () => {
+        if (window.innerWidth < 992) {
+            setCollapsed(true);
+        }
+    };
+    handleRouteChange();
+}, [location.pathname]);
+    ///////30.01.2026
 
     const {
         token: { colorBgContainer, borderRadiusLG },
@@ -447,7 +458,19 @@ useEffect(() => {
 
     return (
         <Layout className="app-layout">
-            <Sider width={340} trigger={null} collapsible collapsed={collapsed} className="app-sider">
+            <Sider 
+           
+           breakpoint="lg"
+    collapsedWidth="0"
+    width={300}     
+    onBreakpoint={(broken) => {
+            if (broken) setCollapsed(true);
+        }}
+
+            /* width={340}  */
+            trigger={null} 
+            collapsible 
+            collapsed={collapsed} className="app-sider">
                 <div className="sider-header">
                     {!collapsed && (
                         <span className="app-name-text">
@@ -458,12 +481,12 @@ useEffect(() => {
   />
                             {t('misc.appName')}</span>
                     )}
-                    <Button
+                     <Button
                         type="text"
                         icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
                         onClick={() => setCollapsed(!collapsed)}
                         className="collapse-button"
-                    />
+                    /> 
                 </div>
                 <Menu
                     theme="light"
@@ -478,6 +501,24 @@ useEffect(() => {
             <Layout className="site-layout">
                 <Header className="app-header">
                     <div className="header-content">
+                        {/* <Button
+                        type="text"
+                        icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+                        onClick={() => setCollapsed(!collapsed)}
+                        className="collapse-button"
+                    /> */}
+                    
+                    <Button
+    type="text"
+    onClick={() => setCollapsed(!collapsed)}
+    className="header-toggle-button"
+>
+    <Space>
+        {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+        {/* Показываем текст "Меню" только если меню свернуто */}
+        {collapsed && <span className="menu-button-text">{t('misc.menu')}</span>}
+    </Space>
+</Button>
                         <div></div>
                         <div className="right-header-items">
                             <LanguageSelector />

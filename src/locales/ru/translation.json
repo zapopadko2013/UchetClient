@@ -102,7 +102,9 @@
     "usernameGuest": "Гость",
     "aiCloseAssistant": "Закрыть NuraAi",
     "aiReadAssistant": "Спросить NuraAi",
+    "menu": "Меню",
     "aiAssistant": "ИИ NuraAi"
+    
     
   },
   "notifications": {

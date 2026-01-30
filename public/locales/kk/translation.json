@@ -98,6 +98,7 @@
     "usernameGuest": "Қонақ",
     "aiCloseAssistant": "NuraAi-ды жабу",
   "aiReadAssistant": "NuraAi-дан сұрау",
+  "menu": "Мәзір",
   "aiAssistant": "NuraAi ЖИ"
   },
   "notifications": {
@@ -554,6 +555,7 @@
   "fields": {
     "name": "Касса атауы",
     "point": "Сауда нүктесі",
+    "kaspiip": "Kaspi терминалының IP-і",
     "status": "Күйі"
   },
   "modal": {
@@ -3467,6 +3469,36 @@
   "address": "Жеткізушінің мекенжайы",
   "emptyPrompt": "Бағалар тарихын көру үшін тауарды таңдаңыз"
 }
+}
+,
+"kaspi": {
+  "errors": {
+    "notSupported": "Бұл транзакция Kaspi арқылы автоматты түрде қайтаруды қолдамайды",
+    "noConnection": "Kaspi терминалымен байланыс жоқ",
+    "ipNotConfigured": "Жүйеде терминалдың IP-і бапталмаған",
+    "denied": "Kaspi: Қайтарудан бас тартылды",
+    "terminalError": "Терминалмен байланыс қатесі"
+  },
+  "buttons": {
+    "payBtn": "KASPI QR / КАРТА",
+    "cancelPolling": "Бас тарту (Сұрауды тоқтату)"
+  },
+  "status": {
+    "connecting": "Терминалға қосылу...",
+    "waiting1": "Сатып алушының әрекетін күту...",
+    "successSave": "Төлем қабылданды, чек сақталуда...",
+    "interrupted": "Терминалға сұраныс бағдарлама тарапынан тоқтатылды.",
+    "waiting": "Kaspi-ден жауап күту...",
+    "success": "Kaspi: Қайтару сәтті аяқталды"
+  },
+  "modal": {
+    "title": "Kaspi арқылы төлеу",
+    "confirmTitle": "Kaspi QR / Card төлемі",
+    "confirmContent": "Терминалға мына сомаға сұраныс жіберу:",
+    "alertTitle": "Назар аударыңыз",
+    "alertDesc": "Егер терминал жауап бермесе, CORS кеңейтілімін тексеріңіз.",
+    "toPay": "Төлеуге"
+  }
 }
 
 

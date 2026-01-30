@@ -41,7 +41,8 @@ const NotificationDrawer: React.FC<{ visible: boolean; onClose: () => void; onNe
       const fetchData = async () => {
         try {
           const [categoriesData, newsData] = await Promise.all([
-            sendCategoriesRequest(import.meta.env.VITE_API_URL + '/api/categories/getcategories', {
+            //sendCategoriesRequest(import.meta.env.VITE_API_URL + '/api/categories/getcategories', {
+            sendCategoriesRequest(import.meta.env.VITE_API_URL + '/api/categories/getcategories1', {
               headers: { Authorization: `Bearer ${localStorage.getItem('accessToken') || ''}` },
             }),
             sendNewsRequest(import.meta.env.VITE_API_URL + '/api/news/all', {

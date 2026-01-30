@@ -1,67 +1,92 @@
-/*
-  HomePage.css - Стили для страницы компании.
-*/
+/* --- ОБЩИЕ СТИЛИ КОНТЕНТА --- */
 .ant-layout-content {
   padding-left: 24px !important;
   padding-right: 24px !important;
 }
 
-/* Стили для карточки компании, без изменений */
+/* Мобильные отступы для контента */
+@media (max-width: 576px) {
+  .ant-layout-content {
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
+}
+
+/* Карточка компании */
 .company-info-card {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   padding: 24px;
-  max-width: 600px; /* Уменьшает ширину карточки */
-  margin: 0; /* Располагает карточку слева */
+  max-width: 600px;
+  margin: 0;
+}
+
+@media (max-width: 576px) {
+  .company-info-card {
+    padding: 16px; /* Уменьшаем внутренние отступы карточки */
+  }
 }
 
 .edit-button {
   margin-bottom: 24px;
 }
 
-/* Более четкий и темный шрифт */
-.ant-typography {
-  color: #262626;
-  font-weight: 500;
-}
-
-/* Стили для всех строк данных */
+/* --- СТРОКИ ДАННЫХ (Grid -> Flex на мобильных) --- */
 .info-item, .info-item-wholesale {
   display: grid;
-  grid-template-columns: 200px 1fr; /* Фиксированная ширина для первой колонки, оставшееся пространство для второй */
-  gap: 10px; /* Расстояние между колонками */
+  grid-template-columns: 200px 1fr; /* На ПК всё в одну строку */
+  gap: 10px;
   align-items: center;
-  margin-bottom: 8px; /* Расстояние между строками */
+  margin-bottom: 8px;
   padding-bottom: 5px;
   border-bottom: 1px solid #f0f0f0;
+}
+
+/* Адаптация строк для мобильных */
+@media (max-width: 576px) {
+  .info-item, .info-item-wholesale {
+    display: flex;
+    flex-direction: column; /* Складываем "Название" над "Значением" */
+    align-items: flex-start; /* Выравнивание по левому краю */
+    gap: 4px;
+  }
+
+  .ant-typography-text {
+    text-align: left !important; /* На мобилке текст слева смотрится лучше */
+    width: 100%;
+  }
+  
+  .info-item-wholesale .ant-switch {
+    margin-top: 4px;
+  }
 }
 
 .info-item:last-child {
   border-bottom: none;
 }
 
-/* Стили для меток и значений */
+/* Шрифты */
 .ant-typography-strong {
   font-size: 18px;
-  font-weight: 600; /* Более жирный шрифт для меток */
+  font-weight: 600;
   color: #595959;
 }
 
 .ant-typography-text {
   font-size: 18px; 
   font-weight: 400;
-  text-align: right; /* Выравнивание по правому краю */
+  text-align: right;
 }
 
-/* Выравнивание переключателя по правому краю */
-.info-item-wholesale .ant-switch {
-  justify-self: start;
-}
-
-
-/* Ширина для Input */
+/* --- СКАНЕР И ВВОД --- */
 .barcodeInput {
   width: 250px;
   margin-top: 0;
+}
+
+@media (max-width: 576px) {
+  .barcodeInput {
+    width: 100%; /* Инпут на всю ширину мобильного экрана */
+  }
 }
 
 #barcode-reader {
@@ -72,6 +97,7 @@
     overflow: hidden;
 }
 
+/* Важно для мобильных камер */
 #barcode-reader video {
     width: 100% !important;
     height: auto !important;
@@ -83,10 +109,10 @@
     padding: 16px;
     background: #fafafa;
     border-radius: 8px;
-    border: 1px transition #f0f0f0;
+    border: 1px solid #f0f0f0;
 }
 
-/* Увеличиваем шрифт внутри инпута для удобства на телефоне */
+/* Крупный шрифт в инпуте, чтобы мобильный браузер не увеличивал масштаб при фокусе */
 .ant-input {
     font-size: 16px !important; 
 }

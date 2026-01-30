@@ -118,20 +118,20 @@ const EditCompanyModal: React.FC<EditCompanyModalProps> = ({ visible, onClose, o
                 layout="vertical"
                 onFinish={handleFormSubmit}
             >
-                <Row gutter={24}>
+                <Row gutter={[24, 0]}>
                     <Col span={24}><Form.Item label={t('companyPage.name')} name="name"><Input /></Form.Item></Col>
                     <Col xs={24} sm={12}><Form.Item label={t('companyPage.bin')}><Text strong>{initialData?.bin}</Text></Form.Item></Col>
                     <Col xs={24} sm={12}><Form.Item label={t('companyPage.address')} name="address"><Input /></Form.Item></Col>
                 </Row>
-                <Row gutter={24}>
+                <Row gutter={[24, 0]}>
                     <Col xs={24} sm={12}><Form.Item label={t('companyPage.head')} name="head"><Input /></Form.Item></Col>
                     <Col xs={24} sm={12}><Form.Item label={t('companyPage.headIin')} name="headIin"><Input /></Form.Item></Col>
                 </Row>
-                <Row gutter={24}>
+                <Row gutter={[24, 0]}>
                     <Col xs={24} sm={12}><Form.Item label={t('companyPage.accountant')} name="accountant"><Input /></Form.Item></Col>
                     <Col xs={24} sm={12}><Form.Item label={t('companyPage.accountantIin')} name="accountantIin"><Input /></Form.Item></Col>
                 </Row>
-                <Row gutter={24}>
+                <Row gutter={[24, 0]}>
                     <Col xs={24} sm={8}>
                         <Form.Item label={t('companyPage.certificatenum')}>
                            <Text strong>{initialData?.certificatenum}</Text>
@@ -152,11 +152,11 @@ const EditCompanyModal: React.FC<EditCompanyModalProps> = ({ visible, onClose, o
                         </Form.Item>
                     </Col>
                 </Row>
-                <Row gutter={24}>
+                <Row gutter={[24, 0]}>
                     <Col xs={24} sm={12}><Form.Item label={t('companyPage.wholesale')} name="wholesale" valuePropName="checked"><Switch /></Form.Item></Col>
                 </Row>
 
-                <Row gutter={24}>
+                <Row gutter={[24, 0]}>
                     
                    <Col xs={24} sm={12}>
   <Form.Item 
