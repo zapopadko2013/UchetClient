@@ -318,6 +318,7 @@ export default function AiChat({ initialSession }: AiChatProps) {
                       className={styles.chatTable}
                       bordered
                       rowKey={(record) => record.name + record.point}
+                      scroll={{ x: 'max-content' }}
                     />
                   )}
 
@@ -337,7 +338,8 @@ export default function AiChat({ initialSession }: AiChatProps) {
                         size="small" 
                         bordered
                         rowKey={(record, index) => record.name + index}
-                        scroll={{ x: 400 }}
+                        scroll={{ x: 'max-content' }}
+                        /* scroll={{ x: 400 }} */
                         />
                     </div>
                   )}

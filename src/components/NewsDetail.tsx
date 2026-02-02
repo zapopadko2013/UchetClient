@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import useApiRequest from '../hooks/useApiRequest';
 import { marked } from 'marked';
+import styles from './NewsDetail.module.css';
 
 const { Title, Paragraph } = Typography;
 
@@ -78,12 +79,12 @@ const NewsDetail: React.FC = () => {
   }
 
   return (
-    <div>
+    <div className={styles.container}>
       <Title level={2}>{news.header}</Title>
       <Paragraph type="secondary">{formatDate(news.date)}</Paragraph>
 
       {/* Рендерим Markdown через dangerouslySetInnerHTML */}
-      <div dangerouslySetInnerHTML={{ __html: contentHtml }} />
+      <div className={styles.content} dangerouslySetInnerHTML={{ __html: contentHtml }} />
     </div>
   );
 };

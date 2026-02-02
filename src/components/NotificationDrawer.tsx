@@ -62,7 +62,7 @@ const NotificationDrawer: React.FC<{ visible: boolean; onClose: () => void; onNe
               const categoryObject = categoriesData.find(cat => cat.id == notification.category);
               return {
                 ...notification,
-                category: categoryObject ? categoryObject.name : t('notifications.uncategorized'),
+                category: categoryObject ? categoryObject.name : t('menu.news'),
               };
             });
             setNotifications(notificationsWithCategoryNames);
