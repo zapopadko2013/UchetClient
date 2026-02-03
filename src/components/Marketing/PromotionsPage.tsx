@@ -251,6 +251,7 @@ const PromotionsPage: React.FC = () => {
     return (
       <Table
         dataSource={dataSource}
+        scroll={{ x: 'max-content' }}
         columns={columns}
         pagination={false}
         rowClassName={(record: any) => (record.isGroup ? 'group-row' : '')}
@@ -333,6 +334,7 @@ const PromotionsPage: React.FC = () => {
         <Table
           size="small"
           dataSource={ifSection.values}
+          scroll={{ x: 'max-content' }}
           rowKey="id"
           pagination={false}
           columns={[
@@ -359,6 +361,7 @@ const PromotionsPage: React.FC = () => {
         <Table
           size="small"
           dataSource={thenSection.values}
+          scroll={{ x: 'max-content' }}
           rowKey="id"
           pagination={false}
           columns={[
@@ -398,7 +401,7 @@ const PromotionsPage: React.FC = () => {
     {
       key: 'old',
       label: t('promotions.old'),
-      children: loading ? <Spin /> : <Table dataSource={oldDataSource} columns={oldColumns} pagination={{ pageSize: 10 }} />,
+      children: loading ? <Spin /> : <Table scroll={{ x: 'max-content' }} dataSource={oldDataSource} columns={oldColumns} pagination={{ pageSize: 10 }} />,
     },
   ];
 
@@ -429,6 +432,7 @@ const PromotionsPage: React.FC = () => {
         ]}
         onCancel={() => setDetailModalVisible(false)}
         width={700}
+        zIndex={3500}
       >
         {detailLoading ? (
           <Spin />

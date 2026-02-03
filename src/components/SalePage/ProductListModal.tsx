@@ -201,6 +201,7 @@ const ProductListModal: React.FC<Props> = ({
       onCancel={onClose}
       footer={null}
       width={1000}
+      zIndex={3500}
     >
       <Input
         placeholder={t('sale.productModal.searchPlaceholder') || "Поиск по наименованию или штрих-коду"}

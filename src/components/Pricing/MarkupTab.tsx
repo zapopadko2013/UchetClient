@@ -172,6 +172,7 @@ const MarkupTab: React.FC = () => {
         loading={loading}
         dataSource={data}
         columns={columns}
+        scroll={{ x: 'max-content' }}
         rowSelection={{
           type: 'radio',
           selectedRowKeys: selectedRow ? [selectedRow.id] : [],

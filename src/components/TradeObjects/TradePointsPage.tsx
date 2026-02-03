@@ -208,6 +208,7 @@ const handleModalOk = async () => {
         rowKey="id"
         dataSource={dataToRender}
         columns={columns}
+        scroll={{ x: 'max-content' }}
         rowSelection={{
           type: 'radio',
           selectedRowKeys: selectedPoint ? [selectedPoint.id!] : [],

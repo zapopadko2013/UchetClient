@@ -3,6 +3,43 @@
   align-items: center;
   margin-bottom: 16px;
 }
+
+/* МОБИЛЬНАЯ АДАПТАЦИЯ */
+@media (max-width: 576px) {
+  .buttonsPanel {
+    display: block; /* Сбрасываем flex */
+    width: 100%;
+  }
+
+  /* Вместо Space используем Grid для кнопок */
+  .buttonsPanel :global(.ant-space) {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr; /* Две колонки */
+    gap: 8px !important;
+    width: 100%;
+  }
+
+  /* Кнопки внутри Space */
+  .buttonsPanel :global(.ant-space-item) {
+    width: 100%;
+  }
+
+  .buttonsPanel button {
+    width: 100% !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    padding: 4px 8px !important;
+    font-size: 13px !important;
+  }
+
+  /* Делаем кнопку "Добавить" на всю ширину, если она первая */
+  .buttonsPanel :global(.ant-space-item):first-child {
+    grid-column: span 2;
+  }
+}
+
 .discountInput {
   width: 100%;
 }

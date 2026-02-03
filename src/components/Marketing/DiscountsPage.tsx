@@ -380,6 +380,7 @@ const removeException = () => {
       </Space>
       <Table
         rowKey="discountid"
+        scroll={{ x: 'max-content' }}
         dataSource={filteredCommonDiscounts}
         columns={getColumnsByType(selectedCommonType)}
         rowSelection={{
@@ -465,7 +466,7 @@ const removeException = () => {
 }
     ];
 
-    return <Table rowKey="discountid" dataSource={filtered} columns={inactiveColumns} pagination={{ pageSize: 10 }} />;
+    return <Table scroll={{ x: 'max-content' }} rowKey="discountid" dataSource={filtered} columns={inactiveColumns} pagination={{ pageSize: 10 }} />;
   };
 
   const renderExceptionsTab = () => {
@@ -518,6 +519,7 @@ const removeException = () => {
         <Table
           rowKey="id"
           dataSource={exceptions}
+          scroll={{ x: 'max-content' }}
           columns={exceptionColumns}
           rowSelection={{
             type: 'radio',
@@ -572,6 +574,7 @@ const removeException = () => {
   title={t('discounts.common.add')}
   open={showExpdateModal}
   onCancel={cancelExpModal}
+  zIndex={3500}
   footer={[
     <Button key="reset" onClick={clearExpForm}>
       {t('discounts.common.clear')}
@@ -669,6 +672,7 @@ const removeException = () => {
         <Table
           rowKey="id"
           dataSource={expdateDiscounts}
+          scroll={{ x: 'max-content' }}
           columns={columns}
           rowSelection={{
             type: 'radio',

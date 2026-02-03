@@ -974,7 +974,7 @@ printReceipt({
       <Modal open={open} title=
       /* "Оплата" */
       {t('sale.payment.title')}
-       onCancel={onClose} footer={null} width={1000}>
+       onCancel={onClose} footer={null} width={1000} zIndex={3500}>
         <div className={styles.flexRow}>
           {/* ------------------- ЛЕВАЯ ПАНЕЛЬ ------------------- */}
           <div className={styles.flexContent}> 

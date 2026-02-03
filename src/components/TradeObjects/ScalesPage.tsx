@@ -330,6 +330,7 @@ const ScalesPage: React.FC = () => {
         rowKey="id"
         dataSource={filteredScales}
         columns={columns}
+        scroll={{ x: 'max-content' }}
         rowSelection={{
           type: 'radio',
           selectedRowKeys: selectedScale ? [selectedScale.id] : [],

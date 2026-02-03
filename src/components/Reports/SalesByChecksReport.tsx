@@ -424,6 +424,7 @@ const downloadInvoice = async (transactionId: string) => {
         loading={loading}
         dataSource={transactions}
         columns={columns}
+        scroll={{ x: 'max-content' }}
       />
 
       {/* DETAILS MODAL */}
@@ -449,6 +450,7 @@ const downloadInvoice = async (transactionId: string) => {
             <Table
               rowKey={(_, index = 0) => index.toString()}
               pagination={false}
+              scroll={{ x: 'max-content' }}
               columns={[
                 { title: t('reportchecks.modalColName'), dataIndex: "name" },
                 { title: t('reportchecks.modalColUnitsPrice'), render: (r) => `${r.units} x ${r.price}` }, 

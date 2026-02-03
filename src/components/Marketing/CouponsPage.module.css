@@ -67,3 +67,71 @@
 .fullWidth {
   width: 100%;
 }
+
+
+/* --- АДАПТАЦИЯ ДЛЯ МОБИЛЬНЫХ (Экран < 576px) --- */
+@media (max-width: 576px) {
+
+  /* 1. Контейнер "Товар + Штрихкод" */
+  .productBarcodeContainer {
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+  }
+
+  .productSelectFormItem,
+  .barcodeFormItem {
+    flex: none !important;
+    width: 100% !important;
+    margin-bottom: 8px;
+  }
+
+  /* 3. Футер формы (Сохранить / Отмена) */
+  .formFooter {
+    float: none !important;
+    margin-top: 16px;
+    width: 100%;
+    
+    /* Используем Grid для расположения кнопок в ряд */
+    display: grid !important;
+    grid-template-columns: 1fr 1fr; /* Две равные колонки */
+    gap: 10px; /* Расстояние между кнопками */
+  }
+
+  .formFooter button {
+    width: 100% !important; /* Кнопка заполняет свою ячейку сетки */
+    height: 44px;
+    margin: 0 !important; /* Сбрасываем лишние отступы */
+  }
+
+  /* 4. Область действий (верхние кнопки) */
+  .actions {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr; /* Также по 2 в ряд */
+    gap: 8px;
+    width: 100%;
+  }
+
+  /* Если кнопок нечетное количество (например, одна), растянем её на всю ширину */
+  .actions button:first-child:last-child {
+    grid-column: span 2;
+  }
+
+  .actions button {
+    width: 100% !important;
+    height: 40px;
+    margin: 0 !important;
+  }
+
+  /* 5. Описание типа объекта */
+  .objtypeDescription {
+    text-align: left; /* На мобилке слева смотрится лучше, если кнопки в ряд */
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  /* Поля ввода */
+  .input, .fullHeightInput {
+    font-size: 16px !important;
+  }
+}

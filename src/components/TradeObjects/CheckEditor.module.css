@@ -169,3 +169,99 @@
 .marginBottom0 {
   margin-bottom: 0;
 }
+
+
+@media (max-width: 768px) {
+  /* Заставляем родительский контейнер (Row) выстраивать колонки вертикально */
+  /* Если вы используете Ant Design Row, он имеет класс .ant-row */
+  :global(.ant-row) {
+    flex-direction: column !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  /* Заставляем каждую колонку (Col) занимать 100% ширины */
+  :global(.ant-col) {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  /* Ваши существующие стили */
+  .formBlock, .previewContainer {
+    height: auto !important;
+    width: 100% !important; /* Гарантируем полную ширину */
+    margin-bottom: 20px; /* Отступ между панелями */
+    display: block; /* Сбрасываем flex, если был */
+  }
+
+  /* Превью чека внутри контейнера */
+  .previewContainer {
+    order: 2; /* Можно поменять порядок: 1 - настройки, 2 - превью */
+  }
+
+  .formBlock {
+    order: 1;
+  }
+
+  /* 2. Уменьшаем гигантский отступ снизу */
+  .marginBottom60 {
+    margin-bottom: 24px !important;
+  }
+
+  /* 3. Делаем чекбокс-зоны удобнее для пальцев */
+  .checkboxItem {
+    margin-bottom: 8px !important; /* Увеличили шаг */
+    display: block;
+  }
+
+  /* 4. Предпросмотр чека (Receipt) */
+  .detailsBlock {
+    white-space: normal; /* Разрешаем перенос строк, чтобы не вылетало */
+    padding-left: 0;
+  }
+
+  .productQuantity, .productPrice {
+    width: auto; /* На мобилке фиксированная ширина может мешать */
+    min-width: 60px;
+  }
+
+  .receiptMeta {
+    flex-direction: column; /* Мета-данные (дата/номер) друг под другом */
+    gap: 2px;
+  }
+
+  /* 5. Поля ввода (Textarea / Input) */
+  .textarea {
+    font-size: 16px !important; /* Чтобы iOS не зумил экран */
+    padding: 10px;
+  }
+
+  /* 6. Кнопки действий (внизу) */
+  .actions {
+    text-align: center; /* Центрируем кнопки на мобильном */
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .actions button {
+    width: 100% !important; /* Кнопки на всю ширину */
+    height: 44px;
+    margin: 0 !important;
+  }
+
+  /* 7. Драггер (загрузка логотипа) */
+  .dragger {
+    padding: 16px 8px;
+  }
+}
+
+/* Оптимизация для очень маленьких экранов (iPhone SE и т.д.) */
+@media (max-width: 480px) {
+  .receiptBlock {
+    font-size: 12px; /* Чуть уменьшаем шрифт чека, чтобы влез по ширине */
+  }
+}

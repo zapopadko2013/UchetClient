@@ -58,3 +58,89 @@
   display: flex;
   gap: 8px;
 }
+
+@media (max-width: 576px) {
+
+  /* Принудительно заставляем колонки переноситься и добавляем отступ снизу */
+  :global(.ant-modal-body) :global(.ant-row) {
+    display: block !important; /* Отключаем flex, чтобы Col работали как блочные элементы */
+  }
+
+  :global(.ant-modal-body) :global(.ant-col) {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-bottom: 16px; /* Вот ваш промежуток между компонентами */
+  }
+
+  /* Убираем лишний margin у последнего элемента в ряду, чтобы не двоился отступ */
+  :global(.ant-col:last-child) {
+    margin-bottom: 0;
+  }
+
+  /* Исправляем Space внутри колонок (где инпут + кнопка добавить) */
+  .container :global(.ant-space) {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    gap: 8px !important;
+  }
+
+  .container :global(.ant-space-item) {
+    width: 100% !important;
+  }
+  
+  /* 1. Сбрасываем все фиксированные ширины */
+  .input,
+  .inputName,
+  .inputQty,
+  .inputQtyOrDiscount {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* 2. Строка товара (Название + Кол-во + Скидка) */
+  .flexSpace {
+    flex-direction: column; /* Элементы встают друг под друга */
+    gap: 8px;
+    padding: 10px;
+    background: #fafafa; /* Выделяем карточку товара легким фоном */
+    border-radius: 4px;
+    margin-bottom: 12px;
+    border: 1px solid #f0f0f0;
+  }
+
+  /* 3. Контейнеры с кнопками */
+  .spaceFlex, .buttonsRow {
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+  }
+
+  .buttonsRow button, 
+  .spaceFlex button {
+    width: 100% !important;
+    height: 40px;
+  }
+
+  /* 4. Инфо о периоде акции */
+  .periodInfo {
+    text-align: center;
+    background: #e6f7ff;
+    padding: 8px;
+    border-radius: 4px;
+    font-size: 13px;
+  }
+
+  /* 5. Заголовки групп в таблице */
+  .group-row {
+    font-size: 13px;
+  }
+
+  /* Глобально для инпутов в промо */
+  :global(.ant-input),
+  :global(.ant-input-number),
+  :global(.ant-select) {
+    height: 40px !important;
+    width: 100% !important;
+  }
+}

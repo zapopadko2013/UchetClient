@@ -1,17 +1,20 @@
 .container {
   padding: 24px;
+  overflow: hidden; /* Чтобы ничего не вылетало за границы */
 }
 
 .buttonBar {
   margin-bottom: 16px;
   display: flex;
-  gap: 10px;
+  gap: 8px;
+  flex-wrap: wrap; /* Позволяем кнопкам переноситься на новую строку */
 }
 
 .modalTitle {
   display: flex;
   align-items: center;
   gap: 8px;
+  flex-wrap: wrap;
 }
 
 .modalUserName {
@@ -22,31 +25,79 @@
 .accessContainer {
   max-height: 500px;
   overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 8px;
 }
 
+/* АДАПТАЦИЯ ТАБЛИЦЫ */
 .accessTable {
   width: 100%;
   border-collapse: collapse;
-  border: 1px solid #ddd;
+  min-width: 450px; /* Чтобы содержимое не превращалось в кашу */
+}
+
+/* Обертка для скролла таблицы на мобилках */
+.tableWrapper {
+  overflow-x: auto;
+  width: 100%;
+  -webkit-overflow-scrolling: touch;
 }
 
 .tableHeader {
+  background-color: #fafafa;
   border: 1px solid #ddd;
-  padding: 8px;
+  padding: 12px 8px;
   text-align: left;
+  font-size: 14px;
 }
 
 .tableCell {
   border: 1px solid #ddd;
-  padding: 8px;
+  padding: 12px 8px;
+  vertical-align: top;
 }
 
 .categoryCell {
-  width: 200px;
+  width: 150px; /* Уменьшили с 200px для экономии места */
+  font-weight: 600;
+  background-color: #fafafa;
 }
 
 .functionGroup {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 8px; /* Увеличили отступ для удобства нажатия пальцем */
+}
+
+/* МОБИЛЬНЫЕ СТИЛИ */
+@media (max-width: 576px) {
+  .container {
+    padding: 12px;
+  }
+
+  .buttonBar {
+    display: grid !important;
+    /* Создаем две равные колонки */
+    grid-template-columns: repeat(2, 1fr) !important; 
+    gap: 8px !important;
+    width: 100% !important;
+  }
+
+  /* Заставляем ВСЕ кнопки внутри (включая те, что во фрагментах) занять ширину ячейки */
+  .buttonBar button {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 4px 8px !important;
+    font-size: 13px !important; /* Немного уменьшим шрифт, чтобы длинные слова влезали */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* Кнопка "Добавить" (первая) на всю ширину */
+  .buttonBar button:first-child {
+    grid-column: span 2 !important;
+  }
+
+  
 }

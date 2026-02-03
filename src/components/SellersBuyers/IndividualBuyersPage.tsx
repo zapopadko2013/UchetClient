@@ -206,6 +206,7 @@ const IndividualBuyersPage: React.FC = () => {
         rowKey="id"
         dataSource={filteredData}
         columns={columns}
+        scroll={{ x: 'max-content' }}
         rowSelection={{
           type: 'radio',
           selectedRowKeys: selectedBuyer ? [selectedBuyer.id!] : [],

@@ -23,10 +23,59 @@
   margin-top: 16px;
 }
 
+/* Фиксированная ширина для ПК */
 .selectInputLarge {
   width: 400px;
 }
 
 .barcodeInput {
   width: 200px;
+}
+
+/* --- АДАПТАЦИЯ ДЛЯ МОБИЛЬНЫХ (Экран < 576px) --- */
+@media (max-width: 576px) {
+  .container {
+    padding: 12px;
+  }
+
+  /* Растягиваем все инпуты и селекты на всю ширину */
+  .selectInputLarge,
+  .barcodeInput {
+    width: 100% !important;
+  }
+
+  /* Делаем элементы Ant Design крупнее для нажатия */
+  .selectInputLarge :global(.ant-select-selector),
+  :global(.ant-input-affix-wrapper),
+  .barcodeInput {
+    height: 40px !important;
+    font-size: 16px !important; /* Убирает зум в iOS */
+  }
+
+  /* Кнопка отправки на всю ширину */
+  .submitButton {
+    width: 100% !important;
+    height: 44px;
+    margin-top: 12px;
+  }
+
+  /* Заголовки групп в таблицах (если это кастомные строки) */
+  .groupHeaderRow {
+    font-size: 13px;
+    padding: 8px 4px;
+  }
+
+  /* Если внутри есть строки с кнопками или фильтрами */
+  .selectRow {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  /* Отступы для заголовков */
+  .finalTableTitle {
+    margin-top: 16px;
+    font-size: 18px;
+    text-align: center;
+  }
 }

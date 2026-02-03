@@ -214,6 +214,7 @@ const PromotionStep2Modal: React.FC<PromotionStep2ModalProps> = ({
       footer={null}
       title={t('promotionsStep2.title')}
       width={900}
+      zIndex={3503}
     >
       <Space direction="vertical" className={styles.container} size="middle">
         <div>

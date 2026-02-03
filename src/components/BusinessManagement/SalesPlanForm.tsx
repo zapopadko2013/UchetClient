@@ -146,7 +146,7 @@ const SalesPlanForm: React.FC<Props> = ({ visible, onCancel, onSuccess, initialV
               <InputNumber
                 min={0}
                 className={styles.fullWidthInput}
-                addonAfter="₸"
+                addonAfter=" "
                 onKeyPress={(e) => {
                   if (!/[0-9]/.test(e.key)) e.preventDefault();
                 }}
@@ -182,7 +182,7 @@ const SalesPlanForm: React.FC<Props> = ({ visible, onCancel, onSuccess, initialV
               <InputNumber
                 min={0}
                 className={styles.fullWidthInput}
-                addonAfter="₸"
+                addonAfter=" "
                 onKeyPress={(e) => {
                   if (!/[0-9]/.test(e.key)) e.preventDefault();
                 }}
@@ -218,7 +218,7 @@ const SalesPlanForm: React.FC<Props> = ({ visible, onCancel, onSuccess, initialV
               <InputNumber
                 min={0}
                 className={styles.fullWidthInput}
-                addonAfter="₸"
+                addonAfter=" "
                 onKeyPress={(e) => {
                   if (!/[0-9]/.test(e.key)) e.preventDefault();
                 }}

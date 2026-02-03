@@ -404,7 +404,7 @@ const removeBarcode = () => {
   }}
   filterOption={false} // отключаем локальный фильтр, используем серверный
   className={styles.fullHeightInput}
-  popupMatchSelectWidth={false}
+  popupMatchSelectWidth={true}
 >
   {products.map(p => (
     <Option key={p.id} value={p.id}>

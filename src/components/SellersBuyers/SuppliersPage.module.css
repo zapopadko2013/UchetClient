@@ -19,17 +19,54 @@
 
 .tableWrapper {
   overflow-x: auto;
+  /* Плавный скролл для iOS */
+  -webkit-overflow-scrolling: touch; 
 }
 
-.buttonBar {
-  margin-bottom: 16px; 
-}
-
-.searchBar {
+.buttonBar, .searchBar {
   margin-bottom: 16px; 
 }
 
 .statusDeleted {
   color: red;
   font-weight: bold;
+}
+
+/* --- МОБИЛЬНАЯ АДАПТАЦИЯ (Экран < 576px) --- */
+@media (max-width: 576px) {
+  .container {
+    padding: 10px;
+  }
+
+  /* Кнопки действий (Добавить, Экспорт и т.д.) */
+  .actions, .buttonBar {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  /* Растягиваем кнопки на всю ширину ячейки */
+  .actions button, .buttonBar button {
+    width: 100% !important;
+    height: 40px;
+  }
+
+  /* Строка поиска и фильтров */
+  .searchRow {
+    flex-direction: column; /* Фильтры встают друг под другом */
+    gap: 8px;
+  }
+
+  /* Заставляем все элементы внутри поиска (Input, Select, DatePicker) быть 100% ширины */
+  .searchRow > *, 
+  .searchBar > * {
+    width: 100% !important;
+  }
+
+  /* Если внутри есть Ant Design Select, фиксируем его высоту */
+  .searchRow :global(.ant-select-selector) {
+    height: 40px !important;
+    display: flex;
+    align-items: center;
+  }
 }

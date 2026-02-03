@@ -115,7 +115,7 @@ const LimitPricesPage: React.FC = () => {
     <div>
         <h1 className={styles.pageTitle}>{t('limitPrices.title')}</h1>
       <div className={styles.actionsWrapper}>
-        <Space>
+        <div className={styles.buttonGrid}>
           <Button
             type="primary"
             icon={<PlusOutlined />}
@@ -137,7 +137,7 @@ const LimitPricesPage: React.FC = () => {
               </Button>
             </>
           )}
-        </Space>
+        </div>
       </div>
 
       <div className={styles.searchWrapper}>
@@ -155,6 +155,7 @@ const LimitPricesPage: React.FC = () => {
         dataSource={filteredProducts}
         columns={columns}
         loading={loading}
+        scroll={{ x: 'max-content' }}
         rowSelection={{
           type: 'radio',
           selectedRowKeys: selectedProduct ? [selectedProduct.id] : [],

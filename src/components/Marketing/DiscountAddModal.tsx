@@ -323,6 +323,7 @@ const DiscountAddModal: React.FC<DiscountAddModalProps> = ({
       title={t('discount.addDiscount')}
       open={visible}
       onCancel={onCancel}
+      zIndex={3501}
       footer={[
         <Button key="cancel" onClick={onCancel}>{t('discount.cancel')}</Button>,
         <Button
@@ -406,6 +407,7 @@ const DiscountAddModal: React.FC<DiscountAddModalProps> = ({
             <Table
               dataSource={stockRecords}
               rowKey={record => record.id}
+              scroll={{ x: 'max-content' }}
               columns={stockColumns}
               rowSelection={{
                 type: 'checkbox',

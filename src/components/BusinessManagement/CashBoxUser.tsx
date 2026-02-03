@@ -175,6 +175,7 @@ const CashBoxUser: React.FC = () => {
             columns={getColumns()}
             dataSource={getDataSource()}
             loading={getLoading()}
+            scroll={{ x: 600 }}
             rowSelection={{
               type: 'radio',
               selectedRowKeys: selectedRow ? [selectedRow.id] : [],
@@ -203,6 +204,7 @@ const CashBoxUser: React.FC = () => {
             columns={getColumns()}
             dataSource={getDataSource()}
             loading={getLoading()}
+            scroll={{ x: 600 }}
             rowSelection={{
               type: 'radio',
               selectedRowKeys: selectedRow ? [selectedRow.id] : [],

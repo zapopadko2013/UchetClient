@@ -15,3 +15,35 @@
   color: #ff4d4f;
   font-weight: bold;
 }
+
+/* --- АДАПТАЦИЯ ДЛЯ МОБИЛЬНЫХ (Экран < 576px) --- */
+@media (max-width: 576px) {
+  .container {
+    padding: 16px; /* Чуть меньше отступы, чтобы освободить место для таблиц/текста */
+  }
+
+  .buttonBar {
+    /* Превращаем в сетку: кнопки встают парами */
+    display: grid !important;
+    grid-template-columns: 1fr 1fr; 
+    gap: 8px;
+    margin: 12px 0;
+  }
+
+  /* Растягиваем кнопки Ant Design на всю ширину ячейки сетки */
+  .buttonBar button, 
+  .buttonBar :global(.ant-btn) {
+    width: 100% !important;
+    height: 40px; /* Удобный размер для нажатия пальцем */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    margin: 0 !important; /* Убираем лишние отступы от Ant Design Space */
+  }
+
+  /* Если кнопок нечетное количество, последнюю можно растянуть на всю ширину */
+  .buttonBar button:last-child:nth-child(odd) {
+    grid-column: span 2;
+  }
+}

@@ -16,5 +16,46 @@
 
 .tableStyle {
   margin-top: 20px;
-  max-width: 600px;
+  max-width: 600px; /* Ограничение для ПК */
+}
+
+/* --- АДАПТАЦИЯ ДЛЯ МОБИЛЬНЫХ (Экран < 576px) --- */
+@media (max-width: 576px) {
+  .spaceMarginTop {
+    margin-top: 12px;
+    display: flex;
+    flex-direction: column; 
+    gap: 12px;
+    width: 100%;
+    /* ДОБАВИТЬ ЭТО: */
+    align-items: flex-start; 
+  }
+
+  .inputWidth200, 
+  .selectWidth300 {
+    /* ИЗМЕНИТЬ НА AUTO: */
+    width: auto !important; 
+    min-width: 200px; /* Чтобы не были слишком узкими */
+    max-width: 100% !important;
+  }
+
+  .spaceMarginTop button {
+    /* ИЗМЕНИТЬ НА AUTO: */
+    width: auto !important;
+    min-width: 150px;
+    height: 40px;
+  }
+
+  .tableStyle {
+    margin-top: 16px;
+    max-width: 100% !important; /* Таблица на весь экран */
+    width: 100% !important;
+    overflow-x: auto; /* Горизонтальный скролл, если данные не влезут */
+  }
+
+  /* Если внутри есть кнопки, делаем их тоже на всю ширину */
+  .spaceMarginTop button {
+    width: 100% !important;
+    height: 40px;
+  }
 }

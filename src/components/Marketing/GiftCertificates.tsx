@@ -47,7 +47,7 @@ const GiftCertificates: React.FC = () => {
     }
   };
 
-  const parseExcelFile = (file: File): Promise<any[]> => {
+  /* const parseExcelFile = (file: File): Promise<any[]> => {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
 
@@ -84,7 +84,64 @@ const GiftCertificates: React.FC = () => {
       reader.onerror = (err) => reject(err);
       reader.readAsBinaryString(file);
     });
-  };
+  }; */
+
+const parseExcelFile = (file: File): Promise<any[]> => {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+
+    reader.onload = (e) => {
+      try {
+        const data = e.target?.result;
+        if (!data) return reject(new Error('File empty'));
+
+        const workbook = XLSX.read(new Uint8Array(data as ArrayBuffer), { type: 'array' });
+        const sheet = workbook.Sheets[workbook.SheetNames[0]];
+
+        // Читаем данные как массив массивов (header: 1)
+        // Это даст нам структуру типа: [ ["code", "balance", ...], ["123", 500, ...] ]
+        const rows = XLSX.utils.sheet_to_json(sheet, { 
+          header: 1, 
+          defval: '',
+          raw: false // заставляем библиотеку форматировать даты и числа в строки
+        }) as any[][];
+
+        console.log("Raw rows from file:", rows);
+
+        // Пропускаем первую строку (заголовки) через slice(1)
+        const result = rows.slice(1).map((row) => {
+          // row сейчас это ["12345", 500, 1, "01.01.2026"]
+          
+          const clean = (val: any) => String(val || '').trim();
+
+          const code = clean(row[0]);
+          
+          // Если ячейка с кодом пустая, пропускаем строку
+          if (!code || code === 'undefined') return null;
+
+          return {
+            code: code,
+            // Баланс (индекс 1): убираем лишние символы и меняем запятую на точку
+            balance: Number(clean(row[1]).replace(',', '.').replace(/[^0-9.]/g, '')) || 0,
+            // Период (индекс 2): только цифры
+            period: parseInt(clean(row[2]).replace(/\D/g, '')) || 0,
+            // Дата (индекс 3)
+            selldate: clean(row[3]),
+          };
+        });
+
+        // Убираем пустые элементы
+        const filteredResult = result.filter(r => r !== null);
+        
+        resolve(filteredResult);
+      } catch (error) {
+        reject(error);
+      }
+    };
+
+    reader.readAsArrayBuffer(file);
+  });
+};
 
   const handleFileChange = (info: any) => {
     if (info.fileList.length > 0) {
@@ -252,6 +309,7 @@ const GiftCertificates: React.FC = () => {
 
           <Table
             dataSource={certificates}
+            scroll={{ x: 'max-content' }}
             rowKey="code"
             columns={[
               {

@@ -109,6 +109,7 @@ const PromotionAddModal: React.FC<PromotionAddModalProps> = ({
         footer={null}
         title={t('promotions.addTitle')}
         width={700}
+        zIndex={3501}
       >
         <Space direction="vertical" className={styles.container} size="middle">
           <Space>

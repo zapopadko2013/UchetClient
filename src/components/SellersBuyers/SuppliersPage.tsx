@@ -234,6 +234,7 @@ const SuppliersPage: React.FC = () => {
       <Table
         rowKey="id"
         dataSource={filteredData}
+        scroll={{ x: 'max-content' }}
         columns={activeTab === 'active' ? baseColumns : inactiveColumns}
         rowSelection={{
           type: 'radio',

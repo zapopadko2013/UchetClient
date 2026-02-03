@@ -163,6 +163,7 @@ const CouponsPage: React.FC = () => {
             }}
             columns={columns}
             dataSource={activeCoupons}
+            scroll={{ x: 'max-content' }}
           />
         </>
       ),
@@ -170,7 +171,7 @@ const CouponsPage: React.FC = () => {
     {
       key: '2',
       label: t('coupons.tabs.inactive'),
-      children: <Table rowKey="id" columns={columns} dataSource={inactiveCoupons} />,
+      children: <Table  scroll={{ x: 'max-content' }} rowKey="id" columns={columns} dataSource={inactiveCoupons} />,
     },
   ];
 

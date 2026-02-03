@@ -392,6 +392,7 @@ const ChangePrices: React.FC = () => {
               record.isGroupHeader ? `group-${record.pointid}` : `item-${record.stockcurrentid}`
             }
             dataSource={productData}
+            scroll={{ x: 'max-content' }}
             columns={columns}
             pagination={false}
             rowClassName={(record) => (record.isGroupHeader ? styles.groupHeaderRow  : '')}
@@ -470,6 +471,7 @@ const ChangePrices: React.FC = () => {
             dataSource={finalList}
             columns={finalColumns}
             pagination={false}
+            scroll={{ x: 'max-content' }}
           />
           <Button type="primary" onClick={handleSubmit} className={styles.submitButton}>
             {t('changePrices.submitButton')}

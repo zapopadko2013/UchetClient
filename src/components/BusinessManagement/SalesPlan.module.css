@@ -1,15 +1,61 @@
+/* Базовые отступы */
 .tabs {
   margin-bottom: 16px;
 }
 
+/* Панель кнопок */
 .action-buttons {
   margin-bottom: 16px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap; /* Чтобы кнопки не вылетали в ряд */
 }
 
 .table {
   margin-top: 16px;
+  /* Важно для контейнера таблицы */
+  width: 100%;
+  overflow-x: auto; 
 }
 
 .fullWidthInput {
   width: 100%;
+}
+
+/* --- АДАПТАЦИЯ ДЛЯ МОБИЛЬНЫХ (Экран < 576px) --- */
+@media (max-width: 576px) {
+  /* Уменьшаем отступы контейнера, если нужно */
+  .tabs {
+    margin-bottom: 12px;
+  }
+
+  /* Кнопки выстраиваем в сетку (плитку) */
+  .action-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* По 2 кнопки в ряд */
+    gap: 8px;
+    width: 100%;
+  }
+
+  /* Заставляем кнопки Ant Design внутри .action-buttons быть на всю ширину ячейки */
+  .action-buttons > button,
+  .action-buttons > div,
+  .action-buttons > span {
+    width: 100% !important;
+  }
+
+  /* Если есть кнопка "Создать/Добавить" и она первая — делаем её на всю ширину */
+  .action-buttons > button:first-child:not(:last-child) {
+    grid-column: span 2;
+  }
+
+  /* Таблица: гарантируем, что она не распирает экран */
+  .table {
+    margin-top: 8px;
+  }
+
+  /* Компактные шрифты для мобильных инпутов */
+  .fullWidthInput {
+    font-size: 16px !important; /* Чтобы iOS не зумил при фокусе */
+  }
 }

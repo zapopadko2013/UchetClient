@@ -86,7 +86,7 @@ const SalesPlan: React.FC = () => {
     return `${value.toLocaleString(undefined, {
       minimumFractionDigits: 2,
       maximumFractionDigits: 2,
-    })} ₸ | ${rate}%`;
+    })} | ${rate}%`;
   };
 
   const getColumns = (): ColumnsType<PlanData> => {
@@ -172,6 +172,7 @@ const SalesPlan: React.FC = () => {
         rowKey="id"
         columns={getColumns()}
         dataSource={getDataSource()}
+        scroll={{ x: 'max-content' }}
         rowSelection={{
           type: 'radio',
           selectedRowKeys: selectedRow ? [selectedRow.id] : [],

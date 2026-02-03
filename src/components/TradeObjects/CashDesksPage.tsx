@@ -90,6 +90,7 @@ const CashDesksPage: React.FC = () => {
     form.setFieldsValue({
       name: selectedCashbox.name,
       point: selectedCashbox.point,
+      kaspiip: selectedCashbox.kaspiip,
     });
     setModalVisible(true);
   };
@@ -289,6 +290,7 @@ const CashDesksPage: React.FC = () => {
         rowKey="id"
         dataSource={activeTab === 'active' ? activeCashboxes : inactiveCashboxes}
         columns={columns}
+        scroll={{ x: 'max-content' }}
         rowSelection={{
           type: 'radio',
           selectedRowKeys: selectedCashbox ? [selectedCashbox.id] : [],

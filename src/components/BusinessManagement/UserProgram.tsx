@@ -204,7 +204,7 @@ const UserProgram: React.FC = () => {
         ]}
       />
 
-      <Space className={styles.buttonBar}>
+      <div className={styles.buttonBar}>
         {activeTab === 'active' && (
           <>
             <Button
@@ -241,7 +241,7 @@ const UserProgram: React.FC = () => {
             {t('userProgram.activate')}
           </Button>
         )}
-      </Space>
+      </div>
 
       <Table
         rowKey="id"
@@ -253,6 +253,7 @@ const UserProgram: React.FC = () => {
           onChange: (_, [row]) => setSelectedUser(row),
         }}
         pagination={false}
+        scroll={{ x: 700 }}
       />
 
       {modalVisible && (

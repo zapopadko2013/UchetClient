@@ -2,6 +2,13 @@
   margin: 24px 0 16px 0;
 }
 
+/* Сетка кнопок для ПК (в ряд) */
+.buttonGrid {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
 .searchWrapper {
   margin-bottom: 16px;
   max-width: 400px;
@@ -12,12 +19,90 @@
   color: #999;
 }
 
-.fullWidth {
-  width: 100%;
-}
-
 .pageTitle {
   font-size: 24px;
   font-weight: 600;
   margin-bottom: 16px;
+}
+
+/* --- АДАПТАЦИЯ ДЛЯ МОБИЛЬНЫХ (Экран < 576px) --- */
+@media (max-width: 576px) {
+  .pageTitle {
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 16px;
+  }
+
+  /* Теперь работаем напрямую с buttonGrid, который вы добавили в JSX */
+  .buttonGrid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr; /* 2 колонки */
+    gap: 8px !important; /* Расстояние МЕЖДУ кнопками */
+    width: 100% !important;
+  }
+
+  /* Если только одна кнопка (Добавить), растягиваем её */
+  .buttonGrid button:first-child:last-child {
+    grid-column: span 2;
+  }
+
+  .buttonGrid button {
+    width: 100% !important;
+    height: 42px;
+    margin: 0 !important; /* Убираем внешние отступы */
+  }
+
+  /* Исправление поиска, чтобы не вылетал */
+  .searchWrapper {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding: 0 !important;
+    /* Убираем любые возможные причины вылета за край */
+    box-sizing: border-box !important;
+    overflow: hidden !important; 
+  }
+
+  /* Пробиваемся сквозь ВСЕ уровни оберток Ant Design */
+  .searchWrapper :global(.ant-input-group-wrapper),
+  .searchWrapper :global(.ant-input-wrapper),
+  .searchWrapper :global(.ant-input-group) {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    display: flex !important; /* Гарантируем ряд */
+    box-sizing: border-box !important;
+  }
+
+  .searchWrapper :global(.ant-input-affix-wrapper) {
+    /* calc(100% - ширина_кнопки) — это самый надежный способ */
+    width: calc(100% - 46px) !important; 
+    height: 42px !important;
+    margin: 0 !important;
+  }
+
+  .searchWrapper :global(.ant-input) {
+    width: 100% !important;
+    font-size: 16px !important;
+    height: 40px !important; /* Чуть меньше обертки */
+  }
+
+  /* Исправляем контейнер кнопки поиска (addon) */
+  .searchWrapper :global(.ant-input-group-addon) {
+    width: 46px !important;
+    flex-shrink: 0 !important;
+    display: flex !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+  }
+
+  .searchWrapper :global(.ant-input-search-button) {
+    width: 46px !important;
+    min-width: 46px !important;
+    height: 42px !important;
+    margin: 0 !important;
+    border-radius: 0 4px 4px 0 !important;
+  }
 }

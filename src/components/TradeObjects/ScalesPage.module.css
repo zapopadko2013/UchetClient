@@ -5,17 +5,71 @@
 .selectWrapper {
   margin-bottom: 16px;
   margin-top: 16px;
+  display: flex;
+  flex-direction: column; /* Складываем метку и селект вертикально */
+  gap: 8px;
 }
 
 .selectInput {
-  width: 300px;
-  /* padding: 4px 8px; */
+  width: 300px; /* Фикс для ПК */
 }
 
 .buttonBar {
   margin-bottom: 16px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
 }
 
 .deletedTag {
   color: red;
+  font-weight: 500;
+}
+
+/* --- АДАПТАЦИЯ ДЛЯ МОБИЛЬНЫХ (Экран < 576px) --- */
+@media (max-width: 576px) {
+  .container {
+    padding: 12px;
+  }
+
+  .selectWrapper {
+    margin-top: 8px;
+    width: 100%;
+  }
+
+  /* Селект растягивается на весь экран */
+  .selectInput {
+    width: 100% !important;
+  }
+
+  /* Увеличиваем высоту селекта для удобства нажатия пальцем */
+  .selectInput :global(.ant-select-selector) {
+    height: 40px !important;
+    display: flex;
+    align-items: center;
+    font-size: 16px !important; /* Убирает авто-зум на iPhone */
+  }
+
+  /* Кнопки выстраиваем в два столбца (плиткой) */
+  .buttonBar {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    width: 100%;
+  }
+
+  /* Заставляем кнопки занять всё место в ячейке */
+  .buttonBar button {
+    width: 100% !important;
+    height: 40px;
+    margin: 0 !important;
+  }
+
+  /* Если есть кнопки в обертке Space, фиксируем и их */
+  .buttonBar :global(.ant-space) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    gap: 8px !important;
+  }
 }

@@ -2,34 +2,72 @@
   padding: 16px;
 }
 
-.actions {
+.actions, .searchRow, .buttonBar, .searchBar {
   display: flex;
-  align-items: center;
-  margin-bottom: 12px;
   gap: 8px;
   flex-wrap: wrap;
-}
-
-.searchRow {
   margin-bottom: 16px;
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
 }
 
 .tableWrapper {
   overflow-x: auto;
-}
-
-.buttonBar {
-  margin-bottom: 16px; 
-}
-
-.searchBar {
-  margin-bottom: 16px; 
+  -webkit-overflow-scrolling: touch; /* Плавный скролл для мобилок */
+  width: 100%;
 }
 
 .statusDeleted {
   color: red;
   font-weight: bold;
+}
+
+/* --- МОБИЛЬНАЯ АДАПТАЦИЯ (Экран < 576px) --- */
+@media (max-width: 576px) {
+  .container {
+    padding: 12px;
+  }
+
+  /* Панели с кнопками превращаем в сетку 2x2 */
+  .actions, .buttonBar {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .actions button, .buttonBar button {
+    width: 100% !important;
+    height: 40px; /* Удобный размер для нажатия */
+    margin: 0 !important;
+  }
+
+  /* Строки поиска и фильтров выстраиваем вертикально */
+  .searchRow, .searchBar {
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+  }
+
+  /* Растягиваем все элементы поиска (инпуты, селекты, даты) на 100% */
+  .searchRow > *, 
+  .searchBar > *,
+  .searchRow :global(.ant-select),
+  .searchBar :global(.ant-input-search) {
+    width: 100% !important;
+  }
+
+  /* Специально для Ant Design Select и Input */
+  .searchRow :global(.ant-select-selector),
+  .searchRow :global(.ant-input),
+  .searchRow :global(.ant-input-affix-wrapper) {
+    height: 40px !important;
+    display: flex;
+    align-items: center;
+    font-size: 16px !important; /* Убирает авто-зум в iOS */
+  }
+
+  /* Если есть кнопка "Поиск" или "Сброс" внутри строки поиска */
+  .searchRow button {
+    width: 100% !important;
+    height: 40px;
+  }
 }

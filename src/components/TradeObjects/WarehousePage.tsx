@@ -95,6 +95,7 @@ const WarehousePage: React.FC = () => {
          dataSource={filteredData}
          columns={columns}
          pagination={false}
+         scroll={{ x: 'max-content' }}
       />
       
     </div>

@@ -11,4 +11,69 @@
 
 .searchInput {
   margin-bottom: 16px;
+  width: 300px; /* Фиксированная ширина для ПК */
+}
+
+/* --- АДАПТАЦИЯ ДЛЯ МОБИЛЬНЫХ --- */
+@media (max-width: 576px) {
+  .container {
+    padding: 12px;
+  }
+
+  /* Исправленный блок поиска */
+  .searchInput {
+    width: 100% !important; /* Принудительно на всю ширину */
+    max-width: 100% !important;
+    margin-bottom: 12px;
+    display: block; /* Убираем возможные инлайновые ограничения */
+  }
+
+  /* Ant Design Search состоит из обертки .ant-input-group-wrapper */
+  .searchInput :global(.ant-input-group-wrapper),
+  .searchInput :global(.ant-input-wrapper),
+  .searchInput :global(.ant-input-group) {
+    width: 100% !important;
+  }
+
+  /* Высота для самого поля и кнопки поиска */
+  .searchInput :global(.ant-input-affix-wrapper),
+  .searchInput :global(.ant-input) {
+    height: 40px !important;
+    font-size: 16px !important; /* Чтобы не было авто-зума на iOS */
+  }
+
+  .searchInput :global(.ant-input-search-button) {
+    height: 40px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .buttonBar {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Кнопки в два ряда */
+    gap: 8px;
+    width: 100%;
+  }
+
+  /* Заставляем все кнопки внутри (и обертки Ant Space) занять всю ширину ячейки */
+  .buttonBar > button,
+  .buttonBar > div,
+  .buttonBar > span {
+    width: 100% !important;
+    margin: 0 !important;
+  }
+
+  /* Если кнопок нечетное количество, последнюю можно растянуть на всю ширину */
+  /* .buttonBar > button:last-child:nth-child(odd) {
+    grid-column: span 2;
+  } */
+
+  .buttonBar button {
+    height: 40px; /* Удобная высота для клика */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+  }
 }
