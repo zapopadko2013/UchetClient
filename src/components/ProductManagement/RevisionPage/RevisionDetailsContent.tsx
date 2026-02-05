@@ -916,7 +916,9 @@ const handleDeleteItems = async () => {
     
     return (
       <Card className={styles.compareControlsCard} variant="borderless">
-        <Space direction="vertical" className={styles.fullWidth}>
+        <Space 
+        direction="vertical"
+         className={styles.fullWidth}>
             <Card className={styles.blueInfoCardBase} variant="borderless">
                 <Paragraph className={styles.blueInfoCardParagraph}>
                     
@@ -943,14 +945,16 @@ const handleDeleteItems = async () => {
                         className={styles.compareButton}
                         style={{ borderColor: btn.color }}
                     >
-                        <Space direction="vertical" className={styles.compareButtonContainer}>
+                        <div 
+                        /* direction="vertical" */ 
+                        className={styles.compareButtonContainer}>
                             <Text strong className={`${styles.compareButtonTextSmall} ${getButtonTextColorClass(isSelected, btn.color)}`}> 
                                 {btn.label}
                             </Text>
                             <Text strong className={`${styles.compareButtonTextLarge} ${getButtonTextColorClass(isSelected, btn.color)}`}> 
                                 {btn.count}
                             </Text>
-                        </Space>
+                        </div>
                     </Button>
                 )})}
                 
@@ -1098,7 +1102,8 @@ const handleDeleteItems = async () => {
           dataSource={displayedItems}
           loading={isLoading}
           pagination={false}
-          scroll={{ y: 500 }}
+          //scroll={{ y: 500 }}
+          scroll={{ x: 'max-content' }}
           rowSelection={rowSelection}
         />
       ) : (

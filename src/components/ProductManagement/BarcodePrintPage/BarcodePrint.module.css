@@ -108,3 +108,131 @@
 .bigText {
   font-size: 16px;
 }
+
+/* Адаптация для мобильных устройств (ширина экрана до 576px) */
+@media (max-width: 576px) {
+  
+  /* 0. СБРОС ШИРИНЫ (Чтобы перебить инлайновые стили из JSX) */
+  :global(.ant-form-item-control-input-content) > div,
+  :global(.ant-select),
+  :global(.ant-input-search),
+  :global(.ant-input-affix-wrapper),
+  div[style*="width: 300"], 
+  div[style*="width: 500"] {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* 1. ГЛОБАЛЬНЫЙ СБРОС ВЫСОТЫ (Идеальное выравнивание) */
+  :global(.ant-select-selector),             /* Для Select */
+  :global(.ant-input),                      /* Для обычного Input */
+  :global(.ant-input-affix-wrapper),        /* Для Search обертки */
+  :global(.ant-input-search-button) {       /* Для кнопки с лупой */
+    height: 42px !important;
+    display: flex !important;
+    align-items: center !important;
+  }
+
+  /* Исправляем высоту кнопки поиска отдельно, т.к. она вложена в span */
+  :global(.ant-input-group-addon) :global(.ant-btn) {
+    height: 42px !important;
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+  }
+
+  /* Центрируем текст внутри Select (у Ant Design свои правила для line-height) */
+  :global(.ant-select-selection-item), 
+  :global(.ant-select-selection-placeholder) {
+    line-height: 40px !important; 
+    display: flex !important;
+    align-items: center !important;
+  }
+
+  /* 2. ОБЛАСТЬ ПРЕДПРОСМОТРА (ID из JSX) */
+  #barcodePrintArea {
+    margin-top: 20px !important;
+    margin-left: 0 !important; 
+    padding: 0 10px;
+    display: flex !important;
+    flex-direction: column !important; /* Этикетка над кнопками */
+    align-items: center !important;    
+    width: 100% !important;
+    box-sizing: border-box;
+  }
+
+  /* 3. КОНТЕЙНЕР ЭТИКЕТКИ */
+  :global(.barcode-label) {
+    max-width: 100%; 
+    height: auto !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    transform-origin: center top !important;
+  }
+
+  /* Фикс поворота для мобильного экрана */
+  :global(.barcode-label)[style*="rotate(90deg)"] {
+    transform: none !important;
+    border: 1px dashed #ccc; 
+  }
+
+  /* 4. БЛОК КНОПОК (Повернуть, Печать) */
+  :global(.no-print) {
+    margin-left: 0 !important;   
+    margin-top: 24px !important;
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: row !important; /* Кнопки в ряд */
+    gap: 12px !important;
+    justify-content: center !important;
+  }
+
+  :global(.no-print) button {
+    flex: 1 !important;        
+    height: 44px !important;    
+    padding: 0 8px !important;
+  }
+
+  /* 5. ФОРМА И ОБЕРТКИ */
+  :global(.ant-form-item-control-input) {
+    min-height: 42px !important;
+  }
+
+  :global(.ant-space) {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+  }
+
+  :global(.ant-space-item) {
+    width: 100% !important;
+  }
+
+  /* 6. ТЕКСТ */
+  .productName {
+    font-size: 1.1em;
+    max-height: none !important; 
+  }
+}
+
+/* СТИЛИ ПЕЧАТИ */
+@media print {
+  :global(.no-print), 
+  :global(.ant-tabs-nav), 
+  :global(.ant-form),
+  :global(.ant-typography) {
+    display: none !important;
+  }
+
+  #barcodePrintArea {
+    margin: 0 !important;
+    padding: 0 !important;
+    display: block !important;
+    width: auto !important;
+  }
+
+  :global(.barcode-label) {
+    margin: 0 !important;
+    /* Если в JS включен поворот, при печати он сработает */
+    transform: rotate(90deg) translateY(-100%) !important; 
+  }
+}

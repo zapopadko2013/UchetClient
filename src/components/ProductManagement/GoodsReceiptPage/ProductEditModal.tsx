@@ -332,6 +332,7 @@ const ProductEditModal = ({
       title={details ? t('goodsReceipt.productEdit.modalTitle', { productName: details.name }) : t('goodsReceipt.productEdit.loadingProductTitle')}
       open={isVisible}
       onCancel={onClose}
+      zIndex={3500}
       footer={
         details && (
           <>

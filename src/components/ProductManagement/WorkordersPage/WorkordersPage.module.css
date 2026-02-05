@@ -168,3 +168,171 @@
 .smallAddress {
   font-size: 12px;
 }
+
+@media (max-width: 576px) {
+  /* 1. Общие настройки контейнера */
+  .container {
+    padding: 12px 8px !important;
+  }
+
+  /* 2. Ряды форм (formRow) — превращаем в столбик */
+  .formRow {
+    flex-direction: column !important;
+    gap: 12px !important;
+  }
+
+  .formItemFlex {
+    width: 100% !important;
+    flex: none !important;
+  }
+
+  /* 3. Кнопки: Анализ, Принять, Добавить */
+  .btnAnalysis,
+  .receiveButton,
+  .detailsToolbar button,
+  :global(.ant-btn) {
+    width: 100% !important;
+    height: 44px !important; /* Удобный размер для нажатия */
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 8px;
+  }
+
+  /* Группировка кнопок в тулбаре */
+  .toolbarContainer {
+    align-items: stretch !important; /* Растягиваем кнопки на всю ширину */
+    width: 100%;
+  }
+
+  .detailsToolbar {
+    justify-content: center !important;
+  }
+
+  /* 4. Таблица деталей заказа */
+  .detailsTable {
+    padding: 4px !important;
+    overflow-x: auto; /* Позволяем скроллить таблицу */
+  }
+
+  /* 5. Работа с текстом и адресами */
+  .addressText, 
+  .smallAddress {
+    font-size: 13px !important; /* На мобилках 11px слишком мелко */
+    color: #666 !important;
+    line-height: 1.4;
+  }
+
+  .attributes {
+    font-size: 13px;
+    display: flex;
+    flex-wrap: wrap; /* Чтобы атрибуты красиво переносились */
+    gap: 6px;
+  }
+
+  .attributeItem {
+    margin-right: 4px;
+    background: #f0f0f0;
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+
+  /* 6. Карточка анализа */
+  .analysisResultCard {
+    padding: 12px !important;
+    margin-bottom: 16px;
+  }
+
+  .priceTag {
+    font-size: 20px !important; /* Делаем цену заметнее */
+    width: 100%;
+    text-align: center;
+    display: block;
+  }
+
+  /* 7. Поиск */
+  .searchContainer {
+    margin-bottom: 16px;
+  }
+
+  .fullWidthInput {
+    height: 40px;
+  }
+
+  /* 8. Иконки действий (Избранное, Просмотр) */
+  /* Увеличиваем область нажатия для иконок */
+  .viewIcon, 
+  .favoriteActive, 
+  .favoriteInactive {
+    font-size: 20px !important;
+    padding: 8px; 
+  }
+
+  /* 9. Теги */
+  .tagList {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .tagItem {
+    width: 100%;
+    margin: 0 !important;
+    text-align: center;
+  }
+
+  /* 1. Делаем шапку карточки вертикальной */
+  .container :global(.ant-card-head) {
+    display: block !important; /* Убираем flex, чтобы extra не толкал title */
+    padding: 12px 16px !important;
+  }
+
+  /* 2. Заголовок (title) теперь занимает всю ширину и не обрезается */
+  .container :global(.ant-card-head-title) {
+    display: block !important;
+    width: 100% !important;
+    white-space: normal !important; /* Позволяем тексту переноситься, если он длинный */
+    padding: 0 0 12px 0 !important; /* Отступ между заголовком и кнопками */
+    overflow: visible !important;
+    text-overflow: clip !important;
+  }
+
+  /* 3. Блок кнопок (extra) растягиваем на 100% под заголовок */
+  .container :global(.ant-card-extra) {
+    display: block !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    text-align: left !important;
+  }
+
+  /* 4. Настраиваем ваш toolbarContainer */
+  .toolbarContainer {
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 10px !important;
+    align-items: stretch !important; /* Кнопки на всю ширину */
+  }
+
+  /* 5. Исправляем Space внутри тулбара */
+  .toolbarContainer :global(.ant-space) {
+    display: flex !important;
+    flex-wrap: wrap !important; /* Позволяем кнопкам вставать в 2 ряда */
+    gap: 8px !important;
+    width: 100% !important;
+  }
+
+  .toolbarContainer :global(.ant-space-item) {
+    flex: 1 1 calc(50% - 8px) !important; /* Кнопки делят экран пополам */
+    margin: 0 !important;
+  }
+
+  /* 6. Сами кнопки делаем удобными для нажатия */
+  .toolbarContainer button {
+    width: 100% !important;
+    height: 40px !important;
+    justify-content: center !important;
+  }
+  
+}

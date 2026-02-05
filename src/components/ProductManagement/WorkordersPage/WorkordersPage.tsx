@@ -524,6 +524,7 @@ const handleSend = async () => {
 <Modal
         title={`${t('workorder.details')} №${selectedRow?.workorder_number}`}
         open={detailsVisible}
+        zIndex={3500}
         onCancel={() => setDetailsVisible(false)}
         footer={[
           <Button key="close" onClick={() => setDetailsVisible(false)}>

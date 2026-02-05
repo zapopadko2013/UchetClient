@@ -96,3 +96,66 @@
   margin-top: 24px;
 }
 
+/* Этот блок должен быть в конце файла */
+
+@media (max-width: 576px) {
+  /* 1. Глобальный фикс для Popconfirm (кнопки удаления Да/Нет) */
+  /* Используем :global, чтобы стили ушли во внешний контекст body */
+  :global(.ant-popover-buttons) {
+    display: flex !important;
+    flex-direction: column !important; /* В столбик */
+    gap: 12px !important;              /* Расстояние между ними */
+    margin-top: 12px !important;
+    margin-inline-start: 0 !important;
+  }
+
+  :global(.ant-popover-buttons button) {
+    width: 100% !important;
+    height: 40px !important;
+    margin: 0 !important; /* Убираем все отступы Ant Design */
+  }
+
+  /* 2. Фикс для кнопок в модальном окне (Отмена, Очистить, Сохранить) */
+  /* Оборачиваем в .actions, чтобы попасть в ваш JSX */
+  .actions {
+    display: flex !important;
+    flex-direction: column !important; /* Кнопки в столбик */
+    gap: 10px !important;
+    margin-top: 24px !important;
+  }
+
+  .actions > div,
+  .actions button {
+    width: 100% !important;
+    margin: 0 !important;
+    height: 44px !important;
+  }
+
+  /* 3. Фикс для полей ввода (чтобы не слипались в Space) */
+  .bottomRow, 
+  .inputHalf {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    gap: 12px !important;
+  }
+
+  /* Делаем так, чтобы Space внутри модалки не форсировал строку */
+  .bottomRow :global(.ant-space-item),
+  .inputHalf :global(.ant-space-item) {
+    width: 100% !important;
+  }
+
+  /* 4. Верхняя панель (Назад, Добавить и т.д.) */
+  .buttonsBar {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 8px !important;
+    width: 100% !important;
+  }
+
+  .buttonsBar :global(.ant-space-item),
+  .buttonsBar button {
+    width: 100% !important;
+  }
+}

@@ -531,6 +531,7 @@ const handleAddAttr = async () => {
     <Modal
       title={isEdit ? t('productForm.editTitle') : t('productForm.addTitle')}
       open={visible}
+      zIndex={3501}
       onCancel={() => {
         form.resetFields();
         setPiece(false);

@@ -73,6 +73,8 @@ const SelectPointAndUser: React.FC<Props> = ({
   const filteredUsers = users.filter((u) => String(u.role) !== "4");
   const selectedUser = filteredUsers.find((u) => String(u.id) === selectedUserId);
 
+  const isMobile = typeof window !== 'undefined' && window.innerWidth <= 576;
+
   ////29.01.2026
     const [selectedKaspiIp1, setSelectedKaspiIp1] = useState<any | null>(null);
   ////29.01.2026
@@ -186,7 +188,8 @@ const SelectPointAndUser: React.FC<Props> = ({
                 value: u.id,
                 label: (
                   <Space>
-                    <Avatar icon={<UserOutlined />} />
+                    {/* <Avatar icon={<UserOutlined />} /> */}
+                    {!isMobile && <Avatar icon={<UserOutlined />} />}
                     {u.name}
                   </Space>
                 ),

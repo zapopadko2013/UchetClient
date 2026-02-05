@@ -1351,7 +1351,7 @@ const handlePaymentClick = async () => {
     setReturnVisible(false);
     setIsReturnMode(false);
   }}
-  onReturnReady={(returnedItems, ticket, allProducts) => {
+  /* onReturnReady={(returnedItems, ticket, allProducts) => {
     // Сохраняем выбранный чек
     setReturnTicket(ticket);
 
@@ -1394,6 +1394,47 @@ const handlePaymentClick = async () => {
     setMode("return");
 
     // Закрываем окно возврата
+    setReturnVisible(false);
+  }} */
+ onReturnReady={(returnedItems, ticket, allProducts) => {
+    // 1. Сохраняем выбранный чек
+    setReturnTicket(ticket);
+
+    // 2. Очищаем текущие остатки (Map) перед загрузкой новых
+    const newStock = new Map(); 
+
+    // 3. Подготовка возвратных товаров
+    const preparedReturnItems = returnedItems.map((item) => {
+      const key = makeProductKey(item);
+      const productFromCatalog = allProducts.find((p) => p.id === item.product);
+
+      // Заполняем новые остатки для каждого возвратного товара
+      newStock.set(key, {
+        initial: Math.abs(item.qty),
+        current: 0, // при возврате остаток в рабочей области устанавливаем в 0
+      });
+
+      return {
+        ...item,
+        key,
+        isReturn: true,
+        name: item.name || productFromCatalog?.name || "Товар",
+        qty: -Math.abs(item.qty),
+        price: item.price,
+        originalPrice: item.originalPrice || item.price,
+      };
+    });
+
+    // 4. ПРИНУДИТЕЛЬНАЯ ОЧИСТКА И ОБНОВЛЕНИЕ
+    setProductStock(newStock); // заменяем старый Map новым
+    setSaleProducts(preparedReturnItems); // заменяем список (убираем (...prev))
+    setSelectedRowKey(null); // сбрасываем выбор строки
+
+    // 5. Переключаем режимы
+    setIsReturnMode(true);
+    setMode("return");
+
+    // 6. Закрываем окно возврата
     setReturnVisible(false);
   }}
 />

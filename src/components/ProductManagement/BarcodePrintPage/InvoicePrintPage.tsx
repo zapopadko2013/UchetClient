@@ -352,6 +352,7 @@ const handlePrint = () => {
         selectedInvoice?.invoicedate
       ).format('DD.MM.YYYY')}`}
     open={detailsModalVisible}
+    zIndex={3500}
     onCancel={() => setDetailsModalVisible(false)}
     width={900}
     footer={null}
@@ -484,6 +485,11 @@ const handlePrint = () => {
 
       {/* === Кнопки управления === */}
       <div style={{ marginTop: 16, textAlign: 'center' }}>
+        <Space 
+    size="middle" 
+    direction={window.innerWidth < 576 ? 'vertical' : 'horizontal'} 
+    style={{ width: '100%', justifyContent: 'center' }}
+  >
         <Button
           style={{ marginRight: 8 }}
           onClick={() => setDetailsModalVisible(false)}
@@ -504,6 +510,7 @@ const handlePrint = () => {
         >
           {t('barcodePrint.button.print')}
         </Button>
+        </Space>
       </div>
     </>
   )}

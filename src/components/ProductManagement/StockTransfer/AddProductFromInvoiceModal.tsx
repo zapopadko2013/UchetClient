@@ -221,6 +221,7 @@ const AddProductFromInvoiceModal: React.FC<Props> = ({
       onCancel={onCancel}
       width={900}
       footer={null}
+      zIndex={3501}
       destroyOnHidden
     >
       <Space direction="vertical" className={styles.datePickerFullWidth}>

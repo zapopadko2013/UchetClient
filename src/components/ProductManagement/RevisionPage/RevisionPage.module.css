@@ -14,7 +14,22 @@
   margin-top: 16px;
 }
 
+.compareButtonContainer {
+  display: flex;
+  flex-direction: column; /* В ДВЕ СТРОКИ */
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  line-height: 1.2;
+}
 
+.compareButton {
+  height: 70px;
+  width: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 
 /* Layout/Container styles */
@@ -102,22 +117,9 @@
   margin-top: 16px;
 }
 
-.compareButtonContainer {
-  line-height: 1;
-  text-align: center;
-}
 
-.compareButton {
-  height: 70px;
-  width: 140px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 10px 0;
-  /* Для кастомного цвета текста в невыбранном состоянии */
-  transition: all 0.3s;
-}
+
+
 
 .addCommentButton {
   height: 70px;
@@ -169,4 +171,136 @@
 
 .mb10 {
   margin-bottom: 10px;
+}
+
+@media (max-width: 576px) {
+  /* 1. Инпуты поиска — сбрасываем фиксированную ширину (250px/300px) */
+  .searchBarcodeInput,
+  .searchNameInput {
+    width: 100% !important;
+  }
+
+  /* 2. Космос между поиском и действиями */
+  .searchActionsSpace {
+    flex-direction: column !important;
+    gap: 12px !important;
+    align-items: stretch !important;
+  }
+
+  /* 3. Кнопки сравнения (Compare Buttons) — самая важная часть */
+  .compareButton,
+  .addCommentButton {
+    width: 100% !important; /* Вместо 140px */
+    height: auto !important; /* Убираем фиксированные 70px */
+    padding: 15px 10px !important;
+    margin-bottom: 8px;
+    flex-direction: row !important; /* На мобилке лучше текст в строку или компактный столбик */
+    gap: 10px;
+  }
+
+  /* Текст внутри больших кнопок */
+  .compareButtonTextLarge {
+    font-size: 1.4em !important; /* Чуть меньше для мобильного */
+  }
+
+  .compareButtonTextSmall {
+    font-size: 0.9em !important;
+  }
+
+  /* 4. QuantityEditor — увеличиваем инпут для пальца */
+  .quantityInput {
+    width: 100% !important;
+    height: 40px;
+  }
+
+  /* 5. Карточки статуса сравнения (Success/Failure) */
+  .comparisonStatusBox {
+    padding: 12px !important;
+    margin-bottom: 12px;
+  }
+
+  .comparisonStatusTitle {
+    font-size: 16px !important;
+    text-align: center;
+  }
+
+  /* 6. Информационные карточки */
+  .blueInfoCardBase, 
+  .editWarningCard {
+    padding: 10px !important;
+  }
+
+  /* 7. Общие Space-контейнеры Ant Design */
+  .topActionsSpace,
+  .compareControlsInnerSpace {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    width: 100% !important;
+    gap: 10px !important;
+  }
+
+  /* 8. Текст и TextArea */
+  .commentTextArea {
+    font-size: 16px !important; /* Чтобы iOS не зумил при фокусе */
+  }
+
+  .noItemsCard {
+    padding: 24px 12px !important;
+  }
+
+  /* 9. Центрирование врапперов кнопок */
+  /* .compareButtonContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  } */
+
+  /* Исправление для модальных окон (полная ширина селектов) */
+  .fullWidthMb16,
+  .fullWidthMt16,
+  :global(.ant-select),
+  :global(.ant-input-number) {
+    width: 100% !important;
+  }
+
+  /* Кнопка на всю ширину с автоматической высотой */
+  .compareButton {
+    width: 100% !important;
+    height: auto !important;
+    padding: 10px 15px !important;
+    display: block !important; /* Позволяет содержимому внутри управлять высотой */
+  }
+
+  /* Контейнер внутри кнопки делаем горизонтальным */
+  .compareButtonContainer {
+    display: flex !important;
+    flex-direction: row !important; /* В ОДНУ СТРОКУ */
+    justify-content: space-between !important; /* Текст слева, цифра справа */
+    align-items: center !important;
+    width: 100%;
+    gap: 10px;
+  }
+
+  /* Текст наименования (Все, Расхождения и т.д.) */
+  .compareButtonTextSmall {
+    font-size: 14px !important;
+    text-align: left !important;
+    white-space: normal !important; /* Разрешаем перенос, если не влезет в строку */
+    flex: 1; /* Занимает всё свободное место */
+  }
+
+  /* Большая цифра (счетчик) */
+  .compareButtonTextLarge {
+    font-size: 18px !important; /* Чуть уменьшаем, чтобы не ломало строку */
+    flex-shrink: 0; /* Чтобы цифра не сжималась */
+  }
+
+  /* Убираем лишние отступы у Space, если они мешают */
+  .compareControlsInnerSpace {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    gap: 8px !important;
+  }
 }

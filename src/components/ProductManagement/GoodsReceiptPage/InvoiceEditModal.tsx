@@ -107,6 +107,7 @@ const InvoiceEditModal: React.FC<InvoiceEditModalProps> = ({
       title={t('goodsReceipt.history.editInvoice')}
       open={visible}
       onCancel={onClose}
+      zIndex={3501}
       footer={null}
       destroyOnHidden
     >

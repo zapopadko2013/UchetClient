@@ -133,6 +133,7 @@ const WorkorderDetailsTable: React.FC<Props> = ({ workorderId,point,counterparty
       okText: t('workorder.common.yes'),
       okType: 'danger',
       cancelText: t('workorder.common.no'),
+      zIndex: 3502,
       onOk: async () => {
         try {
           await sendRequest(`${API_URL}/api/workorder/details/delete`, {
@@ -266,6 +267,7 @@ const WorkorderDetailsTable: React.FC<Props> = ({ workorderId,point,counterparty
         open={isCheaperModalVisible}
         onCancel={() => setIsCheaperModalVisible(false)}
         width={900}
+        zIndex={3501}
         footer={[
           <Button key="close" onClick={() => setIsCheaperModalVisible(false)}>
             {t('workorder.common.close')}

@@ -61,6 +61,8 @@ const BarcodePrintPage: React.FC = () => {
   const { sendRequest } = useApiRequest();
   const API_URL = import.meta.env.VITE_API_URL || '';
 
+  const isMobile = typeof window !== 'undefined' && window.innerWidth <= 576;
+
   const [points, setPoints] = useState<Point[]>([]);
   const [products, setProducts] = useState<Product[]>([]);
   const [selectedPoint, setSelectedPoint] = useState<string>('');
@@ -301,14 +303,22 @@ const BarcodePrintPage: React.FC = () => {
                
             <div 
                 id="barcodePrintArea" 
-                style={{ 
+                /* style={{ 
                     marginTop: 40, 
                     marginLeft: 40,
                     display: 'flex', 
                     justifyContent: 'flex-start', 
                     alignItems: 'flex-start',
                     //width: `${getPaperWidthPx(paperWidth)}px`,
-                }}
+                }} */
+               style={{ 
+    marginTop: 40, 
+    marginLeft: isMobile ? 0 : 40, // <-- ИСПРАВЛЕНО
+    display: 'flex', 
+    flexDirection: isMobile ? 'column' : 'row', // <-- ИСПРАВЛЕНО (в столбик на мобилке)
+    justifyContent: 'flex-start', 
+    alignItems: isMobile ? 'center' : 'flex-start', // <-- ИСПРАВЛЕНО
+  }}
             >
                 <div 
                     className="barcode-label" 
@@ -409,14 +419,22 @@ const BarcodePrintPage: React.FC = () => {
           {/* === Область печати с применением динамических стилей === */}
           <div 
             id="barcodePrintArea" 
-            style={{ 
+            /* style={{ 
               marginTop: 40, 
               marginLeft: 40,
               display: 'flex', 
               justifyContent: 'flex-start', 
               alignItems: 'flex-start',
               //width: `${getPaperWidthPx(paperWidth)}px`,
-            }}
+            }} */
+           style={{ 
+    marginTop: 40, 
+    marginLeft: isMobile ? 0 : 40, // <-- ИСПРАВЛЕНО
+    display: 'flex', 
+    flexDirection: isMobile ? 'column' : 'row', // <-- ИСПРАВЛЕНО (в столбик на мобилке)
+    justifyContent: 'flex-start', 
+    alignItems: isMobile ? 'center' : 'flex-start', // <-- ИСПРАВЛЕНО
+  }}
           >
             <div
               className="barcode-label" 
@@ -475,7 +493,7 @@ const BarcodePrintPage: React.FC = () => {
               )}
                  
               {/* === Цена и атрибуты (печатается для форматов с ценой) === */}
-              {isPriceFormat && (
+              {/* {isPriceFormat && (
                 <div style={{ marginTop: '2px' }}>
                   {withDiscount ? (
                     <>
@@ -498,7 +516,37 @@ const BarcodePrintPage: React.FC = () => {
                     </Text>
                   )}
                 </div>
-              )}
+              )} */}
+              {isPriceFormat && (
+  <div style={{ marginTop: '2px' }}>
+    {selectedProduct.discount && selectedProduct.sumdiscount ? (
+      /* СЛУЧАЙ: Скидка существует в данных */
+      <>
+        {withDiscount ? (
+          /* Вариант со скидкой И галочкой: перечеркиваем */
+          <>
+            <Text delete style={{ fontSize: '0.9em' }}>{selectedProduct.price}</Text>
+            <div>
+              <Text strong>
+                {selectedProduct.sumdiscount} {extraAttr ? ` | ${extraAttr}` : ''}
+              </Text>
+            </div>
+          </>
+        ) : (
+          /* Вариант со скидкой, но БЕЗ галочки: просто цена со скидкой (не перечеркиваем) */
+          <Text strong>
+            {selectedProduct.sumdiscount} {extraAttr ? ` | ${extraAttr}` : ''}
+          </Text>
+        )}
+      </>
+    ) : (
+      /* СЛУЧАЙ: Скидки в данных нет вообще — выводим базовую цену */
+      <Text strong>
+        {selectedProduct.price} {extraAttr ? ` | ${extraAttr}` : ''}
+      </Text>
+    )}
+  </div>
+)}
               
               {/* === Атрибуты для 30x20 без цены === */}
                {barcodeFormat === '30x20' && extraAttr && (
@@ -507,9 +555,22 @@ const BarcodePrintPage: React.FC = () => {
             </div>
 
            {/* === Кнопки управления === */}
-           <div className="no-print"  style={{ display: 'flex', flexDirection: 'column', gap: 8, marginLeft: 56, marginTop: 16 }}>
+           <div className="no-print"  
+           /* style={{ display: 'flex', flexDirection: 'column', gap: 8, marginLeft: 56, marginTop: 16 }}
+            */
+           style={{ 
+      display: 'flex', 
+      flexDirection: isMobile ? 'row' : 'column', // Кнопки в ряд на мобилке
+      gap: 8, 
+      marginLeft: isMobile ? 0 : 16, 
+      marginTop: isMobile ? 16 : 0,
+      width: isMobile ? '100%' : 'auto',
+      justifyContent: 'center'
+    }}
+           >
               <Button
                 icon={<RotateRightOutlined />}
+                style={isMobile ? { flex: 1 } : {}}
                 onClick={() => setRotation((prevRotation) => (prevRotation === 0 ? 90 : 0))}
               >
                 {t('barcodePrint.button.rotate')}
@@ -517,6 +578,7 @@ const BarcodePrintPage: React.FC = () => {
               <Button
                 type="primary"
                 icon={<PrinterOutlined />}
+                style={isMobile ? { flex: 1 } : {}}
                 onClick={handlePrint}
               >
                 {t('barcodePrint.button.print')}

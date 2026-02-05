@@ -253,6 +253,7 @@ const AddProductFromStockModal: React.FC<Props> = ({
       onCancel={handleCancel}
       footer={null}
       width={800}
+      zIndex={3501}
       destroyOnHidden
     >
       <Space direction="vertical" className={styles.datePickerFullWidth}>

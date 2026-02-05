@@ -366,7 +366,7 @@ const handleAddAttr = async () => {
       onOk={handleOk}
       onCancel={onCancel}
       confirmLoading={loading}
-      zIndex={3500}
+      zIndex={3501}
       destroyOnHidden
     >
       <Form form={form} layout="vertical"

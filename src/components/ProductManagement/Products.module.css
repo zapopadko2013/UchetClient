@@ -141,3 +141,68 @@
   border-top: 1px solid #f0f0f0;
   margin-bottom: 20px;
 }
+
+
+
+
+@media (max-width: 576px) {
+  /* Контейнер кнопок и поиска */
+  .buttonGroup {
+    display: flex !important;
+    flex-direction: column !important; /* Кнопки встают друг под другом */
+    align-items: stretch !important;
+    width: 100% !important;
+    gap: 12px !important;
+  }
+
+  /* Исправление компонента Search */
+  .searchInput {
+    width: 100% !important;
+    margin-left: 0 !important;
+  }
+
+  /* Прямое обращение к внутренним частям Ant Search */
+  .searchInput :global(.ant-input-wrapper) {
+    display: flex !important;
+    height: 44px !important; /* Увеличиваем общую высоту */
+  }
+
+  /* Само поле ввода */
+  .searchInput :global(.ant-input) {
+    height: 44px !important;
+    font-size: 16px !important; /* Защита от зума на iOS */
+    border-top-left-radius: 8px !important;
+    border-bottom-left-radius: 8px !important;
+  }
+
+  /* Контейнер кнопки лупы (аддон) */
+  .searchInput :global(.ant-input-group-addon) {
+    width: 55px !important; /* Делаем кнопку шире и квадратнее */
+    left: -1px !important; /* Убираем микро-щель между инпутом и кнопкой */
+  }
+
+  /* Сама кнопка с лупой */
+  .searchInput :global(.ant-btn-icon-only) {
+    width: 100% !important;
+    height: 44px !important;
+    border-top-right-radius: 8px !important;
+    border-bottom-right-radius: 8px !important;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    background-color: #1677ff !important; /* Можно сделать яркой для акцента */
+    border-color: #1677ff !important;
+    box-shadow: none !important;
+  }
+
+  /* Иконка лупы внутри */
+  .searchInput :global(.anticon-search) {
+    font-size: 20px !important;
+    color: #fff !important;
+  }
+
+  /* Исправление таблицы на мобильном (скролл) */
+  :global(.ant-table-content) {
+    overflow-x: auto !important;
+  }
+}

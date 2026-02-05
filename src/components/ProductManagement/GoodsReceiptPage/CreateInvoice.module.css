@@ -330,3 +330,134 @@
   line-height: 1.5;
   user-select: none; /* Чтобы нельзя было случайно выделить текст при клике */
 }
+
+
+
+@media (max-width: 576px) {
+  /* 1. Основной контейнер */
+  .createInvoiceContainer {
+    padding: 16px 12px !important;
+    max-width: 100%;
+  }
+
+  /* 2. Превращаем все горизонтальные Flex-ряды в колонки */
+  .footer,
+  .fieldGroup,
+  .userSettingsRow,
+  .actionButtonsRow,
+  .flexEndRow,
+  .flexBetweenRow,
+  .flexCenterGap,
+  .searchActionRow {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    justify-content: flex-start !important;
+    gap: 12px !important;
+  }
+
+  /* 3. Сброс фиксированных ширин и выравнивания */
+  .paddedBox,
+  .boxStyled,
+  .fixedWidth100,
+  .rightAlignedBox,
+  .width90 {
+    width: 100% !important;
+    text-align: left !important;
+  }
+
+  /* 4. Центрирование и текст */
+  .rightAligned,
+  .rightPadded {
+    text-align: left !important;
+  }
+
+  .largePrimaryText {
+    font-size: 24px !important; /* Уменьшаем гигантский текст */
+  }
+
+  /* 5. Кнопки и Инпуты на всю ширину */
+  :global(.ant-btn),
+  :global(.ant-select),
+  :global(.ant-input),
+  :global(.ant-input-number),
+  :global(.ant-picker) {
+    width: 100% !important;
+    height: 44px !important; /* Удобно для нажатия пальцем */
+  }
+
+  /* 6. Исправление для переключателя (Switch) */
+  .switchRow {
+    flex-direction: row !important; /* Здесь оставляем ряд */
+    align-items: center;
+    background: #f5f5f5;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 24px !important;
+  }
+
+  /* 7. Убираем лишние отступы */
+  .actionButtonsRow, .flexEndRow {
+    gap: 10px !important;
+  }
+
+  /* 8. Таблицы и скролл-контейнеры */
+  .scrollContainer {
+    max-height: 300px; /* Увеличиваем высоту для удобства на мобилке */
+  }
+
+  .paddingOverflowX {
+    padding: 12px 0 !important;
+  }
+
+  /* 9. Специальные отступы для меток (labels) */
+  .label, .labelSmall {
+    margin-bottom: 4px;
+    font-size: 14px;
+  }
+
+  /* 10. Поиск и кнопка рядом */
+  .searchActionRow .searchWrapper {
+    width: 100%;
+  }
+
+  /* 1. Исправляем кнопки в окнах подтверждения (Modal.confirm) */
+  :global(.ant-modal-confirm-btns) {
+    display: flex !important;
+    flex-direction: column !important; /* Ставим друг под друга */
+    gap: 10px !important; /* Расстояние между кнопками */
+    width: 100% !important;
+    margin-top: 20px !important;
+    float: none !important; /* Убираем старый float */
+  }
+
+  /* Растягиваем кнопки удаления/отмены на всю ширину */
+  :global(.ant-modal-confirm-btns .ant-btn) {
+    width: 100% !important;
+    height: 44px !important;
+    margin: 0 !important; /* Убираем боковой отступ, заменяем на gap */
+  }
+
+  /* 2. Центрируем иконку и текст в модалке подтверждения */
+  :global(.ant-modal-confirm-body) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  :global(.ant-modal-confirm-body .ant-modal-confirm-title) {
+    display: block;
+    margin-top: 8px;
+  }
+
+  /* 3. Исправление для Popconfirm (маленькие всплывающие окошки) */
+  :global(.ant-popover-buttons) {
+    display: flex !important;
+    gap: 8px !important;
+    justify-content: stretch !important;
+  }
+
+  :global(.ant-popover-buttons .ant-btn) {
+    flex: 1; /* Кнопки делят ширину пополам, чтобы не липли */
+  }
+}

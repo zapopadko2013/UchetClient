@@ -40,6 +40,8 @@ const WeightGoodsInvoicePage: React.FC<WeightGoodsInvoicePageProps> = ({
   const { sendRequest } = useApiRequest();
   const API_URL = import.meta.env.VITE_API_URL || '';
 
+  const isMobile = window.innerWidth <= 576;
+
   // Состояния
   const [invoice, setInvoice] = useState<any>(propInvoice);
   const [goods, setGoods] = useState<any[]>([]);
@@ -467,14 +469,36 @@ const handleSaveProduct = async () => {
             type="link"
             onClick={() => handleEditProduct(record)}
           />
-          <Popconfirm
+          <Button 
+        icon={<DeleteOutlined />} 
+        type="link" 
+        danger 
+        onClick={() => {
+          Modal.confirm({
+            title: t('weightGoodsInvoice.confirm.deleteProduct'),
+            okText: t('weightGoodsInvoice.common.yes'),
+            cancelText: t('weightGoodsInvoice.common.no'),
+            okButtonProps: { danger: true },
+            onOk: () => handleDeleteProduct(record),
+            // В модалке Ant Design сам расставит кнопки как надо
+            centered: true, 
+          });
+        }}
+      />
+          {/* <Popconfirm
             title={t('weightGoodsInvoice.confirm.deleteProduct')}
             onConfirm={() => handleDeleteProduct(record)}
             okText={t('weightGoodsInvoice.common.yes')}
             cancelText={t('weightGoodsInvoice.common.no')}
+            okButtonProps={{ 
+    style: isMobile ? { width: '100%', margin: '8px 0 0 0' } : {} 
+  }}
+  cancelButtonProps={{ 
+    style: isMobile ? { width: '100%', margin: 0 } : {} 
+  }}
           >
             <Button icon={<DeleteOutlined />} type="link" danger />
-          </Popconfirm>
+          </Popconfirm> */}
         </Space>
       ),
     },

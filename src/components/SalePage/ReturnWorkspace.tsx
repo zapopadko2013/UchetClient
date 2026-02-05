@@ -147,6 +147,7 @@ const ReturnWorkspace: React.FC<Props> = ({ visible, onClose, pointId, onReturnR
       onCancel={onClose} 
       footer={null} 
       width={900} 
+       zIndex={3500}
       title={t('sale.returnWorkspace.title') || "Возврат товаров"}
     >
       <Spin spinning={loading}>

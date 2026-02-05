@@ -54,6 +54,7 @@ const KaspiPayment: React.FC<KaspiProps> = ({ payTotal, terminalIp, onSuccess })
             cancelText: 'Отмена',
             */
             title: t('kaspi.modal.confirmTitle'),
+            zIndex: 3501,
             content: `${t('kaspi.modal.confirmContent')} ${payTotal.toLocaleString()} ?`,
             okText: t('workorder.common.yes') ,
             cancelText: t('sale.workspace.buttons.cancel') ,
@@ -203,6 +204,7 @@ const KaspiPayment: React.FC<KaspiProps> = ({ payTotal, terminalIp, onSuccess })
                 //title="Оплата Kaspi"
                 title={t('kaspi.modal.title')}
                 open={isModalVisible}
+                zIndex={3503}
                 onCancel={handleCancelManual} // Теперь можно закрыть по крестику
                 closable={true}               // Включаем крестик
                 centered

@@ -1571,7 +1571,7 @@ const handleDeleteProduct = async (product: ProductItem) => {
     title: <div>{t('goodsReceipt.invoiceDetails.columnUpdatePriceAllPoints')}</div>,
     dataIndex: 'updateallprodprice',
     key: 'updateallprodprice',
-    fixed: 'right',
+    //fixed: 'right',
     width: 100,
     render: (value: boolean, record: ProductItem) => {
       // Переключатель доступен только в режиме "Формирование"
@@ -1818,6 +1818,7 @@ const columns: ColumnsType<ProductItem> = isForming
   open={useInvoiceModalVisible}
   onCancel={() => setUseInvoiceModalVisible(false)}
   footer={null}
+  zIndex={3501}
   width={800}
 >
   <InvoiceHeaderForm

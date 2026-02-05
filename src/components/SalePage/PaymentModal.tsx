@@ -456,6 +456,7 @@ const handleOpenDebt = () => {
       //content: "Вы хотите удалить текущего должника?",
       title: t('sale.payment.modals.debt.deleteTitle'),
       content: t('sale.payment.modals.debt.deleteContent'),
+      zIndex: 3502,
       //okText: "Да",
       //cancelText: "Нет",
       okText: t('sale.payment.buttons.yes'),
@@ -506,6 +507,7 @@ const confirmDebt = () => {
       //content: `Продать в долг ${debtAmount} клиенту ${debtClient.firstname} ${debtClient.lastname}?`,
       //content: `Продать в долг ${debtAmount}  ?`,
       title: t('sale.payment.modals.debt.confirmTitle'),
+      zIndex: 3502,
       content: t('sale.payment.modals.debt.confirmContent', { amount: debtAmount }),
       onOk: () => {
         setConfirmedDebt({ client: debtClient, amount: debtAmount });
@@ -549,6 +551,7 @@ const handleOpenLegalModal = () => {
       /* "Удалить выбранное предприятие?" */
       t('sale.payment.messages.deleteConfirm')
       ,
+      zIndex: 3502,
       onOk: () => setSelectedLegal(null),
     });
   } else {
@@ -656,6 +659,7 @@ const confirmLegalClient = (client: any) => {
   Modal.confirm({
     //title: "Подтвердите оплату",
     title: t('sale.payment.modals.confirm.title'),
+    zIndex: 3502,
     content:
       type === "card"
      //   ? `Подтверждаете оплату картой на сумму ${totalAmount}?`
@@ -1188,6 +1192,7 @@ printReceipt({
         open={amountModalVisible}
         //title="Ввод сумм"
         title={t('sale.payment.modals.amounts.title')}
+        zIndex={3501}
         onCancel={() => setAmountModalVisible(false)}
         footer={null}
       >
@@ -1277,6 +1282,7 @@ printReceipt({
   //title="Продажа в долг"
   title={t('sale.payment.modals.debt.title')}
   onCancel={() => setDebtModalVisible(false)}
+  zIndex={3501}
   footer={null}
 >
 
@@ -1361,6 +1367,7 @@ printReceipt({
 
 <Modal
   open={legalModalVisible}
+  zIndex={3501}
   //title="Юридическое лицо"
   title= {t('sale.payment.labels.legal')}
  
@@ -1426,6 +1433,7 @@ printReceipt({
       <Modal
         open={discountModalVisible}
         onCancel={() => setDiscountModalVisible(false)}
+        zIndex={3501}
         onOk={applyDiscount}
         title=
         {t('sale.payment.discount.title')}
