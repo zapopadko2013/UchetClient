@@ -88,15 +88,52 @@
 }
 
 @media (max-width: 576px) {
+  /* .inputArea {
+    padding: 10px; 
+  } */
+
   .inputArea {
-    padding: 10px; /* Компактнее на мобильных */
+    padding: 8px 10px !important;
+  }
+  
+  /* На iPhone шрифт должен быть минимум 16px, чтобы экран не "прыгал" при фокусе */
+  .textAreaWrapper :global(.ant-input) {
+    font-size: 16px !important;
   }
 }
 
-.textAreaWrapper {
+/* .textAreaWrapper {
   display: flex;
   gap: 8px;
   align-items: flex-end;
+} */
+
+/* Обертка для поля и кнопки */
+.textAreaWrapper {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: flex-end !important; /* Кнопка будет внизу, если текст длинный */
+  gap: 8px;
+  width: 100%;
+}
+
+/* Сама кнопка отправки */
+.sendButton {
+  flex-shrink: 0 !important; /* ЗАПРЕЩАЕТ кнопке растягиваться или сжиматься */
+  width: 40px !important;    /* Фиксированная ширина кнопки */
+  height: 40px !important;   /* Квадратная форма */
+  padding: 0 !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  margin-bottom: 0px; 
+}
+
+/* Принудительное растягивание TextArea через CSS (дублируем на всякий случай) */
+.textAreaWrapper :global(.ant-input) {
+  min-width: 0 !important;   /* Это лечит "узкие" поля в Flexbox */
+  flex: 1 !important;
 }
 
 /* Таблицы внутри чата — САМОЕ ВАЖНОЕ ДЛЯ МОБИЛЬНЫХ */
@@ -135,12 +172,12 @@
   flex-shrink: 0;
 }
 
-.sendButton {
+/* .sendButton {
   flex-shrink: 0;
   border-radius: 8px;
   height: 32px;
 }
-
+ */
 /* Остальные стили */
 .periodBadge {
   margin-bottom: 8px;

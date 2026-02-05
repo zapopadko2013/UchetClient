@@ -383,7 +383,7 @@ export default function AiChat({ initialSession }: AiChatProps) {
           sendMessage();
         }
       }}
-      
+      style={{ flex: 1 }}
       disabled={isLoading}
     />
     <Button 
