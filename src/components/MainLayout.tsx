@@ -79,7 +79,7 @@ useEffect(() => {
     //const alwaysVisibleCodes = ['home', 'news', 'change-password','adminnews','admincompanysettings','admincompanycreate','setting_portal_user','businessManagement','admincompanylist','admincompanyinfo','admindownloadproduct','adminattribute','adminattributeadd','adminabrand','adminusers'];
     const alwaysVisibleCodes1 = [
          'home', 'news', 'change-password', 'setting_portal_user', 'businessManagement','saleslist'
-         ,'aichathistory'
+         ,'aichathistory','charts'
     ];
 
     const alwaysVisibleCodesd = [

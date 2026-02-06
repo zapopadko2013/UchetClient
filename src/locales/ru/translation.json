@@ -26,6 +26,8 @@
 
     "aichathistory": "История AI-помощника",
     "supportrequests": "Вопросы по программе",
+
+    "charts": "Графики",
     
 
     "tradeObjects": "Объекты торговли",
@@ -3851,6 +3853,25 @@
     "alertTitle": "Внимание",
     "alertDesc": "Если терминал не реагирует, проверьте расширение CORS.",
     "toPay": "К оплате"
+  }
+},
+
+"analytics": {
+  "loading": "Загрузка аналитики...",
+  "periods": {
+    "days": "Дни",
+    "weeks": "Недели",
+    "months": "Месяцы"
+  },
+  "charts": {
+    "totalSales": "Сумма продаж по точкам",
+    "avgDailySales": "Среднедневная сумма продаж",
+    "avgTicketsCount": "Среднее количество чеков",
+    "avgTicketSum": "Средний чек",
+    "withWeeksSuffix": "{{title}} за {{count}} недель"
+  },
+  "errors": {
+    "loadError": "Не удалось загрузить данные графиков"
   }
 }
 

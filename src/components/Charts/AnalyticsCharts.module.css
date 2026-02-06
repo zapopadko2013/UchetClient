@@ -1,0 +1,49 @@
+.container {
+  padding: 16px;
+  background-color: #f0f2f5;
+  min-height: 100vh;
+}
+
+.radioGroupContainer {
+  margin-bottom: 24px;
+  text-align: center;
+  position: sticky; /* Чтобы переключатель всегда был на виду при скролле */
+  top: 0;
+  z-index: 10;
+  background: #f0f2f5;
+  padding: 10px 0;
+}
+
+.chartCard {
+  margin-bottom: 16px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.chartWrapper {
+  width: 100%;
+  height: 300px;
+  overflow-x: auto; /* Позволяет прокручивать график на очень маленьких экранах */
+  overflow-y: hidden;
+}
+
+/* Адаптация для мобильных устройств */
+@media (max-width: 576px) {
+  .container {
+    padding: 8px;
+  }
+
+  .radioGroupContainer {
+    margin-bottom: 16px;
+  }
+
+  /* Уменьшаем размер текста кнопок для мобилок */
+  .radioGroupContainer :global(.ant-radio-button-wrapper) {
+    padding: 0 10px;
+    font-size: 13px;
+  }
+
+  .chartWrapper {
+    height: 250px; /* Немного ниже на мобилках */
+  }
+}

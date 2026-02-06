@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Modal, Input, Button, Select, Checkbox, message,Radio } from "antd";
+import { Modal, Input, Button, Select, Checkbox, message,Radio,Space } from "antd";
 import useApiRequest from "../../hooks/useApiRequest";
 import ClientSelectModal from "./ClientSelectModal";
 import { SearchOutlined } from "@ant-design/icons";
@@ -1345,6 +1345,7 @@ printReceipt({
   </div>
 
   <div className={styles.justifyBetween1}>
+    <Space style={{ width: '100%', justifyContent: 'space-between' }}>
     <Button onClick={() => setDebtModalVisible(false)}>
       {/* Отмена */}
       {t('sale.payment.buttons.cancel')}
@@ -1353,6 +1354,7 @@ printReceipt({
       {t('sale.payment.buttons.confirm')}
      {/*  Подтвердить */}
       </Button>
+      </Space>
   </div>
 </Modal>
 
@@ -1400,6 +1402,7 @@ printReceipt({
   </div>
 
   <div className={styles.justifyBetween1}>
+    <Space style={{ width: '100%', justifyContent: 'space-between' }}>
     <Button onClick={() => setLegalModalVisible(false)}>
       {/* Отмена */}
       {t('sale.payment.buttons.cancel')}
@@ -1425,6 +1428,7 @@ printReceipt({
       {/* Продолжить */}
       {t('sale.payment.buttons.continue')}
     </Button>
+    </Space>
   </div>
 </Modal>
 

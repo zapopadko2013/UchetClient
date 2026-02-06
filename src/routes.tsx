@@ -36,7 +36,7 @@ import {
   FileTextOutlined,
   AuditOutlined,ClusterOutlined,InboxOutlined,
   TrademarkCircleOutlined,ReconciliationOutlined,DatabaseOutlined,ShoppingCartOutlined,
-  RobotOutlined,QuestionCircleOutlined,
+  RobotOutlined,QuestionCircleOutlined, LineChartOutlined,
 } from '@ant-design/icons';
 
 import HomePage from './components/HomePage';
@@ -92,6 +92,10 @@ import AiChatHistory from './components/AiChatHistory';
 
 import SupportAdminPage from './components/Administration/SupportAdminPage';
 
+import AnalyticsCharts from './components/Charts/AnalyticsCharts';
+
+
+
 
 export const routes = [
   {
@@ -101,6 +105,14 @@ export const routes = [
     code: 'home', // ← даже если доступ всегда открыт — для единообразия
     icon: <HomeOutlined />,
   },
+  {
+      path: '/charts',
+      key: 'charts',
+      label: 'Графики',
+      icon: <LineChartOutlined />,
+      element: <AnalyticsCharts />,
+      code: 'charts',
+    },
   {
     key: 'businessManagement',
     label: 'Управление бизнесом',
@@ -514,6 +526,8 @@ export const routes = [
       element: <SalePage />,
       code: 'saleslist',
     },
+
+    
 
 /* {
       path: '/adminattribute/adminattributeadd',

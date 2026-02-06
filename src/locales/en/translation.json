@@ -24,6 +24,9 @@
   "legalBuyers": "Legal Entity Buyers",
   "individualBuyers": "Individual Buyers",
 
+  "charts": "Charts",
+
+
   "orderproduct": "Product Order",
   "aichathistory": "AI Assistant History",
 
@@ -3498,6 +3501,25 @@
     "toPay": "To pay"
   }
 }
+,
 
+"analytics": {
+  "loading": "Loading analytics...",
+  "periods": {
+    "days": "Days",
+    "weeks": "Weeks",
+    "months": "Months"
+  },
+  "charts": {
+    "totalSales": "Total sales by points",
+    "avgDailySales": "Average daily sales amount",
+    "avgTicketsCount": "Average ticket count",
+    "avgTicketSum": "Average ticket amount",
+    "withWeeksSuffix": "{{title}} for {{count}} weeks"
+  },
+  "errors": {
+    "loadError": "Failed to load chart data"
+  }
+}
 
 }

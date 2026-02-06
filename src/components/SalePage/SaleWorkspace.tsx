@@ -1251,6 +1251,15 @@ const handlePaymentClick = async () => {
       type="primary"
       block
       onClick={() => {
+
+        ///////06.02.2026
+
+        if (!selectedRowKey) {
+      message.warning(t('sale.workspace.errors.selectProductFirst'));
+      return; // Прерываем выполнение, модалка скидки не откроется
+    }
+        ///////06.02.2026
+
         // открываем модалку скидки
         if (!cashboxUser.discount) {
           message.warning(t('sale.workspace.errors.noDiscountPermission'));
