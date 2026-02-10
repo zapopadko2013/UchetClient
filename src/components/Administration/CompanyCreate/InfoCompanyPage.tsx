@@ -88,8 +88,14 @@ const InfoCompanyPage: React.FC = () => {
     setIsLoading(true);
     try {
       // Использование нового URL из старого кода: /login/api/adminpage/company/info
-      const url = new URL(`${API_URL}/api/adminpage/company/info`);
+      /* const url = new URL(`${API_URL}/api/adminpage/company/info`);
       url.searchParams.append('id', companyId.toString());
+ */
+
+      const params = new URLSearchParams({ id: companyId.toString() });
+
+// Собираем итоговый URL
+const url = `${API_URL}/api/adminpage/company/info?${params.toString()}`;
 
       const data: CompanyData = await sendRequest(url.toString(), { 
         method: 'GET',

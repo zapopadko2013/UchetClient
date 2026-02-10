@@ -89,8 +89,10 @@ const PasswordResetForm: React.FC<OrderFormProps> = ({
     setUsers([]); // Очистка списка
     try {
 
-      const url = new URL(`${API_BASE_PATH}/adminpage/usernames`);
-      url.search = new URLSearchParams({ comp_id }).toString(); 
+      /* const url = new URL(`${API_BASE_PATH}/adminpage/usernames`);
+      url.search = new URLSearchParams({ comp_id }).toString(); */ 
+
+      const url = `${API_BASE_PATH}/adminpage/usernames?comp_id=${comp_id}`;
 
       const responseData = await sendRequest(url, {
         method: 'GET',
@@ -125,9 +127,12 @@ const PasswordResetForm: React.FC<OrderFormProps> = ({
 
     try {
 
-      const url = new URL(`${API_BASE_PATH}/adminpage/passreset`);
+     /*  const url = new URL(`${API_BASE_PATH}/adminpage/passreset`);
       url.searchParams.set('comp_id', comp_id);
-      url.searchParams.set('username', username);
+      url.searchParams.set('username', username);  */
+
+      const url = `${API_BASE_PATH}/adminpage/passreset?comp_id=${encodeURIComponent(comp_id)}&username=${encodeURIComponent(username)}`;
+      
 
       const results = await sendRequest(url.toString(), {
         method: 'GET',

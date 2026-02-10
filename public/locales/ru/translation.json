@@ -28,6 +28,7 @@
     "supportrequests": "Вопросы по программе",
 
     "charts": "Графики",
+    "debtreport": "Отчёт по долгам",
     
 
     "tradeObjects": "Объекты торговли",
@@ -3536,8 +3537,8 @@
         "noReturnTicket": "Не выбран чек для возврата",
         "noDiscountPermission": "Выбранный пользователь кассы не имеет доступа на ручную скидку",
         "selectProductFirst": "Выберите товар",
-        "barcodeNotFound": "Товар по штрих-коду не найден"
-        
+        "barcodeNotFound": "Товар по штрих-коду не найден",
+        "enterDebtAmount": "Введите сумму долга"
         
       },
       "messages": {
@@ -3634,7 +3635,8 @@
         "debtTooHigh": "Долг не может быть больше суммы чека",
         "noType": "Тип оплаты не выбран",
         "serverError": "Ошибка сервера",
-        "transferError": "Ошибка связи"
+        "transferError": "Ошибка связи",
+        "enterDebtAmount": "Введите сумму долга"
       },
       "messages": {
         "debtMixedSet": "Долг установлен, будет смешанная оплата",
@@ -3657,7 +3659,9 @@
           "deleteTitle": "Удалить долг?",
           "deleteContent": "Вы хотите удалить текущего должника?",
           "confirmPay": "Подтвердите долг",
-          "confirmMsg": "Продать в долг на сумму {{amount}}?"
+          "confirmMsg": "Продать в долг на сумму {{amount}}?",
+          "confirmTitle": "Подтвердите долг",
+          "confirmContent": "Продать в долг на сумму {{amount}}?"
         },
         "confirm": {
           "title": "Подтвердите оплату",

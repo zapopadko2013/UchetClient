@@ -83,8 +83,14 @@ const ImpNomenclature: React.FC = () => {
     try {
 
 
-      const url = new URL(`${API_URL}/api/files`);
-      url.searchParams.append('folder', FOLDER.toString());
+      /* const url = new URL(`${API_URL}/api/files`);
+      url.searchParams.append('folder', FOLDER.toString()); */
+
+      // 1. Создаем параметры
+const params = new URLSearchParams({ folder: FOLDER.toString() });
+
+// 2. Собираем URL через шаблонную строку
+const url = `${API_URL}/api/files?${params.toString()}`;
 
       const res: string[] = await sendRequest(url.toString(), { 
         method: 'GET',
@@ -134,8 +140,14 @@ const ImpNomenclature: React.FC = () => {
     try {
 
       
-      const url = new URL(`${API_URL}/api/stock`);
-      url.searchParams.append('companyId', companyId.toString());
+      /* const url = new URL(`${API_URL}/api/stock`);
+      url.searchParams.append('companyId', companyId.toString()); */
+
+      // 1. Формируем параметры
+const params = new URLSearchParams({ companyId: companyId.toString() });
+
+// 2. Собираем URL
+const url = `${API_URL}/api/stock?${params.toString()}`;
 
        const res: any[] = await sendRequest(url.toString(), { 
         method: 'GET',
@@ -164,8 +176,14 @@ const ImpNomenclature: React.FC = () => {
     try {
 
 
-      const url = new URL(`${API_URL}/api/counterparties`);
-      url.searchParams.append('companyId', companyId.toString());
+     /*  const url = new URL(`${API_URL}/api/counterparties`);
+      url.searchParams.append('companyId', companyId.toString()); */
+
+      // 1. Создаем параметры запроса
+const params = new URLSearchParams({ companyId: companyId.toString() });
+
+// 2. Формируем строку URL
+const url = `${API_URL}/api/counterparties?${params.toString()}`;
 
       const res: any[] = await sendRequest(url.toString(), { 
         method: 'GET',
@@ -230,9 +248,18 @@ const ImpNomenclature: React.FC = () => {
   const handleDelete = useCallback(async (file: string) => {
     try {
 
-      const url = new URL(`${API_URL}/api/files/delete`);
+      /* const url = new URL(`${API_URL}/api/files/delete`);
       url.searchParams.append('file', file.toString());
-      url.searchParams.append('folder', FOLDER.toString());
+      url.searchParams.append('folder', FOLDER.toString()); */
+
+      // 1. Создаем параметры (можно передать объект сразу в конструктор)
+const params = new URLSearchParams({ 
+  file: file.toString(),
+  folder: FOLDER.toString() 
+});
+
+// 2. Формируем строку URL
+const url = `${API_URL}/api/files/delete?${params.toString()}`;
 
       await sendRequest(url.toString(), { 
         method: 'GET',

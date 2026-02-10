@@ -77,8 +77,15 @@ useEffect(() => {
 
     // Коды маршрутов, которые всегда видны независимо от доступа
     //const alwaysVisibleCodes = ['home', 'news', 'change-password','adminnews','admincompanysettings','admincompanycreate','setting_portal_user','businessManagement','admincompanylist','admincompanyinfo','admindownloadproduct','adminattribute','adminattributeadd','adminabrand','adminusers'];
+    /*
     const alwaysVisibleCodes1 = [
          'home', 'news', 'change-password', 'setting_portal_user', 'businessManagement','saleslist'
+         ,'aichathistory','charts'
+    ];
+    */
+
+    const alwaysVisibleCodes1 = [
+         'home', 'news', 'change-password', 'businessManagement','saleslist'
          ,'aichathistory','charts'
     ];
 

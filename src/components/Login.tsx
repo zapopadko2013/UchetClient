@@ -37,14 +37,70 @@ const Login = ({ onLogin }) => {
 
       if (data && data.accessToken) {
 
+
+        ///////09.02.2026
+        const headers = { Authorization: `Bearer ${data.accessToken}` };
+        // 1. Получаем роли пользователя
+      const roles = await sendRequest(`${import.meta.env.VITE_API_URL}/api/erpuser/user/roles`, {
+        headers,
+      });
+
+      // Проверяем, есть ли среди ролей роль с id === 1
+      const hasAdminRole = roles.some((role) => Number(role.id) === 1);
+
+
+        ///////09.02.2026
+
         //////
          
         const data11 = await sendRequest(`${import.meta.env.VITE_API_URL}/api/erpuser/getuseraccessesun`, {
           headers: { Authorization: `Bearer ${data.accessToken}` },
         });
         
-        const flatAccesses = data11.flatMap(group => group.accesses || []);
+       // let flatAccesses = data11.flatMap(group => group.accesses || []);
         //////
+
+        ///////09.02.2026
+      // Копируем данные, чтобы не мутировать исходный ответ, и гарантируем, что это массив
+let groupedAccesses = Array.isArray(data11) ? [...data11] : [{ accesses: [] }];
+
+const portalUserCode = "setting_portal_user";
+
+if (hasAdminRole) {
+    // Проверяем, есть ли этот код хотя бы в одной группе
+    const alreadyHas = groupedAccesses.some(group => 
+        Array.isArray(group?.accesses) && group.accesses.some(a => a.code === portalUserCode)
+    );
+
+    if (!alreadyHas) {
+        // Если группы пустые или первая группа null — подготавливаем её
+        if (!groupedAccesses[0]) groupedAccesses[0] = { accesses: [] };
+        if (!Array.isArray(groupedAccesses[0].accesses)) groupedAccesses[0].accesses = [];
+
+        // Добавляем в массив accesses первой группы
+        groupedAccesses[0].accesses.push({
+            "id": 1,
+            "code": portalUserCode,
+            "category": "Пользователи",
+            "name": "Пользователи программы"
+        });
+    }
+} else {
+    // Если не админ — удаляем код из всех групп
+    groupedAccesses.forEach(group => {
+        if (Array.isArray(group?.accesses)) {
+            group.accesses = group.accesses.filter(a => a.code !== portalUserCode);
+        }
+    });
+}
+
+// 3. Теперь делаем финальный плоский массив для onLogin
+// Это ВАЖНО, так как фронтенд обычно ожидает список объектов для проверки прав
+const flatAccesses = groupedAccesses.flatMap(group => 
+    Array.isArray(group?.accesses) ? group.accesses : []
+);
+//console.log(flatAccesses);
+        ///////09.02.2026
 
         // Вызываем onLogin и передаем токен и имя пользователя
         //onLogin(data.accessToken, values.username);

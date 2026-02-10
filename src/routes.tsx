@@ -90,6 +90,10 @@ import StockReport from './components/Reports/StockReport/StockReport';
 import SalePage from './components/SalePage/SalePage';
 import AiChatHistory from './components/AiChatHistory';
 
+import DebtReport from './components/Reports/DebtReport';
+
+
+
 import SupportAdminPage from './components/Administration/SupportAdminPage';
 
 import AnalyticsCharts from './components/Charts/AnalyticsCharts';
@@ -515,6 +519,16 @@ export const routes = [
       code: 'whs_leftovers',
     },
 
+    {
+      path: '/debtreport',
+      key: 'debtreport',
+      label: 'Отчёт по долгам',
+      icon: <DatabaseOutlined />,
+      element: <DebtReport />,
+      code: 'rep_debt_book',
+    },
+
+    
     ],
 },  
 

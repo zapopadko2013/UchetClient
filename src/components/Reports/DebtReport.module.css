@@ -1,0 +1,29 @@
+.container {
+  padding: 20px;
+}
+
+.filterCard {
+  margin-bottom: 20px;
+}
+
+.receipt {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 13px;
+  color: #000;
+  background: #fff;
+  padding: 10px;
+}
+
+.receiptRow {
+  margin-bottom: 4px;
+}
+
+.right {
+  text-align: right;
+}
+
+@media (max-width: 576px) {
+  .container {
+    padding: 10px;
+  }
+}
