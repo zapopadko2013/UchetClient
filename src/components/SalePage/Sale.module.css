@@ -318,3 +318,69 @@
 .amountContainer {
     margin-top: 10px;
 }
+
+
+
+.fullWidthFlex {
+  width: 100% !important;
+  display: flex !important;
+}
+
+/* Специальный стиль для кнопок поиска внутри Space.Compact, 
+   чтобы они всегда были одной высоты с инпутом */
+.searchButtonFixed {
+  height: auto !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* Для префикса +7 */
+.phonePrefix {
+  width: 50px !important;
+  text-align: center !important;
+  background-color: #fafafa !important;
+  flex-shrink: 0 !important;
+}
+
+
+/* Растягивает элемент внутри flex-контейнера */
+.flexFill {
+  flex: 1 !important;
+}
+
+/* Для префикса, чтобы он не сжимался */
+.noShrink {
+  flex-shrink: 0 !important;
+}
+
+.debtInfoBox {
+  padding: 12px;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  border: 1px solid #d9d9d9;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px; /* Добавим небольшой отступ снизу для красоты */
+}
+
+/* Сделаем сумму долга чуть крупнее и акцентнее */
+.debtAmountText {
+  font-weight: 700;
+  font-size: 16px;
+  color: #262626;
+}
+
+/* Стиль для иконки стрелочки, чтобы она была интерактивной */
+.copyIcon {
+  color: #1890ff;
+  font-size: 18px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.copyIcon:hover {
+  transform: translateY(2px); /* Эффект нажатия вниз */
+  color: #40a9ff;
+}

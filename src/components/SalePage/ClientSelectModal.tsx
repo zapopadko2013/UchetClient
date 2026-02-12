@@ -44,6 +44,7 @@ const ClientSelectModal: React.FC<ClientSelectModalProps> = ({
     <Modal
       title={t('sale.clientModal.title') || "Выберите клиента"}
       open={open}
+      zIndex={3503}
       onCancel={onCancel}
       footer={null}
       getContainer={() => document.body}

@@ -1329,7 +1329,9 @@ printReceipt({
     <b>
       {/* Текущий долг */}
       {t('sale.payment.labels.currentDebt')}
-      :</b> {debtClient?.debt || 0}
+      :</b>
+      {/*  {debtClient?.debt || 0} */}
+      {debtClient?.debt ||selectedLegal?.debt || 0}
   </div>
 
   <div className={styles.mb20}>

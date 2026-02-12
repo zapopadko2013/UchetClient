@@ -3225,6 +3225,8 @@
         "complete": "Complete Payment",
         "cancel": "Cancel",
         "confirm": "Confirm",
+        "no": "Cancel",
+        "yes": "Confirm",
         "continue": "Continue",
         "useBonuses": "Use Bonuses"
       },
@@ -3307,7 +3309,9 @@
           "deleteTitle": "Delete Debt?",
           "deleteContent": "Do you want to delete the current debtor?",
           "confirmPay": "Confirm Debt",
-          "confirmMsg": "Sell on credit for {{amount}}?"
+          "confirmMsg": "Sell on credit for {{amount}}?",
+          "confirmTitle": "Confirm Debt",
+          "confirmContent": "Sell on credit for {{amount}}?"
         },
         "confirm": {
           "title": "Confirm Payment",
@@ -3521,5 +3525,33 @@
     "loadError": "Failed to load chart data"
   }
 }
+
+,
+
+"report": {
+  "debt": {
+    "title": "Debt Report",
+    "filterDate": "Select date",
+    "clientType": "Client type",
+    "all": "All",
+    "individuals": "Individuals",
+    "show": "Show",
+    "export": "Export",
+    "colName": "Last Name First Name/Company Name",
+    "colPhone": "Phone/BIN",
+    "colCredit": "Credit purchase",
+    "colRepay": "Repayment",
+    "colTotal": "Current debt",
+    "colAction": "Write-off",
+    "repayBtn": "Repay",
+    "modalRepayTitle": "Debt repayment",
+    "customer": "Customer",
+    "amount": "Write-off amount",
+    "repaySuccess": "Debt successfully repaid",
+    "historyTitle": "Receipt history",
+    "cancel": "Close"
+  }
+}
+
 
 }

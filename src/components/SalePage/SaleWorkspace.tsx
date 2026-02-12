@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Input, Space, Table, message,Modal,InputNumber } from "antd";
+import { Button, Input, Space, Table, message,Modal,InputNumber, Select } from "antd";
 import {
   AppstoreOutlined,
   BarcodeOutlined,
@@ -7,7 +7,7 @@ import {
   MinusOutlined,
   DeleteOutlined,
   MoneyCollectOutlined,UnorderedListOutlined, LoadingOutlined,
-  ScanOutlined,
+  ScanOutlined, SearchOutlined, ArrowDownOutlined,
 } from "@ant-design/icons";
 import ProductListModal from "./ProductListModal";
 import PaymentModal from "./PaymentModal";
@@ -19,6 +19,9 @@ import { createRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import styles from "./Sale.module.css";
+import ClientSelectModal from "./ClientSelectModal";
+import moment from "moment";
+import DebtWriteOffModal from './DebtWriteOffModal';
 
 import BarcodeScanner from '../../components/BarcodeScanner';
 
@@ -149,6 +152,234 @@ type Mode = "sale" | "return";
 
 const [mode, setMode] = useState<Mode>("sale");
 const [isReturnMode, setIsReturnMode] = useState(false);
+
+//////11.02.22026
+const [isDebtWriteOffOpen, setIsDebtWriteOffOpen] = useState(false);
+/*
+const getHeaders = () => ({
+    Authorization: `Bearer ${localStorage.getItem("accessToken") || ""}`,
+    "Content-Type": "application/json",
+  });
+const [isDebtWriteOffOpen, setIsDebtWriteOffOpen] = useState(false);
+const [debtorType, setDebtorType] = useState<0 | 1>(0);
+const [selectedClient, setSelectedClient] = useState<any>(null);
+const [writeOffAmount, setWriteOffAmount] = useState<string>("");
+const [writeOffMethod, setWriteOffMethod] = useState("Наличными");
+
+// Состояния для ручного ввода
+const [debtPhone, setDebtPhone] = useState("");
+const [debtFirstname, setDebtFirstname] = useState("");
+const [debtLastname, setDebtLastname] = useState("");
+
+const [legalBIN, setLegalBIN] = useState("");
+const [legalName, setLegalName] = useState("");
+
+// Для случая, если найдено несколько клиентов по имени/фамилии
+const [foundClients, setFoundClients] = useState<any[]>([]);
+
+const [isClientListModalOpen, setIsClientListModalOpen] = useState(false);
+
+const clearFields = () => {
+  setSelectedClient(null);
+  setWriteOffAmount("");
+  
+  // Очистка полей физ. лица
+  setDebtPhone("");
+  setDebtFirstname("");
+  setDebtLastname("");
+  
+  // Очистка полей юр. лица
+  setLegalBIN("");
+  setLegalName("");
+  
+  // Сброс типа (опционально, можно оставить текущий)
+  // setDebtorType(0); 
+};
+
+// Поиск по БИН
+const searchLegalByBIN = async () => {
+  if (!legalBIN) return message.error(t('sale.payment.messages.searchByBin'));
+  try {
+    const data = await sendRequest(
+      `${import.meta.env.VITE_API_URL}/external/api/customers?bin=${legalBIN}`,
+      { headers: getHeaders() }
+    );
+    
+    if (!data || (Array.isArray(data) && data.length === 0)) {
+      return message.error(t('sale.payment.messages.notFound'));
+    }
+
+    const selected = Array.isArray(data) ? data[0] : data;
+
+    // Важно: переиспользуем общее состояние выбранного клиента
+    setSelectedClient(selected); 
+    setDebtorType(1); // Устанавливаем тип "Юр. лицо"
+    setLegalBIN(selected.bin || "");
+    setLegalName(selected.name || "");
+    
+   // message.success(t('common.success') || "Данные загружены");
+  } catch {
+    message.error(t('sale.payment.messages.searchError'));
+  }
+};
+
+// Поиск по Наименованию
+const searchLegalByName = async () => {
+  if (!legalName) return message.error(t('sale.payment.messages.searchByName'));
+  try {
+    const data = await sendRequest(
+      `${import.meta.env.VITE_API_URL}/external/api/customers?name=${encodeURIComponent(legalName)}`,
+      { headers: getHeaders() }
+    );
+    
+    if (!data || (Array.isArray(data) && data.length === 0)) {
+      return message.error(t('sale.payment.messages.notFound'));
+    }
+
+    // Если найдено несколько — используем вашу общую модалку выбора
+    if (Array.isArray(data) && data.length > 1) {
+      setFoundClients(data);
+      setIsClientListModalOpen(true);
+    } else {
+      const selected = Array.isArray(data) ? data[0] : data;
+      setSelectedClient(selected);
+      setDebtorType(1);
+      setLegalBIN(selected.bin || "");
+      setLegalName(selected.name || "");
+    }
+  } catch {
+    message.error(t('sale.payment.messages.searchError'));
+  }
+};
+
+const searchByPhone = async () => {
+    if (!debtPhone) return message.error(t('sale.payment.errors.enterPhone'));
+    try {
+        const data = await sendRequest(`${import.meta.env.VITE_API_URL}/external/api/customers/getfizinfo?telephone=${debtPhone}`, 
+          { headers: getHeaders() }
+
+        );
+        if (!data || (Array.isArray(data) && data.length === 0)) return message.error(t('sale.payment.errors.clientNotFound'));
+        
+        const client = Array.isArray(data) ? data[0] : data;
+        fillClientData(client);
+    } catch {
+        message.error(t('sale.payment.errors.searchError'));
+    }
+};
+
+const searchByFirstname = async () => {
+  // Проверяем именно ту переменную, которую меняем в onChange инпута
+  if (!debtFirstname) {
+    return message.error(t('sale.payment.errors.enterFirstname'));
+  }
+
+  try {
+    const data = await sendRequest(
+      `${import.meta.env.VITE_API_URL}/external/api/customers/getfizinfobyname?name=${encodeURIComponent(debtFirstname)}`, 
+      { headers: getHeaders() }
+    );
+
+    // Обрабатываем результат (функция handleSearchResult ниже)
+    handleSearchResult(data);
+
+  } catch (error) {
+    message.error(t('sale.payment.errors.searchError'));
+  }
+};
+
+const searchByLastname = async () => {
+    if (!debtLastname) return message.error(t('sale.payment.errors.enterLastname'));
+    try {
+        const data = await sendRequest(`${import.meta.env.VITE_API_URL}/external/api/customers/getfizinfobylastname?name=${encodeURIComponent(debtLastname)}`, 
+      { headers: getHeaders() }
+      );
+        handleSearchResult(data);
+    } catch {
+        message.error(t('sale.payment.errors.searchError'));
+    }
+};
+
+const handleSearchResult = (data: any) => {
+  // 1. Проверяем, что данные вообще пришли
+  if (!data) {
+    setFoundClients([]); // Очищаем список
+    return message.error(t('sale.payment.errors.clientNotFound'));
+  }
+
+  // 2. Превращаем данные в массив, если это не он (бывает, сервер возвращает объект)
+  const clientsArray = Array.isArray(data) ? data : (data.rows || data.data || [data]);
+
+  if (clientsArray.length === 0) {
+    setFoundClients([]);
+    return message.error(t('sale.payment.errors.clientNotFound'));
+  }
+
+  if (clientsArray.length === 1) {
+    // Если найден один — сразу выбираем его
+    fillClientData(clientsArray[0]);
+    setFoundClients([]); 
+  } else {
+    // Если найдено несколько — сохраняем массив и открываем модалку выбора
+    setFoundClients(clientsArray);
+    setIsClientListModalOpen(true);
+  }
+};
+
+const fillClientData = (client: any) => {
+    setSelectedClient(client);
+    setDebtFirstname(client.firstname || "");
+    setDebtLastname(client.lastname || "");
+    
+    if (client.telephone) {
+       setDebtPhone(client.telephone || "");
+    }
+    setDebtorType(0); // Переключаем на физ лицо
+};
+
+const handleRepay = async () => {
+  // Проверяем выбранного клиента и сумму (используем ваши переменные)
+  if (!selectedClient) return message.warning(t('Выберите клиента'));
+  if (!writeOffAmount || Number(writeOffAmount) <= 0) {
+    return message.warning(t('Введите корректную сумму'));
+  }
+
+  try {
+    await sendRequest(`${import.meta.env.VITE_API_URL}/api/report/fizcustomers/writeoff_debt`,  {
+      method: 'POST',
+      headers: getHeaders(),
+      body: JSON.stringify({writeoff_debt_customers: {
+        id: selectedClient.id,
+        debt: Number(writeOffAmount),
+        user: localStorage.getItem('userId') || "2", // берем ID пользователя
+        clientType: debtorType // 0 для физ, 1 для юр лиц
+      }
+      })
+    });
+
+    message.success(t('report.debt.repaySuccess') || "Долг успешно списан");
+
+    
+    
+    // Закрываем модалку и очищаем данные
+    setIsDebtWriteOffOpen(false);
+    setSelectedClient(null);
+    setWriteOffAmount("");
+    setDebtPhone("");
+    setDebtFirstname("");
+    setDebtLastname("");
+
+    clearFields();
+    
+    
+  } catch (err) {
+    console.error(err);
+    message.error(t('report.debt.repayError') || "Ошибка при списании");
+  }
+};
+*/
+//////11.02.2026
+
 
 const { t } = useTranslation();
 
@@ -1288,11 +1519,12 @@ const handlePaymentClick = async () => {
       type="default"
       block
       danger
-      onClick={() => {
+      /* onClick={() => {
         // TODO: логика списания долга
         message.info('Списание долга');
         setActionsModalVisible(false);
-      }}
+      }} */
+     onClick={() => setIsDebtWriteOffOpen(true)}
     >
       {t('sale.workspace.buttons.writeOffDebt')}
     </Button>
@@ -1506,6 +1738,179 @@ const handlePaymentClick = async () => {
     );
   })()}
 </Modal>
+
+
+<DebtWriteOffModal 
+  open={isDebtWriteOffOpen} 
+  onClose={() => setIsDebtWriteOffOpen(false)} 
+  
+/>
+{/* Модальное окно списания долга */}
+{/* <Modal
+  title={<b>{t('report.debt.modalRepayTitle') || "Списание долга"}</b>}
+  open={isDebtWriteOffOpen}
+  onCancel={() => {
+    setIsDebtWriteOffOpen(false);
+    clearFields(); 
+  }}
+  onOk={handleRepay}
+  okText={t('sale.payment.buttons.confirm')}
+  cancelText={t('sale.payment.buttons.cancel')}
+  destroyOnHidden={true}
+>
+  <Space direction="vertical" style={{ width: '100%' }} size="middle">
+    
+    <div style={{ display: 'flex', gap: 10 }}>
+      <Button 
+        style={{ flex: 1, backgroundColor: debtorType === 0 ? '#52c41a' : '', color: debtorType === 0 ? 'white' : '', borderColor: debtorType === 0 ? '#52c41a' : '' }}
+        onClick={() => setDebtorType(0)}
+      >
+        {t('sale.payment.labels.individual') || "Физ. лицо"}
+      </Button>
+      <Button 
+        style={{ flex: 1, backgroundColor: debtorType === 1 ? '#52c41a' : '', color: debtorType === 1 ? 'white' : '', borderColor: debtorType === 1 ? '#52c41a' : '' }}
+        onClick={() => setDebtorType(1)}
+      >
+        {t('sale.payment.labels.legal') || "Юр. лицо"}
+      </Button>
+    </div>
+
+    {debtorType === 0 ? (
+      <>
+        
+        <div style={{ marginBottom: '5px' }}>
+          <b>{t('sale.payment.labels.phone')}</b>
+          <Space.Compact style={{ width: '100%', display: 'flex' }}>
+            <Input 
+              style={{ width: '50px', textAlign: 'center', backgroundColor: '#fafafa', color: 'rgba(0, 0, 0, 0.85)', flexShrink: 0 }} 
+              value="+7" 
+              disabled 
+            />
+            <Input
+              placeholder="7071234567"
+              value={debtPhone}
+              onChange={(e) => setDebtPhone(e.target.value.replace(/\D/g, "").slice(0, 10))}
+              style={{ flexGrow: 1 }}
+            />
+            <Button 
+              icon={<SearchOutlined />} 
+              onClick={searchByPhone}
+              style={{ height: 'auto', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+            />
+          </Space.Compact>
+        </div>
+
+       
+        <div style={{ marginBottom: '5px' }}>
+          <b>{t('sale.payment.labels.firstname')}</b>
+          <Space.Compact style={{ width: '100%', display: 'flex' }}>
+            <Input 
+              value={debtFirstname} 
+              onChange={(e) => setDebtFirstname(e.target.value)} 
+              style={{ flex: 1 }}
+            />
+            <Button 
+              icon={<SearchOutlined />} 
+              onClick={searchByFirstname} 
+              style={{ height: 'auto', display: 'flex', alignItems: 'center', justifyContent: 'center' }} 
+            />
+          </Space.Compact>
+        </div>
+
+        
+        <div style={{ marginBottom: '5px' }}>
+          <b>{t('sale.payment.labels.lastname')}</b>
+          <Space.Compact style={{ width: '100%', display: 'flex' }}>
+            <Input 
+              value={debtLastname} 
+              onChange={(e) => setDebtLastname(e.target.value)} 
+              style={{ flex: 1 }}
+            />
+            <Button 
+              icon={<SearchOutlined />} 
+              onClick={searchByLastname} 
+              style={{ height: 'auto', display: 'flex', alignItems: 'center', justifyContent: 'center' }} 
+            />
+          </Space.Compact>
+        </div>
+      </>
+    ) : (
+      <>
+        
+        <div style={{ marginBottom: '5px' }}>
+          <b>{t('sale.payment.messages.binLabel')}</b>
+          <Space.Compact style={{ width: '100%', display: 'flex' }}>
+            <Input
+              placeholder="БИН"
+              value={legalBIN}
+              onChange={(e) => setLegalBIN(e.target.value.replace(/\D/g, ""))}
+              style={{ flex: 1 }}
+            />
+            <Button 
+              icon={<SearchOutlined />} 
+              onClick={searchLegalByBIN} 
+              style={{ height: 'auto', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+            />
+          </Space.Compact>
+        </div>
+
+        
+        <div style={{ marginBottom: '5px' }}>
+          <b>{t('sale.payment.messages.nameLabel')}</b>
+          <Space.Compact style={{ width: '100%', display: 'flex' }}>
+            <Input 
+              placeholder="Наименование"
+              value={legalName} 
+              onChange={(e) => setLegalName(e.target.value)} 
+              style={{ flex: 1 }}
+            />
+            <Button 
+              icon={<SearchOutlined />} 
+              onClick={searchLegalByName} 
+              style={{ height: 'auto', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+            />
+          </Space.Compact>
+        </div>
+      </>
+    )}
+
+    
+    <div style={{ padding: '12px', background: '#f5f5f5', borderRadius: '8px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', border: '1px solid #d9d9d9' }}>
+      <span>{t('sale.payment.labels.currentDebt')}: <b>{selectedClient?.debt || 0} </b></span>
+      <ArrowDownOutlined 
+        style={{ color: '#1890ff', fontSize: '18px', cursor: 'pointer' }} 
+        onClick={() => setWriteOffAmount(String(selectedClient?.debt || 0))} 
+      />
+    </div>
+
+   
+    <div>
+      <b>{t('sale.payment.labels.debtAmount') || "Сумма списания"}</b>
+      <Input 
+        type="number" 
+        size="large"
+        placeholder="0.00" 
+        value={writeOffAmount} 
+        onChange={e => setWriteOffAmount(e.target.value)} 
+        
+      />
+    </div>
+  </Space>
+</Modal> */}
+
+{/* Дополнительная модалка, если найдено много клиентов (как в PaymentModal) */}
+{/* <ClientSelectModal
+  open={isClientListModalOpen}
+  // Если foundClients вдруг null/undefined, передаем пустой массив, чтобы не было ошибки .some()
+  clients={foundClients || []} 
+  onCancel={() => setIsClientListModalOpen(false)}
+  onSelect={(client) => {
+    fillClientData(client);
+    setIsClientListModalOpen(false);
+  }}
+/> */}
+
+
 
 
 <BarcodeScanner 

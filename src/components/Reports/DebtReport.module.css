@@ -22,6 +22,26 @@
   text-align: right;
 }
 
+.selectFilter {
+  width: 200px;
+}
+
+/* Класс для Space или контейнеров внутри модалки */
+.fullWidth {
+  width: 100% !important;
+}
+
+/* Стили для суммы долга в таблице */
+.debtPositive {
+  color: #ff4d4f; /* Красный цвет Ant Design */
+  font-weight: bold;
+}
+
+.debtNegative {
+  color: #52c41a; /* Зеленый цвет Ant Design */
+  font-weight: bold;
+}
+
 @media (max-width: 576px) {
   .container {
     padding: 10px;
