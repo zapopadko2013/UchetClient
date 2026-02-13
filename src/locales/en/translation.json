@@ -3231,6 +3231,7 @@
         "useBonuses": "Use Bonuses"
       },
       "labels": {
+        "clientRegistration": "Client Registration",
         "selectConsultant": "Select consultant",
         "totalToPay": "Total to pay",
         "client": "Client",
@@ -3275,6 +3276,10 @@
         "unknown": "Not specified"
       },
       "errors": {
+
+        "fillRequiredFields": "Fill in the required fields",
+        "saveError": "Error while saving",
+
         "limitExceeded": "Discount limit exceeded. Available: {{amount}}",
         "enterPhone": "Enter phone number",
         "enterFirstname": "Enter first name",
@@ -3289,6 +3294,10 @@
         "transferError": "Connection error"
       },
       "messages": {
+
+        "clientFound": "Client found",
+        "saveSuccess": "Data saved successfully",
+        
         "debtMixedSet": "Debt set, mixed payment enabled",
         "successMessage": "Credit sale confirmed",
         "binLabel": "Company BIN",

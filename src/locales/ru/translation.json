@@ -3562,6 +3562,12 @@
      
     },
      "payment": {
+
+      
+      
+      
+      
+
       "title": "Оплата",
       "unknown": "Неизвестный тип",
       "buttons": {
@@ -3582,6 +3588,9 @@
         "useBonuses": "Использовать бонусы"
       },
       "labels": {
+
+        "clientRegistration": "Регистрация клиента",
+
         "selectConsultant": "Выберите консультанта",
         "totalToPay": "Итого к оплате",
         "client": "Клиент",
@@ -3626,6 +3635,12 @@
         "unknown": "Не указан"
       },
       "errors": {
+        
+        "fillRequiredFields": "Заполните обязательные поля",
+        "saveError": "Ошибка при сохранении",
+        
+
+
         "limitExceeded": "Превышен лимит скидки. Доступно: {{amount}}",
         "enterPhone": "Введите номер телефона",
         "enterFirstname": "Введите имя",
@@ -3641,6 +3656,10 @@
         "enterDebtAmount": "Введите сумму долга"
       },
       "messages": {
+
+        "clientFound": "Клиент найден",
+        "saveSuccess": "Данные успешно сохранены",
+
         "debtMixedSet": "Долг установлен, будет смешанная оплата",
         "successMessage": "Оплата в долг подтверждена",
 

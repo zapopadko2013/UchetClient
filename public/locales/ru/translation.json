@@ -3562,6 +3562,12 @@
      
     },
      "payment": {
+
+      
+      
+      
+      
+
       "title": "Оплата",
       "unknown": "Неизвестный тип",
       "buttons": {
@@ -3576,10 +3582,15 @@
         "complete": "Завершить оплату",
         "cancel": "Отмена",
         "confirm": "Подтвердить",
+        "no": "Отмена",
+        "yes": "Подтвердить",
         "continue": "Продолжить",
         "useBonuses": "Использовать бонусы"
       },
       "labels": {
+
+        "clientRegistration": "Регистрация клиента",
+
         "selectConsultant": "Выберите консультанта",
         "totalToPay": "Итого к оплате",
         "client": "Клиент",
@@ -3624,6 +3635,12 @@
         "unknown": "Не указан"
       },
       "errors": {
+        
+        "fillRequiredFields": "Заполните обязательные поля",
+        "saveError": "Ошибка при сохранении",
+        
+
+
         "limitExceeded": "Превышен лимит скидки. Доступно: {{amount}}",
         "enterPhone": "Введите номер телефона",
         "enterFirstname": "Введите имя",
@@ -3639,6 +3656,10 @@
         "enterDebtAmount": "Введите сумму долга"
       },
       "messages": {
+
+        "clientFound": "Клиент найден",
+        "saveSuccess": "Данные успешно сохранены",
+
         "debtMixedSet": "Долг установлен, будет смешанная оплата",
         "successMessage": "Оплата в долг подтверждена",
 
@@ -3876,6 +3897,33 @@
   },
   "errors": {
     "loadError": "Не удалось загрузить данные графиков"
+  }
+},
+
+
+"report": {
+  "debt": {
+    "title": "Отчёт по долгам",
+    "filterDate": "Выберите дату",
+    "clientType": "Тип клиента",
+    "all": "Все",
+    "individuals": "Физические лица",
+    "show": "Показать",
+    "export": "Экспорт",
+    "colName": "Фамилия Имя/Наименование",
+    "colPhone": "Телефон/Бин",
+    "colCredit": "Покупка в долг",
+    "colRepay": "Погашение",
+    "colTotal": "Текущий долг",
+    "colAction": "Списание",
+    "repayBtn": "Погасить",
+    "modalRepayTitle": "Погашение долга",
+    "customer": "Клиент",
+    "amount": "Сумма списания",
+    "repaySuccess": "Долг успешно погашен",
+    "historyTitle": "История чеков",
+    "cancel": "Закрыть"
+    
   }
 }
 

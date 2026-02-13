@@ -3235,6 +3235,7 @@
         "useBonuses": "Бонустарды пайдалану"
       },
       "labels": {
+        "clientRegistration": "Клиентті тіркеу",
         "selectConsultant": "Консультантты таңдаңыз",
         "totalToPay": "Төлеуге жиыны",
         "client": "Клиент",
@@ -3279,6 +3280,10 @@
         "unknown": "Көрсетілмеген"
       },
       "errors": {
+
+        "fillRequiredFields": "Міндетті өрістерді толтырыңыз",
+        "saveError": "Сақтау кезінде қате",
+
         "limitExceeded": "Жеңілдік лимитінен асты. Қолжетімді: {{amount}}",
         "enterPhone": "Телефон нөмірін енгізіңіз",
         "enterFirstname": "Есімін енгізіңіз",
@@ -3293,6 +3298,10 @@
         "transferError": "Байланыс қатесі"
       },
       "messages": {
+
+        "clientFound": "Клиент табылды",
+        "saveSuccess": "Деректер сәтті сақталды",
+
         "debtMixedSet": "Қарыз белгіленді, аралас төлем болады",
         "successMessage": "Қарызға сату расталды",
         "binLabel": "Кәсіпорын БСН",

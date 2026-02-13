@@ -384,3 +384,182 @@
   transform: translateY(2px); /* Эффект нажатия вниз */
   color: #40a9ff;
 }
+
+
+@media (max-width: 768px) {
+  .container {
+    padding: 10px 0;
+  }
+
+  /* Увеличиваем высоту группы (Compact) */
+  .fullWidthFlex {
+    height: 52px !important;
+    display: flex !important;
+  }
+
+  /* Растягиваем инпуты внутри группы на мобильных */
+  .fullWidthFlex :global(.ant-input) {
+    height: 52px !important;
+    font-size: 17px !important; /* Удобный размер шрифта для мобилок */
+  }
+
+  /* Стилизуем кнопку поиска */
+  .searchButtonFixed {
+    width: 65px !important; /* Широкая кнопка для удобства нажатия */
+    height: 52px !important;
+    background-color: #1890ff !important;
+    color: white !important;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0 6px 6px 0 !important;
+  }
+
+  /* Иконка внутри кнопки */
+  .searchButtonFixed :global(.anticon) {
+    font-size: 22px !important;
+  }
+
+  /* Сдвигаем иконку копирования долга, чтобы по ней было легче попасть */
+  .copyIcon {
+    font-size: 28px !important;
+    padding: 12px;
+    color: #1890ff;
+  }
+
+  .debtAmountText {
+    font-size: 22px !important;
+  }
+}
+
+
+/* Модальное окно регистрации */
+.regModalContent {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.regHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.regTitle {
+  margin: 0 !important;
+  flex: 1;
+  text-align: center;
+}
+
+/* Стилизация строк формы */
+.regFormRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.regLabel {
+  width: 150px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+/* Кнопка сохранения в футере */
+
+
+.regFooter {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+:global(.ant-message) {
+  z-index: 9999 !important;
+}
+
+/* Адаптация для мобильных (дополнение к вашим @media) */
+@media (max-width: 768px) {
+  /* Перестраиваем форму: лейбл сверху, инпут снизу */
+  :global(.ant-form-item) {
+    flex-direction: column !important;
+    margin-bottom: 12px !important;
+  }
+
+  :global(.ant-form-item-label) {
+    text-align: left !important;
+    padding-bottom: 4px !important;
+    width: 100% !important;
+  }
+
+  :global(.ant-form-item-control) {
+    width: 100% !important;
+  }
+
+  /* Обертка для всей строки (Input + Button) */
+  .fullWidthFlex {
+    height: 52px !important;
+    display: flex !important;
+    align-items: stretch !important; /* Растягиваем всех детей по высоте */
+  }
+
+  /* Внутренности Input (включая префикс +7 и само поле) */
+  .fullWidthFlex :global(.ant-input-wrapper),
+  .fullWidthFlex :global(.ant-input-affix-wrapper) {
+    height: 52px !important;
+    display: flex !important;
+    align-items: center !important; /* Центрируем текст и префикс по вертикали */
+    font-size: 17px !important;
+  }
+
+  /* Исправляем положение текста внутри самого инпута */
+  .fullWidthFlex :global(.ant-input) {
+    height: 100% !important;
+    line-height: 1.5 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+
+  /* Кнопка поиска */
+  .searchButtonFixed {
+    width: 65px !important;
+    height: 52px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border-radius: 0 6px 6px 0 !important;
+  }
+
+  /* Стили заголовка */
+  .regModalContent {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .regTitle {
+    font-size: 18px !important;
+    margin: 0 auto !important; /* Центрируем заголовок */
+  }
+
+  .regFooter {
+    margin-top: 25px; /* Увеличенный отступ для мобильных */
+    padding-bottom: 10px; /* Отступ от нижнего края модалки */
+    flex-direction: row;
+    width: 100%;
+  }
+
+  /* Чтобы кнопки внутри Space растянулись */
+  .regFooter :global(.ant-space) {
+    width: 100% !important;
+    gap: 10px !important;
+  }
+
+  .regFooter button {
+    flex: 1 !important;
+    height: 52px !important;
+    font-size: 16px !important;
+  }
+}

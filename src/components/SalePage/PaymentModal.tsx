@@ -2,13 +2,16 @@ import React, { useState, useEffect } from "react";
 import { Modal, Input, Button, Select, Checkbox, message,Radio,Space } from "antd";
 import useApiRequest from "../../hooks/useApiRequest";
 import ClientSelectModal from "./ClientSelectModal";
-import { SearchOutlined } from "@ant-design/icons";
+import { SearchOutlined,UserOutlined } from "@ant-design/icons";
 import ReceiptPrinter from "./ReceiptPrinter";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import styles from "./Sale.module.css";
 import KaspiPayment from './KaspiPayment';
+import ClientRegistrationModal from './ClientRegistrationModal';
+
+
 
 
 
@@ -171,6 +174,12 @@ const [legalName, setLegalName] = useState("");
 const [selectedLegal, setSelectedLegal] = useState<any>(null);
 const [foundLegalClients, setFoundLegalClients] = useState<any[]>([]);
 
+
+///////12.02.2026
+
+ const [isRegModalOpen, setIsRegModalOpen] = useState(false);
+
+////////12.02.2026
 
 
     // --- Продажа в долг ---
@@ -1180,6 +1189,15 @@ printReceipt({
   }}
 />
 
+  <Button 
+        //type="primary" 
+        icon={<UserOutlined />} 
+        size="large"
+        onClick={() => setIsRegModalOpen(true)}
+      >
+        {t('sale.payment.labels.client')}
+      </Button>
+
            {/*  <Button size="large" onClick={() => handleOpenAmountModal("certificate")}>
               🎟 Сертификат
             </Button> */}
@@ -1491,6 +1509,11 @@ printReceipt({
   {t('sale.payment.modals.discount.maxLimit', { percent: maxDiscountPercent })}
 </div>
       </Modal>
+
+ <ClientRegistrationModal 
+  open={isRegModalOpen} 
+  onClose={() => setIsRegModalOpen(false)} 
+/>     
 
     </>
   );
