@@ -8,6 +8,7 @@ interface SaleProduct {
   originalPrice: number;
   qty: number;
   discount?: number;
+  markup?: number;
 }
 
 interface ReceiptPrinterProps {
@@ -35,6 +36,7 @@ interface ReceiptPrinterProps {
   displayFile?: string;
   tickettype?: number;
   discount?: number;
+  markup?: number;
   onLogoLoaded?: () => void;
 }
 
@@ -60,7 +62,8 @@ const ReceiptPrinter: React.FC<ReceiptPrinterProps> = ({
   displayFile,
   onLogoLoaded,
   tickettype,
-  discount
+  discount,
+  markup
 }) => {
   const { t } = useTranslation(); // 2. Инициализация перевода
   const [logoUrl, setLogoUrl] = useState<string | undefined>(undefined);
@@ -107,11 +110,25 @@ const ReceiptPrinter: React.FC<ReceiptPrinterProps> = ({
       line += `\n${padRight(t('sale.receipt.discountLabel') || "Скидка:", 20)}-${padLeft(p.discount.toFixed(2) + " ", 10)}`;
     }
 
+    /////16.02.2026
+    if (p.markup && p.markup > 0) {
+      // Локализация слова "Скидка" внутри чека
+      line += `\n${padRight(t('sale.workspace.buttons.markup') || "Наценка:", 20)}-${padLeft(p.markup.toFixed(2) + " ", 10)}`;
+    } 
+    /////16.02.2026
+
     return line;
   });
 
   const discountSafe = discount ?? 0;
   const totalDiscount = saleProducts.reduce((sum, p) => sum + (p.discount || 0), 0) + discountSafe;
+
+  /////16.02.2026
+  const markupSafe = markup ?? 0;
+  const totalMarkup = saleProducts.reduce((sum, p) => sum + (p.markup || 0), 0) + markupSafe;
+
+  /////16.02.2026
+
 
   return (
     <div 
@@ -150,6 +167,7 @@ const ReceiptPrinter: React.FC<ReceiptPrinterProps> = ({
         {`${padRight(t('sale.receipt.itemsCount') || "Тауарлар/Товаров:", 34)}${saleProducts.reduce((sum, p) => sum + p.qty, 0).toFixed(3)}\n`}
         {`${padRight(t('sale.receipt.amount') || "Сомасы/Сумма:", 34)}${(totalAmount).toFixed(2)}\n`}
         {`${padRight(t('sale.receipt.discounts') || "Жеңілдіктер/Скидки:", 34)}${totalDiscount.toFixed(2)}\n`}
+        {`${padRight(t('sale.receipt.markups') || "Yстеме/Наценка:", 34)}${totalMarkup.toFixed(2)}\n`}
         {"\n"}
         {`${padRight(t('sale.receipt.total') || "БАРЛЫҒЫ/ИТОГ:", 34)}${(totalAmount).toFixed(2)}\n`}
         {`${t('sale.receipt.vatLabel') || "ҚҚС/НДС:"}                           ${VAT || ""}\n`}

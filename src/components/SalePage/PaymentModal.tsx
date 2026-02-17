@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Modal, Input, Button, Select, Checkbox, message,Radio,Space } from "antd";
 import useApiRequest from "../../hooks/useApiRequest";
 import ClientSelectModal from "./ClientSelectModal";
-import { SearchOutlined,UserOutlined } from "@ant-design/icons";
+import { SearchOutlined,UserOutlined,RiseOutlined } from "@ant-design/icons";
 import ReceiptPrinter from "./ReceiptPrinter";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
@@ -10,6 +10,7 @@ import { useTranslation } from "react-i18next";
 import styles from "./Sale.module.css";
 import KaspiPayment from './KaspiPayment';
 import ClientRegistrationModal from './ClientRegistrationModal';
+import MarkupModal from './MarkupModal';
 
 
 
@@ -60,6 +61,7 @@ interface ReceiptPrinterProps {
   showRNM: boolean;
   showZNM: boolean;
   discount?: number;
+  markup?: number;
 
   displayFile?: string;
   onLogoLoaded?: () => void;
@@ -199,6 +201,27 @@ const [discountModalVisible, setDiscountModalVisible] = useState(false);
   const { t } = useTranslation();
 
 
+  ///////16.02.2026
+
+  const [isMarkupModalOpen, setIsMarkupModalOpen] = useState(false);
+
+const handleOpenMarkup = () => {
+  // Если уже есть скидка, не даем делать наценку
+  if (discountValue > 0) {
+    message.error(t('sale.workspace.errors.discountExists'));
+    return;
+  }
+  setIsMarkupModalOpen(true);
+};
+
+const handleApplyMarkup = (amount: number) => {
+  setMarkup(amount); // Используем вашу переменную
+  setIsMarkupModalOpen(false);
+};
+
+  ///////16.02.2026
+
+
 ///////28.01.2026
 const [posIp] = KaspiIp; // IP из настроек компании
 const handleKaspiSuccess = (transactionId: string) => {
@@ -291,14 +314,14 @@ const applyDiscount = () => {
 ////
 
   useEffect(() => {
-    const effectiveTotal = totalAmount - discount;
+    const effectiveTotal = totalAmount - discount+markup;
     let totalPaid = 0;
     if (currentPaymentType === "cash") totalPaid = cashAmount;
     else if (currentPaymentType === "mixed") totalPaid = cardAmount;
     else totalPaid = cashAmount + cardAmount + transferAmount;
 
     setChange(totalPaid - effectiveTotal);
-  }, [cashAmount, cardAmount, transferAmount, currentPaymentType, totalAmount, discount]);
+  }, [cashAmount, cardAmount, transferAmount, currentPaymentType, totalAmount, discount,markup]);
 
 
    const getHeaders = () => ({
@@ -502,7 +525,7 @@ const confirmDebt = () => {
 
  
   //if (debtAmount > totalAmount) {
-  if (debtAmount > totalAmount- discount) {
+  if (debtAmount > totalAmount- discount+markup) {
     //message.error("Сумма долга не может превышать сумму оплаты");
     message.error(t('sale.payment.errors.debtExceedsTotal'));
     return;
@@ -510,7 +533,7 @@ const confirmDebt = () => {
 
   // Сценарий: долг равен сумме чека
   //if (debtAmount === totalAmount) {
-  if (debtAmount === totalAmount- discount) {
+  if (debtAmount === totalAmount- discount+markup) {
     Modal.confirm({
       //title: "Подтвердите оплату в долг",
       //content: `Продать в долг ${debtAmount} клиенту ${debtClient.firstname} ${debtClient.lastname}?`,
@@ -649,7 +672,7 @@ const confirmLegalClient = (client: any) => {
 
   // --- ЕСЛИ ДОЛГ УСТАНОВЛЕН И ОН < полной суммы ---
   //if (confirmedDebt && confirmedDebt.amount < totalAmount) {
-  if (confirmedDebt && confirmedDebt.amount < totalAmount- discount) {
+  if (confirmedDebt && confirmedDebt.amount < totalAmount- discount+markup) {
     setCurrentPaymentType("mixed");
     setAmountModalVisible(true);
     return;
@@ -675,8 +698,8 @@ const confirmLegalClient = (client: any) => {
      //   : `Подтверждаете оплату на сумму ${totalAmount}?`,
       //  ? `Подтверждаете оплату картой на сумму ${totalAmount- discount}?`
       //   : `Подтверждаете оплату на сумму ${totalAmount- discount}?`,
-      ? t('sale.payment.modals.confirm.card', { amount: totalAmount- discount }) 
-      : t('sale.payment.modals.confirm.generic', { amount: totalAmount- discount }),
+      ? t('sale.payment.modals.confirm.card', { amount: totalAmount- discount+markup }) 
+      : t('sale.payment.modals.confirm.generic', { amount: totalAmount- discount+markup }),
     onOk: () => handlePayment(type),
   });
 };
@@ -684,6 +707,17 @@ const confirmLegalClient = (client: any) => {
 /////
 
 const openDiscountModal = () => {
+
+    //////16.02.2026
+
+    // Если уже есть наценка, не даем делать скидку
+  if (markup > 0) {
+    message.error(t('sale.workspace.errors.markupExists'));
+    return;
+  }
+
+    //////16.02.2026
+
     setDiscountValue(discount);
     setDiscountModalVisible(true);
   };
@@ -717,7 +751,7 @@ const openDiscountModal = () => {
 
    
    // if (type === "cash" && cashAmount < totalAmount) {
-    if (type === "cash" && cashAmount < totalAmount- discount) {
+    if (type === "cash" && cashAmount < totalAmount- discount+ markup) {
       message.error(
         /* "Сумма наличных меньше суммы к оплате" */
         t('sale.payment.errors.insufficientCash')
@@ -733,7 +767,7 @@ const openDiscountModal = () => {
   
   const debtPay = actualDebt ? actualDebt.amount : 0;
   //const requiredMixedPay = totalAmount - debtPay;
-  const requiredMixedPay = totalAmount- discount - debtPay;
+  const requiredMixedPay = totalAmount- discount+ markup - debtPay;
 
   const realPay = cashAmount + cardAmount + transferAmount;
 
@@ -772,6 +806,7 @@ const openDiscountModal = () => {
       ticketdiscount: 0,
       pieceunits: 0,
       discount: p.discount || 0,
+      markup: p.markup||0,
       attributes: p.listcode,
       units: p.qty,
       bonuspay: 0,
@@ -791,6 +826,7 @@ const openDiscountModal = () => {
       //cashpay: Math.min(cashAmount, totalAmount),
       cashpay: Math.min(cashAmount, totalAmount-discount),
       discount,
+      markup: markup,
       cert: [],
       bonuspay: usedBonuses,
       debtorid: 0,
@@ -803,7 +839,7 @@ const openDiscountModal = () => {
       /////28.01.2026
 
       //price: totalAmount,
-      price: totalAmount-discount,
+      price: totalAmount-discount+ markup,
       cashboxuser: cashboxUser.id,
       details: transactionDetails,
       ofdnumber: "1",
@@ -832,7 +868,7 @@ const openDiscountModal = () => {
       detailsdiscount: 0,
       shiftnumber: 1,
       consignment: false,
-      total: totalAmount-discount,
+      total: totalAmount-discount+ markup,
       issalebypiece: false,
       promotions: [],
     };
@@ -947,8 +983,9 @@ const receiptData = isTicketFormatEmpty
 printReceipt({
   saleProducts,
   //totalAmount,
-  totalAmount:totalAmount- discount,
+  totalAmount:totalAmount- discount+markup,
   discount,
+  markup,
   clientName: confirmedDebt
     ? `${confirmedDebt.client.firstname} ${confirmedDebt.client.lastname}`
     : 
@@ -995,13 +1032,13 @@ printReceipt({
               <span><b>
                {/*  Итого к оплате */}
                 {t('sale.payment.labels.totalToPay')}:</b></span>
-               <span>{totalAmount-discount}</span>
+               <span>{totalAmount-discount+markup}</span>
              </div>
              <div className={styles.justifyBetween}>
                <span><b>
                 {/* Сумма чека */}
                 {t('sale.payment.labels.totalCheckAmount')}:</b></span> 
-               <span>{totalAmount-discount}</span> 
+               <span>{totalAmount-discount+markup}</span> 
              </div>
              <div className={styles.justifyBetween}>
                 <span><b>
@@ -1171,7 +1208,7 @@ printReceipt({
 
       <KaspiPayment 
   // Мы подаем чистую сумму, которую клиент реально должен списать с карты/QR
-  payTotal={totalAmount - discount} 
+  payTotal={totalAmount - discount+markup} 
   
   // IP берем из конфига точки (point)
   //terminalIp={point.kaspiConfig?.ip || ""} 
@@ -1179,7 +1216,7 @@ printReceipt({
   
   onSuccess={(transId) => {
     // 1. Когда Kaspi подтвердил успех, принудительно ставим суммы
-    setCardAmount(totalAmount - discount);
+    setCardAmount(totalAmount - discount+markup);
     setCashAmount(0);
     setTransferAmount(0);
     
@@ -1197,6 +1234,16 @@ printReceipt({
       >
         {t('sale.payment.labels.client')}
       </Button>
+
+      <Button 
+  icon={<RiseOutlined />} 
+        size="large"
+  onClick={handleOpenMarkup}
+  
+>
+  {t('sale.workspace.buttons.markup') || "Наценка"}
+  {/* {markup > 0 && `: ${markup}`} */}
+</Button>
 
            {/*  <Button size="large" onClick={() => handleOpenAmountModal("certificate")}>
               🎟 Сертификат
@@ -1270,7 +1317,7 @@ printReceipt({
       {/* Остаток после долга к оплате */}
       {t('sale.payment.labels.remainingAfterDebt')}:{" "}
       {/* <b>{totalAmount - (confirmedDebt ? confirmedDebt.amount : 0)}</b> */}
-      <b>{totalAmount- discount - (confirmedDebt ? confirmedDebt.amount : 0)}</b>
+      <b>{totalAmount- discount+markup - (confirmedDebt ? confirmedDebt.amount : 0)}</b>
     </p>
   </>
 )}
@@ -1467,29 +1514,55 @@ printReceipt({
         cancelText={t('sale.payment.buttons.cancel')}
         /* "Отмена" */
       >
-        <Radio.Group
+       {/*  <Radio.Group
           onChange={(e) => setDiscountType(e.target.value)}
           value={discountType}
           className={styles.mb10}
         >
           <Radio value="sum">
-            {/* Сумма */}
+            
             {t('sale.payment.labels.sum')}
             </Radio>
           <Radio value="percent">
-            {/* Процент */}
+            
             {t('sale.payment.labels.percent')}
             </Radio>
-        </Radio.Group>
-        <Input
+        </Radio.Group> */}
+
+       {/*  <Radio.Group
+  onChange={(e) => {
+    const newType = e.target.value;
+    const originalTotal = totalAmount; // или ваша база для расчета
+
+    if (originalTotal > 0) {
+      if (newType === "percent") {
+        // Конвертируем сумму в процент: (Сумма / Итог) * 100
+        const convertedPercent = (discountValue / originalTotal) * 100;
+        setDiscountValue(Number(convertedPercent.toFixed(2)));
+      } else {
+        // Конвертируем процент в сумму: (Итог * Процент) / 100
+        const convertedSum = (originalTotal * discountValue) / 100;
+        setDiscountValue(Number(convertedSum.toFixed(2)));
+      }
+    }
+    setDiscountType(newType);
+  }}
+  value={discountType}
+  className={styles.mb10}
+>
+  <Radio value="sum">{t('sale.payment.labels.sum')}</Radio>
+  <Radio value="percent">{t('sale.payment.labels.percent')}</Radio>
+</Radio.Group>
+ */}
+        {/* <Input
           type="number"
           value={discountValue}
           onChange={(e) => setDiscountValue(Number(e.target.value))}
           placeholder={discountType === "sum" ? 
-            /* "Сумма скидки" */
+            
             t('sale.payment.discount.enterSum') 
             : 
-            /* "% скидки" */
+           
             t('sale.payment.discount.enterPercent')
           
           }
@@ -1497,23 +1570,68 @@ printReceipt({
        
         {discountType === "percent" && (
   <div className={styles.secondaryText}>
-    {/* Скидка составит */}
+    
     {t('sale.payment.discount.calculatedAmount')}
     :{" "}
     {((originalTotal * discountValue) / 100).toFixed(2)}
   </div>
-)}
+)} */}
+<Space direction="vertical" size="middle">
+
+  {/* Поле для ввода СУММЫ */}
+    <div>
+      <div style={{ marginBottom: 5 }}>{t('sale.payment.labels.sum')}:</div>
+      <Input
+        type="number"
+        size="large"
+        value={discountValue || ''}
+        placeholder="0.00"
+        onChange={(e) => {
+          const val = Number(e.target.value);
+          setDiscountValue(val);
+        }}
+      />
+    </div>
+
+    {/* Поле для ввода ПРОЦЕНТА */}
+    <div>
+      <div style={{ marginBottom: 5 }}>{t('sale.payment.labels.percent')}:</div>
+      <Input
+        type="number"
+        size="large"
+        // Вычисляем процент от суммы для показа
+        value={discountValue > 0 ? Number(((discountValue / totalAmount) * 100).toFixed(2)) : ''}
+        placeholder="0"
+        onChange={(e) => {
+          const percent = Number(e.target.value);
+          // Вычисляем сумму от процента и сохраняем её
+          setDiscountValue(Number(((totalAmount * percent) / 100).toFixed(2)));
+        }}
+      />
+    </div>
 
 <div className={styles.discountLimitHint}>
   {/* Максимальная скидка: {maxDiscountPercent}% */}
   {t('sale.payment.modals.discount.maxLimit', { percent: maxDiscountPercent })}
 </div>
+</Space>
       </Modal>
 
  <ClientRegistrationModal 
   open={isRegModalOpen} 
   onClose={() => setIsRegModalOpen(false)} 
 />     
+
+<MarkupModal
+  open={isMarkupModalOpen}
+  onClose={() => setIsMarkupModalOpen(false)}
+  onApply={handleApplyMarkup}
+  selectedItem={{
+    name: t('sale.payment.labels.markups') || "Весь чек",
+    originalPrice: originalTotal, // База для расчета процентов в компоненте
+    markup: markup // Передаем текущее значение, чтобы оно отобразилось при открытии
+  }}
+/>
 
     </>
   );

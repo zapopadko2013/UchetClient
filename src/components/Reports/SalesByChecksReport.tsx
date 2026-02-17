@@ -71,6 +71,7 @@ interface FullDetails {
     price: number;
     totalprice: number;
     discount: number;
+    markup: number;
     unitspr_shortname: string;
   }>;
 }
@@ -433,6 +434,7 @@ const downloadInvoice = async (transactionId: string) => {
         footer={null}
         onCancel={() => setDetailsVisible(false)}
         width={700}
+        zIndex={3503}
         title={t('reportchecks.modalTitle')} // "Чек"
       >
         {details && (
@@ -456,6 +458,7 @@ const downloadInvoice = async (transactionId: string) => {
                 { title: t('reportchecks.modalColUnitsPrice'), render: (r) => `${r.units} x ${r.price}` }, 
                 { title: t('reportchecks.modalColPrice'), dataIndex: "totalprice" },
                 { title: t('reportchecks.modalColDiscount'), dataIndex: "discount" },
+                { title: t('reportchecks.modalMarkup'), dataIndex: "markup" },
               ]}
               dataSource={details.details}
             />
@@ -470,6 +473,9 @@ const downloadInvoice = async (transactionId: string) => {
               <Col span={12}><b>{t('reportchecks.modalDiscount')}:</b></Col>
               <Col span={12} className={styles.modalRight}>{details.discount ?? 0}</Col>
 
+              <Col span={12}><b>{t('reportchecks.modalMarkup')}:</b></Col>
+              <Col span={12} className={styles.modalRight}>{details.markup ?? 0}</Col>
+             
               <Col span={12}><b>{t('reportchecks.modalBonusAdded')}:</b></Col>
               <Col span={12} className={styles.modalRight}>{details.bonusadd ?? 0}</Col>
               
@@ -502,6 +508,12 @@ const downloadInvoice = async (transactionId: string) => {
 
               <Col span={12}>{t('reportchecks.modalDebt')}:</Col>
               <Col span={12} className={styles.modalRight}>{details.debtpay ?? 0}</Col>
+
+              <Col span={12}>{t('reportchecks.modalDiscount')}:</Col>
+              <Col span={12} className={styles.modalRight}>{details.discount ?? 0}</Col>
+
+              <Col span={12}>{t('reportchecks.modalMarkup')}:</Col>
+              <Col span={12} className={styles.modalRight}>{details.markup ?? 0}</Col>
             </Row>
 
             <Button

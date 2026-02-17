@@ -23,6 +23,10 @@ import ClientSelectModal from "./ClientSelectModal";
 import moment from "moment";
 import DebtWriteOffModal from './DebtWriteOffModal';
 
+import MarkupModal from './MarkupModal';
+
+
+
 import BarcodeScanner from '../../components/BarcodeScanner';
 
 
@@ -152,6 +156,40 @@ type Mode = "sale" | "return";
 
 const [mode, setMode] = useState<Mode>("sale");
 const [isReturnMode, setIsReturnMode] = useState(false);
+
+///////13.02.2026
+
+const [markupVisible, setMarkupVisible] = useState(false);
+
+const applyMarkup = (markupAmount: number) => {
+
+  const currentProduct = saleProducts.find(p => p.key === selectedRowKey);
+  if (currentProduct && (currentProduct.discount > 0)) {
+    message.error(t('sale.workspace.errors.discountExists') || 'На этом товаре уже есть скидка. Наценка невозможна.');
+    return;
+  }
+  
+  if (!selectedRowKey) return;
+
+
+
+  setSaleProducts(prev =>
+    prev.map(p =>
+      p.key === selectedRowKey
+        ? {
+            ...p,
+            markup: markupAmount,
+          //price: p.price + markupAmount,
+          price: p.originalPrice + markupAmount ,
+            // Если нужно хранить историю наценки, можно добавить поле markup: markupAmount
+          }
+        : p
+    )
+  );
+  setMarkupVisible(false);
+};
+
+///////13.02.2026
 
 //////11.02.22026
 const [isDebtWriteOffOpen, setIsDebtWriteOffOpen] = useState(false);
@@ -481,6 +519,15 @@ const handleAmountChange = (amount: number, originalPrice: number) => {
 };
 
 const applyManualDiscount = () => {
+
+  const currentProduct = saleProducts.find(p => p.key === selectedRowKey);
+
+  // ПРОВЕРКА: Если есть наценка, запрещаем скидку
+  if (currentProduct && (currentProduct.markup > 0)) {
+    message.error(t('sale.workspace.errors.markupExists') || 'На этом товаре уже есть наценка. Скидка невозможна.');
+    return;
+  }
+
   if (!selectedDiscountRowKey) return;
 
   const item = saleProducts.find(p => p.key === selectedDiscountRowKey);
@@ -1496,6 +1543,19 @@ const handlePaymentClick = async () => {
           message.warning(t('sale.workspace.errors.noDiscountPermission'));
           return;
         }
+
+        //////16.02.2026
+        // Находим выбранный товар
+    const currentProduct = saleProducts.find(p => p.key === selectedRowKey);
+
+    // ПРОВЕРКА ПЕРЕД ОТКРЫТИЕМ СКИДКИ
+    if (currentProduct && currentProduct.markup > 0) {
+      message.error(t('sale.workspace.errors.markupExists'));
+      return; // Прерываем выполнение, форма не откроется
+    }
+        //////16.02.2026
+
+
         const selectedItem = saleProducts.find(p => p.key === selectedRowKey);
         if (selectedItem) {
 
@@ -1530,16 +1590,30 @@ const handlePaymentClick = async () => {
     </Button>
 
     <Button
-      type="dashed"
-      block
-      onClick={() => {
-        // TODO: логика наценки
-        message.info('Наценка');
-        setActionsModalVisible(false);
-      }}
-    >
-      {t('sale.workspace.buttons.markup')}
-    </Button>
+  type="dashed"
+  block
+  onClick={() => {
+    if (!selectedRowKey) {
+      message.warning(t('sale.workspace.errors.selectProductFirst'));
+      return;
+    }
+
+    // Находим выбранный товар
+    const currentProduct = saleProducts.find(p => p.key === selectedRowKey);
+
+    // ПРОВЕРКА ПЕРЕД ОТКРЫТИЕМ НАЦЕНКИ
+    if (currentProduct && currentProduct.discount > 0) {
+      message.error(t('sale.workspace.errors.discountExists'));
+      return; // Прерываем выполнение, форма не откроется
+    }
+    
+    setMarkupVisible(true);
+    setActionsModalVisible(false);
+  }}
+>
+  {t('sale.workspace.buttons.markup')}
+</Button>
+
   </Space>
 </Modal>
 
@@ -1910,7 +1984,12 @@ const handlePaymentClick = async () => {
   }}
 /> */}
 
-
+<MarkupModal 
+  open={markupVisible}
+  onClose={() => setMarkupVisible(false)}
+  onApply={applyMarkup}
+  selectedItem={saleProducts.find(p => p.key === selectedRowKey)}
+/>
 
 
 <BarcodeScanner 

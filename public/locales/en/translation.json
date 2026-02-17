@@ -2671,6 +2671,7 @@
 
   "reportchecks": {
   "modalDiscount": "Discount",
+  "modalMarkup": "Markup",
   "common": {
     "all": "All"
   },
@@ -3142,6 +3143,7 @@
       "vatLabel": "VAT:",
       "cashier": "Cashier:",
       "consultant": "Consultant:",
+      "markups": "Markup:",
       "terminal": "Terminal:",
       "print": "Print",
       "copy": "Receipt Copy",
@@ -3178,9 +3180,13 @@
         "barcode": "Barcode"
       },
       "labels": {
+        "product": "Product",
         "totalSum": "Amount"
       },
       "errors": {
+        "discountExists": "The product has a discount. Markup is not allowed.",
+    "markupExists": "The product has a markup. Discount is not allowed.",
+    "removeDiscountFirst": "Remove the discount before applying a markup",
         "emptyCart": "Add products first",
         "noStock": "Out of stock",
         "minQty": "Quantity cannot be less than minimum",
@@ -3195,6 +3201,11 @@
         "returnSuccess": "Return processed successfully"
       },
       "modals": {
+        "markup": {
+          "title": "Markup",
+          "amountLabel": "Markup Amount",
+          "percentLabel": "Markup Percent (%)"
+        },
         "title": "Actions",
         "manualDiscount": {
           "title": "Manual Discount",
@@ -3276,6 +3287,8 @@
         "unknown": "Not specified"
       },
       "errors": {
+
+        "insufficientCash": "The cash amount is less than the amount due",
 
         "fillRequiredFields": "Fill in the required fields",
         "saveError": "Error while saving",
