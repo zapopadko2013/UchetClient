@@ -3051,6 +3051,21 @@
 },
 
 "sale": {
+
+  "certificates": {
+  "modalTitle": "Төлем үшін сертификаттарды таңдау",
+  "searchPlaceholder": "Код бойынша іздеу...",
+  "columns": {
+    "code": "Код",
+    "balance": "Қалдық",
+    "expireDate": "Қолданылу мерзімі"
+  },
+  "common": {
+    "apply": "Қолдану",
+    "cancel": "Бас тарту",
+    "noData": "Деректер табылмады"
+  }
+},
     "errors": {
       "loadTicketFormat": "Чек форматын жүктеу қатесі",
       "loadCompanyInfo": "Компания деректерін жүктеу қатесі",
@@ -3229,6 +3244,8 @@
       "title": "Төлем",
       "unknown": "Белгісіз түрі",
       "buttons": {
+
+        "sertif": "Сертификат",
         "cash": "Қолма-қол",
         "card": "Карта",
         "mixed": "Аралас",
@@ -3277,7 +3294,7 @@
         "lastname": "Тегі",
         "currentDebt": "Ағымдағы қарыз",
         "transfer": "Аударым",
-        "remainingAfterDebt": "Қарыздан кейінгі төлеуге қалдық",
+        "remainingAfterDebt": "Қарыздан кейінгі төлем қалдығы",
         "placeholderSearch": "БСН немесе атауын енгізіңіз",
         "errorFindFirst": "Алдымен кәсіпорынды табыңыз",
         "thanks": "Сатып алғаныңызға рақмет!"
@@ -3293,6 +3310,7 @@
       "errors": {
 
         "insufficientCash": "Қолма-қол ақша сомасы төлем сомасынан аз",
+        "insufficientMixed": "Қаражат жеткіліксіз. Жетіспейді: {{amount}}",
 
         "fillRequiredFields": "Міндетті өрістерді толтырыңыз",
         "saveError": "Сақтау кезінде қате",

@@ -3394,6 +3394,22 @@
 
   ,
   "sale": {
+
+    "certificates": {
+      "modalTitle": "Выбор сертификатов для оплаты",
+      "searchPlaceholder": "Поиск по коду...",
+      "columns": {
+        "code": "Код",
+        "balance": "Баланс",
+        "expireDate": "Срок действия до"
+      },
+      "common": {
+    "apply": "Применить",
+    "cancel": "Отмена",
+    "noData": "Данные не найдены"
+  }
+    },
+
     "errors": {
       "loadTicketFormat": "Ошибка загрузки формата чека",
       "loadCompanyInfo": "Ошибка загрузки данных компании",
@@ -3584,6 +3600,9 @@
       "title": "Оплата",
       "unknown": "Неизвестный тип",
       "buttons": {
+
+        "sertif": "Сертификат",
+        
         "cash": "Наличными",
         "card": "Карта",
         "mixed": "Смешанная",
@@ -3634,7 +3653,7 @@
         "lastname": "Фамилия",
         "currentDebt": "Текущий долг",
         "transfer": "Перевод",
-        "remainingAfterDebt": "Остаток после долга к оплате",
+        "remainingAfterDebt": "Остаток к оплате",
         "placeholderSearch": "Введите БИН или наименование",
         "errorFindFirst": "Сначала найдите предприятие",
         "thanks": "Спасибо за покупку!"
@@ -3653,6 +3672,8 @@
         "saveError": "Ошибка при сохранении",
 
         "insufficientCash": "Сумма наличных меньше суммы к оплате",
+        "insufficientMixed": "Недостаточно средств. Не хватает: {{amount}}",
+
         
 
         "limitExceeded": "Превышен лимит скидки. Доступно: {{amount}}",

@@ -3047,6 +3047,22 @@
 },
 
 "sale": {
+
+  "certificates": {
+  "modalTitle": "Select Certificates for Payment",
+  "searchPlaceholder": "Search by code...",
+  "columns": {
+    "code": "Code",
+    "balance": "Balance",
+    "expireDate": "Valid until"
+  },
+  "common": {
+    "apply": "Apply",
+    "cancel": "Cancel",
+    "noData": "No data found"
+  }
+}
+,
     "errors": {
       "loadTicketFormat": "Error loading receipt format",
       "loadCompanyInfo": "Error loading company data",
@@ -3225,6 +3241,7 @@
       "title": "Payment",
       "unknown": "Unknown type",
       "buttons": {
+        "sertif": "Certificate",
         "cash": "Cash",
         "card": "Card",
         "mixed": "Mixed",
@@ -3273,7 +3290,7 @@
         "lastname": "Last Name",
         "currentDebt": "Current Debt",
         "transfer": "Transfer",
-        "remainingAfterDebt": "Remaining balance to pay",
+        "remainingAfterDebt": "Remaining after debt",
         "placeholderSearch": "Enter BIN or name",
         "errorFindFirst": "Find company first",
         "thanks": "Thank you for your purchase!"
@@ -3289,6 +3306,7 @@
       "errors": {
 
         "insufficientCash": "The cash amount is less than the amount due",
+        "insufficientMixed": "Insufficient funds. Missing: {{amount}}",
 
         "fillRequiredFields": "Fill in the required fields",
         "saveError": "Error while saving",

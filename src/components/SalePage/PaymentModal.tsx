@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Modal, Input, Button, Select, Checkbox, message,Radio,Space } from "antd";
+import { Modal, Input, Button, Select, Checkbox, message,Radio,Space,Tag } from "antd";
 import useApiRequest from "../../hooks/useApiRequest";
 import ClientSelectModal from "./ClientSelectModal";
 import { SearchOutlined,UserOutlined,RiseOutlined } from "@ant-design/icons";
@@ -11,6 +11,7 @@ import styles from "./Sale.module.css";
 import KaspiPayment from './KaspiPayment';
 import ClientRegistrationModal from './ClientRegistrationModal';
 import MarkupModal from './MarkupModal';
+import CertificateSelectModal from './CertificateSelectModal';
 
 
 
@@ -153,7 +154,7 @@ const PaymentModal: React.FC<Props> = ({
   const [accruedBonuses, setAccruedBonuses] = useState<number>(0);
   const [clientName] = useState<string>("Физическое лицо");
   const [clientIIN, setClientIIN] = useState<string>("");
-  const [certificateAmount] = useState<number>(0);
+  const [certificateAmount,setCertificateAmount] = useState<number>(0);
   const [useBonuses, setUseBonuses] = useState<boolean>(true);
 
   const [selectedConsultant, setSelectedConsultant] = useState<User | null>(
@@ -220,6 +221,182 @@ const handleApplyMarkup = (amount: number) => {
 };
 
   ///////16.02.2026
+
+
+////////17.02.2026
+
+const [availableCertificates, setAvailableCertificates] = useState<any[]>([]);
+
+const [availableCertificates1, setAvailableCertificates1] = useState<any[]>([]);
+
+const [isCertModalOpen, setIsCertModalOpen] = useState(false);
+const [selectedPaymentCerts, setSelectedPaymentCerts] = useState<any[]>([]);
+
+// Флаг, указывающий, что выбор сертификатов был подтвержден
+const [isCertConfirmed, setIsCertConfirmed] = useState(false);
+
+// Загрузка сертификатов при открытии модального окна
+useEffect(() => {
+  if (open) {
+    const fetchCertificates = async () => {
+      try {
+        const data = await sendRequest(
+          `${import.meta.env.VITE_API_URL}/api/giftcertificates`,
+          { headers: getHeaders() }
+        );
+        //console.log(data);
+        if (Array.isArray(data)) {
+          // Фильтруем только доступные для продажи
+          /* console.log("data");
+          setAvailableCertificates(data.filter(c => c.status === 'Доступен для продажи'
+            && 
+            Number(c.balance) > 0
+          ));
+          console.log(availableCertificates); */
+
+          const filtered = data.filter(c => 
+            c.status === 'Доступен для продажи' && Number(c.balance) > 0
+          );
+          
+          setAvailableCertificates(filtered);
+          setAvailableCertificates1(data);
+          
+          //Продан (Активен)
+          // Здесь смотрим на filtered, а не на состояние
+          //console.log("Отфильтрованные сертификаты:", filtered);
+
+        }
+      } catch (err) {
+        console.error("Ошибка загрузки сертификатов:", err);
+      }
+    };
+    fetchCertificates();
+  }
+}, [open]);
+
+/* const handleSelectCertForPayment = (cert: any) => {
+  // 1. Проверяем, не добавлен ли этот код уже в список
+  if (selectedPaymentCerts.find(c => c.id === cert.id)) {
+    message.warning("Этот сертификат уже добавлен для оплаты");
+    return;
+  }
+
+  // 2. Добавляем новый сертификат в массив
+  const newSelectedCerts = [...selectedPaymentCerts, cert];
+  setSelectedPaymentCerts(newSelectedCerts);
+
+  // 3. Пересчитываем общую сумму оплаты сертификатами
+  const totalCertBalance = newSelectedCerts.reduce((sum, c) => sum + Number(c.balance), 0);
+  setCertificateAmount(totalCertBalance);
+
+  //message.success(`Добавлен сертификат ${cert.code} на сумму ${cert.balance}`);
+}; */
+
+const handleConfirmCerts = (selectedCerts: any[]) => {
+  setSelectedPaymentCerts(selectedCerts);
+  
+  // Считаем общую сумму
+  /* const total = selectedCerts.reduce((sum, c) => sum + Number(c.balance), 0);
+  setCertificateAmount(total); */
+
+//handleOpenAmountModal("debit")
+
+const totalCertAmount = selectedCerts.reduce((sum, c) => sum + Number(c.balance), 0);
+  setCertificateAmount(totalCertAmount);
+
+
+///////
+// 4. Устанавливаем эту же сумму для безналичного расчета (transferAmount)
+  // Используем Math.min, чтобы сумма оплаты не превысила итоговую сумму чека
+  const amountToPay = totalAmount - discount + markup;
+  const finalTransferValue = Math.min(totalCertAmount, amountToPay);
+  
+  setTransferAmount(finalTransferValue);  
+
+  // Указываем, что данные были именно подтверждены кнопкой Применить
+  setIsCertConfirmed(true);
+
+
+///////  
+
+/* if (totalCertAmount >= amountToPay) {
+    // Используем setTimeout, чтобы сначала закрылась модалка выбора сертификатов,
+    // а затем открылось окно подтверждения оплаты.
+    setTimeout(() => {
+      handleOpenAmountModal("debit");
+    }, 200); // 200мс достаточно для плавного перехода
+  } */
+
+  /* // 3. Высчитываем итоговую сумму к оплате по чеку
+  const amountToPay = totalAmount - discount + markup;
+
+  // 4. Если сумма сертификатов >= суммы к оплате
+  if (totalCertAmount >= amountToPay) {
+    //message.success(t('sale.payment.messages.certCoveredFull')); // "Сумма сертификатов покрывает всю сумму чека"
+    
+    // Автоматически открываем модалку оплаты безналом (или нужным типом)
+    // В вашем коде это handleOpenAmountModal
+    handleOpenAmountModal("debit"); 
+  } */
+
+};
+
+/* useEffect(() => {
+  const amountToPay = totalAmount - discount + markup;
+
+  // Срабатывает ТОЛЬКО если окно открыто и сумма сертификатов покрывает чек
+  if (open && certificateAmount >= amountToPay && certificateAmount > 0) {
+    handleOpenAmountModal("debit");
+  }
+  // Добавляем 'open' в зависимости
+}, [certificateAmount, totalAmount, discount, markup, open]);
+ */
+
+/* useEffect(() => {
+  const amountToPay = totalAmount - discount + markup;
+
+  // Добавляем проверку: если окно оплаты НЕ открыто, но сумма сертификатов достаточна
+  if (open && !isCertModalOpen && certificateAmount >= amountToPay && certificateAmount > 0) {
+    handleOpenAmountModal("debit");
+  }
+  // Добавляем amountModalVisible в зависимости
+}, [certificateAmount, totalAmount, discount, markup, open, isCertModalOpen]);  */
+
+useEffect(() => {
+  const amountToPay = totalAmount - discount + markup;
+
+  // Проверяем: окно выбора закрыто И была нажата кнопка "Применить"
+  if (open && !isCertModalOpen && isCertConfirmed && certificateAmount >= amountToPay && certificateAmount > 0) {
+    
+    // Сбрасываем флаг сразу, чтобы эффект не зациклился и не сработал при обычном закрытии
+    setIsCertConfirmed(false); 
+    
+    handleOpenAmountModal("debit");
+  }
+  
+  // Если окно выбора открыли заново, сбрасываем флаг подтверждения
+  if (isCertModalOpen) {
+    setIsCertConfirmed(false);
+  }
+
+}, [certificateAmount, totalAmount, discount, markup, open, isCertModalOpen, isCertConfirmed]);
+
+
+const handleRemoveCert = (certId: any) => {
+  // Фильтруем массив, удаляя выбранный сертификат
+  const newSelectedCerts = selectedPaymentCerts.filter(c => c.id !== certId);
+  setSelectedPaymentCerts(newSelectedCerts);
+  
+  // Пересчитываем общую сумму оплаты сертификатами
+  const totalCertBalance = newSelectedCerts.reduce((sum, c) => sum + Number(c.balance), 0);
+  setCertificateAmount(totalCertBalance);
+
+  // Обновляем безналичную сумму вслед за сертификатом
+  const amountToPay = totalAmount - discount + markup;
+  setTransferAmount(Math.min(totalCertBalance, amountToPay));
+};
+
+////////17.02.2026
 
 
 ///////28.01.2026
@@ -665,7 +842,7 @@ const confirmLegalClient = (client: any) => {
   // -----------------------------------------
   // Открытие модала оплаты
   // -----------------------------------------
-  const handleOpenAmountModal = (
+ /*  const handleOpenAmountModal = (
   type: "cash" | "card" | "mixed" | "debit" | "debt" | "certificate"
 ) => {
 
@@ -701,6 +878,83 @@ const confirmLegalClient = (client: any) => {
       ? t('sale.payment.modals.confirm.card', { amount: totalAmount- discount+markup }) 
       : t('sale.payment.modals.confirm.generic', { amount: totalAmount- discount+markup }),
     onOk: () => handlePayment(type),
+  });
+}; */
+
+const handleOpenAmountModal = (
+  type: "cash" | "card" | "mixed" | "debit" | "debt" | "certificate"
+) => {
+  const amountToPay = totalAmount - discount + markup;
+  const remainingAmount = amountToPay - certificateAmount;
+
+  // Если сумма сертификатов уже покрывает всё, просто открываем дебет
+  if (remainingAmount <= 0) {
+    setCurrentPaymentType("debit");
+    //setAmountModalVisible(true);
+
+    Modal.confirm({
+    title: t('sale.payment.modals.confirm.title'),
+    zIndex: 3502,
+    content: type === "card"
+      ? t('sale.payment.modals.confirm.card', { amount: remainingAmount }) 
+      : t('sale.payment.modals.confirm.generic', { amount: remainingAmount }),
+    onOk: () => {
+        // Перед оплатой фиксируем сумму в нужном поле
+        if (type === "card") setCardAmount(remainingAmount);
+        if (type === "debit") setTransferAmount(remainingAmount);
+        handlePayment(type);
+    },
+  });
+
+    return;
+  }
+
+  // Если есть сертификаты, но их мало — это всегда смешанная оплата
+  if (certificateAmount > 0 && remainingAmount > 0) {
+    setCurrentPaymentType("mixed");
+    
+    // Сбрасываем старые значения и ставим остаток в выбранный тип
+    setCashAmount(0);
+    setCardAmount(0);
+    setTransferAmount(0);
+
+    if (type === "cash") setCashAmount(remainingAmount);
+    if (type === "card") setCardAmount(remainingAmount);
+    if (type === "debit") setTransferAmount(remainingAmount);
+
+    setAmountModalVisible(true);
+    return;
+  }
+
+  // Стандартная логика для случая БЕЗ сертификатов
+  if (confirmedDebt && confirmedDebt.amount < amountToPay) {
+    setCurrentPaymentType("mixed");
+    setAmountModalVisible(true);
+    return;
+  }
+
+  setCurrentPaymentType(type);
+
+  if (type === "cash" || type === "mixed") {
+    // Для наличных ставим всю сумму (или остаток)
+    setCashAmount(remainingAmount); 
+    setAmountModalVisible(true);
+    return;
+  }
+
+  // Прямые подтверждения (карта / дебет)
+  Modal.confirm({
+    title: t('sale.payment.modals.confirm.title'),
+    zIndex: 3502,
+    content: type === "card"
+      ? t('sale.payment.modals.confirm.card', { amount: remainingAmount }) 
+      : t('sale.payment.modals.confirm.generic', { amount: remainingAmount }),
+    onOk: () => {
+        // Перед оплатой фиксируем сумму в нужном поле
+        if (type === "card") setCardAmount(remainingAmount);
+        if (type === "debit") setTransferAmount(remainingAmount);
+        handlePayment(type);
+    },
   });
 };
 
@@ -767,7 +1021,7 @@ const openDiscountModal = () => {
   
   const debtPay = actualDebt ? actualDebt.amount : 0;
   //const requiredMixedPay = totalAmount - debtPay;
-  const requiredMixedPay = totalAmount- discount+ markup - debtPay;
+  const requiredMixedPay = totalAmount- discount+ markup - debtPay- certificateAmount;
 
   const realPay = cashAmount + cardAmount + transferAmount;
 
@@ -796,7 +1050,32 @@ const openDiscountModal = () => {
       return;
     }
 
-    const transactionDetails = saleProducts.map((p, index) => ({
+    /////17.02.2026
+    // Создаем временную копию для распределения кодов
+    let certsPool = [...availableCertificates];
+    /////17.02.2026
+
+    const transactionDetails = saleProducts.map((p, index) =>{
+      
+      /////17.02.2026
+      // ВАЖНО: приводим оба ID к строке для корректного сравнения
+    const certIndex = certsPool.findIndex(c => 
+        String(c.product) === String(p.productId)
+    );
+    
+    let certData: any[] = [];
+    
+    if (certIndex !== -1) {
+      // Забираем сертификат из пула
+      const foundCert = certsPool.splice(certIndex, 1)[0];
+      certData = [{ code: foundCert.code }];
+      //console.log(`Найден сертификат для продукта ${p.productId}: ${foundCert.code}`);
+    } else {
+      certData = p.certificates || [];
+    }
+      /////17.02.2026
+
+      return {
       bonusadd: 0,
       //product: Number(p.id.split("_")[0]),
       product: p.productId,
@@ -810,13 +1089,22 @@ const openDiscountModal = () => {
       attributes: p.listcode,
       units: p.qty,
       bonuspay: 0,
-      cert: p.certificates || [],
+      /////17.02.2026
+      //cert: p.certificates || [],
+      cert: certData,
+      /////17.02.2026
       bonusrate: 0,
       nds: 0,
       coupon: p.coupons || [],
       invoicenumber: p.invoiceNumber || "",
       promotions: p.promotions || [],
-    }));
+    };
+  });
+
+  //////17.02.2026
+  const hasCertsForPayment = selectedPaymentCerts && selectedPaymentCerts.length > 0; 
+  //////17.02.2026
+
 
     const transaction = {
       date: new Date().toLocaleString("ru-RU"),
@@ -827,7 +1115,27 @@ const openDiscountModal = () => {
       cashpay: Math.min(cashAmount, totalAmount-discount),
       discount,
       markup: markup,
-      cert: [],
+      //////17.02.2026
+      //cert: [],
+      //cert: selectedPaymentCerts.map(c => ({ code: c.code})),
+      //certpay: certificateAmount,
+
+      // Если есть выбранные сертификаты, берем их сумму, но не больше суммы чека
+    // Если их нет, передаем 0
+    certpay: hasCertsForPayment 
+      ? certificateAmount 
+      : 0,
+
+    // Если есть выбранные сертификаты, мапим их коды и балансы
+    // Если нет — передаем пустой массив
+    cert: hasCertsForPayment 
+      ? selectedPaymentCerts.map(c => ({
+          code: c.code,
+          amount: Number(c.balance)
+        })) 
+      : [],
+
+      //////17.02.2026
       bonuspay: usedBonuses,
       debtorid: 0,
       parentid: 0,
@@ -843,7 +1151,7 @@ const openDiscountModal = () => {
       cashboxuser: cashboxUser.id,
       details: transactionDetails,
       ofdnumber: "1",
-      certpay: certificateAmount,
+      
       tickettype: 0,
       //cardpay: type === "card" ? totalAmount : cardAmount,
       cardpay: cardAmount,
@@ -925,7 +1233,10 @@ const openDiscountModal = () => {
         //message.success("Оплата проведена");
         message.success(t('sale.payment.messages.success'));
 
-       
+        //////17.02.2026
+        setSelectedPaymentCerts([]); // Очищаем массив выбранных кодов
+        setCertificateAmount(0);     // Обнуляем сумму оплаты сертификатами
+        //////17.02.2026
 
         setAmountModalVisible(false);
         onClose();
@@ -1245,6 +1556,15 @@ printReceipt({
   {/* {markup > 0 && `: ${markup}`} */}
 </Button>
 
+<Button 
+  icon={<SearchOutlined />} 
+  onClick={() => setIsCertModalOpen(true)}
+  style={{ marginBottom: 10 }}
+  block
+>
+  {t('sale.payment.buttons.sertif') || "Сертификат"}
+</Button>
+
            {/*  <Button size="large" onClick={() => handleOpenAmountModal("certificate")}>
               🎟 Сертификат
             </Button> */}
@@ -1281,10 +1601,10 @@ printReceipt({
           </>
         )}
 
-       {currentPaymentType === "mixed" && (
+{/*       {currentPaymentType === "mixed" && (
   <>
     <label>
-      {/* Наличные */}
+      
       {t('sale.payment.labels.cash')}:</label>
     <Input
       type="number"
@@ -1294,7 +1614,7 @@ printReceipt({
     />
 
     <label>
-     {/*  Карта  */}     
+         
       {t('sale.payment.labels.card')}:</label>
     <Input
       type="number"
@@ -1304,7 +1624,7 @@ printReceipt({
     />
 
     <label>
-      {/* Перевод */}
+      
       {t('sale.payment.labels.transfer')}:</label>
     <Input
       type="number"
@@ -1314,10 +1634,64 @@ printReceipt({
     />
 
     <p>
-      {/* Остаток после долга к оплате */}
+      
       {t('sale.payment.labels.remainingAfterDebt')}:{" "}
-      {/* <b>{totalAmount - (confirmedDebt ? confirmedDebt.amount : 0)}</b> */}
+      
       <b>{totalAmount- discount+markup - (confirmedDebt ? confirmedDebt.amount : 0)}</b>
+    </p>
+  </>
+)}
+
+*/}
+
+{currentPaymentType === "mixed" && (
+  <>
+    {/* Добавляем информационную строку о сертификатах */}
+    {certificateAmount > 0 && (
+      <div style={{ marginBottom: 10, padding: '4px 8px', background: '#f6ffed', border: '1px solid #b7eb8f', borderRadius: 4 }}>
+        <span style={{ color: '#52c41a' }}>
+          <b>{t('sale.payment.labels.certificatePay')}: </b>
+          {certificateAmount} 
+        </span>
+      </div>
+    )}
+
+    <label>{t('sale.payment.labels.cash')}:</label>
+    <Input
+      type="number"
+      value={cashAmount}
+      onChange={(e) => setCashAmount(Number(e.target.value))}
+      className={styles.mb5}
+    />
+
+    <label>{t('sale.payment.labels.card')}:</label>
+    <Input
+      type="number"
+      value={cardAmount}
+      onChange={(e) => setCardAmount(Number(e.target.value))}
+      className={styles.mb5}
+    />
+
+    <label>{t('sale.payment.labels.transfer')}:</label>
+    <Input
+      type="number"
+      value={transferAmount}
+      onChange={(e) => setTransferAmount(Number(e.target.value))}
+      className={styles.mb5}
+    />
+
+    <p>
+      {/* Обновленный расчет остатка: вычитаем и долг, и сертификаты */}
+      {t('sale.payment.labels.remainingAfterDebt')}:{" "}
+      <b>
+        {(
+          totalAmount - 
+          discount + 
+          markup - 
+          certificateAmount - 
+          (confirmedDebt ? confirmedDebt.amount : 0)
+        ).toFixed(2)} 
+      </b>
     </p>
   </>
 )}
@@ -1632,6 +2006,25 @@ printReceipt({
     markup: markup // Передаем текущее значение, чтобы оно отобразилось при открытии
   }}
 />
+
+
+<CertificateSelectModal
+  open={isCertModalOpen}
+  onClose={() => setIsCertModalOpen(false)}
+  certificates={availableCertificates1}
+  onConfirm={handleConfirmCerts}
+  // Передаем ID уже выбранных сертификатов, чтобы галочки стояли на месте
+  alreadySelectedKeys={selectedPaymentCerts.map(c => c.id)} 
+/>
+
+{/* Список выбранных с возможностью удаления (как в предыдущем ответе) */}
+{/* <Space wrap>
+  {selectedPaymentCerts.map(cert => (
+    <Tag key={cert.id} closable onClose={() => handleRemoveCert(cert.id)}>
+      {cert.code} ({cert.balance} )
+    </Tag>
+  ))}
+</Space> */}
 
     </>
   );
