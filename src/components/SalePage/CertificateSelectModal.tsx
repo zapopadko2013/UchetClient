@@ -78,16 +78,17 @@ const CertificateSelectModal: React.FC<Props> = ({
       okText={t('sale.certificates.common.apply')}
       cancelText={t('sale.certificates.common.cancel')}
       width={700}
-    >
+    ><Space.Compact className={styles.fullWidthFlex}>
       <Input
         placeholder={t('sale.certificates.searchPlaceholder')}
         prefix={<SearchOutlined />}
         /* style={{ marginBottom: 16 }} */ 
-        className={styles.searchInput}
+        className={styles.flexFill}
         
         onChange={(e) => setSearchText(e.target.value)}
         allowClear
       />
+      </Space.Compact>
       <Table
         rowSelection={{ type: 'checkbox', ...rowSelection }}
         dataSource={filteredData}

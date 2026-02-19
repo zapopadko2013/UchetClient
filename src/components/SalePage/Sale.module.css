@@ -482,6 +482,18 @@
 /* Адаптация для мобильных (дополнение к вашим @media) */
 @media (max-width: 768px) {
   /* Перестраиваем форму: лейбл сверху, инпут снизу */
+
+  .searchInputMobile {
+    height: 52px !important;
+    font-size: 17px !important;
+    margin-bottom: 12px !important;
+  }
+
+  /* Иконка поиска побольше */
+  .searchInputMobile :global(.anticon) {
+    font-size: 20px !important;
+  } 
+
   :global(.ant-form-item) {
     flex-direction: column !important;
     margin-bottom: 12px !important;
