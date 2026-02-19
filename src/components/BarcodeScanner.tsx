@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
-import { Modal, message } from 'antd';
-import { Html5Qrcode, Html5QrcodeSupportedFormats } from 'html5-qrcode';
+import { Modal, message } from 'antd'; // Добавим message для отладки
+import { BrowserMultiFormatReader, DecodeHintType, BarcodeFormat } from '@zxing/library';
 import { useTranslation } from 'react-i18next';
 import styles from './BarcodeScanner.module.css';
 
@@ -11,126 +11,86 @@ interface BarcodeScannerProps {
 }
 
 const BarcodeScanner: React.FC<BarcodeScannerProps> = ({ visible, onClose, onScan }) => {
-  const scannerRef = useRef<Html5Qrcode | null>(null);
-  const scannerId = "reader-element-unique";
-const { t } = useTranslation();
+  const { t } = useTranslation();
+  const videoRef = useRef<HTMLVideoElement>(null);
+  // Используем useRef для ридера, чтобы он не пересоздавался
+  const codeReader = useRef(new BrowserMultiFormatReader());
 
- useEffect(() => {
-  let isMounted = true;
-  let html5QrCode: Html5Qrcode | null = null;
+  useEffect(() => {
+    let isMounted = true;
 
-  /* const startScanner = async () => {
-    try {
-      // 1. Ждем, пока модалка полностью отрисуется
-      await new Promise(resolve => setTimeout(resolve, 600));
-      if (!isMounted) return;
+    const startScanning = async () => {
+      if (!visible || !videoRef.current) return;
 
-      // 2. Создаем экземпляр
-      html5QrCode = new Html5Qrcode(scannerId);
-      scannerRef.current = html5QrCode;
+      const hints = new Map();
+      hints.set(DecodeHintType.POSSIBLE_FORMATS, [
+        BarcodeFormat.EAN_13,
+        BarcodeFormat.EAN_8,
+        BarcodeFormat.CODE_128,
+        BarcodeFormat.QR_CODE
+      ]);
+      hints.set(DecodeHintType.TRY_HARDER, true);
 
-      await html5QrCode.start(
-        { facingMode: "environment" },
-        { fps: 15, qrbox: { width: 250, height: 250 }, aspectRatio: 1.0 },
-        (text) => {
-          onScan(text);
-          // Не закрывайте здесь сразу, пусть cleanup всё сделает
-        },
-        () => {}
-      );
-    } catch (err) {
-      console.error("Scanner start error:", err);
-    }
-  }; */
+      codeReader.current.hints = hints;
 
-  const startScanner = async () => {
-  try {
-    await new Promise(resolve => setTimeout(resolve, 600));
-    if (!isMounted) return;
-
-    // 1. Указываем все форматы, которые могут встретиться на товарах
-    html5QrCode = new Html5Qrcode(scannerId, {
-      formatsToSupport: [
-        Html5QrcodeSupportedFormats.EAN_13,
-        Html5QrcodeSupportedFormats.EAN_8,
-        Html5QrcodeSupportedFormats.CODE_128,
-        Html5QrcodeSupportedFormats.CODE_39,
-        Html5QrcodeSupportedFormats.UPC_A,
-        Html5QrcodeSupportedFormats.UPC_E,
-        Html5QrcodeSupportedFormats.QR_CODE,
-      ],
-      verbose: false
-    });
-    scannerRef.current = html5QrCode;
-
-    // 2. Настраиваем конфигурацию сканирования
-    const config = {
-      fps: 20, // Немного увеличим для плавности
-      // Делаем область сканирования шире (для штрих-кодов)
-      qrbox: (viewfinderWidth: number, __: number) => {
-          // На мобильных устройствах делаем окно на 80% ширины
-          const width = viewfinderWidth * 0.8;
-          // Но оставляем его не слишком высоким для штрих-кода
-          const height = 150; 
-          return { width, height };
-      },
-      aspectRatio: 1.0, 
-      // disableFlip: false — важно для некоторых фронталок, но для основной обычно ок
+      try {
+        // На Android важно убедиться, что поток привязан к элементу, 
+        // который уже отрендерен в DOM
+        await codeReader.current.decodeFromVideoDevice(
+          null, 
+          videoRef.current,
+          (result, __) => {
+            if (result && isMounted) {
+              onScan(result.getText());
+            }
+          }
+        );
+      } catch (error) {
+        console.error("Scanner error:", error);
+        // Если на Android белый экран, возможно, нет доступа к камере
+        // message.error(t('error.cameraAccess')); 
+      }
     };
 
-    await html5QrCode.start(
-      { facingMode: "environment" },
-      config,
-      (text) => {
-        onScan(text);
-      },
-      () => {}
-    );
-  } catch (err) {
-    console.error("Scanner start error:", err);
-  }
-};
+    // Небольшая задержка перед стартом помогает Android успеть инициализировать видео-тег
+    const timer = setTimeout(() => {
+      startScanning();
+    }, 300);
 
-  if (visible) {
-    startScanner();
-  }
-
-  return () => {
-    isMounted = false;
-    // КРИТИЧНО: Принудительная остановка при каждом закрытии
-    if (html5QrCode && html5QrCode.isScanning) {
-      html5QrCode.stop()
-        .then(() => {
-          // После остановки очищаем внутренний HTML, чтобы убрать "белый след"
-          const container = document.getElementById(scannerId);
-          if (container) container.innerHTML = "";
-        })
-        .catch(err => console.error("Stop error", err));
-    }
-  };
-}, [visible]);
-
+    return () => {
+      isMounted = false;
+      clearTimeout(timer);
+      codeReader.current.reset();
+    };
+  }, [visible, onScan]);
 
   return (
     <Modal
-  title={t('workorder.scanner.title')}
-  open={visible}
-  onCancel={onClose}
-  footer={null}
-  // centered={false} // Отключаем стандартное центрирование
-  zIndex={5000}
-  getContainer={() => document.body}
-  destroyOnClose={true}
-  width="90%"
-  transitionName="" // Убираем анимацию появления
-  className={styles.modalBody}      // Стиль для самой модалки
-  wrapClassName={styles.modalWrapper} // Стиль для обертки (центрирование)
->
-  <div 
-    id={scannerId} 
-    className={styles.scannerContainer} // Стиль для контейнера сканера
-  />
-</Modal>
+      title={t('workorder.scanner.title')}
+      open={visible}
+      onCancel={onClose}
+      footer={null}
+      destroyOnClose
+      width="90%"
+      centered
+    >
+      <div className={styles.scannerWrapper} style={{ position: 'relative', overflow: 'hidden' }}>
+        <video
+          ref={videoRef}
+          // КРИТИЧЕСКИЕ атрибуты для мобильных браузеров:
+          muted
+          playsInline
+          autoPlay
+          style={{ 
+            width: '100%', 
+            borderRadius: '8px',
+            backgroundColor: '#000', // Чтобы не было белого экрана до загрузки
+            minHeight: '200px' 
+          }}
+        />
+        <div className={styles.scanLaser} />
+      </div>
+    </Modal>
   );
 };
 
