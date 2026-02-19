@@ -91,6 +91,7 @@ import SalePage from './components/SalePage/SalePage';
 import AiChatHistory from './components/AiChatHistory';
 
 import DebtReport from './components/Reports/DebtReport';
+import CertificateReport from './components/Reports/CertificateReport';
 
 
 
@@ -528,6 +529,14 @@ export const routes = [
       code: 'rep_debt_book',
     },
 
+    {
+      path: '/certificatesreport',
+      key: 'certificatesreport',
+      label: 'Отчёт по сертификатам',
+      icon: <GiftOutlined />,
+      element: <CertificateReport />,
+      code: 'rep_debt_book',
+    },
     
     ],
 },  

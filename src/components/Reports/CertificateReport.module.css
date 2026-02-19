@@ -1,0 +1,75 @@
+/* Контейнер чека */
+.receiptContainer {
+  padding: 10px;
+  background-color: #f9f9f9;
+  font-family: monospace;
+  color: #333;
+}
+
+.receiptTitle {
+  text-align: center;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+}
+
+.receiptText {
+  margin: 2px 0;
+}
+
+/* Линия отрыва */
+.dashedLine {
+  border-style: dashed;
+  border-top: none;
+  margin: 10px 0;
+}
+
+/* Таблица товаров */
+.receiptTable {
+  width: 100%;
+  font-size: 12px;
+  border-collapse: collapse;
+}
+
+.receiptTable th {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 5px;
+}
+
+.receiptTable td {
+  padding: 4px 0;
+  vertical-align: top;
+}
+
+/* Итоговая секция */
+.totalAmount {
+  text-align: right;
+  font-weight: bold;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+/* Секция оплат */
+.paymentsSection {
+  font-size: 12px;
+}
+
+/* Вспомогательные классы для кнопок/таблиц */
+.tableActionBtn {
+  color: #1890ff;
+  border-color: #1890ff;
+}
+
+.statusTag {
+  font-weight: 500;
+}
+
+/* CertificateReport.module.css */
+.fullWidthSelect {
+  width: 100%;
+}
+
+.toolbar {
+  margin-bottom: 16px;
+  display: flex; /* Хорошая практика для Space-контейнеров */
+  gap: 8px;      /* Если Space не подхватит стили Ant Design */
+}

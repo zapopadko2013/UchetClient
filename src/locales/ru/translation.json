@@ -24,6 +24,9 @@
     "legalBuyers": "Покупатели юр. лица",
     "individualBuyers": "Покупатели физ. лица",
 
+    "certificatesreport": "Отчёт по сертификатам",
+    
+
     "aichathistory": "История AI-помощника",
     "supportrequests": "Вопросы по программе",
 
@@ -3960,7 +3963,60 @@
     "cancel": "Закрыть"
     
   }
-}
+},
+
+"reports": {
+     
+    
+    "purchaseDate": "Покупка",
+    "cashier": "Кассир",
+    "point": "Точка",
+    "cashbox": "Касса",
+    "itemName": "Наименование",
+    "itemPriceCalc": "Кол х Цена",
+    "itemTotal": "Сумма",
+    "totalToPay": "Итого к оплате",
+    
+    "payments": {
+      "cash": "Наличными",
+      "card": "Картой",
+      "cert": "Сертификатом",
+      "bonus": "Бонусами",
+      "debit": "Безналичный перевод",
+      "debt": "В долг"
+    },
+   
+
+    "certificateReportTitle": "Отчёт по сертификатам",
+    "exportExcel": "Выгрузить в Excel",
+    "writeOff": "Списать",
+    "activate": "Активировать",
+    "cancel": "Отменить",
+    "receiptTitle": "Чек",
+    "selectStockTitle": "Выберите склад для активации сертификата",
+    "selectStockPlaceholder": "Выберите склад",
+    "loadError": "Ошибка загрузки данных",
+    "writeOffSuccess": "Списано успешно",
+    "activationSuccess": "Сертификат активирован",
+    "certId": "Номер",
+    "code": "Код",
+    "nominal": "Номинал",
+    "balance": "Баланс",
+    "sellDate": "Дата продажи",
+    "useDate": "Дата использования",
+    "shelfLife": "Действителен до",
+    "remainingDate": "Дата образования остатка",
+    "status": "Статус",
+    "details": "Детали",
+    "actions": "Действие",
+    "type": "Тип",
+    "tabs": {
+      "sold": "Проданные",
+      "used": "Использованные",
+      "status": "Статус",
+      "writeoff": "Списание"
+    }
+  }
 
 
 }

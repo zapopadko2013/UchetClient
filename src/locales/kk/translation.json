@@ -24,6 +24,8 @@
     "aichathistory": "AI-көмекші тарихы",
 "supportrequests": "Бағдарлама бойынша сұрақтар",
 
+"certificatesreport": "Сертификаттар бойынша есеп",
+
 "charts": "Диаграммалар",
 "debtreport": "Қарыздар бойынша есеп",
 
@@ -3590,6 +3592,57 @@
     "repaySuccess": "Қарыз сәтті өтелді",
     "historyTitle": "Чектер тарихы",
     "cancel": "Жабу"
+  }
+}
+,
+"reports": {
+
+  "purchaseDate": "Сатып алу күні",
+  "cashier": "Кассир",
+  "point": "Нүкте",
+  "cashbox": "Касса",
+  "itemName": "Атауы",
+  "itemPriceCalc": "Саны × Бағасы",
+  "itemTotal": "Сома",
+  "totalToPay": "Төлеуге барлығы",
+
+  "payments": {
+    "cash": "Қолма-қол",
+    "card": "Картамен",
+    "cert": "Сертификатпен",
+    "bonus": "Бонуспен",
+    "debit": "Қолма-қолсыз аударым",
+    "debt": "Қарызға"
+  },
+
+  "certificateReportTitle": "Сертификаттар бойынша есеп",
+  "exportExcel": "Excel-ге жүктеу",
+  "writeOff": "Есептен шығару",
+  "activate": "Іске қосу",
+  "cancel": "Бас тарту",
+  "receiptTitle": "Чек",
+  "selectStockTitle": "Сертификатты іске қосу үшін қойманы таңдаңыз",
+  "selectStockPlaceholder": "Қойманы таңдаңыз",
+  "loadError": "Деректерді жүктеу қатесі",
+  "writeOffSuccess": "Сәтті есептен шығарылды",
+  "activationSuccess": "Сертификат іске қосылды",
+  "certId": "Нөмір",
+  "code": "Код",
+  "nominal": "Номинал",
+  "balance": "Қалдық",
+  "sellDate": "Сату күні",
+  "useDate": "Пайдалану күні",
+  "shelfLife": "Жарамды мерзімі",
+  "remainingDate": "Қалдықтың пайда болу күні",
+  "status": "Күйі",
+  "details": "Толығырақ",
+  "actions": "Әрекет",
+  "type": "Түрі",
+  "tabs": {
+    "sold": "Сатылған",
+    "used": "Пайдаланылған",
+    "status": "Күйі",
+    "writeoff": "Есептен шығару"
   }
 }
 

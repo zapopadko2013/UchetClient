@@ -24,6 +24,8 @@
   "legalBuyers": "Legal Entity Buyers",
   "individualBuyers": "Individual Buyers",
 
+  "certificatesreport": "Certificate Report",
+
   "charts": "Charts",
  "debtreport": "Debt report",
 
@@ -3592,6 +3594,58 @@
     "cancel": "Close"
   }
 }
+,
+"reports": {
+
+  "purchaseDate": "Purchase Date",
+  "cashier": "Cashier",
+  "point": "Location",
+  "cashbox": "Cash Register",
+  "itemName": "Item Name",
+  "itemPriceCalc": "Qty × Price",
+  "itemTotal": "Total",
+  "totalToPay": "Total to Pay",
+
+  "payments": {
+    "cash": "Cash",
+    "card": "Card",
+    "cert": "Certificate",
+    "bonus": "Bonus",
+    "debit": "Bank Transfer",
+    "debt": "On Credit"
+  },
+
+  "certificateReportTitle": "Certificate Report",
+  "exportExcel": "Export to Excel",
+  "writeOff": "Write Off",
+  "activate": "Activate",
+  "cancel": "Cancel",
+  "receiptTitle": "Receipt",
+  "selectStockTitle": "Select a warehouse to activate the certificate",
+  "selectStockPlaceholder": "Select warehouse",
+  "loadError": "Data loading error",
+  "writeOffSuccess": "Successfully written off",
+  "activationSuccess": "Certificate activated",
+  "certId": "Number",
+  "code": "Code",
+  "nominal": "Nominal Value",
+  "balance": "Balance",
+  "sellDate": "Sale Date",
+  "useDate": "Usage Date",
+  "shelfLife": "Valid Until",
+  "remainingDate": "Remaining Balance Date",
+  "status": "Status",
+  "details": "Details",
+  "actions": "Action",
+  "type": "Type",
+  "tabs": {
+    "sold": "Sold",
+    "used": "Used",
+    "status": "Status",
+    "writeoff": "Write Off"
+  }
+}
+
 
 
 }
