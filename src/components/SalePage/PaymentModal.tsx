@@ -893,18 +893,19 @@ const handleOpenAmountModal = (
     //setAmountModalVisible(true);
 
     Modal.confirm({
-    title: t('sale.payment.modals.confirm.title'),
-    zIndex: 3502,
-    content: type === "card"
-      ? t('sale.payment.modals.confirm.card', { amount: remainingAmount }) 
-      : t('sale.payment.modals.confirm.generic', { amount: remainingAmount }),
-    onOk: () => {
-        // Перед оплатой фиксируем сумму в нужном поле
-        if (type === "card") setCardAmount(remainingAmount);
-        if (type === "debit") setTransferAmount(remainingAmount);
-        handlePayment(type);
-    },
-  });
+      title: t('sale.payment.modals.confirm.title'),
+      zIndex: 3502,
+     
+      content: type === "card"
+        ? t('sale.payment.modals.confirm.card', { amount: amountToPay }) 
+        : t('sale.payment.modals.confirm.generic', { amount: amountToPay }),
+      onOk: () => {
+          
+          if (type === "card") setCardAmount(0);
+          if (type === "debit") setTransferAmount(0);
+          handlePayment(type);
+      },
+    });
 
     return;
   }

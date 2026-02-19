@@ -24,6 +24,9 @@
     "legalBuyers": "Покупатели юр. лица",
     "individualBuyers": "Покупатели физ. лица",
 
+    "certificatesreport": "Отчёт по сертификатам",
+    
+
     "aichathistory": "История AI-помощника",
     "supportrequests": "Вопросы по программе",
 
@@ -3394,6 +3397,22 @@
 
   ,
   "sale": {
+
+    "certificates": {
+      "modalTitle": "Выбор сертификатов для оплаты",
+      "searchPlaceholder": "Поиск по коду...",
+      "columns": {
+        "code": "Код",
+        "balance": "Баланс",
+        "expireDate": "Срок действия до"
+      },
+      "common": {
+    "apply": "Применить",
+    "cancel": "Отмена",
+    "noData": "Данные не найдены"
+  }
+    },
+
     "errors": {
       "loadTicketFormat": "Ошибка загрузки формата чека",
       "loadCompanyInfo": "Ошибка загрузки данных компании",
@@ -3584,6 +3603,9 @@
       "title": "Оплата",
       "unknown": "Неизвестный тип",
       "buttons": {
+
+        "sertif": "Сертификат",
+        
         "cash": "Наличными",
         "card": "Карта",
         "mixed": "Смешанная",
@@ -3634,7 +3656,7 @@
         "lastname": "Фамилия",
         "currentDebt": "Текущий долг",
         "transfer": "Перевод",
-        "remainingAfterDebt": "Остаток после долга к оплате",
+        "remainingAfterDebt": "Остаток к оплате",
         "placeholderSearch": "Введите БИН или наименование",
         "errorFindFirst": "Сначала найдите предприятие",
         "thanks": "Спасибо за покупку!"
@@ -3653,6 +3675,8 @@
         "saveError": "Ошибка при сохранении",
 
         "insufficientCash": "Сумма наличных меньше суммы к оплате",
+        "insufficientMixed": "Недостаточно средств. Не хватает: {{amount}}",
+
         
 
         "limitExceeded": "Превышен лимит скидки. Доступно: {{amount}}",
@@ -3939,7 +3963,60 @@
     "cancel": "Закрыть"
     
   }
-}
+},
+
+"reports": {
+     
+    
+    "purchaseDate": "Покупка",
+    "cashier": "Кассир",
+    "point": "Точка",
+    "cashbox": "Касса",
+    "itemName": "Наименование",
+    "itemPriceCalc": "Кол х Цена",
+    "itemTotal": "Сумма",
+    "totalToPay": "Итого к оплате",
+    
+    "payments": {
+      "cash": "Наличными",
+      "card": "Картой",
+      "cert": "Сертификатом",
+      "bonus": "Бонусами",
+      "debit": "Безналичный перевод",
+      "debt": "В долг"
+    },
+   
+
+    "certificateReportTitle": "Отчёт по сертификатам",
+    "exportExcel": "Выгрузить в Excel",
+    "writeOff": "Списать",
+    "activate": "Активировать",
+    "cancel": "Отменить",
+    "receiptTitle": "Чек",
+    "selectStockTitle": "Выберите склад для активации сертификата",
+    "selectStockPlaceholder": "Выберите склад",
+    "loadError": "Ошибка загрузки данных",
+    "writeOffSuccess": "Списано успешно",
+    "activationSuccess": "Сертификат активирован",
+    "certId": "Номер",
+    "code": "Код",
+    "nominal": "Номинал",
+    "balance": "Баланс",
+    "sellDate": "Дата продажи",
+    "useDate": "Дата использования",
+    "shelfLife": "Действителен до",
+    "remainingDate": "Дата образования остатка",
+    "status": "Статус",
+    "details": "Детали",
+    "actions": "Действие",
+    "type": "Тип",
+    "tabs": {
+      "sold": "Проданные",
+      "used": "Использованные",
+      "status": "Статус",
+      "writeoff": "Списание"
+    }
+  }
 
 
 }
