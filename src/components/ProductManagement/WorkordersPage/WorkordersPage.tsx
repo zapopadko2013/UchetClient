@@ -272,6 +272,42 @@ const WorkordersPage: React.FC = () => {
   }
 }; */
 
+const handleCancel = async () => {
+  if (!selectedRow) return;
+
+  Modal.confirm({
+    title: t('workorder.cancel'), // Убедитесь, что ключ есть в i18n
+    content: t('workorder.cancelConfirm'),
+    okText: t('workorder.common.yes'),
+    okType: 'danger',
+    cancelText: t('workorder.common.no'),
+    onOk: async () => {
+      try {
+        setLoading(true);
+        await sendRequest(`${API_URL}/api/workorder/sendwhatsappcancel`, {
+          method: 'POST',
+          headers: { 
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${localStorage.getItem('accessToken')}` 
+          },
+          body: JSON.stringify({ 
+            workorderId: selectedRow.id, 
+            counterparty: selectedRow.counterparty 
+          }),
+        });
+
+        message.success(t('workorder.sendSuccess'));
+        fetchWorkorders(); // Обновить таблицу
+      } catch (err) {
+        console.error(err);
+        message.error(t('workorder.cancelError'));
+      } finally {
+        setLoading(false);
+      }
+    },
+  });
+};
+
 const handleSend = async () => {
   if (!selectedRow) return;
   
@@ -446,6 +482,25 @@ const handleSend = async () => {
           >
             {t('workorder.send')}
           </Button>
+
+          <Button
+    danger
+    variant="outlined"
+    color="danger"
+    icon={<DeleteOutlined />} // Можно использовать CloseOutlined, если есть в импортах
+    /* disabled={!selectedRow || (selectedRow.status === 'ACCEPTED' || selectedRow.status === 'INPROCESS')}
+    */ 
+   disabled={
+    !selectedRow || 
+    (selectedRow.status.toUpperCase() !== 'INPROCESS' && 
+     selectedRow.status.toUpperCase() !== 'ACCEPTED')
+  }
+    onClick={handleCancel}
+    loading={loading}
+  >
+    {t('workorder.cancel')}
+  </Button>
+
           <Button 
             disabled={!selectedRow || selectedRow.status === 'FORMATION' || selectedRow.status === 'ACCEPTED'} 
   icon={<CheckCircleOutlined />}
