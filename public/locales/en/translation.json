@@ -3417,6 +3417,8 @@
       "title": "Scan Code",
       "cameraError": "Camera access error. Please check permissions."
     },
+
+    "cancelConfirm": "Are you sure you want to cancel the order?",
   "title": "Product Orders",
   "productNotFound": "Product not found",
   "flagnkt": "Fetch from National Goods Catalog if missing",

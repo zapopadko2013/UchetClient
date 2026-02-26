@@ -3148,6 +3148,7 @@
       "unknown": "Unknown"
     },
     "receipt": {
+      "fiscalUrl": "Receipt link",
       "logoAlt": "Company Logo",
       "discountLabel": "Discount:",
       "binLabel": "BIN/IIN",
@@ -3327,6 +3328,8 @@
         "transferError": "Connection error"
       },
       "messages": {
+        "fiscalSuccess": "Receipt sent to OFD",
+"fiscalError": "Error sending receipt to OFD",
 
         "clientFound": "Client found",
         "saveSuccess": "Data saved successfully",

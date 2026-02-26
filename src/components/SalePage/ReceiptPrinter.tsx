@@ -12,6 +12,7 @@ interface SaleProduct {
 }
 
 interface ReceiptPrinterProps {
+  qr?: string;
   saleProducts: SaleProduct[];
   totalAmount: number;
   clientName?: string;
@@ -44,6 +45,7 @@ const padRight = (text: string, length: number) => text.padEnd(length, " ");
 const padLeft = (text: string, length: number) => text.padStart(length, " ");
 
 const ReceiptPrinter: React.FC<ReceiptPrinterProps> = ({
+  qr,
   saleProducts,
   totalAmount,
   cashboxUser,
@@ -176,8 +178,25 @@ const ReceiptPrinter: React.FC<ReceiptPrinterProps> = ({
         {cashboxUser ? `${padRight(t('sale.receipt.cashier') || "Кассир/Кассир:", 34)}${cashboxUser.name}\n` : ""}
         {`${padRight(t('sale.receipt.consultant') || "Сатушы/Консультант:", 25)}${selectedConsultant}\n`}
         {`${padRight(t('sale.receipt.terminal') || "Терминал/Терминал:", 37)}${cashboxUser ? cashboxUser.cashboxId : ""}\n\n`}
-        {Dopol1 + "\n"}
+        
+{qr && (
+  <>
+    {"\n------------------------------------------\n"}
+    {t('sale.receipt.fiscalUrl') || "Ссылка на чек:" + "\n"}
+    <div style={{ wordBreak: 'break-all', whiteSpace: 'pre-wrap' }}>
+      {qr + "\n"}
+    </div>
+  </>
+)}
+        {Dopol1 && (
+  <>{Dopol1 + "\n"}
+  </>
+)}
+{Dopol2 && (
+  <>
         {Dopol2 + "\n"}
+        </>
+)}
       </pre>
     </div>
   );

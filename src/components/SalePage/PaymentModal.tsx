@@ -40,6 +40,7 @@ interface User {
 }
 
 interface ReceiptPrinterProps {
+  qr?: string;
   saleProducts: any[];
   totalAmount: number;
   clientName: string;
@@ -979,6 +980,86 @@ const openDiscountModal = () => {
 
 /////
 
+
+//////25.02.2026
+
+/* 
+const runFiscalization = async (transactionId) => {
+  try {
+    // Используем ваш sendRequest
+    const fiscRes = await sendRequest(
+      `${import.meta.env.VITE_API_URL}/external/fiscalizemanual`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${localStorage.getItem("accessToken") || ""}`,
+        },
+        body: JSON.stringify([{ id: transactionId }]),
+      }
+    );
+
+    console.log("Результат фискализации:", fiscRes);
+    
+    if (fiscRes.details && fiscRes.details[0]?.success) {
+      message.info(`${t('sale.payment.messages.fiscalSuccess') || 'Чек фискализирован'}: №${fiscRes.details[0].ticketNumber}`);
+    } else {
+      console.warn("Фискализация не удалась, чек уйдет в авто-режим через 2 часа:", fiscRes.details?.[0]?.error);
+    }
+  } catch (error) {
+    // Ошибку выводим только в консоль, чтобы не пугать кассира, 
+    // так как сработает серверная подстраховка через 2 часа
+    console.error("Ошибка при ручной фискализации:", error);
+  }
+};
+ */
+
+
+const runFiscalization = async (transactionId) => {
+  try {
+    const fiscRes = await sendRequest(
+      `${import.meta.env.VITE_API_URL}/external/fiscalizemanual`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${localStorage.getItem("accessToken") || ""}`,
+        },
+        body: JSON.stringify([{ id: transactionId }]),
+      }
+    );
+
+    console.log("Результат фискализации:", fiscRes);
+    
+    // Проверяем успех по вашему JSON-ответу
+    if (fiscRes.details && fiscRes.details[0]?.success) {
+      const data = fiscRes.details[0].responseData; // Путь к данным reKassa
+      
+      message.info(`${t('sale.payment.messages.fiscalSuccess') || 'Чек фискализирован'}: №${data.ticketNumber}`);
+      
+      // ВОЗВРАЩАЕМ ОБЪЕКТ С ДАННЫМИ
+      return {
+        success: true,
+        qrCode: data.qrCode,
+        fdoQrCode: data.fdoQrCode,
+        ticketNumber: data.ticketNumber,
+        fullData: data // на всякий случай возвращаем всё
+      };
+    } else {
+      console.warn("Фискализация не удалась:", fiscRes.details?.[0]?.error);
+      return { success: false, error: fiscRes.details?.[0]?.error };
+    }
+  } catch (error) {
+    const errorMessage = error instanceof Error ? error.message : "Неизвестная ошибка";
+  
+  console.error("Ошибка при ручной фискализации:", errorMessage);
+  return { success: false, error: errorMessage };
+  }
+};
+
+
+//////25.02.2026
+
   // -----------------------------------------
   // Основная логика оплаты
   // -----------------------------------------
@@ -1234,10 +1315,30 @@ const openDiscountModal = () => {
         //message.success("Оплата проведена");
         message.success(t('sale.payment.messages.success'));
 
+
         //////17.02.2026
         setSelectedPaymentCerts([]); // Очищаем массив выбранных кодов
         setCertificateAmount(0);     // Обнуляем сумму оплаты сертификатами
         //////17.02.2026
+
+        /////////25.02.2026
+
+        // --- ФИСКАЛИЗАЦИЯ ---
+        // Запускаем асинхронно БЕЗ await, чтобы не ждать ответа reKassa
+        let qrCode='';
+        if (data.transaction && data.transaction[0]?.id) {
+          const fiscalResult = await runFiscalization(data.transaction[0].id);
+  
+  if (fiscalResult.success) {
+    //console.log("QR-код для печати:", fiscalResult.qrCode);
+    qrCode=fiscalResult.qrCode;
+    // Теперь вы можете передать fiscalResult.qrCode в функцию printReceipt
+  }
+
+        }
+        // ---------------------
+
+        /////////25.02.2026
 
         setAmountModalVisible(false);
         onClose();
@@ -1293,6 +1394,7 @@ const receiptData = isTicketFormatEmpty
 //console.log(saleProducts);
 
 printReceipt({
+  qr:qrCode,
   saleProducts,
   //totalAmount,
   totalAmount:totalAmount- discount+markup,
