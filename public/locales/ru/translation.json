@@ -3496,6 +3496,9 @@
       "unknown": "Не указан"
     },
     "receipt": {
+
+      "fiscalUrl": "Ссылка на чек",
+      
       "logoAlt": "Логотип компании",
       "discountLabel": "Скидка:",
       "binLabel": "ЖСН(БСН)/ИИН(БИН)",
@@ -3694,6 +3697,10 @@
         "enterDebtAmount": "Введите сумму долга"
       },
       "messages": {
+          
+
+        "fiscalSuccess": "Чек отправлен в ОФД",
+        "fiscalError": "Ошибка при отправке чека в ОФД",
 
         "clientFound": "Клиент найден",
         "saveSuccess": "Данные успешно сохранены",

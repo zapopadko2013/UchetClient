@@ -101,13 +101,13 @@ const RegisterPage: React.FC = () => {
   }, [form]);
 
   const onFinish: FormProps<FormData>['onFinish'] = useCallback(async (values) => {
-    if (!isVerified) {
+    /* if (!isVerified) {
       notification.warning({
         message: t('register.alert.notVerified', { defaultValue: "Подтвердите что вы не робот" }),
         placement: 'topRight',
       });
       return;
-    }
+    } */
 
     const dataToSend = {
       ...values,
@@ -406,13 +406,13 @@ const RegisterPage: React.FC = () => {
           </div>
 
           {/* Recaptcha */}
-          <div className={styles.recaptchaContainer}>
+          {/* <div className={styles.recaptchaContainer}>
             <ReCAPTCHA
               sitekey="6LfviKEUAAAAAA-sdbw-YKYZdBJutYZRn6Nree6y"
               onChange={captchaCallback}
               onExpired={() => captchaCallback(null)}
             />
-          </div>
+          </div> */}
 
           <Button
             type="primary"

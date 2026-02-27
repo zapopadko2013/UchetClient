@@ -47,6 +47,7 @@ interface User {
 }
 
 interface ReceiptPrinterProps {
+  qr?: string;
   saleProducts: any[];
   totalAmount: number;
   clientName: string;
@@ -590,6 +591,53 @@ const executeKaspiRefund = async (paymenttransid: string, amount: number, termin
 
 //////28.01.2026
 
+//////25.02.2026
+
+const runFiscalization = async (transactionId) => {
+  try {
+    const fiscRes = await sendRequest(
+      `${import.meta.env.VITE_API_URL}/external/fiscalizemanual`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${localStorage.getItem("accessToken") || ""}`,
+        },
+        body: JSON.stringify([{ id: transactionId }]),
+      }
+    );
+
+    console.log("Результат фискализации:", fiscRes);
+    
+    // Проверяем успех по вашему JSON-ответу
+    if (fiscRes.details && fiscRes.details[0]?.success) {
+      const data = fiscRes.details[0].responseData; // Путь к данным reKassa
+      
+      message.info(`${t('sale.payment.messages.fiscalSuccess') || 'Чек фискализирован'}: №${data.ticketNumber}`);
+      
+      // ВОЗВРАЩАЕМ ОБЪЕКТ С ДАННЫМИ
+      return {
+        success: true,
+        qrCode: data.qrCode,
+        fdoQrCode: data.fdoQrCode,
+        ticketNumber: data.ticketNumber,
+        fullData: data // на всякий случай возвращаем всё
+      };
+    } else {
+      console.warn("Фискализация не удалась:", fiscRes.details?.[0]?.error);
+      return { success: false, error: fiscRes.details?.[0]?.error };
+    }
+  } catch (error) {
+    const errorMessage = error instanceof Error ? error.message : "Неизвестная ошибка";
+  
+  console.error("Ошибка при ручной фискализации:", errorMessage);
+  return { success: false, error: errorMessage };
+  }
+};
+
+
+//////25.02.2026
+
 
 const handlePaymentClick = async () => {
   if (saleProducts.length === 0) {
@@ -736,6 +784,34 @@ const handlePaymentClick = async () => {
       if (data.code === "success") {
        // message.success("Возврат успешно проведён");
        message.success(t('sale.workspace.messages.returnSuccess'));
+
+
+       ///////27.02.2026
+
+       /////////25.02.2026
+
+        // --- ФИСКАЛИЗАЦИЯ ---
+        // Запускаем асинхронно БЕЗ await, чтобы не ждать ответа reKassa
+        let qrCode='';
+        if (data.transaction && data.transaction[0]?.id) {
+          const fiscalResult = await runFiscalization(data.transaction[0].id);
+  
+  if (fiscalResult.success) {
+    //console.log("QR-код для печати:", fiscalResult.qrCode);
+    qrCode=fiscalResult.qrCode;
+    // Теперь вы можете передать fiscalResult.qrCode в функцию printReceipt
+  }
+
+        }
+        // ---------------------
+
+        /////////25.02.2026  
+                
+
+       ///////27.02.2026
+
+
+
         
         const productsForPrint = [...saleProducts];
 
@@ -782,6 +858,7 @@ const handlePaymentClick = async () => {
         
         
         printReceipt({
+          qr:qrCode,
           saleProducts: productsForPrint,
           totalAmount,
           clientName: "",
@@ -920,6 +997,30 @@ const handlePaymentClick = async () => {
         setIsReturnMode(false);
         setMode("sale"); */
 
+        ///////27.02.2026
+
+       /////////25.02.2026
+
+        // --- ФИСКАЛИЗАЦИЯ ---
+        // Запускаем асинхронно БЕЗ await, чтобы не ждать ответа reKassa
+        let qrCode='';
+        if (data.transaction && data.transaction[0]?.id) {
+          const fiscalResult = await runFiscalization(data.transaction[0].id);
+  
+  if (fiscalResult.success) {
+    //console.log("QR-код для печати:", fiscalResult.qrCode);
+    qrCode=fiscalResult.qrCode;
+    // Теперь вы можете передать fiscalResult.qrCode в функцию printReceipt
+  }
+
+        }
+        // ---------------------
+
+        /////////25.02.2026  
+                
+
+       ///////27.02.2026
+
         const productsForPrint = [...saleProducts];
 
   setSaleProducts([]);
@@ -965,6 +1066,7 @@ const handlePaymentClick = async () => {
         
         
         printReceipt({
+          qr:qrCode,
           saleProducts: productsForPrint,
           totalAmount,
           clientName: "",
