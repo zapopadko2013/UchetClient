@@ -14,6 +14,11 @@ import type { Dayjs } from 'dayjs';
 import { FileExcelOutlined,EyeOutlined } from "@ant-design/icons";
 import { useTranslation } from 'react-i18next'; // <-- Импорт для интернационализации
 
+/* import utc from "dayjs/plugin/utc"; 
+import timezone from "dayjs/plugin/timezone"; // Добавьте еще и этот
+
+dayjs.extend(utc);
+dayjs.extend(timezone); */
 
 type RangeValue = [Dayjs | null, Dayjs | null] | null;
 
@@ -216,6 +221,12 @@ const SalesByChecksReport: React.FC = () => {
       title: t('reportchecks.colDate'), // "Дата"
       dataIndex: "date",
       render: (val) => dayjs(val).format("DD.MM.YYYY HH:mm"),
+     /* render: (val) => {
+        if (!val) return "-";
+          // Убираем Z и T, чтобы dayjs не умничал с поясами
+          return dayjs(val.replace('Z', '').replace('T', ' ')).format("DD.MM.YYYY HH:mm");
+     } */
+
     },
    {
     title: t('reportchecks.colPaymentType'), // "Способ оплаты"

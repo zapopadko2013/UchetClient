@@ -50,7 +50,10 @@ const ReceiptPrinter: React.FC<ReceiptPrinterProps> = ({
   totalAmount,
   cashboxUser,
   selectedConsultant = "",
-  date = new Date().toLocaleString("ru-RU"),
+  ///////02.03.2026
+  //date = new Date().toLocaleString("ru-RU"),
+  date,
+  ///////02.03.2026
   storeName,
   storeAddress,
   companyName,

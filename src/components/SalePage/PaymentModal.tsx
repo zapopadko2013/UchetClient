@@ -12,7 +12,8 @@ import KaspiPayment from './KaspiPayment';
 import ClientRegistrationModal from './ClientRegistrationModal';
 import MarkupModal from './MarkupModal';
 import CertificateSelectModal from './CertificateSelectModal';
-
+import dayjs from "dayjs";
+import type { Dayjs } from 'dayjs';
 
 
 
@@ -1189,7 +1190,14 @@ const runFiscalization = async (transactionId) => {
 
 
     const transaction = {
-      date: new Date().toLocaleString("ru-RU"),
+     
+      ////27.02.2026
+     date: new Date().toLocaleString("ru-RU"),
+     //date: new Date().toISOString(),
+     //date: dayjs().format("YYYY-MM-DD HH:mm:ss"),
+     //date: new Date().toLocaleString("ru-RU").replace(",", ""),
+     ////27.02.2026
+
       bonusadd: accruedBonuses,
       //cashpay: type === "cash" ? cashAmount : cashAmount,
       //cashpay: cashAmount,
@@ -1335,10 +1343,28 @@ const runFiscalization = async (transactionId) => {
     // Теперь вы можете передать fiscalResult.qrCode в функцию printReceipt
   }
 
+
+     
+
         }
         // ---------------------
 
         /////////25.02.2026
+
+
+       ///////02.03.2026
+       
+       // let dateserv=new Date().toLocaleString("ru-RU");
+        let dateserv='';
+
+      if (data.date && data.date[0]?.date) {
+          dateserv = dayjs(data.date[0]?.date).format("DD.MM.YYYY HH:mm:ss");
+  
+      }
+
+      ///////02.03.2026 
+
+
 
         setAmountModalVisible(false);
         onClose();
@@ -1394,6 +1420,7 @@ const receiptData = isTicketFormatEmpty
 //console.log(saleProducts);
 
 printReceipt({
+  date: dateserv,
   qr:qrCode,
   saleProducts,
   //totalAmount,

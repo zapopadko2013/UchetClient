@@ -22,6 +22,9 @@ import styles from "./Sale.module.css";
 import ClientSelectModal from "./ClientSelectModal";
 import moment from "moment";
 import DebtWriteOffModal from './DebtWriteOffModal';
+import dayjs from "dayjs";
+import type { Dayjs } from 'dayjs';
+
 
 import MarkupModal from './MarkupModal';
 
@@ -810,7 +813,17 @@ const handlePaymentClick = async () => {
 
        ///////27.02.2026
 
-
+       ///////02.03.2026
+              
+              // let dateserv=new Date().toLocaleString("ru-RU");
+               let dateserv='';
+       
+             if (data.date && data.date[0]?.date) {
+                 dateserv = dayjs(data.date[0]?.date).format("DD.MM.YYYY HH:mm:ss");
+         
+             }
+       
+             ///////02.03.2026 
 
         
         const productsForPrint = [...saleProducts];
@@ -858,6 +871,7 @@ const handlePaymentClick = async () => {
         
         
         printReceipt({
+           date: dateserv,
           qr:qrCode,
           saleProducts: productsForPrint,
           totalAmount,
@@ -1021,6 +1035,18 @@ const handlePaymentClick = async () => {
 
        ///////27.02.2026
 
+       ///////02.03.2026
+              
+              // let dateserv=new Date().toLocaleString("ru-RU");
+               let dateserv='';
+       
+             if (data.date && data.date[0]?.date) {
+                 dateserv = dayjs(data.date[0]?.date).format("DD.MM.YYYY HH:mm:ss");
+         
+             }
+       
+             ///////02.03.2026 
+
         const productsForPrint = [...saleProducts];
 
   setSaleProducts([]);
@@ -1066,6 +1092,7 @@ const handlePaymentClick = async () => {
         
         
         printReceipt({
+           date: dateserv,
           qr:qrCode,
           saleProducts: productsForPrint,
           totalAmount,
